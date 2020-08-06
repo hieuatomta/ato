@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-body>
+    <div class="card m-3">
+      <h5 class="card-header">Đăng nhập hệ thống chưa nghĩ ra tên đặt</h5>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+          <!-- [formGroup]="registerForm" -->
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="name" [(ngModel)]="user1.userName" class="form-control" />
+<!--            formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"-->
+<!--            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">-->
+<!--              <div *ngIf="f.email.errors.required">Email is required</div>-->
+<!--              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>-->
+<!--            </div>-->
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Password</label>
+              <input type="password"  name="pass" [(ngModel)]="user1.userPass" class="form-control"  />
+<!--              formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"-->
+<!--              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">-->
+<!--                <div *ngIf="f.password.errors.required">Password is required</div>-->
+<!--                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" />
+            <label  class="form-check-label">Ghi nhớ mật khẩu</label>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary mr-1">Đăng nhập </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </nb-card-body>
+</nb-card>
