@@ -14,6 +14,7 @@
     "conventional-changelog": "conventional-changelog",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng build --prod --base-href https://hieuatomta.github.io/ato/ && angular-cli-ghpages --branch gh-pages",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
