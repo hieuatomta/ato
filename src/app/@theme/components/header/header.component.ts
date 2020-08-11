@@ -41,8 +41,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-
-  userMenu = [ { title: 'Thông tin cá nhân' }, { title: 'Dashboard chia sẻ' },{ title: 'Đăng xuất' } ];
+  menuClick(e){
+      console.log(e);
+      if(e.id==2){
+        console.log("thuc hien đăng xuất");
+        localStorage.clear();
+        window.location.href =  "http://localhost:4200/auths/login"
+      }
+      if(e.id ==1){
+        console.log("Thực hiện mở popup thông tin cá nhân")
+      }
+  };
+  userMenu = [ { id:1, title: 'Thông tin cá nhân' }, {id:2, title: 'Đăng xuất' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -52,23 +62,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private breakpointService: NbMediaBreakpointsService,
               private http : RestApiService ) {
 
-        //  http.post('test3/login',{ "userId":"1",
-        //    "userName": "hieu",
-        //    "userPass": "hieu"})
-        //  .then(res =>
-        //   {
-        //     localStorage.setItem('objects', JSON.stringify(res.listObjects));
-        //   localStorage.setItem('httpHeaders', res.httpHeaders.Authorization);
-        //       localStorage.setItem('users', res.customUserDetails);
-        //       console.log(res);
-              this.user = localStorage.getItem('users');
-        //     })
-        //  .catch();
-
-
+      this.http.post('http://localhost:8080/test3/login1',{}).
+      subscribe(res => {
+        console.log(res.headers.get('Authorization'));
+        if(res.status ==200){
+              // console.log(res.status);
+              localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
+            }
+        // localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
+    },err => {
+      console.log(err);
+      if(err.status == 400){
+            // console.log(res.status);
+            window.location.href =  err.error.data;
+            localStorage.setItem('httpHeaders', "");
+          }
+    })
   }
 
+
+
   ngOnInit() {
+    this.user = localStorage.getItem('users');
     this.currentTheme = this.themeService.currentTheme;
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -77,7 +92,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
-
+      this.menuService.onItemClick().subscribe(( event ) => {
+        this.menuClick(event.item);
+      })
     this.themeService.onThemeChange()
       .pipe(
         map(({ name }) => name),

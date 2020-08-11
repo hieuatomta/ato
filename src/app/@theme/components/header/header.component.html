@@ -13,8 +13,9 @@
 <div class="header-container">
 
   <nb-actions size="small">
-    <nb-action class="user-action" *nbIsGranted="['view', 'user','logout']" >
+    <nb-action class="user-action"  *nbIsGranted="['view', 'user','logout']" >
       <nb-user [nbContextMenu]="userMenu"
+                (menuClick)="menuClick($event)"
                [onlyPicture]="userPictureOnly"
                [name]="user"
                [picture]="user?.picture">

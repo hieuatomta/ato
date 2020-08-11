@@ -40,14 +40,14 @@ export class LoginComponent implements OnInit {
   // registerForm: FormGroup;
   // submitted = false;
 
-  constructor(private http : RestApiService,
+  constructor(private http: RestApiService,
    ) {
 
    }
   //  private formBuilder: FormBuilder
   user1 =  {
             userName: 'hieu',
-           userPass: "hieu"
+           userPass: 'hieu',
   };
 
   ngOnInit() {
@@ -68,16 +68,24 @@ export class LoginComponent implements OnInit {
   // get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    console.log(this.user1 );
-    this.http.post('test3/login', this.user1)
-  .then(res =>
-   {
-    //  localStorage.setItem('objects', JSON.stringify(res.listObjects));
-    //   localStorage.setItem('httpHeaders', res.httpHeaders.Authorization);
-    //    localStorage.setItem('users', res.customUserDetails);
-       console.log(res);
-     })
-  .catch(err => console.log(err));
+    this.http.post('http://localhost:8080/test3/login',this.user1).
+    subscribe(res => {
+
+        if(res.status===200){
+          window.location.href =  res.body.part;
+          localStorage.setItem('objects', JSON.stringify(res.body.listObjects));
+          localStorage.setItem('httpHeaders', res.body.httpHeaders.Authorization);
+          localStorage.setItem('users', res.body.customUserDetails);
+        }
+        else{
+          console.log("dang nhap k thanh cong")
+        }
+    },err => {
+      console.log("dang nhap k thanh cong")
+
+      console.log(err)
+    })
+
     // this.submitted = true;
 
     // // stop here if form is invalid

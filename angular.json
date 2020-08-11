@@ -14,7 +14,7 @@
             "aot": true,
             "preserveSymlinks": true,
             "rebaseRootRelativeCssUrls": true,
-            "outputPath": "docs",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -82,7 +82,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-admin-demo:build"
+            "browserTarget": "ngx-admin-demo:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

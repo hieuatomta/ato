@@ -11,7 +11,7 @@ import {
   NbButtonModule,
   NbSelectModule,
   NbIconModule,
-  NbThemeModule,
+  NbThemeModule, NbCardModule, NbCheckboxModule,
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {NbSecurityModule} from '@nebular/security';
@@ -22,6 +22,9 @@ import {
   SearchInputComponent,
   TinyMCEComponent,
 } from './components';
+import {
+  ToastrComponent,
+} from './directives';
 import {
   CapitalizePipe,
   PluralPipe,
@@ -39,6 +42,7 @@ import {COSMIC_THEME} from './styles/theme.cosmic';
 import {CORPORATE_THEME} from './styles/theme.corporate';
 import {DARK_THEME} from './styles/theme.dark';
 import {RestApiService} from '../@core/mock/rest-api.service';
+import {FormsModule} from "@angular/forms";
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -62,6 +66,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  ToastrComponent,
 ];
 const PIPES = [
   CapitalizePipe,
@@ -72,7 +77,7 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
   providers: [RestApiService],
