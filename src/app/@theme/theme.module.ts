@@ -43,6 +43,7 @@ import {CORPORATE_THEME} from './styles/theme.corporate';
 import {DARK_THEME} from './styles/theme.dark';
 import {RestApiService} from '../@core/mock/rest-api.service';
 import {FormsModule} from "@angular/forms";
+import {ToastrService} from "../@core/mock/toastr-service";
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -66,7 +67,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  ToastrComponent,
+
 ];
 const PIPES = [
   CapitalizePipe,
@@ -75,12 +76,15 @@ const PIPES = [
   TimingPipe,
   NumberWithCommasPipe,
 ];
+const DIRECTIVES =[
+  ToastrComponent,
+]
 
 @NgModule({
   imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule],
-  exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES],
-  providers: [RestApiService],
+  exports: [CommonModule, ...PIPES, ...COMPONENTS, ... DIRECTIVES],
+  declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
+  providers: [RestApiService, ToastrService],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders<ThemeModule> {

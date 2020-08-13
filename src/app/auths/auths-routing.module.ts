@@ -1,11 +1,9 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
-import {
-  NbAuthComponent,
-} from '@nebular/auth';
+
 import {LoginComponent} from './logins/login.component';
-import {AuthsComponent} from "./auths.component";
+import {AuthsComponent} from './auths.component';
 
 const routes: Routes = [
   {

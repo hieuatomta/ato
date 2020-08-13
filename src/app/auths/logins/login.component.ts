@@ -3,6 +3,8 @@ import {NbAuthService, NbAuthSocialLink} from '@nebular/auth';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { RestApiService } from '../../@core/mock/rest-api.service';
+import { ToastrService } from '../../@core/mock/toastr-service';
+import { Title } from '@angular/platform-browser';
 
 
 export function MustMatch(controlName: string, matchingControlName: string) {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
   // submitted = false;
 
   constructor(private http: RestApiService,
+    private toastr : ToastrService
    ) {
 
    }
@@ -51,6 +54,13 @@ export class LoginComponent implements OnInit {
   };
 
   ngOnInit() {
+    try{
+      // const token = JSON.parse(localStorage.getItem('httpHeaders'));
+      // consol
+    }
+    catch{
+
+    }
     // this.registerForm = this.formBuilder.group({
     //   title: ['', Validators.required],
     //   firstName: ['', Validators.required],
@@ -82,7 +92,15 @@ export class LoginComponent implements OnInit {
         }
     },err => {
       console.log("dang nhap k thanh cong")
-
+       let title = "Lỗi" ;
+       let body: any;
+      try{
+        body = err.error.errorMessage;
+      }
+      catch{
+        body = "";
+      }
+      this.toastr.showToast('danger',title,body);
       console.log(err)
     })
 

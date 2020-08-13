@@ -1,21 +1,18 @@
-import { Component } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import {
-  NbComponentStatus,
-  NbGlobalLogicalPosition,
+  NbComponentStatus, NbGlobalLogicalPosition,
   NbGlobalPhysicalPosition,
   NbGlobalPosition,
-  NbToastrService,
   NbToastrConfig,
-} from '@nebular/theme';
+  NbToastrService
+} from "@nebular/theme";
 
-@Component({
-  selector: 'ngx-toastr',
-  styleUrls: ['./toastr.component.scss'],
-  templateUrl: './toastr.component.html',
-})
-export class ToastrComponent {
-  public toastrService: NbToastrService;
-  constructor() {}
+
+@Injectable()
+export class ToastrService {
+  constructor(private toastrService: NbToastrService) {}
 
   config: NbToastrConfig;
 
@@ -48,24 +45,8 @@ export class ToastrComponent {
     NbGlobalLogicalPosition.BOTTOM_START,
   ];
 
-  quotes = [
-    { title: null, body: 'We rock at Angular' },
-    { title: null, body: 'Titles are not always needed' },
-    { title: null, body: 'Toastr rock!' },
-  ];
 
-  makeToast() {
-    this.showToast(this.status, this.title, this.content);
-  }
 
-  openRandomToast () {
-    const typeIndex = Math.floor(Math.random() * this.types.length);
-    const quoteIndex = Math.floor(Math.random() * this.quotes.length);
-    const type = this.types[typeIndex];
-    const quote = this.quotes[quoteIndex];
-
-    this.showToast(type, quote.title, quote.body);
-  }
 
   public showToast(type: NbComponentStatus, title: string, body: string) {
     const config = {
@@ -76,12 +57,11 @@ export class ToastrComponent {
       position: this.position,
       preventDuplicates: this.preventDuplicates,
     };
-    const titleContent = title ? `. ${title}` : '';
 
-    this.index += 1;
     this.toastrService.show(
       body,
-      `Toast ${this.index}${titleContent}`,
+      title,
       config);
   }
+
 }

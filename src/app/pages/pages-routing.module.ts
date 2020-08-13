@@ -19,7 +19,7 @@ const routes: Routes = [{
     },
     {
       path: 'forms',
-      loadChildren: () => import('./forms/forms.module')
+      loadChildren: () => import('./admin/forms.module')
         .then(m => m.FormsModule),
     },
     {
