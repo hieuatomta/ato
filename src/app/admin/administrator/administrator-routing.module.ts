@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FormsComponent } from './forms.component';
+import { AdministratorComponent } from './administrator.component';
 import { FormInputsComponent } from './form-inputs/form-inputs.component';
 import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
@@ -10,7 +10,7 @@ import { UsersComponent } from './users/users.component';
 const routes: Routes = [
   {
     path: '',
-    component: FormsComponent,
+    component: AdministratorComponent,
     children: [
       {
         path: 'inputs',
@@ -25,7 +25,7 @@ const routes: Routes = [
         component: FormLayoutsComponent,
       },
       {
-        path: 'buttons',
+        path: 'users',
         component: UsersComponent,
       },
       {
@@ -44,6 +44,6 @@ const routes: Routes = [
     RouterModule,
   ],
 })
-export class FormsRoutingModule {
+export class AdministratorRoutingModule {
 }
 

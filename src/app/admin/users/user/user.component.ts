@@ -6,14 +6,13 @@ import {DatePipe} from '@angular/common';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'ngx-users',
-  styleUrls: ['./users.component.scss'],
-  templateUrl: './users.component.html',
+  selector: 'ngx-user',
+  styleUrls: ['./user.component.scss'],
+  templateUrl: './user.component.html',
 })
-export class UsersComponent {
+export class UserComponent {
   constructor(private http: HttpClient,
-              private toastr: ToastrService,
-              private service: SmartTableData) {
+              private toastr: ToastrService) {
 
   }
   selectedItem = '2';
@@ -30,8 +29,7 @@ export class UsersComponent {
       // this.editRecord(event.data);
     }
   }
-  // @ts-ignore
-  // settings.noDataMessage=`Loading Please Wait`;
+
   settings = {
     actions:
       {
@@ -60,7 +58,6 @@ export class UsersComponent {
         type:
           'html',
         filter: false,
-
         class: 'wide',
         sortDirection: false,
         valuePrepareFunction: (value, row, cell) => {
@@ -76,18 +73,19 @@ export class UsersComponent {
         title: 'Tên tài khoản',
         type:
           'string',
-
+        sort: false,
       },
       email: {
         title: 'E-mail',
         type:
           'string',
-
+        sort: false,
       },
       phone: {
         title: 'Số điện thoại',
         type:
           'string',
+        sort: false,
       },
       date: {
         title: 'Ngày sinh',
@@ -96,6 +94,7 @@ export class UsersComponent {
         valuePrepareFunction: (date: any) => {
           return new DatePipe('en-US').transform(date, 'dd/MM/yyyy');
         },
+        sort: false,
       },
       role: {
         title: 'Quyền hạn',
@@ -104,11 +103,13 @@ export class UsersComponent {
         valuePrepareFunction: (role: any) => {
           return role.toString();
         },
+        sort: false,
       },
       status: {
         title: 'Trạng thái',
         type:
           'string',
+        sort: false,
       },
     },
     'width': '600px',

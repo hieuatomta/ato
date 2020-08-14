@@ -12,8 +12,8 @@ import {
 } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { FormsRoutingModule } from './forms-routing.module';
-import { FormsComponent } from './forms.component';
+import { AdministratorRoutingModule } from './administrator-routing.module';
+import { AdministratorComponent } from './administrator.component';
 import { FormInputsComponent } from './form-inputs/form-inputs.component';
 import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
@@ -32,7 +32,7 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
         NbCheckboxModule,
         NbRadioModule,
         NbDatepickerModule,
-        FormsRoutingModule,
+        AdministratorRoutingModule,
         NbSelectModule,
         NbIconModule,
         ngFormsModule,
@@ -40,11 +40,11 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
         NbFormFieldModule,
     ],
   declarations: [
-    FormsComponent,
+    AdministratorComponent,
     UsersComponent,
     FormInputsComponent,
     FormLayoutsComponent,
     DatepickerComponent,
   ],
 })
-export class FormsModule { }
+export class AdministratorModule { }

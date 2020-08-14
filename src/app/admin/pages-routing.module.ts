@@ -2,7 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [{
   path: '',
@@ -10,7 +10,7 @@ const routes: Routes = [{
   children: [
     {
       path: 'home',
-      component: DashboardComponent,
+      component: HomeComponent,
     },
     {
       path: 'layout',
@@ -18,9 +18,9 @@ const routes: Routes = [{
         .then(m => m.LayoutModule),
     },
     {
-      path: 'forms',
-      loadChildren: () => import('./admin/forms.module')
-        .then(m => m.FormsModule),
+      path: 'administrator',
+      loadChildren: () => import('./administrator/administrator.module')
+        .then(m => m.AdministratorModule),
     },
     {
       path: 'ui-features',
@@ -38,6 +38,11 @@ const routes: Routes = [{
         .then(m => m.ChartsModule),
     },
     {
+      path: 'users',
+      loadChildren: () => import('./users/users.module')
+        .then(m => m.UsersModule),
+    },
+    {
       path: 'editors',
       loadChildren: () => import('./editors/editors.module')
         .then(m => m.EditorsModule),
@@ -49,7 +54,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'home',
       pathMatch: 'full',
     },
   ],

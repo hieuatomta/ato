@@ -13,7 +13,7 @@ import {
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { DashboardComponent } from './dashboard.component';
+import { HomeComponent } from './home.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { RoomsComponent } from './rooms/rooms.component';
@@ -48,7 +48,7 @@ import { FormsModule } from '@angular/forms';
     NgxEchartsModule,
   ],
   declarations: [
-    DashboardComponent,
+    HomeComponent,
     StatusCardComponent,
     TemperatureDraggerComponent,
     ContactsComponent,
@@ -66,4 +66,4 @@ import { FormsModule } from '@angular/forms';
     TrafficChartComponent,
   ],
 })
-export class DashboardModule { }
+export class HomeModule { }

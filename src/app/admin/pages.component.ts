@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-// import { MENU_ITEMS } from './pages-menu';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {NbAccessChecker} from "@nebular/security";
-import {NbMenuItem} from "@nebular/theme";
+import {NbAccessChecker} from '@nebular/security';
+import {NbMenuItem} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-pages',
@@ -17,8 +15,7 @@ import {NbMenuItem} from "@nebular/theme";
 })
 export class PagesComponent implements OnInit {
 
-  constructor(private http: HttpClient,
-              private accessChecker: NbAccessChecker) {
+  constructor(private accessChecker: NbAccessChecker) {
 
   }
 
