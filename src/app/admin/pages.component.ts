@@ -19,19 +19,33 @@ export class PagesComponent implements OnInit {
 
   }
 
-  menu: any;
+  menu: Array<any>;
+  test: Object;
 
   ngOnInit(): void {
-    this.menu = JSON.parse(localStorage.getItem('objects'));
+    this.menu = [];
+    this.test = {
+      title: 'Trang chủ',
+      icon: 'home-outline',
+      link: '/pages/home',
+    },
+      this.menu.push(this.test);
+    const menu1 = (JSON.parse(localStorage.getItem('objects')));
+    for (let i = 0; i < menu1.length; i++) {
+       this.menu.push(menu1[i]);
+    }
+    console.log(this.menu);
     this.authMenuItems();
 
   }
+
   // phân quyền cho những menu quyền nào được hiện lên
   authMenuItems() {
     this.menu.forEach(item => {
       this.authMenuItem(item);
     });
   }
+
   authMenuItem(menuItem: NbMenuItem) {
     if (menuItem.data && menuItem.data['permission'] && menuItem.data['resource']) {
       this.accessChecker.isGranted(menuItem.data['permission'], menuItem.data['resource']).subscribe(granted => {

@@ -1,8 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {ToastrService} from '../../../@core/mock/toastr-service';
-import {SmartTableData} from '../../../@core/data/smart-table';
 import {DatePipe} from '@angular/common';
+import {RestApiService} from '../../../@core/mock/rest-api.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -11,22 +10,37 @@ import {DatePipe} from '@angular/common';
   templateUrl: './user.component.html',
 })
 export class UserComponent {
-  constructor(private http: HttpClient,
-              private toastr: ToastrService) {
-
+  constructor(
+    private toastr: ToastrService,
+    private http: RestApiService) {
+    this.http.post('http://localhost:8080/test3/searchUsers', {}).subscribe(res => {
+      console.log(res.headers.get('Authorization'));
+      if (res.status == 200) {
+        console.log(res);
+        this.source = res.body;
+        localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
+      }
+      // localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
+    }, err => {
+      console.log(err);
+      if (err.status == 400) {
+        this.toastr.showToast('danger', 'lỗi', err.error);
+        // console.log(res.status);
+        window.location.href = err.error.data;
+        localStorage.setItem('httpHeaders', '');
+      }
+    });
   }
+
   selectedItem = '2';
+
   myFunction(event) {
     this.toastr.showToast('primary', 'title', 'body');
     // console.log(event);
     switch (event.action) {
       case 'Edit':
-        // console.log('edit');
-        // this.viewRecord(event.data);
         break;
       case 'Delete':
-        // console.log('de');
-      // this.editRecord(event.data);
     }
   }
 
@@ -69,7 +83,7 @@ export class UserComponent {
         //   return ret;
         // },
       },
-      username: {
+      userName: {
         title: 'Tên tài khoản',
         type:
           'string',
@@ -87,7 +101,7 @@ export class UserComponent {
           'string',
         sort: false,
       },
-      date: {
+      userOfBirth: {
         title: 'Ngày sinh',
         type: Date,
         filter: false,
@@ -110,126 +124,21 @@ export class UserComponent {
         type:
           'string',
         sort: false,
+        valuePrepareFunction: (status: any) => {
+          if (status === 1) {
+            return 'Hoạt động';
+          } else if (status === 0) {
+            return 'Không Hoạt động';
+          } else {
+            return '';
+          }
+        },
       },
     },
     'width': '600px',
   };
 
-  source = [
-    // {
-    //   id: 1,
-    //   name: "Leanne Graham",
-    //   username: "Bret",
-    //   email: "Sincere@april.biz",
-    //   date: new Date(),
-    //   phone: '098152773',
-    //   role: ['admin', 'user'],
-    //   status: 'Hoạt động',
-    // },
-    // {
-    //   id: 2,
-    //   name: "Ervin Howell",
-    //   username: "Antonette",
-    //   email: "Shanna@melissa.tv",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    //
-    // {
-    //   id: 3,
-    //   name: "Nicholas DuBuque",
-    //   username: "Nicholas.Stanton",
-    //   email: "Rey.Padberg@rosamond.biz",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    // {
-    //   id: 4,
-    //   name: "Leanne Graham",
-    //   username: "Bret",
-    //   email: "Sincere@april.biz",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    // {
-    //   id: 5,
-    //   name: "Ervin Howell",
-    //   username: "Antonette",
-    //   email: "Shanna@melissa.tv",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    //
-    // {
-    //   id: 6,
-    //   name: "Nicholas DuBuque",
-    //   username: "Nicholas.Stanton",
-    //   email: "Rey.Padberg@rosamond.biz",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    // {
-    //   id: 7,
-    //   name: "Leanne Graham",
-    //   username: "Bret",
-    //   email: "Sincere@april.biz",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    // {
-    //   id: 8,
-    //   name: "Ervin Howell",
-    //   username: "Antonette",
-    //   email: "Shanna@melissa.tv",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    //
-    // {
-    //   id: 9,
-    //   name: "Nicholas DuBuque",
-    //   username: "Nicholas.Stanton",
-    //   email: "Rey.Padberg@rosamond.biz",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    // {
-    //   id: 10,
-    //   name: "Leanne Graham",
-    //   username: "Bret",
-    //   email: "Sincere@april.biz",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    // {
-    //   id: 11,
-    //   name: "Ervin Howell",
-    //   username: "Antonette",
-    //   email: "Shanna@melissa.tv",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-    //
-    // {
-    //   id: 12,
-    //   name: "Nicholas DuBuque",
-    //   username: "Nicholas.Stanton",
-    //   email: "Rey.Padberg@rosamond.biz",
-    //   phone: '098152773',
-    //   role: 'admin',
-    //   status: 'Hoạt động',
-    // },
-  ];
+  source = [];
 
 }
 

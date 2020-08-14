@@ -1,15 +1,17 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 
 @Injectable()
 export class RestApiService implements OnInit {
   private SERVER_URL = "http://localhost:8080/";
   postId: any;
-  rs :any ;
+  rs: any;
+
   constructor(private http: HttpClient) {
-   }
+  }
+
   ngOnInit(): void {
 
   }
@@ -34,28 +36,28 @@ export class RestApiService implements OnInit {
 
   setToken() {
     let token;
-    try{
-      token =  localStorage.getItem('httpHeaders');
-      if(token!= null && token!= undefined){
+    try {
+      token = localStorage.getItem('httpHeaders');
+      if (token != null && token != undefined) {
         return token;
       }
-    }
-    catch{
+    } catch {
       token = "";
     }
     return "";
 
   }
 
-  post(url,loginCred: any): Observable<any> {
-    const header1= {'Content-Type':'application/json',
-                     'Authorization': this.setToken(),
-             };
-    const body =  JSON.stringify(loginCred);
-    const rs =  this.http.post<any>(url,body,{
-        headers: header1,
-        observe: 'response',
-        responseType: 'json'
+  post(url, data: any): Observable<any> {
+    const header1 = {
+      'Content-Type': 'application/json',
+      'Authorization': this.setToken(),
+    };
+    const body = JSON.stringify(data);
+    const rs = this.http.post<any>(url, body, {
+      headers: header1,
+      observe: 'response',
+      responseType: 'json',
     });
     // rs.subscribe(res => {
     //    console.log(res);
@@ -73,6 +75,6 @@ export class RestApiService implements OnInit {
     //   }
     // });
     return rs;
-}
+  }
 
 }

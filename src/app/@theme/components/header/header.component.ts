@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         window.location.href = err.error.data;
         localStorage.setItem('httpHeaders', "");
       }
-    })
+    });
   }
 
 
