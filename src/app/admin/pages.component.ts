@@ -28,15 +28,13 @@ export class PagesComponent implements OnInit {
       title: 'Trang chủ',
       icon: 'home-outline',
       link: '/pages/home',
-    },
-      this.menu.push(this.test);
+    };
+    this.menu.push(this.test);
     const menu1 = (JSON.parse(localStorage.getItem('objects')));
     for (let i = 0; i < menu1.length; i++) {
-       this.menu.push(menu1[i]);
+      this.menu.push(menu1[i]);
     }
-    console.log(this.menu);
     this.authMenuItems();
-
   }
 
   // phân quyền cho những menu quyền nào được hiện lên
@@ -52,6 +50,7 @@ export class PagesComponent implements OnInit {
         menuItem.hidden = !granted;
       });
     } else {
+      // sua true de an neu ko co quyen
       menuItem.hidden = false;
     }
     if (!menuItem.hidden && menuItem.children != null) {

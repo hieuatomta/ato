@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   themes = [
     {
+      value: 'cosmic',
+      name: 'Cosmic',
+    },
+    {
       value: 'default',
       name: 'Light',
     },
@@ -29,20 +33,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
       name: 'Dark',
     },
     {
-      value: 'cosmic',
-      name: 'Cosmic',
-    },
-    {
       value: 'corporate',
       name: 'Corporate',
     },
   ];
 
 
-  currentTheme = 'default';
+  currentTheme = 'cosmic';
 
   menuClick(e) {
     console.log(e);
+    if (e.menuId == 3) {
+      console.log("Thực hiện mở popup đổi mật khẩu")
+    }
     if (e.menuId == 2) {
       console.log("thuc hien đăng xuất");
       localStorage.clear();
@@ -51,9 +54,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (e.menuId == 1) {
       console.log("Thực hiện mở popup thông tin cá nhân")
     }
-  };
+  }
 
-  userMenu = [{menuId: 1, title: 'Thông tin cá nhân'}, {menuId: 2, title: 'Đăng xuất'}];
+  userMenu = [
+    {menuId: 1, title: 'Thông tin cá nhân'},
+    {menuId: 2, title: 'Đổi mật khẩu'},
+    {menuId: 3, title: 'Đăng xuất'},
+  ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,

@@ -86,15 +86,7 @@ $nb-themes: nb-register-theme((
   slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
   slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 ), dark, dark);
-.nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
-  padding: 0.5rem;
+nb-layout-column {
+  padding: 0.5rem !important;
 }
-.nb-theme-dark nb-layout .layout .layout-container .content .columns nb-layout-column {
-  padding: 0.5rem;
-}
-.nb-theme-corporate nb-layout .layout .layout-container .content .columns nb-layout-column {
-  padding: 0.5rem;
-}
-.nb-theme-cosmic nb-layout .layout .layout-container .content .columns nb-layout-column {
-  padding: 0.5rem;
-}
+
