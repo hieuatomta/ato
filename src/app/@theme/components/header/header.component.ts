@@ -44,12 +44,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuClick(e) {
     console.log(e);
     if (e.menuId == 3) {
-      console.log("Thực hiện mở popup đổi mật khẩu")
-    }
-    if (e.menuId == 2) {
       console.log("thuc hien đăng xuất");
       localStorage.clear();
-      window.location.href = "http://localhost:4200/auths/login"
+      window.location.href = 'http://localhost:4200/auths/login';
+    }
+    if (e.menuId == 2) {
+      console.log("Thực hiện mở popup đổi mật khẩu")
     }
     if (e.menuId == 1) {
       console.log("Thực hiện mở popup thông tin cá nhân")
