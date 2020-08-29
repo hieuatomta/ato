@@ -7,11 +7,13 @@ import {environment} from '../../../environments/environment.prod';
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  LIST_WHITE = ['/' + environment.app_code + '/pages/home',
-                '/', '/' + environment.app_code + '/pages',
-                '/pages',
-                '/pages/home', '/' + environment.app_code,
-                '/' + environment.app_code + '/'];
+  LIST_WHITE = [
+    // '/' + environment.app_code + '/pages/home',
+    //             '/', '/' + environment.app_code + '/pages',
+    //             '/pages',
+    //             '/pages/home', '/' + environment.app_code,
+    //             '/' + environment.app_code + '/'
+  ];
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -38,11 +40,12 @@ export class AuthGuardService implements CanActivate {
         this.menuService.navigateHome();
         return true;
       }
-      if (location.pathname === '/' + environment.app_code + '/auths/login' || location.pathname === '/auths/login') {
-        localStorage.clear();
-        this.router.navigate(['/auths/login']);
-        return false;
-      }
+      // if (location.pathname === '/' + environment.app_code + '/auths/login'
+      // || location.pathname === '/auths/login') {
+      //   localStorage.clear();
+      //   this.router.navigate(['/auths/login']);
+      //   return false;
+      // }
       for (let i = 0; i < obj?.length; i++) {
         if (obj[i].link === location.pathname) {
           checkRole = true;
