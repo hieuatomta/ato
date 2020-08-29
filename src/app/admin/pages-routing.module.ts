@@ -2,7 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './homes/home.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,47 +14,42 @@ const routes: Routes = [{
     },
     {
       path: 'layout',
-      loadChildren: () => import('./layout/layout.module')
+      loadChildren: () => import('./demo/layout/layout.module')
         .then(m => m.LayoutModule),
     },
     {
-      path: 'administrator',
-      loadChildren: () => import('./administrator/administrator.module')
-        .then(m => m.AdministratorModule),
-    },
-    {
       path: 'ui-features',
-      loadChildren: () => import('./ui-features/ui-features.module')
+      loadChildren: () => import('./demo/ui-features/ui-features.module')
         .then(m => m.UiFeaturesModule),
     },
     {
       path: 'modal-overlays',
-      loadChildren: () => import('./modal-overlays/modal-overlays.module')
+      loadChildren: () => import('./demo/modal-overlays/modal-overlays.module')
         .then(m => m.ModalOverlaysModule),
     },
     {
       path: 'charts',
-      loadChildren: () => import('./charts/charts.module')
+      loadChildren: () => import('./demo/charts/charts.module')
         .then(m => m.ChartsModule),
     },
     {
       path: 'users',
-      loadChildren: () => import('./users/users.module')
+      loadChildren: () => import('./admins/users/users.module')
         .then(m => m.UsersModule),
     },
     {
       path: 'roles',
-      loadChildren: () => import('./roles/roles.module')
+      loadChildren: () => import('./admins/roles/roles.module')
         .then(m => m.RolesModule),
     },
     {
       path: 'editors',
-      loadChildren: () => import('./editors/editors.module')
+      loadChildren: () => import('./demo/editors/editors.module')
         .then(m => m.EditorsModule),
     },
     {
       path: 'tables',
-      loadChildren: () => import('./tables/tables.module')
+      loadChildren: () => import('./homes/tables/tables.module')
         .then(m => m.TablesModule),
     },
     {

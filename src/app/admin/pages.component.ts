@@ -20,16 +20,17 @@ export class PagesComponent implements OnInit {
   }
 
   menu: Array<any>;
-  test: Object;
+  home: Object;
+  obj: any;
 
   ngOnInit(): void {
     this.menu = [];
-    this.test = {
+    this.home = {
       title: 'Trang chủ',
       icon: 'home-outline',
-      link: '/pages/home',
+      link: '/mic/pages/home',
     };
-    this.menu.push(this.test);
+    this.menu.push(this.home);
     const menu1 = (JSON.parse(localStorage.getItem('objects')));
     for (let i = 0; i < menu1.length; i++) {
       this.menu.push(menu1[i]);

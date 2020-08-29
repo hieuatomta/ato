@@ -1,13 +1,11 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import {
   NbComponentStatus, NbGlobalLogicalPosition,
   NbGlobalPhysicalPosition,
   NbGlobalPosition,
   NbToastrConfig,
-  NbToastrService
-} from "@nebular/theme";
+  NbToastrService,
+} from '@nebular/theme';
 
 
 @Injectable()
@@ -18,7 +16,7 @@ export class ToastrService {
 
   index = 1;
   destroyByClick = true;
-  duration = 2000;
+  duration = 3000;
   hasIcon = true;
   position: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
   preventDuplicates = false;
