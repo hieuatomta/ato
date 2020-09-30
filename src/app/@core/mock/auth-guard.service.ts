@@ -1,27 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Router, CanActivate, ActivatedRoute} from '@angular/router';
-import {RestApiService} from './rest-api.service';
-import {NbMenuService} from '@nebular/theme';
-import {environment} from '../../../environments/environment.prod';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-
-  LIST_WHITE = [
-    // '/' + environment.app_code + '/pages/home',
-    //             '/', '/' + environment.app_code + '/pages',
-    //             '/pages',
-    //             '/pages/home', '/' + environment.app_code,
-    //             '/' + environment.app_code + '/'
-  ];
-
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private http: RestApiService,
-              private menuService: NbMenuService) {
+  constructor(private router: Router) {
   }
 
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const token = localStorage.getItem('httpHeaders');
     if (token === undefined || token === null || token === '') {
       localStorage.clear();
@@ -31,23 +16,14 @@ export class AuthGuardService implements CanActivate {
     let checkRole = false;
     const obj = JSON.parse(localStorage.getItem('objects'));
     try {
-      if (obj === undefined || obj === null || obj === '') {
-        localStorage.clear();
-        this.router.navigate(['/auths/login']);
-        return false;
-      }
-      if (this.LIST_WHITE.includes(location.pathname)) {
-        this.menuService.navigateHome();
+      if (state.url === '/pages/home' || state.url === '/pages/404') {
         return true;
       }
-      // if (location.pathname === '/' + environment.app_code + '/auths/login'
-      // || location.pathname === '/auths/login') {
-      //   localStorage.clear();
-      //   this.router.navigate(['/auths/login']);
-      //   return false;
-      // }
       for (let i = 0; i < obj?.length; i++) {
-        if (obj[i].link === location.pathname) {
+        const path =  state.url.substring(0, obj[i].link?.length);
+        if (obj[i].link === path) {
+          // role.slice(0, role.length);
+          // role.push(obj[i]);
           checkRole = true;
         }
       }

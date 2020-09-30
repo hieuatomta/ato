@@ -4,6 +4,8 @@ import {NgModule} from '@angular/core';
 
 import {LoginComponent} from './logins/login.component';
 import {AuthsComponent} from './auths.component';
+import {ConfirmEmailComponent} from './confirmEmail/confirmEmail.component';
+import {ChangePassEmailComponent} from './changePassEmail/changePassEmail.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,19 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+      },
+      {
+        path: 'changePass/:key',
+        component: ChangePassEmailComponent,
+      },
+      {
+        path: 'confirmEmail',
+        component: ConfirmEmailComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
       },
     ],
   },

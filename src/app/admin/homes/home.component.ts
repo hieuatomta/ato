@@ -1,6 +1,6 @@
 import {Component, OnDestroy} from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators' ;
+import {NbThemeService} from '@nebular/theme';
+import {takeWhile} from 'rxjs/operators';
 import {SolarData} from '../../@core/data/solar';
 
 interface CardSettings {

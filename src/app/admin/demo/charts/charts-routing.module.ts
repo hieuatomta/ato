@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { ChartsComponent } from './charts.component';
-import { EchartsComponent } from './echarts/echarts.component';
+import {ChartsComponent} from './charts.component';
+import {EchartsComponent} from './echarts/echarts.component';
 
 const routes: Routes = [{
   path: '',

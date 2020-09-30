@@ -1,18 +1,21 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {
   NbActionsModule,
   NbButtonModule,
-  NbCardModule, NbCheckboxModule,
+  NbCardModule,
+  NbCheckboxModule,
   NbDatepickerModule,
   NbFormFieldModule,
-  NbIconModule, NbInputModule,
-  NbOptionModule, NbRadioModule,
-  NbSelectModule, NbUserModule,
+  NbIconModule,
+  NbInputModule,
+  NbRadioModule,
+  NbSelectModule,
+  NbUserModule,
 } from '@nebular/theme';
 
-import { ThemeModule } from '../../../@theme/theme.module';
+import {ThemeModule} from '../../../@theme/theme.module';
 
-import { RolesRoutingModule, routedComponents } from './roles-routing.module';
+import {RolesRoutingModule, routedComponents} from './roles-routing.module';
 import {RoleComponent} from './role/role.component';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {FormsModule as ngFormsModule} from '@angular/forms';

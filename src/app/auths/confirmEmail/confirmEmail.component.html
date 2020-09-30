@@ -1,0 +1,30 @@
+<div class="wrapper-login" style="background-image: url('assets/images/bg.jpg');" [nbSpinner]="isLoad"
+     nbSpinnerSize="giant" nbSpinnerStatus="primary">
+  <div class="bg" style="background-image: url('assets/images/bg.jpg');"></div>
+  <div class="box-login">
+    <div class="head" style="background-color: white;padding: 30px;">
+      <div class="logo">
+        <img src="assets/images/quoc_huy.png">
+      </div>
+      <div class="logo-text">{{ 'login.logoTextTop' | translate}} <br>{{ 'login.logoTextBottom' | translate}}</div>
+    </div>
+    <div class="body">
+      <form (ngSubmit)="onSubmit()" [formGroup]="inputUser" class="login100-form validate-form">
+        <input type="hidden" (keyup)="trimValue($event)" name="csrfPreventionSalt" value="QCl8GyurMsXbxiWqvkcs"/>
+        <div class="form-group">
+          <div class="input-icon">
+            <input class="form-control" formControlName="email"
+                   [ngClass]="{'status-danger': this.inputUser.get('email').errors}" type="text"
+                   placeholder="{{ 'login.email' | translate}}">
+            <span class="icon" style="width: 18px;"><img src="assets/images/gmail.svg"></span>
+          </div>
+        </div>
+        <ngx-inline-message [message]="'login.emailC'|translate" [formName]="inputUser.get('email')"></ngx-inline-message>
+
+        <div class="actions center" style="margin-top: 2em;">
+          <button class="btn btn-main">{{ 'login.sendEmail' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+

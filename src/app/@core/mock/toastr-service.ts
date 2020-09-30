@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
-  NbComponentStatus, NbGlobalLogicalPosition,
+  NbComponentStatus,
+  NbGlobalLogicalPosition,
   NbGlobalPhysicalPosition,
   NbGlobalPosition,
   NbToastrConfig,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {
   NbAlertModule,
   NbCardModule,
@@ -6,14 +6,21 @@ import {
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
-  NbMenuModule
+  NbMenuModule,
+  NbSpinnerModule,
 } from '@nebular/theme';
 
-import { ThemeModule } from '../@theme/theme.module';
-import { AuthsRoutingModule } from './auths-routing.module';
-import { LoginComponent } from './logins/login.component';
+import {ThemeModule} from '../@theme/theme.module';
+import {AuthsRoutingModule} from './auths-routing.module';
+import {LoginComponent} from './logins/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthsComponent} from './auths.component';
+import {ConfirmEmailComponent} from './confirmEmail/confirmEmail.component';
+import {ChangePassEmailComponent} from './changePassEmail/changePassEmail.component';
+import {RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings} from 'ng-recaptcha';
+import {TranslateModule} from '@ngx-translate/core';
+import {SharedModule} from '../shares/shared.module';
+
 
 @NgModule({
   imports: [
@@ -28,11 +35,26 @@ import {AuthsComponent} from './auths.component';
     NbIconModule,
     ReactiveFormsModule,
     NbLayoutModule,
+    NbSpinnerModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    SharedModule,
   ],
   declarations: [
     LoginComponent,
     AuthsComponent,
+    ConfirmEmailComponent,
+    ChangePassEmailComponent,
   ],
+  providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: '6Ldch8gZAAAAAOAujSVYWFyoWkTaNgBNzE6qyxwg',
+      } as RecaptchaSettings,
+    }]
 })
 export class AuthsModule {
 }

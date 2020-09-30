@@ -1,114 +1,157 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {NbAuthService, NbAuthSocialLink} from '@nebular/auth';
-import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RestApiService} from '../../@core/mock/rest-api.service';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from '../../@core/mock/toastr-service';
-import {Title} from '@angular/platform-browser';
-
-
-export function MustMatch(controlName: string, matchingControlName: string) {
-  return (formGroup: FormGroup) => {
-    const control = formGroup.controls[controlName];
-    const matchingControl = formGroup.controls[matchingControlName];
-
-    if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-      // return if another validator has already found an error on the matchingControl
-      return;
-    }
-
-    // set error on matchingControl if validation fails
-    if (control.value !== matchingControl.value) {
-      matchingControl.setErrors({mustMatch: true});
-    } else {
-      matchingControl.setErrors(null);
-    }
-  }
-}
+import {checkUser, notSpaceLogin} from '../../validator';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LoginService} from '../../@core/services/login.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'ngx-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 
 
+
 export class LoginComponent implements OnInit {
 
-  // registerForm: FormGroup;
-  // submitted = false;
 
-  constructor(private http: RestApiService,
-              private toastr: ToastrService,) {
+  constructor(private loginService: LoginService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private translateService: TranslateService,
+              private toastr: ToastrService) {
+    const body = document.querySelector("body");
+    const modal = document.querySelector(".modal");
+    const modalButton = document.querySelector(".modal-button");
+    const closeButton = document.querySelector(".close-button");
+    const scrollDown = document.querySelector(".scroll-down");
+    let isOpened = false;
+
+    const openModal = () => {
+      modal.classList.add("is-open");
+      body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("is-open");
+      body.style.overflow = "initial";
+    };
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > window.innerHeight / 3 && !isOpened) {
+        isOpened = true;
+        // scrollDown.style.display = "none";
+        openModal();
+      }
+    });
+
+    // modalButton.addEventListener("click", openModal);
+    // closeButton.addEventListener("click", closeModal);
+
+    document.onkeydown = evt => {
+      // evt = evt || window.event;
+      // evt.keyCode === 27 ? closeModal() : false;
+    };
 
   }
 
-  //  private formBuilder: FormBuilder
-  user1 = {
-    userName: 'hieu',
-    userPass: 'hieu',
-  };
+  captchaError: boolean = false;
+  inputUser: FormGroup;
+  data: any;
+  isLoad: boolean;
+  submitted = false;
+  showPassword = false;
+
+  initForm() {
+    this.inputUser = new FormGroup({
+      userName: new FormControl(this.getCookie('userName'), [checkUser, Validators.maxLength(50), Validators.required]),
+      passwordHash: new FormControl(this.getCookie('passwordHash'), [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
+      remember: new FormControl(this.getCookie('remember'), []),
+      recaptchaReactive: new FormControl(null, [Validators.required])
+    });
+  }
+
+  trimValue(event) {
+    event.target.value = event.target.value.trim();
+  }
+
 
   ngOnInit() {
-    try {
-      // const token = JSON.parse(localStorage.getItem('httpHeaders'));
-      // consol
-    } catch {
-
-    }
-    // this.registerForm = this.formBuilder.group({
-    //   title: ['', Validators.required],
-    //   firstName: ['', Validators.required],
-    //   lastName: ['', Validators.required],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   password: ['', [Validators.required, Validators.minLength(6)]],
-    //   confirmPassword: ['', Validators.required],
-    //   acceptTerms: [false, Validators.requiredTrue],
-    // }, {
-    //   validator: MustMatch('password', 'confirmPassword'),
-    // });
+    this.initForm();
   }
 
-  // convenience getter for easy access to form fields
-  // get f() { return this.registerForm.controls; }
+  getInputType() {
+    if (this.showPassword) {
+      return 'text';
+    }
+    return 'password';
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   onSubmit() {
-    this.http.post('http://localhost:8080/test3/login', this.user1).subscribe(res => {
-
-      if (res.status === 200) {
-        window.location.href = res.body.part;
-        localStorage.setItem('objects', JSON.stringify(res.body.listObjects));
-        localStorage.setItem('httpHeaders', res.body.httpHeaders.Authorization);
-        localStorage.setItem('users', res.body.customUserDetails);
+    this.isLoad = true;
+    this.submitted = true;
+    this.captchaError = true;
+    if (this.inputUser.valid) {
+      if (this.inputUser.value.remember) {
+        document.cookie = 'userName=' + this.inputUser.value.userName;
+        document.cookie = 'passwordHash=' + this.inputUser.value.passwordHash;
+        document.cookie = 'remember=' + true;
       } else {
-        console.log("dang nhap k thanh cong")
+        document.cookie = 'userName=' + '';
+        document.cookie = 'passwordHash=' + '';
+        document.cookie = 'remember=' + false;
       }
-    }, err => {
-      console.log("dang nhap k thanh cong")
-      let title = "Lỗi";
-      let body: any;
-      try {
-        body = err.error.errorMessage;
-      } catch {
-        body = "";
-      }
-      this.toastr.showToast('danger', title, body);
-      console.log(err)
-    })
+      this.loginService.login(this.inputUser.value).subscribe(res => {
+        this.submitted = false;
+        if (res.status === 200) {
+          this.router.navigate(['/pages/home']);
+          localStorage.setItem('objects', JSON.stringify(res.body.listObjects));
+          localStorage.setItem('httpHeaders', res.body.httpHeaders.Authorization);
+          localStorage.setItem('users', res.body.customUserDetails.fullName);
+          localStorage.setItem('userDetails', JSON.stringify(res.body.customUserDetails));
+          this.isLoad = false;
+          this.captchaError = false;
 
-    // this.submitted = true;
-
-    // // stop here if form is invalid
-    // if (this.registerForm.invalid) {
-    //   return;
-    // }
-
-    // // display form values on success
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+        }
+      }, err => {
+        const title = this.translateService.instant('login.error');
+        let body: any;
+        try {
+          body = err.error.detail;
+        } catch {
+          body = '';
+        } finally {
+          this.isLoad = false;
+          this.captchaError = false;
+          this.toastr.showToast('danger', title, body);
+          grecaptcha.reset();
+        }
+      });
+    } else {
+      this.isLoad = false;
+    }
   }
 
-  onReset() {
-    // this.submitted = false;
-    // this.registerForm.reset();
+  getCookie(cname) {
+    const name = cname + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
   }
 }

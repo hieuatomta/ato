@@ -5,8 +5,8 @@ import {UserData} from '../../../@core/data/users';
 import {LayoutService} from '../../../@core/utils';
 import {map, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
 import {RestApiService} from '../../../@core/mock/rest-api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -43,16 +43,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   menuClick(e) {
     console.log(e);
-    if (e.menuId == 3) {
-      console.log("thuc hien đăng xuất");
+    if (e.menuId === 3) {
       localStorage.clear();
-      window.location.href = 'http://localhost:4200/auths/login';
+      this.router.navigate(['auths/login']);
     }
-    if (e.menuId == 2) {
-      console.log("Thực hiện mở popup đổi mật khẩu")
+    if (e.menuId === 2) {
+      console.log('Thực hiện mở popup đổi mật khẩu');
     }
-    if (e.menuId == 1) {
-      console.log("Thực hiện mở popup thông tin cá nhân")
+    if (e.menuId === 1) {
+      console.log('Thực hiện mở popup thông tin cá nhân');
     }
   }
 
@@ -68,21 +67,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
-              private http: RestApiService) {
+              private http: RestApiService,
+              private router: Router) {
 
     this.http.post('http://localhost:8080/test3/login1', {}).subscribe(res => {
       console.log(res.headers.get('Authorization'));
-      if (res.status == 200) {
+      if (res.status === 200) {
         // console.log(res.status);
         localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
       }
       // localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
     }, err => {
       console.log(err);
-      if (err.status == 400) {
+      if (err.status === 400) {
         // console.log(res.status);
         window.location.href = err.error.data;
-        localStorage.setItem('httpHeaders', "");
+        localStorage.setItem('httpHeaders', '');
       }
     });
   }
@@ -100,7 +100,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
     this.menuService.onItemClick().subscribe((event) => {
       this.menuClick(event.item);
-    })
+    });
     this.themeService.onThemeChange()
       .pipe(
         map(({name}) => name),

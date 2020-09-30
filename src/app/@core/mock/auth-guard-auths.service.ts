@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Router, CanActivate, ActivatedRoute} from '@angular/router';
-import {RestApiService} from './rest-api.service';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 
 @Injectable()
 export class AuthGuardAuthsService implements CanActivate {
@@ -8,9 +7,8 @@ export class AuthGuardAuthsService implements CanActivate {
   constructor(private router: Router) {
   }
 
-  canActivate(): boolean {
-    if (location.pathname === '/auths' || location.pathname === '/auths/login' ||
-                location.pathname === '/mic/auths/login') {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (state.url === '/auths/login') {
       localStorage.clear();
       return true;
     }

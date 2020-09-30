@@ -1,15 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import 'rxjs/add/operator/do';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http/';
-import { Router } from '@angular/router';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http/';
+import {Router} from '@angular/router';
 import {environment} from '../../../environments/environment.prod';
 
 @Injectable()

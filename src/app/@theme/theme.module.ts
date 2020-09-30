@@ -2,41 +2,26 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbContextMenuModule,
+  NbIconModule,
   NbLayoutModule,
   NbMenuModule,
   NbSearchModule,
-  NbSidebarModule,
-  NbUserModule,
-  NbContextMenuModule,
-  NbButtonModule,
   NbSelectModule,
-  NbIconModule,
-  NbThemeModule, NbCardModule, NbCheckboxModule,
+  NbSidebarModule,
+  NbThemeModule,
+  NbUserModule,
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {NbSecurityModule} from '@nebular/security';
 
-import {
-  FooterComponent,
-  HeaderComponent,
-  SearchInputComponent,
-  TinyMCEComponent,
-} from './components';
-import {
-  ToastrComponent,
-} from './directives';
-import {
-  CapitalizePipe,
-  PluralPipe,
-  RoundPipe,
-  TimingPipe,
-  NumberWithCommasPipe,
-} from './pipes';
-import {
-  OneColumnLayoutComponent,
-  ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent,
-} from './layouts';
+import {FooterComponent, HeaderComponent, SearchInputComponent, TinyMCEComponent} from './components';
+
+import {CapitalizePipe, NumberWithCommasPipe, PluralPipe, RoundPipe, TimingPipe} from './pipes';
+import {OneColumnLayoutComponent, ThreeColumnsLayoutComponent, TwoColumnsLayoutComponent} from './layouts';
 import {DEFAULT_THEME} from './styles/theme.default';
 import {COSMIC_THEME} from './styles/theme.cosmic';
 import {CORPORATE_THEME} from './styles/theme.corporate';
@@ -44,6 +29,8 @@ import {DARK_THEME} from './styles/theme.dark';
 import {RestApiService} from '../@core/mock/rest-api.service';
 import {FormsModule} from '@angular/forms';
 import {ToastrService} from '../@core/mock/toastr-service';
+import {AuthGuardService} from '../@core/mock/auth-guard.service';
+import {AuthGuardAuthsService} from '../@core/mock/auth-guard-auths.service';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -76,15 +63,19 @@ const PIPES = [
   TimingPipe,
   NumberWithCommasPipe,
 ];
-const DIRECTIVES =[
-  ToastrComponent,
-]
+const SERVICE = [
+  RestApiService,
+  ToastrService,
+  AuthGuardService,
+  AuthGuardAuthsService,
+];
+
 
 @NgModule({
   imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule],
-  exports: [CommonModule, ...PIPES, ...COMPONENTS, ... DIRECTIVES],
-  declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
-  providers: [RestApiService, ToastrService],
+  exports: [CommonModule, ...PIPES, ...COMPONENTS],
+  declarations: [...COMPONENTS, ...PIPES],
+  providers: [...SERVICE],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders<ThemeModule> {

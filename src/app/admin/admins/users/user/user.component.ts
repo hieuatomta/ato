@@ -219,7 +219,7 @@ export class UserComponent {
       id: 8,
       name: "Ervin Howell",
       username: "Antonette",
-      email: "Shanna@melissa.tv",
+      email: "Shanna@melissad.tv",
       phone: '098152773',
       role: 'admin',
       status: 'Hoạt động',
@@ -236,7 +236,7 @@ export class UserComponent {
     },
     {
       id: 10,
-      name: "Leanne Graham",
+      name: "Leanne Graha",
       username: "Bret",
       email: "Sincere@april.biz",
       phone: '098152773',

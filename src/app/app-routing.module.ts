@@ -1,5 +1,5 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import {ExtraOptions, RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
 
 
 export const routes: Routes = [
@@ -13,8 +13,8 @@ export const routes: Routes = [
     loadChildren: () => import('./auths/auths.module')
       .then(m => m.AuthsModule),
   },
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
-  { path: '**', redirectTo: 'admin' },
+  // { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'admin' },
 ];
 
 const config: ExtraOptions = {
