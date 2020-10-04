@@ -1,9 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
 import {DatePipe} from '@angular/common';
-import {RestApiService} from '../../../../@core/mock/rest-api.service';
 import {NbDialogService} from '@nebular/theme';
-import {AddUserComponent} from './addUser/addUser.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -14,33 +12,15 @@ import {AddUserComponent} from './addUser/addUser.component';
 export class UserComponent {
   constructor(
     private toastr: ToastrService,
-    private http: RestApiService,
     private dialogService: NbDialogService) {
-    this.http.post('http://localhost:8080/test3/searchUsers', {}).subscribe(res => {
-      console.log(res.headers.get('Authorization'));
-      if (res.status == 200) {
-        console.log(res);
-        this.source = res.body;
-        localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
-      }
-      // localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
-    }, err => {
-      console.log(err);
-      if (err.status == 400) {
-        this.toastr.showToast('danger', 'lỗi', err.error);
-        // console.log(res.status);
-        window.location.href = err.error.data;
-        localStorage.setItem('httpHeaders', '');
-      }
-    });
   }
   open() {
-    this.dialogService.open(AddUserComponent, {
-      context: {
-        title: 'This is a title passed to the dialog component',
-      },
-      dialogClass: 'model-full',
-    });
+    // this.dialogService.open(AddUserComponent, {
+    //   context: {
+    //     title: 'This is a title passed to the dialog component',
+    //   },
+    //   dialogClass: 'model-full',
+    // });
   }
   selectedItem = '2';
 

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InlineMessageComponent } from './inline-message.component';
+import {InlineMessageComponent} from './inline-message.component';
 
 describe('InlineMessageComponent', () => {
   let component: InlineMessageComponent;

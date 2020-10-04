@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-
-import {NbAccessChecker} from '@nebular/security';
+import {NbMenuItem, NbMenuService} from '@nebular/theme';
+import {LoginService} from '../@core/services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-pages',
@@ -14,15 +15,37 @@ import {NbAccessChecker} from '@nebular/security';
 })
 export class PagesComponent implements OnInit {
 
-  constructor(private accessChecker: NbAccessChecker) {
+  constructor(private loginService: LoginService, private router: Router, private menuService: NbMenuService) {
 
+  }
+
+  formatListPractices(data, paren) {
+    const arr = [];
+    for (let i = 0; i < data.length; i++) {
+      const dataItem = data[i];
+      if (dataItem.parenId === paren) {
+        const children = this.formatListPractices(data, dataItem.id);
+        if (children.length > 0) {
+          dataItem.link = null;
+          dataItem.children = children;
+        }
+        arr.push(dataItem);
+      }
+    }
+    return arr;
   }
 
   menu: Array<any>;
   home: Object;
   obj: any;
+  items: NbMenuItem[] = [];
 
   ngOnInit(): void {
+    this.menuService.onItemClick().subscribe((event) => {
+      role = [];
+      role.push(event.item);
+    });
+
     this.menu = [];
     this.home = {
       title: 'Trang chủ',
@@ -30,41 +53,42 @@ export class PagesComponent implements OnInit {
       link: '/mic/pages/home',
     };
     this.menu.push(this.home);
-    const menu1 = (JSON.parse(localStorage.getItem('objects')));
-    for (let i = 0; i < menu1.length; i++) {
-      this.menu.push(menu1[i]);
-    }
-    // this.authMenuItems();
-  }
+    let menu1;
+    try {
+      const token = localStorage.getItem('httpHeaders');
+      if (token.trim().length === 0 && token === null) {
+        localStorage.setItem('objects', null);
+      } else {
+        this.loginService.authenticationcate({}).subscribe(res => {
+          if (res.status === 200) {
+            this.obj = res.body.listObjects;
+            localStorage.setItem('objects', JSON.stringify(this.obj));
+            menu1 = this.formatListPractices(this.obj, 0);
+            for (let i = 0; i < menu1.length; i++) {
+              this.menu.push(menu1[i]);
+            }
+            this.items = this.menu;
+          }
+        }, err => {
+          localStorage.clear();
+          this.router.navigate(['auths/login']);
 
-  // phân quyền cho những menu quyền nào được hiện lên
-  // authMenuItems() {
-  //   this.menu.forEach(item => {
-  //     this.authMenuItem(item);
-  //   });
-  // }
-  //
-  // authMenuItem(menuItem: NbMenuItem) {
-  //   if (menuItem.data && menuItem.data['permission'] && menuItem.data['resource']) {
-  //     this.accessChecker.isGranted(menuItem.data['permission'], menuItem.data['resource']).subscribe(granted => {
-  //       menuItem.hidden = !granted;
-  //     });
-  //   } else {
-  //     // sua true de an neu ko co quyen
-  //     menuItem.hidden = false;
-  //   }
-  //   if (!menuItem.hidden && menuItem.children != null) {
-  //     menuItem.children.forEach(item => {
-  //       if (item.data && item.data['permission'] && item.data['resource']) {
-  //         this.accessChecker.isGranted(item.data['permission'], item.data['resource']).subscribe(granted => {
-  //           item.hidden = !granted;
-  //         });
-  //       } else {
-  //         // if child item do not config any `data.permission` and `data.resource` just inherit parent item's config
-  //         item.hidden = menuItem.hidden;
-  //       }
-  //     });
-  //   }
-  // }
+        });
+      }
+    } catch (e) {
+      localStorage.setItem('objects', null);
+    }
+  }
 }
 
+
+export let role = [];
+
+export function checkRoleAction(roleAction: string) {
+  for (let i = 0; i < role[0].role?.length; i++) {
+    if (role[0].role[i].codeAction === roleAction) {
+      return true;
+    }
+  }
+  return false;
+}

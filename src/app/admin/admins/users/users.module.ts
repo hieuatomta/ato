@@ -19,11 +19,8 @@ import {routedComponents, UsersRoutingModule} from './users-routing.module';
 import {UserComponent} from './user/user.component';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {FormsModule as ngFormsModule} from '@angular/forms';
-import {AddUserComponent} from './user/addUser/addUser.component';
 
-const ENTRY_COMPONENTS = [
-  AddUserComponent,
-];
+const ENTRY_COMPONENTS = [];
 
 @NgModule({
   imports: [
@@ -46,7 +43,7 @@ const ENTRY_COMPONENTS = [
   entryComponents: [
     ...ENTRY_COMPONENTS,
   ],
-  declarations: [...routedComponents, UserComponent, AddUserComponent],
+  declarations: [...routedComponents, UserComponent],
 })
 export class UsersModule {
 }

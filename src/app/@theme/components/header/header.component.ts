@@ -5,7 +5,6 @@ import {UserData} from '../../../@core/data/users';
 import {LayoutService} from '../../../@core/utils';
 import {map, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {RestApiService} from '../../../@core/mock/rest-api.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -67,24 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
-              private http: RestApiService,
               private router: Router) {
-
-    this.http.post('http://localhost:8080/test3/login1', {}).subscribe(res => {
-      console.log(res.headers.get('Authorization'));
-      if (res.status === 200) {
-        // console.log(res.status);
-        localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
-      }
-      // localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
-    }, err => {
-      console.log(err);
-      if (err.status === 400) {
-        // console.log(res.status);
-        window.location.href = err.error.data;
-        localStorage.setItem('httpHeaders', '');
-      }
-    });
   }
 
 

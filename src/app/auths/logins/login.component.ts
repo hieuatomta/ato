@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../@core/services/login.service';
 import {TranslateService} from '@ngx-translate/core';
 
+
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'ngx-login',
@@ -14,49 +15,19 @@ import {TranslateService} from '@ngx-translate/core';
 })
 
 
-
 export class LoginComponent implements OnInit {
-
+  ngOnInit() {
+    this.initForm();
+  }
 
   constructor(private loginService: LoginService,
               private router: Router,
               private route: ActivatedRoute,
               private translateService: TranslateService,
               private toastr: ToastrService) {
-    const body = document.querySelector("body");
-    const modal = document.querySelector(".modal");
-    const modalButton = document.querySelector(".modal-button");
-    const closeButton = document.querySelector(".close-button");
-    const scrollDown = document.querySelector(".scroll-down");
-    let isOpened = false;
-
-    const openModal = () => {
-      modal.classList.add("is-open");
-      body.style.overflow = "hidden";
-    };
-
-    const closeModal = () => {
-      modal.classList.remove("is-open");
-      body.style.overflow = "initial";
-    };
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > window.innerHeight / 3 && !isOpened) {
-        isOpened = true;
-        // scrollDown.style.display = "none";
-        openModal();
-      }
-    });
-
-    // modalButton.addEventListener("click", openModal);
-    // closeButton.addEventListener("click", closeModal);
-
-    document.onkeydown = evt => {
-      // evt = evt || window.event;
-      // evt.keyCode === 27 ? closeModal() : false;
-    };
 
   }
+
 
   captchaError: boolean = false;
   inputUser: FormGroup;
@@ -74,13 +45,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  hideLogin = () => {
+    document.querySelector('.modal').classList.add('is-open');
+    document.querySelector('body').style.overflow = 'hidden';
+  };
+
   trimValue(event) {
     event.target.value = event.target.value.trim();
-  }
-
-
-  ngOnInit() {
-    this.initForm();
   }
 
   getInputType() {
@@ -111,7 +82,7 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.inputUser.value).subscribe(res => {
         this.submitted = false;
         if (res.status === 200) {
-          this.router.navigate(['/pages/home']);
+          this.router.navigate(['/admin/home']);
           localStorage.setItem('objects', JSON.stringify(res.body.listObjects));
           localStorage.setItem('httpHeaders', res.body.httpHeaders.Authorization);
           localStorage.setItem('users', res.body.customUserDetails.fullName);
@@ -122,15 +93,15 @@ export class LoginComponent implements OnInit {
         }
       }, err => {
         const title = this.translateService.instant('login.error');
-        let body: any;
+        let body1: any;
         try {
-          body = err.error.detail;
+          body1 = err.error.detail;
         } catch {
-          body = '';
+          body1 = '';
         } finally {
           this.isLoad = false;
           this.captchaError = false;
-          this.toastr.showToast('danger', title, body);
+          this.toastr.showToast('danger', title, body1);
           grecaptcha.reset();
         }
       });

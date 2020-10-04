@@ -26,7 +26,6 @@ import {DEFAULT_THEME} from './styles/theme.default';
 import {COSMIC_THEME} from './styles/theme.cosmic';
 import {CORPORATE_THEME} from './styles/theme.corporate';
 import {DARK_THEME} from './styles/theme.dark';
-import {RestApiService} from '../@core/mock/rest-api.service';
 import {FormsModule} from '@angular/forms';
 import {ToastrService} from '../@core/mock/toastr-service';
 import {AuthGuardService} from '../@core/mock/auth-guard.service';
@@ -64,7 +63,6 @@ const PIPES = [
   NumberWithCommasPipe,
 ];
 const SERVICE = [
-  RestApiService,
   ToastrService,
   AuthGuardService,
   AuthGuardAuthsService,

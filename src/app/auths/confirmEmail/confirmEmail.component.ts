@@ -9,7 +9,7 @@ import {LoginService} from '../../@core/services/login.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'ngx-login',
+  selector: 'ngx-confirm-email',
   templateUrl: './confirmEmail.component.html',
   styleUrls: ['./confirmEmail.component.scss'],
 })

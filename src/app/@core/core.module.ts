@@ -5,7 +5,7 @@ import {NbRoleProvider, NbSecurityModule} from '@nebular/security';
 import {of as observableOf} from 'rxjs';
 
 import {throwIfAlreadyLoaded} from './module-import-guard';
-import {AnalyticsService, LayoutService, PlayerService, SeoService, StateService,} from './utils';
+import {AnalyticsService, LayoutService, PlayerService, SeoService, StateService} from './utils';
 import {UserData} from './data/users';
 import {ElectricityData} from './data/electricity';
 import {SmartTableData} from './data/smart-table';
@@ -46,6 +46,8 @@ import {StatsProgressBarService} from './mock/stats-progress-bar.service';
 import {VisitorsAnalyticsService} from './mock/visitors-analytics.service';
 import {SecurityCamerasService} from './mock/security-cameras.service';
 import {MockDataModule} from './mock/mock-data.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from '../interceptor/auth.interceptor';
 
 const socialLinks = [
   {
@@ -85,6 +87,7 @@ const DATA_SERVICES = [
   { provide: StatsProgressBarData, useClass: StatsProgressBarService },
   { provide: VisitorsAnalyticsData, useClass: VisitorsAnalyticsService },
   { provide: SecurityCamerasData, useClass: SecurityCamerasService },
+
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
@@ -147,6 +150,13 @@ export const NB_CORE_PROVIDERS = [
     NbAuthModule,
   ],
   declarations: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

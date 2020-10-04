@@ -1,7 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
 import {DatePipe} from '@angular/common';
-import {RestApiService} from '../../../../@core/mock/rest-api.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -12,24 +11,8 @@ import {RestApiService} from '../../../../@core/mock/rest-api.service';
 export class RoleComponent {
   constructor(
     private toastr: ToastrService,
-    private http: RestApiService) {
-    this.http.post('http://localhost:8080/test3/searchUsers', {}).subscribe(res => {
-      console.log(res.headers.get('Authorization'));
-      if (res.status == 200) {
-        console.log(res);
-        this.source = res.body;
-        localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
-      }
-      // localStorage.setItem('httpHeaders', res.headers.get('Authorization'));
-    }, err => {
-      console.log(err);
-      if (err.status == 400) {
-        this.toastr.showToast('danger', 'lỗi', err.error);
-        // console.log(res.status);
-        window.location.href = err.error.data;
-        localStorage.setItem('httpHeaders', '');
-      }
-    });
+  ) {
+
   }
 
   selectedItem = '2';
