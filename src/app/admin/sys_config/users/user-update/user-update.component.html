@@ -1,0 +1,93 @@
+<nb-card [nbSpinner]="loading" fullWidth>
+  <nb-card-header class="card-header-title">{{ title }}
+    <div class="bt-action">
+        <span>
+          <button ghost size="tiny" nbButton class="objLink float-right" (click)="ref.close()">
+            <nb-icon icon="close-outline"></nb-icon>
+          </button>
+        </span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="inputUser">
+      <div class="mb-4">
+        <div class="row">
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_username' | translate }} <span style="color: red">(*)</span>
+            </label>
+            <input class="custom-border" type="text" formControlName="name" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('name').touched && this.inputUser.get('name').errors}">
+
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_fullname' | translate }} <span style="color: red">(*)</span>
+            </label>
+            <input class="custom-border" formControlName="fullname"  type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('fullname').touched && this.inputUser.get('fullName').errors}">
+
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_tel' | translate}}
+            </label>
+            <input class="custom-border" formControlName="tel"  type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('tel').touched && this.inputUser.get('tel').errors}">
+
+
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_email' | translate }}
+            </label>
+            <input class="custom-border" formControlName="email"  type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('email').touched && this.inputUser.get('email').errors}">
+
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_passwordHash' | translate }} <span *ngIf="data == null" style="color: red">(*)</span>
+            </label>
+            <input class="custom-border" formControlName="pass"  type="password" nbInput
+                   fullWidth
+                   [ngClass]="{'status-danger': this.inputUser.get('pass').touched && this.inputUser.get('passwordHash').errors}">
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_repassword' | translate }}
+            </label>
+            <input class="custom-border" formControlName="rePassword"  type="password" nbInput
+                   fullWidth
+                   [ngClass]="{'status-danger': this.inputUser.get('rePassword').touched && this.inputUser.get('rePassword').errors}">
+
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_imageUrl' | translate }}
+            </label>
+            <input class="custom-border" formControlName="imageUrl"  type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('imageUrl').touched && this.inputUser.get('imageUrl').errors}">
+
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'users.item_status' | translate }} <span style="color: red">(*)</span>
+            </label>
+            <nb-select fullWidth style="padding: 0; overflow: hidden;" class="border-nb-select"
+                       placeholder="Chọn" formControlName="status"
+                       [ngClass]="{'nb-select-status-danger': this.inputUser.get('status').touched && this.inputUser.get('status').errors}">
+              <nb-option [value]="1">{{ 'users.status.1' | translate }}</nb-option>
+              <nb-option [value]="0">{{ 'users.status.0' | translate }}</nb-option>
+            </nb-select>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer class="text-right">
+    <button nbButton type="button" status="primary" (click)="submit()" id="dialogCancelBtn">{{ 'users.save' | translate }}</button>
+    <button nbButton type="button" nbButton (click)="cancel()" class="ml-2"> {{ 'users.cancel' | translate }} </button>
+  </nb-card-footer>
+</nb-card>

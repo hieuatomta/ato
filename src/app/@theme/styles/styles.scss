@@ -31,7 +31,12 @@
 
   @include nb-overrides();
 };
-
+@import '~@ng-select/ng-select/themes/default.theme.css';
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/themes/dark.scss';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
 
 .nb-theme-default nb-layout-header {
   background-color: #343a40;

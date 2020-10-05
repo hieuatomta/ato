@@ -12,6 +12,7 @@ import {
 import {NgSelectModule} from '@ng-select/ng-select';
 import {InlineMessageComponent} from './directives/inline-message/inline-message.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {ScrollbarHelper} from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [InlineMessageComponent],
@@ -32,6 +33,7 @@ import {TranslateModule} from '@ngx-translate/core';
     InlineMessageComponent
   ],
   providers: [
+    ScrollbarHelper
   ]
 })
 export class SharedModule {

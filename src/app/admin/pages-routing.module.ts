@@ -34,12 +34,12 @@ const routes: Routes = [{
     },
     {
       path: 'users',
-      loadChildren: () => import('./admins/users/users.module')
+      loadChildren: () => import('./sys_config/users/users.module')
         .then(m => m.UsersModule),
     },
     {
       path: 'roles',
-      loadChildren: () => import('./admins/roles/roles.module')
+      loadChildren: () => import('./sys_config/roles/roles.module')
         .then(m => m.RolesModule),
     },
     {

@@ -9,16 +9,19 @@ import {
   NbIconModule,
   NbInputModule,
   NbRadioModule,
-  NbSelectModule,
+  NbSelectModule, NbSpinnerModule,
   NbUserModule,
 } from '@nebular/theme';
 
 import {ThemeModule} from '../../../@theme/theme.module';
 
 import {routedComponents, UsersRoutingModule} from './users-routing.module';
-import {UserComponent} from './user/user.component';
+import {UserUpdateComponent} from './user-update/user-update.component';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
-import {FormsModule as ngFormsModule} from '@angular/forms';
+import {FormsModule as ngFormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 const ENTRY_COMPONENTS = [];
 
@@ -39,11 +42,16 @@ const ENTRY_COMPONENTS = [];
     ngFormsModule,
     Ng2SmartTableModule,
     NbFormFieldModule,
+    TranslateModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    NgxDatatableModule,
+    NbSpinnerModule,
   ],
   entryComponents: [
-    ...ENTRY_COMPONENTS,
+    ...ENTRY_COMPONENTS, UserUpdateComponent
   ],
-  declarations: [...routedComponents, UserComponent],
+  declarations: [...routedComponents, UserUpdateComponent],
 })
 export class UsersModule {
 }
