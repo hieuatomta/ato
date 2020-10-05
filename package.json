@@ -12,8 +12,8 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng serve --liveReload=false --port 4201 --base-href /",
-    "start1": "node server.js",
+    "start1": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng serve --liveReload=false --port 4201 --base-href /",
+    "start": "node server.js",
     "build": "ng build",
     "deploy": "ng build --prod --base-href https://hieuatomta.github.io/ato/ && angular-cli-ghpages --branch gh-pages",
     "build:prod": "npm run build -- --prod --aot",
