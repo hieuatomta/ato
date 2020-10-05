@@ -1,1 +1,1 @@
-hieuatoatomta.github.io: npm start
+web: npm start
