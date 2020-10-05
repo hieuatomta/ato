@@ -12,7 +12,7 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng serve --liveReload=false --port 4201 --base-href /",
+    "start": "node server.js",
     "build": "ng build",
     "deploy": "ng build --prod --base-href https://hieuatomta.github.io/ato/ && angular-cli-ghpages --branch gh-pages",
     "build:prod": "npm run build -- --prod --aot",
@@ -63,6 +63,7 @@
     "core-js": "2.5.1",
     "echarts": "^4.0.2",
     "eva-icons": "^1.1.3",
+    "express": "^4.17.1",
     "highcharts": "^8.1.2",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
