@@ -9,7 +9,7 @@
     "oldPass": "Mật khẩu cũ",
     "newPass": "Mật khẩu mới",
     "comPass": "Nhập lại mật khẩu",
-    "userName": "Tên đăng nhập",
+    "name": "Tên đăng nhập",
     "email": "Nhập địa chỉ Email",
     "emailC": "Email",
     "sendEmail": "Gửi email",

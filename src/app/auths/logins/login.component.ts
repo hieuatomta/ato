@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.inputUser = new FormGroup({
-      userName: new FormControl(this.getCookie('userName'), [checkUser, Validators.maxLength(50), Validators.required]),
-      passwordHash: new FormControl(this.getCookie('passwordHash'), [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
+      name: new FormControl(this.getCookie('name'), [checkUser, Validators.maxLength(50), Validators.required]),
+      pass: new FormControl(this.getCookie('pass'), [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
       remember: new FormControl(this.getCookie('remember'), []),
-      recaptchaReactive: new FormControl(null, [Validators.required])
+      // recaptchaReactive: new FormControl(null, [Validators.required])
     });
   }
 
@@ -71,21 +71,22 @@ export class LoginComponent implements OnInit {
     this.captchaError = true;
     if (this.inputUser.valid) {
       if (this.inputUser.value.remember) {
-        document.cookie = 'userName=' + this.inputUser.value.userName;
-        document.cookie = 'passwordHash=' + this.inputUser.value.passwordHash;
+        document.cookie = 'name=' + this.inputUser.value.name;
+        document.cookie = 'pass=' + this.inputUser.value.pass;
         document.cookie = 'remember=' + true;
       } else {
-        document.cookie = 'userName=' + '';
-        document.cookie = 'passwordHash=' + '';
+        document.cookie = 'name=' + '';
+        document.cookie = 'pass=' + '';
         document.cookie = 'remember=' + false;
       }
       this.loginService.login(this.inputUser.value).subscribe(res => {
         this.submitted = false;
         if (res.status === 200) {
+          console.log(res);
           this.router.navigate(['/admin/home']);
           localStorage.setItem('objects', JSON.stringify(res.body.listObjects));
           localStorage.setItem('httpHeaders', res.body.httpHeaders.Authorization);
-          localStorage.setItem('users', res.body.customUserDetails.fullName);
+          localStorage.setItem('users', res.body.customUserDetails.fullname);
           localStorage.setItem('userDetails', JSON.stringify(res.body.customUserDetails));
           this.isLoad = false;
           this.captchaError = false;

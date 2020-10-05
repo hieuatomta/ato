@@ -1,6 +1,6 @@
 export class LoginProgramModel {
-  userName: string;
-  passwordHash: string;
+  name: string;
+  pass: string;
   listObjects: any;
   httpHeaders: any;
   Authorization: string;

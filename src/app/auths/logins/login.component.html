@@ -8,28 +8,28 @@
         <form (ngSubmit)="onSubmit()" [formGroup]="inputUser">
           <div class="form-group">
             <div class="input-icon">
-              <input class="form-control" name="userName" formControlName="userName" (keyup)="trimValue($event)"
-                     [ngClass]="{'status-danger': this.inputUser.get('userName').errors}" type="text"
-                     placeholder="{{ 'login.userName' | translate}}">
+              <input class="form-control" name="name" formControlName="name" (keyup)="trimValue($event)"
+                     [ngClass]="{'status-danger': this.inputUser.get('name').errors}" type="text"
+                     placeholder="{{ 'login.name' | translate}}">
               <span class="icon"><img src="assets/images/business-contact-86.svg"></span>
             </div>
 
           </div>
-          <ngx-inline-message [message]="'login.userName'|translate"
-                              [formName]="inputUser.get('userName')"></ngx-inline-message>
+          <ngx-inline-message [message]="'login.name'|translate"
+                              [formName]="inputUser.get('name')"></ngx-inline-message>
           <div class="form-group">-->
             <div class="input-icon -show">
-              <input [type]="getInputType()" name="passwordHash" (keyup)="trimValue($event)" fullWidth
-                     formControlName="passwordHash" type="password" class="form-control"
+              <input [type]="getInputType()" name="pass" (keyup)="trimValue($event)" fullWidth
+                     formControlName="pass" type="password" class="form-control"
                      placeholder="{{ 'login.pass' | translate}}"
-                     [ngClass]="{'status-danger': this.inputUser.get('passwordHash').errors}">
+                     [ngClass]="{'status-danger': this.inputUser.get('pass').errors}">
               <span class="icon"><img src="assets/images/lock.svg"></span>
               <span id="passwordShow" (click)="toggleShowPassword()" class="icon-show fa  fa-eye"
                     style="margin-right:1em;">
               								</span>
             </div>
             <ngx-inline-message [message]="'login.pass'|translate"
-                                [formName]="inputUser.get('passwordHash')"></ngx-inline-message>
+                                [formName]="inputUser.get('pass')"></ngx-inline-message>
           </div>
 
           <div class="form-group form-check" style="margin-top: 0.5rem;">
@@ -38,12 +38,12 @@
             <label for="remember" class="form-check-label"
                    style="color: #292D34 !important;justify-content: center;">{{ 'login.remember' | translate}}</label>
           </div>
-          <div class="form-group">
-            <re-captcha style="display: flex; justify-content: center;"
-                        formControlName="recaptchaReactive"></re-captcha>
-          </div>
-          <ngx-inline-message [message]="'login.recaptchaReactive'|translate"
-                              [formName]="inputUser.get('recaptchaReactive')"></ngx-inline-message>
+<!--          <div class="form-group">-->
+<!--            <re-captcha style="display: flex; justify-content: center;"-->
+<!--                        formControlName="recaptchaReactive"></re-captcha>-->
+<!--          </div>-->
+<!--          <ngx-inline-message [message]="'login.recaptchaReactive'|translate"-->
+<!--                              [formName]="inputUser.get('recaptchaReactive')"></ngx-inline-message>-->
           <div class="modal-buttons">
             <a routerLink="/auths/confirmEmail">{{ 'login.confirmEmail' | translate}}</a>
             <button class="btn btn-main" [disabled]="inputUser.invalid">{{ 'login.login' | translate}}</button>
