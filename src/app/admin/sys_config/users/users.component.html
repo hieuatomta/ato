@@ -15,36 +15,36 @@
             <div class="row">
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'users.item_username' | translate }}
+                  {{ 'common.table.item_username' | translate }}
                 </label>
                 <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="name">
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'users.item_fullname' | translate }}
+                  {{ 'common.table.item_fullname' | translate }}
                 </label>
                 <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="fullname">
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'users.item_tel' | translate }}
+                  {{ 'common.table.item_tel' | translate }}
                 </label>
                 <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="phone">
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{'users.item_email' | translate }}
+                  {{'common.table.item_email' | translate }}
                 </label>
                 <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="mail">
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'users.item_status' | translate }}
+                  {{ 'common.table.item_status' | translate }}
                 </label>
                 <ng-select fullWidth appendTo="body"
-                           placeholder="{{'users.placeHolder' |translate}}"
-                           notFoundText="{{'users.notFoundText' |translate}}"
-                           clearAllText="{{'users.clearAllText' |translate}}"
+                           placeholder="{{'common.placeHolder' |translate}}"
+                           notFoundText="{{'common.notFoundText' |translate}}"
+                           clearAllText="{{'common.clearAllText' |translate}}"
                            formControlName="status">
                   <ng-option *ngFor="let item of listStatus" [value]="item.code"> {{ item.name | translate }}
                   </ng-option>
@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button nbButton status="primary" type="submit" (click)="search(0)">{{ 'users.search' | translate }}
+              <button nbButton status="primary" type="submit" (click)="search(0)">{{ 'common.search' | translate }}
                 <nb-icon icon="search-outline"></nb-icon>
               </button>
             </div>
@@ -70,7 +70,7 @@
                        [footerHeight]="50"
                        [headerHeight]="50"
                        (page)="pageCallback($event)"
-                       [messages]="{ emptyMessage: 'users.notFoundText' | translate, totalMessage: 'users.totalMessage' | translate }">
+                       [messages]="{ emptyMessage: 'common.notFoundText' | translate, totalMessage: 'common.totalMessage' | translate }">
           <ng-container *ngFor="let col of columns">
             <ngx-datatable-column prop="{{col.prop}}" name="{{col.name}}" [flexGrow]="col.flexGrow">
               <ng-template let-column="column" ngx-datatable-header-template>
@@ -86,16 +86,19 @@
                   <span class="row-data-show"
                         title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
                 </ng-container>
+                <ng-container *ngIf="col.prop ==='orBirthUser'">
+                  {{ value | date:'dd/MM/yyyy'}}
+                </ng-container>
                 <ng-container *ngIf="col.prop ==='status'">
-                  {{  'users.status.' + value | translate }}
+                  {{  'common.status.' + value | translate }}
                 </ng-container>
                 <ng-container *ngIf="col.prop ==='action_btn'" class="text-right">
                   <div>
-                    <button class="p-1" nbButton status="info" ghost title="{{ 'users.edit' | translate}}"
+                    <button class="p-1" nbButton status="info" ghost title="{{ 'common.edit' | translate}}"
                             (click)="editUsers(row)">
                       <nb-icon icon="edit-outline" pack="eva" size="tiny"></nb-icon>
                     </button>
-                    <button class="p-1" nbButton status="danger" ghost title="{{ 'users.delete' | translate }}"
+                    <button class="p-1" nbButton status="danger" ghost title="{{ 'common.delete' | translate }}"
                             (click)="deleteUsers(row)">
                       <nb-icon icon="trash-2-outline" pack="eva" size="tiny"></nb-icon>
                     </button>

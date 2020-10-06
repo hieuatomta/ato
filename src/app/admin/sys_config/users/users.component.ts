@@ -30,8 +30,8 @@ export class UsersComponent implements OnInit {
   loading = false;
 
   listStatus = [
-    {name: 'users.status.1', code: 1},
-    {name: 'users.status.0', code: 0}
+    {name: 'common.status.1', code: 1},
+    {name: 'common.status.0', code: 0}
   ];
   rows: Object[];
   page = {
@@ -40,13 +40,14 @@ export class UsersComponent implements OnInit {
     offset: 0,
   };
   columns = [
-    {name: 'users.item_number', prop: 'index', flexGrow: 0.3},
-    {name: 'users.item_username', prop: 'name', flexGrow: 1},
-    {name: 'users.item_fullname', prop: 'fullname', flexGrow: 1},
-    {name: 'users.item_email', prop: 'mail', flexGrow: 1},
-    {name: 'users.item_tel', prop: 'phone', flexGrow: 1},
-    {name: 'users.item_status', prop: 'status', flexGrow: 1},
-    {name: 'users.item_action', prop: 'action_btn', flexGrow: 1}
+    {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
+    {name: 'common.table.item_username', prop: 'name', flexGrow: 1},
+    {name: 'common.table.item_fullname', prop: 'fullname', flexGrow: 1},
+    {name: 'common.table.item_email', prop: 'mail', flexGrow: 1},
+    {name: 'common.table.item_tel', prop: 'phone', flexGrow: 1},
+    {name: 'common.table.item_orBirthUser', prop: 'orBirthUser', flexGrow: 1},
+    {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
+    {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
 
   inputForm = new FormGroup({
@@ -54,6 +55,7 @@ export class UsersComponent implements OnInit {
     fullname: new FormControl(null, []),
     mail: new FormControl(null, []),
     phone: new FormControl(null, []),
+    orBirthUser: new FormControl(null, []),
     status: new FormControl(null, []),
   });
 

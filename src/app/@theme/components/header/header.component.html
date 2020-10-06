@@ -10,6 +10,13 @@
     <nb-select [selected]="currentLanguage" (selectedChange)="changeLanguage($event)" style="margin-left: 10px;">
       <nb-option *ngFor="let language of languages" [value]="language.value"> {{ language.name }}</nb-option>
     </nb-select>
+    <div class="col-lg-8">
+      <ng-select fullWidth appendTo="body">
+        <ng-option *ngFor="let item of languages" [value]="item.code"> {{ item.name  }}
+        </ng-option>
+      </ng-select>
+    </div>
+
   </div>
 </div>
 
@@ -18,6 +25,7 @@
   <nb-actions size="small">
     <nb-action class="user-action"  *nbIsGranted="['view', 'user','logout']" >
       <nb-user [nbContextMenu]="userMenu"
+               nbContextMenuTrigger = "click"
                 (menuClick)="menuClick($event)"
                [onlyPicture]="userPictureOnly"
                [name]="user"

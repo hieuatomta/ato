@@ -6,6 +6,20 @@
       "0": "Bị khóa",
       "1": "Hoạt động"
     },
+    "table": {
+      "item_number": "STT",
+      "item_username": "Tên đăng nhập",
+      "item_fullname": "Tên đầy đủ",
+      "item_passwordHash": "Mật khẩu",
+      "item_repassword": "Nhập lại mật khẩu",
+      "item_tel": "Số điện thoại",
+      "item_email": "Email",
+      "item_orBirthUser": "Ngày sinh",
+      "item_role": "Quyền người dùng",
+      "item_status": "Trạng thái",
+      "item_imageUrl": "Đường dẫn ảnh",
+      "item_action": "Thao tác"
+    },
     "totalMessage": "bản ghi",
     "search": "Tìm kiếm",
     "placeHolder": "Lựa chọn",
@@ -14,6 +28,7 @@
     "save": "Lưu lại",
     "cancel": "Huỷ bỏ",
     "edit": "Sửa",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "format_date": "dd/MM/yyyy"
   }
 }

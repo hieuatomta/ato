@@ -19,6 +19,7 @@ export class UserUpdateComponent implements OnInit {
       pass: new FormControl('', []),
       rePassword: new FormControl('', []),
       imageUrl: new FormControl(this.data?.imageUrl, []),
+      orBirthUser: new FormControl(this.data?.orBirthUser, []),
       status: new FormControl(this.data?.status, []),
     });
     this.inputUser.get('status').setValue(true);
@@ -32,8 +33,8 @@ export class UserUpdateComponent implements OnInit {
     }
   };
   listStatus = [
-    {name: 'users.status.1', code: 1},
-    {name: 'users.status.0', code: 0}
+    {name: 'common.status.1', code: 1},
+    {name: 'common.status.0', code: 0}
   ];
   inputUser: any;
 

@@ -1,8 +1,9 @@
 {
   "login": {
+    "title": "Hệ thống quản lý!",
     "login": "Đăng nhập",
     "changePass": "Đổi mật khẩu",
-    "confirmEmail": "Forgot your password?",
+    "confirmEmail": "Quên mật khẩu",
     "remember": "Ghi nhớ mật khẩu",
     "pass": "Mật khẩu",
     "recaptchaReactive": "Mã Captcha",
@@ -13,8 +14,6 @@
     "email": "Nhập địa chỉ Email",
     "emailC": "Email",
     "sendEmail": "Gửi email",
-    "logoTextTop": "Hệ thống thông tin báo cáo",
-    "logoTextBottom": "Bộ, Ngành, Địa phương",
     "notification": "Thông báo",
     "error": "Lỗi"
   }

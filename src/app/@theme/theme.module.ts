@@ -30,6 +30,7 @@ import {FormsModule} from '@angular/forms';
 import {ToastrService} from '../@core/mock/toastr-service';
 import {AuthGuardService} from '../@core/mock/auth-guard.service';
 import {AuthGuardAuthsService} from '../@core/mock/auth-guard-auths.service';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -70,7 +71,7 @@ const SERVICE = [
 
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule],
+    imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule, NgSelectModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
   providers: [...SERVICE],

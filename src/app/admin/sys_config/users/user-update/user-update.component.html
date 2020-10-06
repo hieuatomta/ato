@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_username' | translate }} <span style="color: red">(*)</span>
+              {{ 'common.table.item_username' | translate }} <span style="color: red">(*)</span>
             </label>
             <input class="custom-border" type="text" formControlName="name" nbInput fullWidth trim="blur"
                    [ngClass]="{'status-danger': this.inputUser.get('name').touched && this.inputUser.get('name').errors}">
@@ -22,72 +22,82 @@
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_fullname' | translate }} <span style="color: red">(*)</span>
+              {{ 'common.table.item_fullname' | translate }} <span style="color: red">(*)</span>
             </label>
-            <input class="custom-border" formControlName="fullname"  type="text" nbInput fullWidth trim="blur"
-                   [ngClass]="{'status-danger': this.inputUser.get('fullname').touched && this.inputUser.get('fullName').errors}">
+            <input class="custom-border" formControlName="fullname" type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('fullname').touched && this.inputUser.get('fullname').errors}">
 
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_tel' | translate}}
+              {{ 'common.table.item_tel' | translate}}
             </label>
-            <input class="custom-border" formControlName="phone"  type="text" nbInput fullWidth trim="blur"
+            <input class="custom-border" formControlName="phone" type="text" nbInput fullWidth trim="blur"
                    [ngClass]="{'status-danger': this.inputUser.get('phone').touched && this.inputUser.get('phone').errors}">
 
 
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_email' | translate }}
+              {{ 'common.table.item_email' | translate }}
             </label>
-            <input class="custom-border" formControlName="mail"  type="text" nbInput fullWidth trim="blur"
+            <input class="custom-border" formControlName="mail" type="text" nbInput fullWidth trim="blur"
                    [ngClass]="{'status-danger': this.inputUser.get('mail').touched && this.inputUser.get('mail').errors}">
 
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_passwordHash' | translate }} <span *ngIf="data == null" style="color: red">(*)</span>
+              {{ 'common.table.item_passwordHash' | translate }} <span *ngIf="data == null" style="color: red">(*)</span>
             </label>
-            <input class="custom-border" formControlName="pass"  type="password" nbInput
+            <input class="custom-border" formControlName="pass" type="password" nbInput
                    fullWidth
                    [ngClass]="{'status-danger': this.inputUser.get('pass').touched && this.inputUser.get('passwordHash').errors}">
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_repassword' | translate }}
+              {{ 'common.table.item_repassword' | translate }}
             </label>
-            <input class="custom-border" formControlName="rePassword"  type="password" nbInput
+            <input class="custom-border" formControlName="rePassword" type="password" nbInput
                    fullWidth
                    [ngClass]="{'status-danger': this.inputUser.get('rePassword').touched && this.inputUser.get('rePassword').errors}">
 
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_imageUrl' | translate }}
+              {{ 'common.table.item_imageUrl' | translate }}
             </label>
-            <input class="custom-border" formControlName="imageUrl"  type="text" nbInput fullWidth trim="blur"
+            <input class="custom-border" formControlName="imageUrl" type="text" nbInput fullWidth trim="blur"
                    [ngClass]="{'status-danger': this.inputUser.get('imageUrl').touched && this.inputUser.get('imageUrl').errors}">
 
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'users.item_status' | translate }} <span style="color: red">(*)</span>
+              {{ 'common.table.item_orBirthUser' | translate }}
             </label>
-<!--            <nb-select fullWidth style="padding: 0; overflow: hidden;" class="border-nb-select"-->
-<!--                       placeholder="Chọn" formControlName="status"-->
-<!--                       [ngClass]="{'nb-select-status-danger': this.inputUser.get('status').touched && this.inputUser.get('status').errors}">-->
-<!--              <nb-option [value]="1">{{ 'users.status.1' | translate }}</nb-option>-->
-<!--              <nb-option [value]="0">{{ 'users.status.0' | translate }}</nb-option>-->
-<!--            </nb-select> -->
-<!--            <ng-select fullWidth appendTo="body"-->
-<!--                       placeholder="{{'users.placeHolder' |translate}}"-->
-<!--                       notFoundText="{{'users.notFoundText' |translate}}"-->
-<!--                       clearAllText="{{'users.clearAllText' |translate}}"-->
-<!--                       formControlName="status">-->
-<!--              <ng-option *ngFor="let item of listStatus" [value]="item.code"> {{ item.name | translate }}-->
-<!--              </ng-option>-->
-<!--            </ng-select>-->
+            <input class="custom-border" nbInput fullWidth
+                   formControlName="orBirthUser"
+                   [nbDatepicker]="fromDate"
+                   [ngClass]="{'status-danger': this.inputUser.get('orBirthUser').touched && this.inputUser.get('orBirthUser').errors}"
+            >
+            <nb-datepicker #fromDate format="{{'common.format_date' |translate}}">
+            </nb-datepicker>
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">{{ 'common.table.item_role' | translate }}</label>
+            <ng-select [clearAllText]="'common.clearAllText'" fullWidth formControlName="status" placeholder="" [multiple]="true">
+              <ng-option *ngFor="let item of listStatus" [value]="item.code">
+                <span title="{{item.orgName | translate }}" class="cut-text"> {{ item.name | translate }}</span>
+
+              </ng-option>
+            </ng-select>
+            <!--            <ngx-inline-message [message]="'conf-rp-program.label.docType' | translate"-->
+            <!--                                [formName]="rpProgram.get('orgId')">-->
+            <!--            </ngx-inline-message>-->
+          </div>
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
+            </label>
             <nb-toggle fullWidth formControlName="status"></nb-toggle>
           </div>
         </div>
@@ -95,7 +105,8 @@
     </form>
   </nb-card-body>
   <nb-card-footer class="text-right">
-    <button nbButton type="button" status="primary" (click)="submit()" id="dialogCancelBtn">{{ 'users.save' | translate }}</button>
-    <button nbButton type="button" nbButton (click)="cancel()" class="ml-2"> {{ 'users.cancel' | translate }} </button>
+    <button nbButton type="button" status="primary" (click)="submit()"
+            id="dialogCancelBtn">{{ 'common.save' | translate }}</button>
+    <button nbButton type="button" nbButton (click)="cancel()" class="ml-2"> {{ 'common.cancel' | translate }} </button>
   </nb-card-footer>
 </nb-card>

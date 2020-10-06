@@ -5,38 +5,9 @@
     "title_add": "Thêm mới người dùng",
     "title_edit": "Sửa thông tin người dùng",
     "title_delete": "Xác nhận xóa người dùng",
-    "item_number": "STT",
-    "item_username": "Tên đăng nhập",
-    "item_fullname": "Tên đầy đủ",
     "unknown_error": "Lỗi không xác định",
-    "item_passwordHash": "Mật khẩu",
-    "item_repassword": "Nhập lại mật khẩu",
-    "item_imageUrl": "Đường dẫn ảnh",
-    "item_action": "Thao tác",
-    "item_role": "Quyền người dùng",
-    "item_tel": "Số điện thoại",
-    "item_email": "Email",
-    "item_status": "Trạng thái",
-    "search": "Tìm kiếm",
-    "placeHolder": "Lựa chọn",
-    "notFoundText": "Không có bản ghi",
-    "clearAllText": "Xóa",
-    "save": "Lưu lại",
-    "cancel": "Huỷ bỏ",
-    "edit": "Sửa",
-    "delete": "Xóa",
     "content_add_success": "Thêm người dùng thành công",
     "content_edit_success": "Sửa thông tin thành công",
-    "content_delete_success": "Xóa người dùng thành công",
-    "totalMessage": "bản ghi",
-    "status": {
-      "active": "Hoạt động",
-      "inactive": "Không hoạt động",
-      "0": "Bị khóa",
-      "1": "Hoạt động"
+    "content_delete_success": "Xóa người dùng thành công"
     }
-  },
-  "exclude": [
-    "node_modules"
-  ]
 }

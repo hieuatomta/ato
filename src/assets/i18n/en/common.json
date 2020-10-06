@@ -1,10 +1,24 @@
 {
   "common": {
     "status": {
-      "active": "Hoạt động",
-      "inactive": "Không hoạt động",
-      "0": "Bị khóa",
-      "1": "Hoạt động"
+      "active": "Active",
+      "inactive": "Inactive",
+      "0": "Lock",
+      "1": "Active"
+    },
+    "table": {
+      "item_number": "STT",
+      "item_username": "UserName",
+      "item_fullname": "FullName",
+      "item_passwordHash": "Password",
+      "item_repassword": "Enter the password",
+      "item_tel": "Phone",
+      "item_email": "Email",
+      "item_orBirthUser": "Date of birth",
+      "item_role": "Users-Role",
+      "item_status": "Status",
+      "item_imageUrl": "Image path",
+      "item_action": "Manipulation"
     },
     "totalMessage": "bản ghi",
     "search": "Tìm kiếm",
@@ -14,6 +28,7 @@
     "save": "Lưu lại",
     "cancel": "Huỷ bỏ",
     "edit": "Sửa",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "format_date": "dd/MM/yyyy"
   }
 }
