@@ -50,7 +50,7 @@ export class PagesComponent implements OnInit {
     this.home = {
       title: 'Trang chủ',
       icon: 'home-outline',
-      link: '/mic/pages/home',
+      link: '/admin/home',
     };
     this.menu.push(this.home);
     let menu1;

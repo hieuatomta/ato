@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <nb-card>
-<!--      <nb-card-header>Quản lý người dùng</nb-card-header>-->
+      <!--      <nb-card-header>Quản lý người dùng</nb-card-header>-->
       <nb-card-header class="d-flex">
         <label>{{ 'users.title' | translate }}</label>
         <button nbButton status="primary" size="tiny" class="ml-auto" (click)="editUsers(null)">
@@ -29,13 +29,13 @@
                 <label class="label">
                   {{ 'users.item_tel' | translate }}
                 </label>
-                <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="tel">
+                <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="phone">
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
                   {{'users.item_email' | translate }}
                 </label>
-                <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="email">
+                <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="mail">
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button nbButton type="submit" (click)="search(0)">{{ 'users.search' | translate }}
+              <button nbButton status="primary" type="submit" (click)="search(0)">{{ 'users.search' | translate }}
                 <nb-icon icon="search-outline"></nb-icon>
               </button>
             </div>
@@ -81,27 +81,22 @@
                   {{ page.offset * page.limit + rowIndex + 1 }}
                 </ng-container>
                 <ng-container
-                  *ngIf="col.prop !=='action_btn' && col.prop !=='updateTime'
-                  && col.prop !=='status' && col.prop !=='name'&& col.prop !=='fullname'">
-                  <span class="row-data-show" title="{{value}}">{{ value }}</span>
-                </ng-container>
-                <ng-container *ngIf="col.prop ==='description' || col.prop ==='name'|| col.prop ==='fullname' "
-                              class="text-right">
+                  *ngIf="col.prop ==='mail' || col.prop ==='name'|| col.prop ==='fullname' || col.prop ==='phone' "
+                  class="text-right">
                   <span class="row-data-show"
                         title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
                 </ng-container>
-<!--                <ng-container *ngIf="col.prop ==='updateTime'">-->
-<!--                  {{ value | date:'dd/MM/yyyy HH:mm:ss'}}-->
-<!--                </ng-container>-->
                 <ng-container *ngIf="col.prop ==='status'">
                   {{  'users.status.' + value | translate }}
                 </ng-container>
                 <ng-container *ngIf="col.prop ==='action_btn'" class="text-right">
                   <div>
-                    <button class="p-1" nbButton status="info" ghost title="{{ 'users.edit' | translate}}" (click)="editUsers(row)">
+                    <button class="p-1" nbButton status="info" ghost title="{{ 'users.edit' | translate}}"
+                            (click)="editUsers(row)">
                       <nb-icon icon="edit-outline" pack="eva" size="tiny"></nb-icon>
                     </button>
-                    <button class="p-1" nbButton status="danger" ghost title="{{ 'users.delete' | translate }}" (click)="deleteUsers(row)">
+                    <button class="p-1" nbButton status="danger" ghost title="{{ 'users.delete' | translate }}"
+                            (click)="deleteUsers(row)">
                       <nb-icon icon="trash-2-outline" pack="eva" size="tiny"></nb-icon>
                     </button>
                   </div>

@@ -13,9 +13,10 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {InlineMessageComponent} from './directives/inline-message/inline-message.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {ScrollbarHelper} from '@swimlane/ngx-datatable';
+import {ConfirmDialogComponent} from './directives/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  declarations: [InlineMessageComponent],
+  declarations: [InlineMessageComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,7 +31,7 @@ import {ScrollbarHelper} from '@swimlane/ngx-datatable';
     NbTooltipModule
   ],
   exports: [
-    InlineMessageComponent
+    InlineMessageComponent, ConfirmDialogComponent
   ],
   providers: [
     ScrollbarHelper

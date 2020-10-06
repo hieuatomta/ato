@@ -153,3 +153,30 @@ input {
     border-bottom-left-radius: unset!important;
   }
 }
+nb-layout-column {
+  padding: 0.5rem !important;
+}
+
+
+
+.custom-select-template {
+  .ng-select-container {
+    min-height: 80px !important;
+  }
+}
+
+.ng-select.tiny .ng-select-container {
+  min-height: 21px;
+}
+
+.ng-select.ng-select-single.tiny .ng-select-container {
+  height: 21px;
+}
+
+.ng-select.small .ng-select-container {
+  min-height: 33.5px;
+}
+
+.ng-select.ng-select-single.small .ng-select-container {
+  height: 33.5px;
+}

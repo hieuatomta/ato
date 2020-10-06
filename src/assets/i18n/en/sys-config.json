@@ -1,6 +1,6 @@
 {
   "users": {
-    "title": "Quản lý người dùng",
+    "title": "Quasdi dùng",
     "insert_btn": "Thêm mới người dùng",
     "title_add": "Thêm mới người dùng",
     "title_edit": "Sửa thông tin người dùng",
@@ -13,10 +13,10 @@
     "item_repassword": "Nhập lại mật khẩu",
     "item_imageUrl": "Đường dẫn ảnh",
     "item_action": "Thao tác",
-    "item_role": "Quyền người dùng",
-    "item_tel": "Số điện thoại",
+    "item_role": "Roles user",
+    "item_tel": "Phone",
     "item_email": "Email",
-    "item_status": "Trạng thái",
+    "item_status": "Status",
     "search": "Tìm kiếm",
     "placeHolder": "Lựa chọn",
     "notFoundText": "Không có bản ghi",

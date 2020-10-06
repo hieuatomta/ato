@@ -1,0 +1,19 @@
+{
+  "common": {
+    "status": {
+      "active": "Hoạt động",
+      "inactive": "Không hoạt động",
+      "0": "Bị khóa",
+      "1": "Hoạt động"
+    },
+    "totalMessage": "bản ghi",
+    "search": "Tìm kiếm",
+    "placeHolder": "Lựa chọn",
+    "notFoundText": "Không có bản ghi",
+    "clearAllText": "Xóa",
+    "save": "Lưu lại",
+    "cancel": "Huỷ bỏ",
+    "edit": "Sửa",
+    "delete": "Xóa"
+  }
+}

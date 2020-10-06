@@ -7,6 +7,9 @@
     <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" style="margin-left: 10px;">
       <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
     </nb-select>
+    <nb-select [selected]="currentLanguage" (selectedChange)="changeLanguage($event)" style="margin-left: 10px;">
+      <nb-option *ngFor="let language of languages" [value]="language.value"> {{ language.name }}</nb-option>
+    </nb-select>
   </div>
 </div>
 

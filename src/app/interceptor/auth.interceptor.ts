@@ -23,23 +23,29 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
     const token = localStorage.getItem('httpHeaders');
+    let language = localStorage.getItem('languageName');
+    if (language === undefined || language === null) {
+      language = 'vi';
+    }
     if (token) {
       request = request.clone({
         setHeaders: {
           Authorization: token,
-          'Accept-Language': 'vi',
+          'Accept-Language': language,
         },
       });
     } else {
       request = request.clone({
         setHeaders: {
-          'Accept-Language': 'vi',
+          'Accept-Language': language,
         },
       });
     }
     return next.handle(request).do((event: any) => {
       if (event instanceof HttpResponse) {
-        localStorage.setItem('httpHeaders', event.headers.get('Authorization'));
+        if (event.url !== window.location.origin + '/assets/i18n/' + language + '.json') {
+          localStorage.setItem('httpHeaders', event.headers.get('Authorization'));
+        }
       }
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {

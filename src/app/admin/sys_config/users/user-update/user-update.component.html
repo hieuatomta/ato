@@ -1,4 +1,4 @@
-<nb-card [nbSpinner]="loading" fullWidth>
+<nb-card style="position: relative" [nbSpinner]="loading" fullWidth>
   <nb-card-header class="card-header-title">{{ title }}
     <div class="bt-action">
         <span>
@@ -32,8 +32,8 @@
             <label class="label">
               {{ 'users.item_tel' | translate}}
             </label>
-            <input class="custom-border" formControlName="tel"  type="text" nbInput fullWidth trim="blur"
-                   [ngClass]="{'status-danger': this.inputUser.get('tel').touched && this.inputUser.get('tel').errors}">
+            <input class="custom-border" formControlName="phone"  type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('phone').touched && this.inputUser.get('phone').errors}">
 
 
           </div>
@@ -41,8 +41,8 @@
             <label class="label">
               {{ 'users.item_email' | translate }}
             </label>
-            <input class="custom-border" formControlName="email"  type="text" nbInput fullWidth trim="blur"
-                   [ngClass]="{'status-danger': this.inputUser.get('email').touched && this.inputUser.get('email').errors}">
+            <input class="custom-border" formControlName="mail"  type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('mail').touched && this.inputUser.get('mail').errors}">
 
           </div>
           <div class="col-lg-6 form-group">
@@ -74,13 +74,21 @@
             <label class="label">
               {{ 'users.item_status' | translate }} <span style="color: red">(*)</span>
             </label>
-            <nb-select fullWidth style="padding: 0; overflow: hidden;" class="border-nb-select"
-                       placeholder="Chọn" formControlName="status"
-                       [ngClass]="{'nb-select-status-danger': this.inputUser.get('status').touched && this.inputUser.get('status').errors}">
-              <nb-option [value]="1">{{ 'users.status.1' | translate }}</nb-option>
-              <nb-option [value]="0">{{ 'users.status.0' | translate }}</nb-option>
-            </nb-select>
-
+<!--            <nb-select fullWidth style="padding: 0; overflow: hidden;" class="border-nb-select"-->
+<!--                       placeholder="Chọn" formControlName="status"-->
+<!--                       [ngClass]="{'nb-select-status-danger': this.inputUser.get('status').touched && this.inputUser.get('status').errors}">-->
+<!--              <nb-option [value]="1">{{ 'users.status.1' | translate }}</nb-option>-->
+<!--              <nb-option [value]="0">{{ 'users.status.0' | translate }}</nb-option>-->
+<!--            </nb-select> -->
+<!--            <ng-select fullWidth appendTo="body"-->
+<!--                       placeholder="{{'users.placeHolder' |translate}}"-->
+<!--                       notFoundText="{{'users.notFoundText' |translate}}"-->
+<!--                       clearAllText="{{'users.clearAllText' |translate}}"-->
+<!--                       formControlName="status">-->
+<!--              <ng-option *ngFor="let item of listStatus" [value]="item.code"> {{ item.name | translate }}-->
+<!--              </ng-option>-->
+<!--            </ng-select>-->
+            <nb-toggle fullWidth formControlName="status"></nb-toggle>
           </div>
         </div>
       </div>

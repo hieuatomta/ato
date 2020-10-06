@@ -6,6 +6,7 @@ import {LayoutService} from '../../../@core/utils';
 import {map, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-header',
@@ -38,7 +39,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ];
 
 
+  languages = [
+    {
+      value: 'en',
+      name: 'English',
+    },
+    {
+      value: 'vi',
+      name: 'Vietnamese',
+    },
+  ];
+
+  getLanguage() {
+    let language = localStorage.getItem('languageName');
+    if (language === undefined || language === null) {
+      language = 'vi';
+    }
+
+    return language;
+
+  }
+
   currentTheme = 'cosmic';
+  currentLanguage = this.getLanguage();
 
   menuClick(e) {
     console.log(e);
@@ -66,6 +89,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
+              private translate: TranslateService,
               private router: Router) {
   }
 
@@ -98,6 +122,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   changeTheme(themeName: string) {
     this.themeService.changeTheme(themeName);
+  }
+
+  changeLanguage(languageName: string) {
+    console.log(languageName);
+    localStorage.setItem('languageName', languageName);
+    this.translate.use(languageName);
+
   }
 
   toggleSidebar(): boolean {

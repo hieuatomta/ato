@@ -9,7 +9,8 @@ import {
   NbIconModule,
   NbInputModule,
   NbRadioModule,
-  NbSelectModule, NbSpinnerModule,
+  NbSelectModule,
+  NbSpinnerModule, NbToggleModule,
   NbUserModule,
 } from '@nebular/theme';
 
@@ -22,8 +23,9 @@ import {FormsModule as ngFormsModule, ReactiveFormsModule} from '@angular/forms'
 import {TranslateModule} from '@ngx-translate/core';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {SharedModule} from '../../../shares/shared.module';
+import {UsersComponent} from './users.component';
 
-const ENTRY_COMPONENTS = [];
 
 @NgModule({
   imports: [
@@ -43,15 +45,15 @@ const ENTRY_COMPONENTS = [];
     Ng2SmartTableModule,
     NbFormFieldModule,
     TranslateModule,
-    NgSelectModule,
+    NgSelectModule, SharedModule,
     ReactiveFormsModule,
     NgxDatatableModule,
-    NbSpinnerModule,
+    NbSpinnerModule, NbToggleModule,
   ],
   entryComponents: [
-    ...ENTRY_COMPONENTS, UserUpdateComponent
+    UserUpdateComponent
   ],
-  declarations: [...routedComponents, UserUpdateComponent],
+  declarations: [UsersComponent, UserUpdateComponent],
 })
 export class UsersModule {
 }

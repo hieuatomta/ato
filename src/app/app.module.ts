@@ -34,6 +34,7 @@ registerLocaleData(vi, 'vi-VI', viEt);
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -58,7 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient],
       },
-      defaultLanguage: 'vi',
+      defaultLanguage: getLanguage(),
     }),
   ],
   bootstrap: [AppComponent],
@@ -68,5 +69,15 @@ export function createTranslateLoader(http: HttpClient) {
     multi: true,
   }]
 })
+
+
 export class AppModule {
+}
+
+export function getLanguage() {
+  let language = localStorage.getItem('languageName');
+  if (language === undefined || language === null) {
+    language = 'vi';
+  }
+  return language;
 }

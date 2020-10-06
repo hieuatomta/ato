@@ -14,15 +14,27 @@ export class UserUpdateComponent implements OnInit {
     this.inputUser = new FormGroup({
       name: new FormControl(this.data?.name, []),
       fullname: new FormControl(this.data?.fullname, []),
-      tel: new FormControl(this.data?.tel, []),
-      email: new FormControl(this.data?.email, []),
+      phone: new FormControl(this.data?.phone, []),
+      mail: new FormControl(this.data?.mail, []),
       pass: new FormControl('', []),
       rePassword: new FormControl('', []),
       imageUrl: new FormControl(this.data?.imageUrl, []),
       status: new FormControl(this.data?.status, []),
     });
-  };
+    this.inputUser.get('status').setValue(true);
+    if (this.data) {
+      this.inputUser.patchValue(this.data);
+      const editable = this.data.editable === 1 ? true : false;
+      this.inputUser.get('editable').patchValue(editable);
 
+      const status = this.data.status === 1 ? true : false;
+      this.inputUser.get('status').patchValue(status);
+    }
+  };
+  listStatus = [
+    {name: 'users.status.1', code: 1},
+    {name: 'users.status.0', code: 0}
+  ];
   inputUser: any;
 
   constructor(
