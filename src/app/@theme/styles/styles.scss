@@ -180,3 +180,15 @@ nb-layout-column {
 .ng-select.ng-select-single.small .ng-select-container {
   height: 33.5px;
 }
+
+
+ng-dropdown-panel.custom-select-template {
+  overflow-x: visible;
+  width: 300px !important;
+  right: 100px !important;
+}
+
+ng-dropdown-panel .ng-dropdown-panel .scroll-host {
+  width: 300px;
+  right: 50px;
+}

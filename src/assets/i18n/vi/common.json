@@ -18,7 +18,12 @@
       "item_role": "Quyền người dùng",
       "item_status": "Trạng thái",
       "item_imageUrl": "Đường dẫn ảnh",
-      "item_action": "Thao tác"
+      "item_action": "Thao tác",
+      "item_roles_code": "Mã quyền",
+      "item_roles_name": "Tên quyền",
+      "item_map_popup": "Thao tác quyền với module",
+      "item_update_time": "Ngày cập nhật",
+      "item_description": "Ngày cập nhật"
     },
     "totalMessage": "bản ghi",
     "search": "Tìm kiếm",

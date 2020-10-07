@@ -9,5 +9,16 @@
     "content_add_success": "Thêm người dùng thành công",
     "content_edit_success": "Sửa thông tin thành công",
     "content_delete_success": "Xóa người dùng thành công"
-    }
+    },
+  "roles": {
+    "title": "Quản lý nhóm quyền",
+    "title_add": "Thêm mới quyền",
+    "title_edit": "Sửa quyền",
+    "title_delete": "Xác nhận xóa quyền",
+    "content_add_success": "Thêm quyền thành công",
+    "content_edit_success": "Sửa quyền thành công",
+    "message_delete": "Bạn có chắc muốn xóa quyền",
+    "delete_success": "Xóa quyền thành công",
+    "title_map_popup": "Quyền"
+  }
 }

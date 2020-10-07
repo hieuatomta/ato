@@ -17,7 +17,13 @@ import {
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {NbSecurityModule} from '@nebular/security';
-
+import {
+  DefaultTreeviewEventParser,
+  DefaultTreeviewI18n,
+  TreeviewConfig,
+  TreeviewEventParser,
+  TreeviewI18n
+} from 'ngx-treeview';
 import {FooterComponent, HeaderComponent, SearchInputComponent, TinyMCEComponent} from './components';
 
 import {CapitalizePipe, NumberWithCommasPipe, PluralPipe, RoundPipe, TimingPipe} from './pipes';
@@ -67,6 +73,10 @@ const SERVICE = [
   ToastrService,
   AuthGuardService,
   AuthGuardAuthsService,
+  [TreeviewConfig,
+    {provide: TreeviewI18n, useClass: DefaultTreeviewI18n},
+    {provide: TreeviewEventParser, useClass: DefaultTreeviewEventParser},
+  ],
 ];
 
 

@@ -7,6 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {UsersService} from '../../../@core/services/users.service';
 import {HttpHeaders} from '@angular/common/http';
 import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/confirm-dialog.component';
+import {RolesService} from '../../../@core/services/roles.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -24,11 +25,11 @@ export class UsersComponent implements OnInit {
     private translate: TranslateService,
     private toastrService: NbToastrService,
     private userService: UsersService,
+    private rolesService: RolesService,
     private dialogService: NbDialogService) {
   }
 
   loading = false;
-
   listStatus = [
     {name: 'common.status.1', code: 1},
     {name: 'common.status.0', code: 0}
@@ -65,6 +66,7 @@ export class UsersComponent implements OnInit {
   }
 
   editUsers(data) {
+    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('users.title_add');
@@ -107,6 +109,7 @@ export class UsersComponent implements OnInit {
       size: this.page.limit
     }, this.inputForm.value).subscribe(
       (res) => {
+        console.log(res);
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
       (error) => {

@@ -27,6 +27,7 @@ import vi from '@angular/common/locales/vi';
 import viEt from '@angular/common/locales/extra/vi';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import {AuthInterceptor} from './interceptor/auth.interceptor';
+import {NbDateFnsDateModule} from '@nebular/date-fns';
 
 registerLocaleData(vi, 'vi-VI', viEt);
 
@@ -44,6 +45,10 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    NbDateFnsDateModule.forRoot({
+      parseOptions: { useAdditionalWeekYearTokens: true, useAdditionalDayOfYearTokens: true },
+      formatOptions: { useAdditionalWeekYearTokens: true, useAdditionalDayOfYearTokens: true },
+    }),
     NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),

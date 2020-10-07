@@ -10,20 +10,24 @@ import {
   NbInputModule,
   NbRadioModule,
   NbSelectModule,
+  NbSpinnerModule, NbToggleModule,
   NbUserModule,
 } from '@nebular/theme';
 
 import {ThemeModule} from '../../../@theme/theme.module';
 
-import {RolesRoutingModule, routedComponents} from './roles-routing.module';
-import {RoleComponent} from './role/role.component';
+import {RolesRoutingModule} from './roles-routing.module';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
-import {FormsModule as ngFormsModule} from '@angular/forms';
+import {FormsModule as ngFormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {SharedModule} from '../../../shares/shared.module';
+import {RolesComponent} from './roles.component';
+import {RoleUpdateComponent} from './role-update/role-update.component';
+import {MapPopupComponent} from './map-popup/map.popup.component';
+import {TreeviewModule} from 'ngx-treeview';
 
-
-const components = [
-  RoleComponent,
-];
 
 @NgModule({
   imports: [
@@ -42,7 +46,16 @@ const components = [
     ngFormsModule,
     Ng2SmartTableModule,
     NbFormFieldModule,
+    TranslateModule,
+    NgSelectModule, SharedModule,
+    ReactiveFormsModule,
+    NgxDatatableModule,
+    NbSpinnerModule, NbToggleModule, TreeviewModule,
   ],
-  declarations: [...routedComponents, RoleComponent],
+  entryComponents: [
+    RoleUpdateComponent, MapPopupComponent
+  ],
+  declarations: [RolesComponent, RoleUpdateComponent, MapPopupComponent],
 })
-export class RolesModule {}
+export class RolesModule {
+}
