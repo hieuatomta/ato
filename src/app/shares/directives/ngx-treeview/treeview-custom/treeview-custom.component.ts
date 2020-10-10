@@ -1,21 +1,20 @@
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
-  ViewChild,
+  Input,
   OnChanges,
-  OnInit,
   OnDestroy,
-  SimpleChanges
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
-import { isNil } from 'lodash';
-import { TreeviewI18n, TreeviewItem, TreeviewConfig, DropdownTreeviewComponent, TreeviewHelper } from 'ngx-treeview';
-import { DropdownTreeviewSelectI18n } from './dropdown-treeview-select-i18n';
+import {isNil} from 'lodash';
+import {DropdownTreeviewComponent, TreeviewConfig, TreeviewHelper, TreeviewI18n, TreeviewItem} from 'ngx-treeview';
+import {DropdownTreeviewSelectI18n} from './dropdown-treeview-select-i18n';
 import {takeUntil} from 'rxjs/operators';
 import {NbMenuService} from '@nebular/theme';
 import {Subject} from 'rxjs';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {isNumeric} from 'rxjs/internal-compatibility';
 
 

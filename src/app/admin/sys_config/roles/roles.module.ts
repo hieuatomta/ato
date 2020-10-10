@@ -10,7 +10,8 @@ import {
   NbInputModule,
   NbRadioModule,
   NbSelectModule,
-  NbSpinnerModule, NbToggleModule,
+  NbSpinnerModule,
+  NbToggleModule,
   NbUserModule,
 } from '@nebular/theme';
 

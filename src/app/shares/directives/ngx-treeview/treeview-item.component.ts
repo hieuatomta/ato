@@ -3,7 +3,6 @@ import {isNil} from 'lodash';
 import {TreeviewItem} from './treeview-item';
 import {TreeviewConfig} from './treeview-config';
 import {TreeviewItemTemplateContext} from './treeview-item-template-context';
-import {CdkDragEnter} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ngx-treeview-item',

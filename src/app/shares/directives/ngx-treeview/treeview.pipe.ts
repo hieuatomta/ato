@@ -1,6 +1,6 @@
-﻿import { Pipe, PipeTransform } from '@angular/core';
-import { isNil } from 'lodash';
-import { TreeviewItem } from './treeview-item';
+﻿import {Pipe, PipeTransform} from '@angular/core';
+import {isNil} from 'lodash';
+import {TreeviewItem} from './treeview-item';
 
 @Pipe({
     name: 'ngxTreeview'

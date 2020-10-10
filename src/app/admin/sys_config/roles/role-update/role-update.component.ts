@@ -1,9 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
-import {NbDialogRef, NbDialogService} from '@nebular/theme';
+import {NbDialogRef} from '@nebular/theme';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {RolesService} from '../../../../@core/services/roles.service';
-import {UsersService} from '../../../../@core/services/users.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

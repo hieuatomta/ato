@@ -13,6 +13,11 @@ export const routes: Routes = [
     loadChildren: () => import('./auths/auths.module')
       .then(m => m.AuthsModule),
   },
+  {
+    path: 'client',
+    loadChildren: () => import('./client/client.module')
+      .then(m => m.ClientModule),
+  },
   // { path: '', redirectTo: 'admin', pathMatch: 'full' },
   // { path: '**', redirectTo: 'admin' },
 ];

@@ -1,8 +1,9 @@
-import {Component, Input, Output, EventEmitter, ViewChild, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, ViewChild} from '@angular/core';
 import {isNil} from 'lodash';
 
 import {DropdownTreeviewSelectI18n} from './dropdown-treeview-select-i18n';
 import {DropdownTreeviewComponent, TreeviewConfig, TreeviewHelper, TreeviewI18n, TreeviewItem} from 'ngx-treeview';
+
 /* tslint:disable */
 
 @Component({

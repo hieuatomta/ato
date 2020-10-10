@@ -24,7 +24,14 @@ import {
   TreeviewEventParser,
   TreeviewI18n
 } from 'ngx-treeview';
-import {FooterComponent, HeaderComponent, SearchInputComponent, TinyMCEComponent} from './components';
+import {
+  ClientFooterComponent,
+  ClientHeaderComponent,
+  FooterComponent,
+  HeaderComponent,
+  SearchInputComponent,
+  TinyMCEComponent
+} from './components';
 
 import {CapitalizePipe, NumberWithCommasPipe, PluralPipe, RoundPipe, TimingPipe} from './pipes';
 import {OneColumnLayoutComponent, ThreeColumnsLayoutComponent, TwoColumnsLayoutComponent} from './layouts';
@@ -37,6 +44,7 @@ import {ToastrService} from '../@core/mock/toastr-service';
 import {AuthGuardService} from '../@core/mock/auth-guard.service';
 import {AuthGuardAuthsService} from '../@core/mock/auth-guard-auths.service';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {ClientColumnLayoutComponent} from './layouts/client-column/client-column.layout';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -60,7 +68,9 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-
+  ClientColumnLayoutComponent,
+  ClientFooterComponent,
+  ClientHeaderComponent
 ];
 const PIPES = [
   CapitalizePipe,
@@ -81,7 +91,7 @@ const SERVICE = [
 
 
 @NgModule({
-    imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule, NgSelectModule],
+  imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule, NgSelectModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
   providers: [...SERVICE],

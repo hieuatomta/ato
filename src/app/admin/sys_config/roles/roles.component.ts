@@ -8,7 +8,7 @@ import {UsersService} from '../../../@core/services/users.service';
 import {HttpHeaders} from '@angular/common/http';
 import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/confirm-dialog.component';
 import {RolesService} from '../../../@core/services/roles.service';
-import { MapPopupComponent } from './map-popup/map.popup.component';
+import {MapPopupComponent} from './map-popup/map.popup.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

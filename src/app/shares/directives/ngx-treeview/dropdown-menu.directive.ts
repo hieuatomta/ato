@@ -1,5 +1,5 @@
-import { Directive } from '@angular/core';
-import { DropdownDirective } from './dropdown.directive';
+import {Directive} from '@angular/core';
+import {DropdownDirective} from './dropdown.directive';
 
 @Directive({
     selector: '[ngxDropdownMenu]',

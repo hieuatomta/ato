@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TreeviewCustomComponent } from './treeview-custom.component';
+import {TreeviewCustomComponent} from './treeview-custom.component';
 
 describe('TreeviewCustomComponent', () => {
   let component: TreeviewCustomComponent;

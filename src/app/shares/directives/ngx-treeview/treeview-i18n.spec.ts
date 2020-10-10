@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
-import { TreeviewItem, TreeviewSelection } from './treeview-item';
-import { TreeviewI18nDefault, TreeviewI18n } from './treeview-i18n';
+import {TestBed} from '@angular/core/testing';
+import {TreeviewItem, TreeviewSelection} from './treeview-item';
+import {TreeviewI18n, TreeviewI18nDefault} from './treeview-i18n';
 
 describe('TreeviewI18nDefault', () => {
     let treeviewI18n: TreeviewI18n;

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { isNil } from 'lodash';
-import { TreeviewItem } from './treeview-item';
+import {Injectable} from '@angular/core';
+import {isNil} from 'lodash';
+import {TreeviewItem} from './treeview-item';
 import {TreeviewComponent} from './treeview.component';
 
 @Injectable()

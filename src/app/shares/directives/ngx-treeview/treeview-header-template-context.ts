@@ -1,5 +1,5 @@
-import { TreeviewItem } from './treeview-item';
-import { TreeviewConfig } from './treeview-config';
+import {TreeviewItem} from './treeview-item';
+import {TreeviewConfig} from './treeview-config';
 
 export interface TreeviewHeaderTemplateContext {
     config: TreeviewConfig;

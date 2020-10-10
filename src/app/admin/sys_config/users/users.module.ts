@@ -10,13 +10,14 @@ import {
   NbInputModule,
   NbRadioModule,
   NbSelectModule,
-  NbSpinnerModule, NbToggleModule,
+  NbSpinnerModule,
+  NbToggleModule,
   NbUserModule,
 } from '@nebular/theme';
 
 import {ThemeModule} from '../../../@theme/theme.module';
 
-import {routedComponents, UsersRoutingModule} from './users-routing.module';
+import {UsersRoutingModule} from './users-routing.module';
 import {UserUpdateComponent} from './user-update/user-update.component';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {FormsModule as ngFormsModule, ReactiveFormsModule} from '@angular/forms';

@@ -1,5 +1,5 @@
-import { Directive, ElementRef } from '@angular/core';
-import { DropdownDirective } from './dropdown.directive';
+import {Directive, ElementRef} from '@angular/core';
+import {DropdownDirective} from './dropdown.directive';
 
 @Directive({
     selector: '[ngxDropdownToggle]',

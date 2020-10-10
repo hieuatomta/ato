@@ -1,12 +1,12 @@
 ﻿import {
+  AfterContentChecked,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
   Output,
-  HostListener,
-  ViewChild,
   TemplateRef,
-  ChangeDetectorRef, AfterContentChecked
+  ViewChild
 } from '@angular/core';
 import {TreeviewI18n} from './treeview-i18n';
 import {TreeviewItem} from './treeview-item';
