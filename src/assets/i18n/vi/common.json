@@ -23,7 +23,9 @@
       "item_roles_name": "Tên quyền",
       "item_map_popup": "Thao tác quyền với module",
       "item_update_time": "Ngày cập nhật",
-      "item_description": "Ngày cập nhật"
+      "item_description": "Ngày cập nhật",
+      "item_action_code": "Mã Action",
+      "item_action_name": "Tên Action"
     },
     "totalMessage": "bản ghi",
     "search": "Tìm kiếm",

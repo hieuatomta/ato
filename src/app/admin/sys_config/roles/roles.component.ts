@@ -25,6 +25,7 @@ export class RolesComponent implements OnInit {
       };
     });
   }
+  isLoad: boolean;
 
   constructor(
     private toastr: ToastrService,
@@ -105,7 +106,7 @@ export class RolesComponent implements OnInit {
   }
 
   search(pageToLoad: number) {
-    this.loading = true;
+    this.isLoad = true;
     this.page.offset = pageToLoad;
     this.rolesService.doSearch({
       page: this.page.offset,
@@ -115,9 +116,9 @@ export class RolesComponent implements OnInit {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
       (error) => {
-        this.loading = false;
+        this.isLoad = false;
       },
-      () => this.loading = false,
+      () => this.isLoad = false,
     );
   }
 
