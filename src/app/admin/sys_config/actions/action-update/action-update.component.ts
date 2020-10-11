@@ -7,7 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'ngx-user-update',
+  selector: 'ngx-action-update',
   styleUrls: ['./action-update.component.scss'],
   templateUrl: './action-update.component.html',
 })
@@ -36,8 +36,7 @@ export class ActionUpdateComponent implements OnInit {
       this.inputAction.patchValue(this.data);
       const status = this.data.status === 1 ? true : false;
       this.inputAction.get('status').patchValue(status);
-    }
-    ;
+    };
   };
 
 
@@ -59,7 +58,7 @@ export class ActionUpdateComponent implements OnInit {
         this.actionService.insert(this.inputAction.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.title, this.translate.instant('user.title_notification'));
+            this.toastr.danger(error.error.title, this.translate.instant('action.title_notification'));
             this.loading = false;
           },
           () => this.loading = false
@@ -68,7 +67,7 @@ export class ActionUpdateComponent implements OnInit {
         this.actionService.update(this.inputAction.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.title, this.translate.instant('user.title_notification'));
+            this.toastr.danger(error.error.title, this.translate.instant('action.title_notification'));
             this.loading = false;
           },
           () => this.loading = false,

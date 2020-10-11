@@ -1,7 +1,7 @@
 {
   "login": {
     "title": "Hệ thống quản lý!",
-    "login": "Đăng nhập",
+    "login": "Login",
     "changePass": "Đổi mật khẩu",
     "confirmEmail": "Quên mật khẩu",
     "remember": "Ghi nhớ mật khẩu",

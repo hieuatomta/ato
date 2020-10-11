@@ -48,6 +48,11 @@ const routes: Routes = [{
         .then(m => m.ActionsModule),
     },
     {
+      path: 'objects',
+      loadChildren: () => import('./sys_config/objects/objects.module')
+        .then(m => m.ObjectsModule),
+    },
+    {
       path: 'editors',
       loadChildren: () => import('./demo/editors/editors.module')
         .then(m => m.EditorsModule),

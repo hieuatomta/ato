@@ -31,5 +31,16 @@
     "message_delete": "Bạn có chắc muốn xóa Action",
     "delete_success": "Xóa Action thành công",
     "title_map_popup": "Action"
+  },
+  "objects": {
+    "title": "Quản lý chức năng",
+    "title_add": "Thêm mới chức năng",
+    "title_edit": "Sửa chức năng",
+    "title_delete": "Xác nhận xóa chức năng",
+    "content_add_success": "Thêm chức năng thành công",
+    "content_edit_success": "Sửa chức năng thành công",
+    "message_delete": "Bạn có chắc muốn xóa chức năng",
+    "delete_success": "Xóa chức năng thành công",
+    "title_map_popup": "chức năng"
   }
 }

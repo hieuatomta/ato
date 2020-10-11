@@ -18,6 +18,7 @@
       "item_role": "Quyền người dùng",
       "item_status": "Trạng thái",
       "item_imageUrl": "Đường dẫn ảnh",
+      "item_url": "Đường dẫn",
       "item_action": "Thao tác",
       "item_roles_code": "Mã quyền",
       "item_roles_name": "Tên quyền",
@@ -25,7 +26,12 @@
       "item_update_time": "Ngày cập nhật",
       "item_description": "Ngày cập nhật",
       "item_action_code": "Mã Action",
-      "item_action_name": "Tên Action"
+      "item_action_name": "Tên Action",
+      "item_objects_code": "Mã chức năng",
+      "item_objects_name": "Tên chức năng",
+      "item_objects_paren": "Chức năng cha",
+      "item_objects_popup": "Map action",
+      "item_icon": "Icon"
     },
     "totalMessage": "bản ghi",
     "search": "Tìm kiếm",
