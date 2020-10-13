@@ -54,7 +54,7 @@ export class ConfirmEmailComponent implements OnInit {
           this.submitted = false;
           this.isLoad = false;
           try {
-            this.body = res.body.detail;
+            this.body = res.body.data;
           } catch {
             this.body = '';
           }

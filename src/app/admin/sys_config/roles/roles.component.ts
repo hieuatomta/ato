@@ -52,7 +52,7 @@ export class RolesComponent implements OnInit {
     {name: 'common.table.item_roles_name', prop: 'name', flexGrow: 1.5},
     {name: 'common.table.item_roles_code', prop: 'code', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
-    {name: 'common.status', prop: 'status', flexGrow: 1},
+    {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_map_popup', prop: 'editModule', flexGrow: 1},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];

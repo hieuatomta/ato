@@ -43,7 +43,7 @@
             <label class="label">
               {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
             </label>
-            <nb-toggle fullWidth formControlName="status"></nb-toggle>
+            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>
             <ngx-inline-message [message]="'common.table.item_status'|translate"
                                 [formName]="inputRoles.get('status')"></ngx-inline-message>
           </div>
