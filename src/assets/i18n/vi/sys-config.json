@@ -8,7 +8,7 @@
     "unknown_error": "Lỗi không xác định",
     "content_add_success": "Thêm người dùng thành công",
     "content_edit_success": "Sửa thông tin thành công",
-    "content_delete_success": "Xóa người dùng thành công"
+    "delete_success": "Xóa người dùng thành công"
     },
   "roles": {
     "title": "Quản lý nhóm quyền",

@@ -122,28 +122,49 @@ export class UsersComponent implements OnInit {
   deleteUsers(data) {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
-        message: this.translate.instant('users.title_delete') + ' ' + data.fullname
-      }
+        title: this.translate.instant('common.title_notification'),
+        message: this.translate.instant('users.title_delete') + ' ' + data.name
+      },
     }).onClose.subscribe(res => {
-        if (res) {
-          this.userService.delete(data).subscribe(
-            () => {
-              this.toastrService.success(this.translate.instant('users.content_delete_success'),
-                this.translate.instant('users.title_notification'));
-              this.search(0);
-            },
-            (error) => {
-              if (error.error?.title) {
-                this.toastrService.danger(error.error.title,
-                  this.translate.instant('users.title_notification'));
-              } else {
-                this.toastrService.danger(this.translate.instant('module.unknown_error'),
-                  this.translate.instant('users.title_notification'));
-              }
-            }
-          );
-        }
+      if (res) {
+        this.isLoad = true;
+        this.userService.delete(data.id).subscribe(() => {
+          this.toastrService.success(this.translate.instant('users.delete_success'),
+            this.translate.instant('common.title_notification'));
+          this.search(0);
+          this.isLoad = false;
+        }, (err) => {
+          this.toastrService.success(err.detail),
+            this.translate.instant('common.title_notification');
+          this.isLoad = false;
+        });
       }
-    );
+    });
+
+    // this.dialogService.open(ConfirmDialogComponent, {
+    //   context: {
+    //     message: this.translate.instant('users.title_delete') + ' ' + data.fullname
+    //   }
+    // }).onClose.subscribe(res => {
+    //     if (res) {
+    //       this.userService.delete(data).subscribe(
+    //         () => {
+    //           this.toastrService.success(this.translate.instant('users.content_delete_success'),
+    //             this.translate.instant('users.title_notification'));
+    //           this.search(0);
+    //         },
+    //         (error) => {
+    //           if (error.error?.title) {
+    //             this.toastrService.danger(error.error.title,
+    //               this.translate.instant('users.title_notification'));
+    //           } else {
+    //             this.toastrService.danger(this.translate.instant('module.unknown_error'),
+    //               this.translate.instant('users.title_notification'));
+    //           }
+    //         }
+    //       );
+    //     }
+    //   }
+    // );
   }
 }

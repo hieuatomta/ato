@@ -155,11 +155,16 @@ export function validPassword(form: FormGroup) {
 
 export function passwordsMatchValidator(form: FormGroup) {
   if (form.get('pass') && form.get('rePassword')) {
+    if (form.get('pass').value === null || form.get('pass').value === ''
+      || form.get('pass').value === undefined) {
+      return null;
+
+    }
     if (form.get('pass').value === form.get('rePassword').value) {
       form.get('rePassword').setErrors(null);
       return null;
     }
-    form.get('rePassword').setErrors({notMatchPassword: true});
+    form.get('rePassword').setErrors({passwordMustMatchChange: true});
   }
   return null;
 }

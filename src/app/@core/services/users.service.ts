@@ -20,20 +20,18 @@ export class UsersService {
   }
 
   public update(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/users/update`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/users/update`, data, {
       observe: 'response'
     });
   }
 
   public insert(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/users/insert`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/users/insert`, data, {
       observe: 'response'
     });
   }
 
-  public delete(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/users/delete`, data, {
-      observe: 'response'
-    });
+  delete(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiUrl}/users/${id}`);
   }
 }

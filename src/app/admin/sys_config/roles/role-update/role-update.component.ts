@@ -58,7 +58,7 @@ export class RoleUpdateComponent implements OnInit {
         this.rolesService.insert(this.inputRoles.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.title, this.translate.instant('common.title_notification'));
+            this.toastr.danger(error.error.detail.defaultMessage, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false

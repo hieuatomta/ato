@@ -1,9 +1,10 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
-import {NbDialogRef, NbDialogService} from '@nebular/theme';
+import {NbDialogRef} from '@nebular/theme';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {RolesService} from '../../../../@core/services/roles.service';
 import {UsersService} from '../../../../@core/services/users.service';
+import {notSpaceLogin, passwordsMatchValidator} from '../../../../validator';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -30,20 +31,23 @@ export class UserUpdateComponent implements OnInit {
       name: new FormControl(this.data?.name, [Validators.required]),
       fullname: new FormControl(this.data?.fullname, [Validators.required]),
       phone: new FormControl(this.data?.phone, []),
-      mail: new FormControl(this.data?.mail, []),
-      pass: new FormControl('', []),
-      rePassword: new FormControl('', []),
+      mail: new FormControl(this.data?.mail, [Validators.required]),
+      pass: new FormControl('', [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
+      rePassword: new FormControl('', [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
       imageUrl: new FormControl(this.data?.imageUrl, []),
-      orBirthUser: new FormControl(this.data?.orBirthUser, []),
+      orBirthUser: new FormControl(this.data?.orBirthUser, [Validators.required]),
       status: new FormControl(this.data?.status, [Validators.required]),
       lstRole: new FormControl(this.listRole, []),
+    }, {
+      validators: passwordsMatchValidator,
     });
     this.inputUser.get('status').setValue(true);
     if (this.data) {
       this.inputUser.patchValue(this.data);
       const status = this.data.status === 1 ? true : false;
       this.inputUser.get('status').patchValue(status);
-    };
+    }
+    ;
     this.rolesService.doSearch({
       page: 0,
       size: 100
@@ -54,17 +58,16 @@ export class UserUpdateComponent implements OnInit {
     });
   };
 
-
   constructor(
     private toastr: ToastrService,
     public ref: NbDialogRef<UserUpdateComponent>,
     private rolesService: RolesService,
-    private userService: UsersService,
-    private dialogService: NbDialogService) {
+    private userService: UsersService) {
   }
 
 
   submit() {
+    this.inputUser.get('status').patchValue(this.inputUser.get('status').value ? 1 : 0);
     this.inputUser.markAllAsTouched();
     if (this.inputUser.valid) {
       this.loading = true;
