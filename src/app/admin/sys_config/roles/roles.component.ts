@@ -88,10 +88,10 @@ export class RolesComponent implements OnInit {
         if (value) {
           if (data == null) {
             this.toastrService.success(this.translate.instant('roles.content_add_success'),
-              this.translate.instant('roles.title_notification'));
+              this.translate.instant('common.title_notification'));
           } else {
             this.toastrService.success(this.translate.instant('roles.content_edit_success'),
-              this.translate.instant('roles.title_notification'));
+              this.translate.instant('common.title_notification'));
           }
           this.search(0);
         }
@@ -126,29 +126,24 @@ export class RolesComponent implements OnInit {
   deleteUsers(data) {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
+        title: this.translate.instant('common.title_notification'),
         message: this.translate.instant('roles.title_delete') + ' ' + data.name
-      }
+      },
     }).onClose.subscribe(res => {
-        if (res) {
-          this.userService.delete(data).subscribe(
-            () => {
-              this.toastrService.success(this.translate.instant('roles.content_delete_success'),
-                this.translate.instant('roles.title_notification'));
-              this.search(0);
-            },
-            (error) => {
-              if (error.error?.title) {
-                this.toastrService.danger(error.error.title,
-                  this.translate.instant('roles.title_notification'));
-              } else {
-                this.toastrService.danger(this.translate.instant('module.unknown_error'),
-                  this.translate.instant('roles.title_notification'));
-              }
-            }
-          );
-        }
+      if (res) {
+        this.isLoad = true;
+        this.rolesService.delete(data.id).subscribe(() => {
+          this.toastrService.success(this.translate.instant('roles.delete_success'),
+            this.translate.instant('common.title_notification'));
+          this.search(0);
+          this.isLoad = false;
+        }, (err) => {
+          this.toastrService.success(err.detail),
+            this.translate.instant('common.title_notification');
+          this.isLoad = false;
+        });
       }
-    );
+    });
   }
 
   openMapComponent(data) {

@@ -9,7 +9,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <form [formGroup]="inputUser">
+    <form [formGroup]="inputRoles">
       <div class="mb-4">
         <div class="row">
           <div class="col-lg-6 form-group">
@@ -17,9 +17,9 @@
               {{ 'common.table.item_roles_code' | translate }} <span style="color: red">(*)</span>
             </label>
             <input class="custom-border" type="text" formControlName="code" nbInput fullWidth trim="blur"
-                   [ngClass]="{'status-danger': this.inputUser.get('code').touched && this.inputUser.get('code').errors}">
+                   [ngClass]="{'status-danger': this.inputRoles.get('code').touched && this.inputRoles.get('code').errors}">
             <ngx-inline-message [message]="'common.table.item_roles_code'|translate"
-                                [formName]="inputUser.get('code')"></ngx-inline-message>
+                                [formName]="inputRoles.get('code')"></ngx-inline-message>
           </div>
 
           <div class="col-lg-6 form-group">
@@ -27,16 +27,16 @@
               {{ 'common.table.item_roles_name' | translate }} <span style="color: red">(*)</span>
             </label>
             <input class="custom-border" formControlName="name" type="text" nbInput fullWidth trim="blur"
-                   [ngClass]="{'status-danger': this.inputUser.get('name').touched && this.inputUser.get('name').errors}">
+                   [ngClass]="{'status-danger': this.inputRoles.get('name').touched && this.inputRoles.get('name').errors}">
             <ngx-inline-message [message]="'common.table.item_roles_name'|translate"
-                                [formName]="inputUser.get('name')"></ngx-inline-message>
+                                [formName]="inputRoles.get('name')"></ngx-inline-message>
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
               {{ 'common.table.item_description' | translate }}
             </label>
             <textarea rows="3" type="text" formControlName="description" nbInput fullWidth trim="blur"
-                      [ngClass]="{'status-danger': this.inputUser.get('description').touched && this.inputUser.get('description').errors}">
+                      [ngClass]="{'status-danger': this.inputRoles.get('description').touched && this.inputRoles.get('description').errors}">
             </textarea>
           </div>
           <div class="col-lg-6 form-group">
@@ -45,7 +45,7 @@
             </label>
             <nb-toggle fullWidth formControlName="status"></nb-toggle>
             <ngx-inline-message [message]="'common.table.item_status'|translate"
-                                [formName]="inputUser.get('status')"></ngx-inline-message>
+                                [formName]="inputRoles.get('status')"></ngx-inline-message>
           </div>
 
         </div>

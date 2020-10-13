@@ -1,5 +1,6 @@
 {
   "common": {
+    "title_notification": "Thông báo",
     "status": {
       "active": "Hoạt động",
       "inactive": "Không hoạt động",

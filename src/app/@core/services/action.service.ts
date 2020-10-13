@@ -31,9 +31,8 @@ export class ActionService {
     });
   }
 
-  public delete(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/action/delete`, data, {
-      observe: 'response'
-    });
+  delete(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiUrl}/action/${id}`);
   }
+
 }

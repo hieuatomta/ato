@@ -6,7 +6,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {UsersService} from '../../../@core/services/users.service';
 import {HttpHeaders} from '@angular/common/http';
 import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/confirm-dialog.component';
-import {RoleUpdateComponent} from '../roles/role-update/role-update.component';
 import {ActionService} from '../../../@core/services/action.service';
 import {ActionUpdateComponent} from './action-update/action-update.component';
 
@@ -34,6 +33,7 @@ export class ActionsComponent implements OnInit {
     private actionService: ActionService,
     private dialogService: NbDialogService) {
   }
+
   isLoad: boolean;
   listStatus = [
     {name: 'common.status.1', code: 1},
@@ -85,10 +85,10 @@ export class ActionsComponent implements OnInit {
         if (value) {
           if (data == null) {
             this.toastrService.success(this.translate.instant('action.content_add_success'),
-              this.translate.instant('action.title_notification'));
+              this.translate.instant('common.title_notification'));
           } else {
             this.toastrService.success(this.translate.instant('action.content_edit_success'),
-              this.translate.instant('action.title_notification'));
+              this.translate.instant('common.title_notification'));
           }
           this.search(0);
         }
@@ -123,28 +123,24 @@ export class ActionsComponent implements OnInit {
   deleteUsers(data) {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
+        title: this.translate.instant('common.title_notification'),
         message: this.translate.instant('action.title_delete') + ' ' + data.name
-      }
+      },
     }).onClose.subscribe(res => {
-        if (res) {
-          this.userService.delete(data).subscribe(
-            () => {
-              this.toastrService.success(this.translate.instant('action.content_delete_success'),
-                this.translate.instant('action.title_notification'));
-              this.search(0);
-            },
-            (error) => {
-              if (error.error?.title) {
-                this.toastrService.danger(error.error.title,
-                  this.translate.instant('action.title_notification'));
-              } else {
-                this.toastrService.danger(this.translate.instant('module.unknown_error'),
-                  this.translate.instant('action.title_notification'));
-              }
-            }
-          );
-        }
+      if (res) {
+        this.isLoad = true;
+        this.actionService.delete(data.id).subscribe(() => {
+          this.toastrService.success(this.translate.instant('action.delete_success'),
+            this.translate.instant('common.title_notification'));
+          this.search(0);
+          this.isLoad = false;
+        }, (err) => {
+          this.toastrService.success(err.detail),
+            this.translate.instant('common.title_notification');
+          this.isLoad = false;
+        });
       }
-    );
+    });
+
   }
 }
