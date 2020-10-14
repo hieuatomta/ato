@@ -1,10 +1,20 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  forwardRef,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
-import {NbDialogRef} from '@nebular/theme';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NbDialogRef, NbToastrService} from '@nebular/theme';
+import {FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
 import {RolesService} from '../../../../@core/services/roles.service';
 import {UsersService} from '../../../../@core/services/users.service';
-import {notSpaceLogin, passwordsMatchValidator} from '../../../../validator';
+import {passwordsMatchValidator, validDate} from '../../../../validator';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -13,8 +23,12 @@ import {notSpaceLogin, passwordsMatchValidator} from '../../../../validator';
   templateUrl: './user-update.component.html',
 })
 export class UserUpdateComponent implements OnInit {
+  @Input() value: any;
+  @Input() readonly: boolean;
+  @ViewChild('inputElement', {static: false}) inputElement: ElementRef;
+
   listRole = null;
-  lstRole = [];
+  lstRole1 = [];
   listStatus = [
     {name: 'common.status.1', code: 1},
     {name: 'common.status.0', code: 0}
@@ -24,16 +38,28 @@ export class UserUpdateComponent implements OnInit {
   loading = false;
   title: string;
   data: any;
+  showPassword = false;
+  showPassword1 = false;
+  mask;
+  constructor(
+    private toastr1: ToastrService,
+    public ref: NbDialogRef<UserUpdateComponent>,
+    private rolesService: RolesService,
+    protected cd: ChangeDetectorRef,
+    private toastr: NbToastrService,
+    private translate: TranslateService,
+    private userService: UsersService) {
+  }
 
   ngOnInit(): void {
     this.listRole = this.data?.roleUser?.split(',').map(item => Number(item));
     this.inputUser = new FormGroup({
       name: new FormControl(this.data?.name, [Validators.required]),
       fullname: new FormControl(this.data?.fullname, [Validators.required]),
-      phone: new FormControl(this.data?.phone, []),
+      phone: new FormControl(this.data?.phone, [Validators.pattern(/^\d{10}$/)]),
       mail: new FormControl(this.data?.mail, [Validators.required]),
-      pass: new FormControl('', [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
-      rePassword: new FormControl('', [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
+      pass: new FormControl(this.randomPass(10), []),
+      rePassword: new FormControl(null, []),
       imageUrl: new FormControl(this.data?.imageUrl, []),
       orBirthUser: new FormControl(this.data?.orBirthUser, [Validators.required]),
       status: new FormControl(this.data?.status, [Validators.required]),
@@ -46,25 +72,53 @@ export class UserUpdateComponent implements OnInit {
       this.inputUser.patchValue(this.data);
       const status = this.data.status === 1 ? true : false;
       this.inputUser.get('status').patchValue(status);
-    }
-    ;
-    this.rolesService.doSearch({
-      page: 0,
-      size: 100
-    }, {}).subscribe(res => {
-      this.lstRole = res.body.data.list;
+    };
+    this.rolesService.query().subscribe(res => {
+      this.lstRole1 = res.body.data.list;
     }, err => {
       console.log(err);
     });
   };
 
-  constructor(
-    private toastr: ToastrService,
-    public ref: NbDialogRef<UserUpdateComponent>,
-    private rolesService: RolesService,
-    private userService: UsersService) {
+  randomPass(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 
+  changeValue() {
+    if (!this.cd['destroyed']) {
+      console.log(this.cd);
+      this.cd.detectChanges();
+    }
+  }
+
+  toggleShowPassword(a: number) {
+    if (a === 1) {
+      this.showPassword = !this.showPassword;
+    }
+    if (a === 2) {
+      this.showPassword1 = !this.showPassword1;
+    }
+  }
+
+  getInputType(a: number) {
+    if (a === 1) {
+      if (this.showPassword) {
+        return 'text';
+      }
+    }
+    if (a === 2) {
+      if (this.showPassword1) {
+        return 'text';
+      }
+    }
+    return 'password';
+  }
 
   submit() {
     this.inputUser.get('status').patchValue(this.inputUser.get('status').value ? 1 : 0);
@@ -73,15 +127,14 @@ export class UserUpdateComponent implements OnInit {
       this.loading = true;
       const data = Object.assign({}, this.inputUser.value);
       data.id = this.data?.id;
-      if (data?.roleId != null) {
-        data.roleId = data?.roleId.toString();
-      } else {
-        data.roleId = null;
-      }
+      data.listRole = this.inputUser.get('lstRole').value;
+      console.log(data);
       if (this.data == null) {
         this.userService.insert(data).subscribe(
           (value) => this.ref.close(value),
           error => {
+            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.loading = false;
           },
           () => this.loading = false,
         );
@@ -89,6 +142,8 @@ export class UserUpdateComponent implements OnInit {
         this.userService.update(data).subscribe(
           (value) => this.ref.close(value),
           (error) => {
+            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.loading = false;
           },
           () => this.loading = false,
         );

@@ -11,9 +11,15 @@ export class RolesService {
   constructor(private http: HttpClient) {
   }
 
+  query(): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/roles/getAll`, {
+      observe: 'response'
+    });
+  }
+
   public doSearch(req?: any, body?: any): Observable<any> {
     const options = createRequestOption(req);
-    return this.http.post<any[]>(`${environment.apiUrl}/roles/getAllRole`, body, {
+    return this.http.post<any[]>(`${environment.apiUrl}/roles/doSearch`, body, {
       params: options,
       observe: 'response'
     });

@@ -41,19 +41,23 @@ export class ObjectsComponent implements OnInit {
   rows;
 
   search() {
-    this.objectsService.doSearch(this.paramSearch)
-      .subscribe(res => this.rows = this.formatData(res.body, 0) || [] );
+    this.objectsService.query().subscribe(res => {
+      console.log(res);
+      this.rows = this.formatData(res.body.data.list, 0) || []
+    } );
   }
 
   ngOnInit(): void {
     this.search();
-    this.getParent();
+    // this.objectsService.query().subscribe(res => this.rows = this.formatData(res.body.data.list, 0) || [] );
+
+    // this.getParent();
   }
 
-  formatData(data, parentId) {
+  formatData(data, parenId) {
     let arr = [];
     for (let i = 0; i < data.length; i++) {
-      if (data[i].parentId === parentId) {
+      if (data[i].parenId === parenId) {
         const children = this.formatData(data, data[i].id);
         if (children.length === 0) {
           data[i].treeStatus = "disabled";

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
-import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 import {createRequestOption} from '../../shares/utils/request-util';
 
 @Injectable({
@@ -11,12 +11,18 @@ export class ObjectsService {
   constructor(private http: HttpClient) {
   }
 
+  query(): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/object/getAll`, {
+      observe: 'response'
+    });
+  }
+
   public doSearch(data: any, req?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.post(`${environment.apiUrl}/object/doSearch`, data, {
       params: options,
       observe: 'response'
-    })
+    });
   }
 
   public update(data): Observable<any> {
@@ -42,6 +48,7 @@ export class ObjectsService {
       observe: 'response'
     });
   }
+
   public getTreeParent(): Observable<any> {
     return this.http.post<any[]>(`${environment.apiUrl}/object/getTreeParent`, {}, {
       observe: 'response'

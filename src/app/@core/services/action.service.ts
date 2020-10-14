@@ -13,7 +13,7 @@ export class ActionService {
 
   public doSearch(req?: any, body?: any): Observable<any> {
     const options = createRequestOption(req);
-    return this.http.post<any[]>(`${environment.apiUrl}/action/getAll`, body, {
+    return this.http.post<any[]>(`${environment.apiUrl}/action/doSearch`, body, {
       params: options,
       observe: 'response'
     });

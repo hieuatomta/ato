@@ -94,7 +94,7 @@ export class ObjectUpdateComponent implements OnInit {
         this.objectsService.insert(this.inputObject.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.title, this.translate.instant('user.title_notification'));
+            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false,
@@ -103,7 +103,7 @@ export class ObjectUpdateComponent implements OnInit {
         this.objectsService.update(this.inputObject.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.title, this.translate.instant('user.title_notification'));
+            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false,

@@ -26,6 +26,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {SharedModule} from '../../../shares/shared.module';
 import {UsersComponent} from './users.component';
+import {NgxMaskModule} from 'ngx-mask';
+import {HeroPickerModule} from '../../../shares/directives/hero-picker/hero-picker.module';
 
 
 @NgModule({
@@ -48,8 +50,9 @@ import {UsersComponent} from './users.component';
     TranslateModule,
     NgSelectModule, SharedModule,
     ReactiveFormsModule,
+    NgxMaskModule,
     NgxDatatableModule,
-    NbSpinnerModule, NbToggleModule,
+    NbSpinnerModule, NbToggleModule, HeroPickerModule,
   ],
   entryComponents: [
     UserUpdateComponent

@@ -19,7 +19,9 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.search(0);
   }
+
   isLoad: boolean;
+
   constructor(
     private toastr: ToastrService,
     private translate: TranslateService,
@@ -83,10 +85,10 @@ export class UsersComponent implements OnInit {
         if (value) {
           if (data == null) {
             this.toastrService.success(this.translate.instant('users.content_add_success'),
-              this.translate.instant('users.title_notification'));
+              this.translate.instant('common.title_notification'));
           } else {
             this.toastrService.success(this.translate.instant('users.content_edit_success'),
-              this.translate.instant('users.title_notification'));
+              this.translate.instant('common.title_notification'));
           }
           this.search(0);
         }
@@ -118,7 +120,6 @@ export class UsersComponent implements OnInit {
     );
   }
 
-
   deleteUsers(data) {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
@@ -140,31 +141,5 @@ export class UsersComponent implements OnInit {
         });
       }
     });
-
-    // this.dialogService.open(ConfirmDialogComponent, {
-    //   context: {
-    //     message: this.translate.instant('users.title_delete') + ' ' + data.fullname
-    //   }
-    // }).onClose.subscribe(res => {
-    //     if (res) {
-    //       this.userService.delete(data).subscribe(
-    //         () => {
-    //           this.toastrService.success(this.translate.instant('users.content_delete_success'),
-    //             this.translate.instant('users.title_notification'));
-    //           this.search(0);
-    //         },
-    //         (error) => {
-    //           if (error.error?.title) {
-    //             this.toastrService.danger(error.error.title,
-    //               this.translate.instant('users.title_notification'));
-    //           } else {
-    //             this.toastrService.danger(this.translate.instant('module.unknown_error'),
-    //               this.translate.instant('users.title_notification'));
-    //           }
-    //         }
-    //       );
-    //     }
-    //   }
-    // );
   }
 }

@@ -28,6 +28,7 @@ import viEt from '@angular/common/locales/extra/vi';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import {AuthInterceptor} from './interceptor/auth.interceptor';
 import {NbDateFnsDateModule} from '@nebular/date-fns';
+import { NgxMaskModule } from 'ngx-mask';
 
 registerLocaleData(vi, 'vi-VI', viEt);
 
@@ -53,6 +54,7 @@ export function createTranslateLoader(http: HttpClient) {
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    NgxMaskModule.forRoot(),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),

@@ -13,26 +13,6 @@ const routes: Routes = [{
       component: HomeComponent,
     },
     {
-      path: 'layout',
-      loadChildren: () => import('./demo/layout/layout.module')
-        .then(m => m.LayoutModule),
-    },
-    {
-      path: 'ui-features',
-      loadChildren: () => import('./demo/ui-features/ui-features.module')
-        .then(m => m.UiFeaturesModule),
-    },
-    {
-      path: 'modal-overlays',
-      loadChildren: () => import('./demo/modal-overlays/modal-overlays.module')
-        .then(m => m.ModalOverlaysModule),
-    },
-    {
-      path: 'charts',
-      loadChildren: () => import('./demo/charts/charts.module')
-        .then(m => m.ChartsModule),
-    },
-    {
       path: 'users',
       loadChildren: () => import('./sys_config/users/users.module')
         .then(m => m.UsersModule),
@@ -51,6 +31,26 @@ const routes: Routes = [{
       path: 'objects',
       loadChildren: () => import('./sys_config/objects/objects.module')
         .then(m => m.ObjectsModule),
+    },
+    {
+      path: 'layout',
+      loadChildren: () => import('./demo/layout/layout.module')
+        .then(m => m.LayoutModule),
+    },
+    {
+      path: 'ui-features',
+      loadChildren: () => import('./demo/ui-features/ui-features.module')
+        .then(m => m.UiFeaturesModule),
+    },
+    {
+      path: 'modal-overlays',
+      loadChildren: () => import('./demo/modal-overlays/modal-overlays.module')
+        .then(m => m.ModalOverlaysModule),
+    },
+    {
+      path: 'charts',
+      loadChildren: () => import('./demo/charts/charts.module')
+        .then(m => m.ChartsModule),
     },
     {
       path: 'editors',
