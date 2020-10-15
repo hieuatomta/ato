@@ -63,7 +63,7 @@ export class ObjectUpdateComponent implements OnInit {
       id: new FormControl(this.data?.id, []),
       code: new FormControl(this.data?.code, [Validators.required, Validators.maxLength(200)]),
       name: new FormControl(this.data?.name, [ Validators.required, Validators.maxLength(250)]),
-      pathUrl: new FormControl(this.data?.pathUrl, [Validators.maxLength(500)]),
+      path: new FormControl(this.data?.path, [Validators.maxLength(500)]),
       icon: new FormControl(this.data?.icon, [Validators.maxLength(255)]),
       status: new FormControl(this.data?.status, [Validators.required]),
       description: new FormControl(this.data?.description, [Validators.maxLength(500)]),

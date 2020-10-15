@@ -7,6 +7,7 @@ import {HomeClientComponent} from './home_client/home-client.component';
 import {ShopingCartComponent} from './shoping-cart/shoping-cart.component';
 import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'lien-he',
         component: ContactComponent,
+      },
+      {
+        path: 'chi-tiet/:key',
+        component: ProductDetailComponent,
       },
       {
         path: '',

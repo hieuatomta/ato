@@ -8,14 +8,9 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
   templateUrl: './shoping-cart.component.html',
 })
 export class ShopingCartComponent implements OnInit, OnDestroy {
-  ngOnInit() {
-    window.addEventListener('scroll', this.scroll, true);
+  ngOnDestroy(): void {
   }
 
-  ngOnDestroy() {
-    window.removeEventListener('scroll', this.scroll, true);
+  ngOnInit(): void {
   }
-
-  scroll = (event): void => {
-  };
 }

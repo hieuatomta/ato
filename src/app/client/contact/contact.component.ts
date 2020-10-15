@@ -8,14 +8,9 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
   templateUrl: './contact.component.html',
 })
 export class ContactComponent implements OnInit, OnDestroy {
-  ngOnInit() {
-    window.addEventListener('scroll', this.scroll, true);
+  ngOnDestroy(): void {
   }
 
-  ngOnDestroy() {
-    window.removeEventListener('scroll', this.scroll, true);
+  ngOnInit(): void {
   }
-
-  scroll = (event): void => {
-  };
 }

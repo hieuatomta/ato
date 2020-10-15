@@ -26,9 +26,9 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {SharedModule} from '../../../shares/shared.module';
 import {ObjectsComponent} from './objects.component';
 import {ObjectUpdateComponent} from './object-update/object-update.component';
-import {MapPopupComponent} from './map-popup/map.popup.component';
 import {TreeviewModule} from 'ngx-treeview';
 import {DropdownTreeviewSelectModule} from '../../../shares/directives/ngx-treeview/dropdown-treeview-select';
+import { MapPopupComponent } from './map-popup/map-popup.component';
 
 
 @NgModule({

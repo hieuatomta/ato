@@ -22,6 +22,7 @@ import {SlideshowModule} from 'ng-simple-slideshow';
 import {ShopingCartComponent} from './shoping-cart/shoping-cart.component';
 import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {ContactComponent} from './contact/contact.component';
     ShopingCartComponent,
     AboutComponent,
     ContactComponent,
+    ProductDetailComponent,
   ],
   providers: [
     {

@@ -1,7 +1,5 @@
 <header>
-  <!-- Header desktop -->
   <div [ngClass]="{'container-menu-desktop' : hideDiv, 'container-menu-desktop fix-menu-desktop' : !hideDiv}">
-    <!-- Topbar -->
     <div class="top-bar">
       <div class="content-topbar flex-sb-m h-full container">
         <div class="left-top-bar">
@@ -208,7 +206,8 @@
 </header>
 
 <!-- Cart -->
-<div [ngClass]="{'wrap-header-cart js-panel-cart' : hideDiv1, 'wrap-header-cart js-panel-cart show-header-cart' : !hideDiv1}">
+<div
+  [ngClass]="{'wrap-header-cart js-panel-cart' : hideDiv1, 'wrap-header-cart js-panel-cart show-header-cart' : !hideDiv1}">
   <div class="s-full js-hide-cart"></div>
 
   <div class="header-cart flex-col-l p-l-65 p-r-25">
@@ -296,7 +295,7 @@
 </div>
 
 <!-- Sidebar -->
-<aside  [ngClass]="{'wrap-sidebar js-sidebar' : hideDiv2, 'wrap-sidebar js-sidebar show-sidebar' : !hideDiv2}">
+<aside [ngClass]="{'wrap-sidebar js-sidebar' : hideDiv2, 'wrap-sidebar js-sidebar show-sidebar' : !hideDiv2}">
   <div class="s-full js-hide-sidebar"></div>
 
   <div class="sidebar flex-col-l p-t-22 p-b-25">
@@ -415,7 +414,8 @@
 					</span>
 
         <p class="stext-108 cl6 p-t-27">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent
+          faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.
         </p>
       </div>
     </div>

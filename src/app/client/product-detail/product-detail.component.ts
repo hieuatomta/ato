@@ -4,10 +4,10 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'ngx-home-client',
-  styleUrls: ['./home-client.component.scss'],
-  templateUrl: './home-client.component.html',
+  styleUrls: ['./product-detail.component.scss'],
+  templateUrl: './product-detail.component.html',
 })
-export class HomeClientComponent implements OnInit, OnDestroy {
+export class ProductDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 

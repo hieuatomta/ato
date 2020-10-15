@@ -85,12 +85,12 @@
                   && col.prop !=='description' && col.prop !=='status' && col.prop !=='code' ">
                   <span class="row-data-show" title="{{value}}">{{ value }}</span>
                 </ng-container>
-                <ng-container *ngIf="col.prop ==='description' " class="text-right">
+                <ng-container *ngIf="col.prop ==='description'" class="text-right">
                   <span class="row-data-show"
                         title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
                 </ng-container>
                 <ng-container *ngIf="col.prop ==='status'">
-                  {{ 'user.status.' + value | translate }}
+                  {{ 'common.status.' + value | translate }}
                 </ng-container>
                 <ng-container *ngIf="col.prop === 'map_action' && row.treeStatus == 'disabled'">
                   <button class="p-1" nbButton ghost status="info" (click)="openMapModule(row)">

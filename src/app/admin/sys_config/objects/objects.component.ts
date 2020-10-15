@@ -3,8 +3,8 @@ import {NbDialogService, NbToastrService} from '@nebular/theme';
 import {ObjectUpdateComponent} from './object-update/object-update.component';
 import {TranslateService} from '@ngx-translate/core';
 import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/confirm-dialog.component';
-import {MapPopupComponent} from './map-popup/map.popup.component';
 import {ObjectsService} from '../../../@core/services/objects.service';
+import {MapPopupComponent} from './map-popup/map-popup.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -20,7 +20,6 @@ export class ObjectsComponent implements OnInit {
     name: null,
     description: null,
     status: null,
-    tanentId: null,
     updateTime: null,
     parentId: null,
   };
@@ -34,7 +33,7 @@ export class ObjectsComponent implements OnInit {
     {name: 'common.table.item_objects_name', prop: 'name', flexGrow: 1.4, isTree: false},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1, isTree: false},
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1, isTree: false},
-    {name: 'common.table.item_url', prop: 'pathUrl', flexGrow: 1, isTree: false},
+    {name: 'common.table.item_url', prop: 'path', flexGrow: 1, isTree: false},
     {name: 'common.table.item_objects_popup', prop: 'map_action', flexGrow: 0.6, isTree: false},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 0.8, isTree: false}
   ];
@@ -80,6 +79,7 @@ export class ObjectsComponent implements OnInit {
   }
 
   open(data) {
+    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('objects.title_add');
