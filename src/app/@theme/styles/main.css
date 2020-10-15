@@ -79,6 +79,10 @@ a {
   -moz-transition: all 0.4s;
 }
 
+.btn-hide-cuon {
+  display: block !important;
+}
+
 .symbol-btn-back-to-top {
   font-size: 25px;
   color: white;

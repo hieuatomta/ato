@@ -19,6 +19,9 @@ import {TranslateModule} from '@ngx-translate/core';
 import {SharedModule} from '../shares/shared.module';
 import {HomeClientComponent} from './home_client/home-client.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
+import {ShopingCartComponent} from './shoping-cart/shoping-cart.component';
+import {AboutComponent} from './about/about.component';
+import {ContactComponent} from './contact/contact.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import {SlideshowModule} from 'ng-simple-slideshow';
   declarations: [
     ClientComponent,
     HomeClientComponent,
+    ShopingCartComponent,
+    AboutComponent,
+    ContactComponent,
   ],
   providers: [
     {

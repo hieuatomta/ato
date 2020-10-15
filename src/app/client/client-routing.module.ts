@@ -4,6 +4,9 @@ import {ClientComponent} from './client.component';
 import {LoginComponent} from '../auths/logins/login.component';
 import {ChangePassEmailComponent} from '../auths/changePassEmail/changePassEmail.component';
 import {HomeClientComponent} from './home_client/home-client.component';
+import {ShopingCartComponent} from './shoping-cart/shoping-cart.component';
+import {AboutComponent} from './about/about.component';
+import {ContactComponent} from './contact/contact.component';
 
 
 const routes: Routes = [
@@ -14,6 +17,18 @@ const routes: Routes = [
       {
         path: 'trang-chu',
         component: HomeClientComponent,
+      },
+      {
+        path: 'thanh-toan',
+        component: ShopingCartComponent,
+      },
+      {
+        path: 've-chung-toi',
+        component: AboutComponent,
+      },
+      {
+        path: 'lien-he',
+        component: ContactComponent,
       },
       {
         path: '',

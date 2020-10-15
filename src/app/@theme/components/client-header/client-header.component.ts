@@ -11,7 +11,16 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
     window.addEventListener('scroll', this.scroll, true);
   }
 
+  toggleShowCart() {
+    this.hideDiv1 = !this.hideDiv1;
+  }
+
+  toggleShowMenu() {
+    this.hideDiv2 = !this.hideDiv2;
+  }
   hideDiv = true;
+  hideDiv1 = true;
+  hideDiv2 = true;
 
   ngOnDestroy() {
     window.removeEventListener('scroll', this.scroll, true);

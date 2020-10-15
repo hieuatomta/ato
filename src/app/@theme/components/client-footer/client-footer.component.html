@@ -134,10 +134,18 @@
 
     </div>
   </div>
-
+  <div [ngClass]="{'btn-back-to-top' : hideDiv, 'btn-back-to-top btn-hide-cuon' : !hideDiv}"
+       class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			  <button nbButton ghost (click)="topWeb()">
+          <nb-icon icon="arrow-upward-outline"></nb-icon>
+        </button>
+		</span>
+  </div>
 </footer>
-<div class="fb-customerchat"
-     attribution=setup_tool
-     page_id="112967793918074"
-     theme_color="#20cef5">
-</div>
+
+<!--<div class="fb-customerchat"-->
+<!--     attribution=setup_tool-->
+<!--     page_id="112967793918074"-->
+<!--     theme_color="#20cef5">-->
+<!--</div>-->
