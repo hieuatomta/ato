@@ -134,12 +134,10 @@
 
     </div>
   </div>
-  <div [ngClass]="{'btn-back-to-top' : hideDiv, 'btn-back-to-top btn-hide-cuon' : !hideDiv}"
-       class="btn-back-to-top" id="myBtn">
+  <!-- Back to top -->
+  <div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
-			  <button nbButton ghost (click)="topWeb()">
-          <nb-icon icon="arrow-upward-outline"></nb-icon>
-        </button>
+			<nb-icon icon="arrow-upward-outline"></nb-icon>
 		</span>
   </div>
 </footer>

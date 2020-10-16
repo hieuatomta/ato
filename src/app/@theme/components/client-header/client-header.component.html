@@ -1,5 +1,5 @@
 <header>
-  <div [ngClass]="{'container-menu-desktop' : hideDiv, 'container-menu-desktop fix-menu-desktop' : !hideDiv}">
+  <div class="container-menu-desktop">
     <div class="top-bar">
       <div class="content-topbar flex-sb-m h-full container">
         <div class="left-top-bar">
@@ -72,17 +72,16 @@
         <div class="wrap-icon-header flex-w flex-r-m">
           <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
                data-notify="2">
-            <button nbButton ghost (click)="toggleShowCart()">
+            <button nbButton ghost>
               <nb-icon icon="shopping-cart-outline"></nb-icon>
             </button>
           </div>
-
           <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
              data-notify="0">
             <nb-icon status="basic" icon="heart-outline"></nb-icon>
           </a>
-          <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-            <button nbButton ghost (click)="toggleShowMenu()">
+          <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-sidebar">
+            <button nbButton ghost>
               <nb-icon icon="menu-outline"></nb-icon>
             </button>
           </div>
@@ -206,8 +205,7 @@
 </header>
 
 <!-- Cart -->
-<div
-  [ngClass]="{'wrap-header-cart js-panel-cart' : hideDiv1, 'wrap-header-cart js-panel-cart show-header-cart' : !hideDiv1}">
+<div class="wrap-header-cart js-panel-cart">
   <div class="s-full js-hide-cart"></div>
 
   <div class="header-cart flex-col-l p-l-65 p-r-25">
@@ -217,7 +215,7 @@
 				</span>
 
       <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-        <button nbButton ghost (click)="toggleShowCart()">
+        <button nbButton ghost>
           <nb-icon icon="close-outline"></nb-icon>
         </button>
       </div>
@@ -227,12 +225,12 @@
       <ul class="header-cart-wrapitem w-full">
         <li class="header-cart-item flex-w flex-t m-b-12">
           <div class="header-cart-item-img">
-            <img src="images/item-cart-01.jpg" alt="IMG">
+            <img src="assets/images/item-cart-01.jpg" alt="IMG">
           </div>
 
           <div class="header-cart-item-txt p-t-8">
             <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-              White Shirt Pleat
+              White Shirt Pl eat
             </a>
 
             <span class="header-cart-item-info">
@@ -243,7 +241,7 @@
 
         <li class="header-cart-item flex-w flex-t m-b-12">
           <div class="header-cart-item-img">
-            <img src="images/item-cart-02.jpg" alt="IMG">
+            <img src="assets/images/item-cart-02.jpg" alt="IMG">
           </div>
 
           <div class="header-cart-item-txt p-t-8">
@@ -259,7 +257,7 @@
 
         <li class="header-cart-item flex-w flex-t m-b-12">
           <div class="header-cart-item-img">
-            <img src="images/item-cart-03.jpg" alt="IMG">
+            <img src="assets/images/item-cart-03.jpg" alt="IMG">
           </div>
 
           <div class="header-cart-item-txt p-t-8">
@@ -295,13 +293,13 @@
 </div>
 
 <!-- Sidebar -->
-<aside [ngClass]="{'wrap-sidebar js-sidebar' : hideDiv2, 'wrap-sidebar js-sidebar show-sidebar' : !hideDiv2}">
+<aside class="wrap-sidebar js-sidebar">
   <div class="s-full js-hide-sidebar"></div>
 
   <div class="sidebar flex-col-l p-t-22 p-b-25">
     <div class="flex-r w-full p-b-30 p-r-27">
       <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-sidebar">
-        <button nbButton ghost (click)="toggleShowMenu()">
+        <button nbButton ghost>
           <nb-icon icon="close-outline"></nb-icon>
         </button>
       </div>

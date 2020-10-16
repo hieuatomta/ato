@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FacebookService, InitParams} from 'ngx-facebook';
+declare var jQuery: any;
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -17,7 +18,21 @@ export class ClientFooterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initFacebookService();
-    window.addEventListener('scroll', this.scroll, true);
+    (function ($) {
+      const windowH = $(window).height() / 2;
+
+      $(window).on('scroll', function () {
+        if ($(this).scrollTop() > windowH) {
+          $('#myBtn').css('display', 'flex');
+        } else {
+          $('#myBtn').css('display', 'none');
+        }
+      });
+
+      $('#myBtn').on('click', function () {
+        $('html, body').animate({scrollTop: 0}, 300);
+      });
+    })(jQuery);
 
   }
 
@@ -26,19 +41,11 @@ export class ClientFooterComponent implements OnInit, OnDestroy {
     this.facebookService.init(initParams);
   }
 
-  hideDiv = true;
 
   ngOnDestroy() {
-    window.removeEventListener('scroll', this.scroll, true);
   }
 
   scroll = (event): void => {
-    const n = event.srcElement.scrollingElement.scrollTop;
-    if (n > window.outerHeight) {
-      this.hideDiv = false;
-    } else {
-      this.hideDiv = true;
-    }
   };
 
 }

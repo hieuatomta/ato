@@ -52,10 +52,10 @@
               {{ 'common.table.item_objects_paren' | translate }}
             </label>
             <ngx-dropdown-treeview-select [items]="item"
-                                          [value]="inputObject.get('parentId').value"
+                                          [value]="inputObject.get('parenId').value"
                                           [config]="treeViewConfig"
                                           class="dropdown-treeview"
-                                          (valueChange)="parentIdChange($event)">
+                                          (valueChange)="parenIdChange($event)">
             </ngx-dropdown-treeview-select>
           </div>
           <div class="col-lg-12 form-group">

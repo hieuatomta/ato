@@ -46,6 +46,7 @@
             ],
             "scripts": [
               "node_modules/pace-js/pace.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/tinymce/tinymce.min.js",
               "node_modules/tinymce/themes/modern/theme.min.js",
               "node_modules/tinymce/plugins/link/plugin.min.js",
@@ -53,7 +54,12 @@
               "node_modules/tinymce/plugins/table/plugin.min.js",
               "node_modules/echarts/dist/echarts.min.js",
               "node_modules/echarts/dist/extension/bmap.min.js",
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/chart.js/dist/Chart.min.js",
+              "src/assets/js/main.js",
+              "src/assets/js/map-custom.js",
+              "src/assets/js/slick-custom.js",
+              "src/assets/vendor/animsition/js/animsition.min.js",
+              "src/assets/vendor/isotope/isotope.pkgd.min.js"
             ]
           },
           "configurations": {
@@ -109,6 +115,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/main.js",
+              "src/assets/js/map-custom.js",
+              "src/assets/js/slick-custom.js",
               "node_modules/pace-js/pace.min.js",
               "node_modules/tinymce/tinymce.min.js",
               "node_modules/tinymce/themes/modern/theme.min.js",
@@ -117,7 +126,8 @@
               "node_modules/tinymce/plugins/table/plugin.min.js",
               "node_modules/echarts/dist/echarts.min.js",
               "node_modules/echarts/dist/extension/bmap.min.js",
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/chart.js/dist/Chart.min.js",
+              "src/assets/vendor/isotope/isotope.pkgd.min.js"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",

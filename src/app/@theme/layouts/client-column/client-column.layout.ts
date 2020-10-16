@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-
+declare var main: any;
 @Component({
   selector: 'ngx-client-column-layout',
   styleUrls: ['./client-column.layout.scss'],

@@ -14,7 +14,7 @@ export const routes: Routes = [
       .then(m => m.AuthsModule),
   },
   {
-    path: 'client',
+    path: '',
     loadChildren: () => import('./client/client.module')
       .then(m => m.ClientModule),
   },

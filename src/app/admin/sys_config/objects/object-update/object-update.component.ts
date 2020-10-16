@@ -32,16 +32,16 @@ export class ObjectUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.objectsService.getTreeParent().subscribe(data => {
-      this.item = this.formatDataTree(data.body, 0);
+    this.objectsService.query().subscribe(data => {
+      this.item = this.formatDataTree(data.body.data.list, 0);
     });
 
   }
-  formatDataTree(data, parentId) {
+  formatDataTree(data, parenId) {
     const arr = [];
     for (let i = 0; i < data.length; i++) {
       const dataItem = data[i];
-      if (dataItem.parentId === parentId) {
+      if (dataItem.parenId === parenId) {
         let children = [];
         if (dataItem.id != null) {
           children = this.formatDataTree(data, dataItem.id);
@@ -67,7 +67,7 @@ export class ObjectUpdateComponent implements OnInit {
       icon: new FormControl(this.data?.icon, [Validators.maxLength(255)]),
       status: new FormControl(this.data?.status, [Validators.required]),
       description: new FormControl(this.data?.description, [Validators.maxLength(500)]),
-      parentId: new FormControl(this.data?.parentId ? this.data.parentId === 0 ? null : this.data.parentId : null, [])
+      parenId: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
     }, {});
     this.inputObject.get('status').setValue(true);
     if (this.data) {
@@ -76,8 +76,8 @@ export class ObjectUpdateComponent implements OnInit {
       this.inputObject.get('status').patchValue(status);
     };
   }
-  parentIdChange($event) {
-    this.inputObject.get('parentId').setValue($event);
+  parenIdChange($event) {
+    this.inputObject.get('parenId').setValue($event);
   }
   cancel() {
     this.ref.close();
@@ -87,8 +87,8 @@ export class ObjectUpdateComponent implements OnInit {
     this.inputObject.markAllAsTouched();
     if (this.inputObject.valid) {
       this.loading = true;
-      if (this.inputObject.get('parentId').value == null) {
-        this.inputObject.get('parentId').setValue(0);
+      if (this.inputObject.get('parenId').value == null) {
+        this.inputObject.get('parenId').setValue(0);
       }
       if (this.data == null) {
         this.objectsService.insert(this.inputObject.value).subscribe(

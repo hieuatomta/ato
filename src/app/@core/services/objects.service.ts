@@ -55,9 +55,4 @@ export class ObjectsService {
     });
   }
 
-  public getAllModule(): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/object/getAllModule`, {
-      observe: 'response'
-    });
-  }
 }
