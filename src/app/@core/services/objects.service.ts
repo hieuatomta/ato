@@ -17,6 +17,12 @@ export class ObjectsService {
     });
   }
 
+  getAllObjRoleAction(): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/object/getAllObjRoleAction`, {
+      observe: 'response'
+    });
+  }
+
   public doSearch(data: any, req?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.post(`${environment.apiUrl}/object/doSearch`, data, {

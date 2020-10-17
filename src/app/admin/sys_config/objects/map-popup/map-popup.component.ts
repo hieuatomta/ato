@@ -14,6 +14,18 @@ import {ObjectActionService} from '../../../../@core/services/object-action.serv
 export class MapPopupComponent implements OnInit {
   title: string;
   data: any;
+  loading = false;
+  rows;
+  allData: any;
+  selectedUI = [];
+  selected = [];
+  originalData = [];
+  isLoad: boolean;
+  page = {
+    limit: 5,
+    count: 0,
+    offset: 0,
+  };
   paramSearch = {code: null, status: 1};
   columns = [
     {prop: 'selected', name: '', flexGrow: 0.3, headerCheckboxable: true, checkboxable: true},
@@ -29,11 +41,6 @@ export class MapPopupComponent implements OnInit {
     },
     {prop: 'status', name: 'common.table.item_status', flexGrow: 1, headerCheckboxable: false, checkboxable: false}
   ];
-  rows;
-  selectedUI = [];
-  selected = [];
-  originalData = [];
-
 
   constructor(private ref: NbDialogRef<MapPopupComponent>,
               private toastr: NbToastrService,
@@ -56,15 +63,18 @@ export class MapPopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.id);
+    this.loading = true;
     this.objectActionService.doSearch({idObjects: this.data.id}).subscribe(
-      data => {
-        this.originalData = data.body.data.list;
-        data.body.data.list.map(value => {
+      res => {
+        this.originalData = res.body.data.list;
+        res.body.data.list.map(value => {
           this.selected.push(value.idAction);
         });
       },
-      (error) => this.toAstrError(),
+      (error) => {
+        this.toAstrError();
+        this.loading = false;
+      },
       () => this.search(),
     );
 
@@ -88,19 +98,16 @@ export class MapPopupComponent implements OnInit {
     selected.map(value => this.selected.push(value.id));
   }
 
-  isLoad: boolean;
-  page = {
-    limit: 5,
-    count: 0,
-    offset: 0,
-  };
-  allData: any;
-
   search() {
+    this.loading = true;
     this.actionService.query().subscribe(res => {
-      this.allData = res.body.data.list;
-      this.onSuccess(res.body.data);
-    });
+        this.allData = res.body.data.list;
+        this.onSuccess(res.body.data);
+      },
+      (error) => {
+        this.loading = false;
+      },
+      () => this.loading = false);
   }
 
   submit() {
@@ -108,7 +115,7 @@ export class MapPopupComponent implements OnInit {
     const listAdd = [];
     if (this.allData?.length === this.selected?.length) {
       this.originalData.map(value => {
-          listUncheck.push(value.idAction);
+        listUncheck.push(value.idAction);
       });
       this.selected.map(value => {
         listAdd.push(value);
@@ -138,8 +145,6 @@ export class MapPopupComponent implements OnInit {
       idObjects: this.data.id,
       listUncheck: listUncheck
     };
-    console.log(listUncheck);
-    console.log(listAdd);
     this.objectActionService.delete(data2).subscribe(
       success => {
         this.objectActionService.insert(data1).subscribe(

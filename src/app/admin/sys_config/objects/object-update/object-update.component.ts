@@ -32,11 +32,16 @@ export class ObjectUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.objectsService.query().subscribe(data => {
-      this.item = this.formatDataTree(data.body.data.list, 0);
-    });
+    this.loading = true;
+    this.objectsService.query().subscribe(res => {
+        this.item = this.formatDataTree(res.body.data.list, 0);
+      }, (error) => {
+        this.loading = false;
+      },
+      () => this.loading = false);
 
   }
+
   formatDataTree(data, parenId) {
     const arr = [];
     for (let i = 0; i < data.length; i++) {
@@ -62,7 +67,7 @@ export class ObjectUpdateComponent implements OnInit {
     this.inputObject = new FormGroup({
       id: new FormControl(this.data?.id, []),
       code: new FormControl(this.data?.code, [Validators.required, Validators.maxLength(200)]),
-      name: new FormControl(this.data?.name, [ Validators.required, Validators.maxLength(250)]),
+      name: new FormControl(this.data?.name, [Validators.required, Validators.maxLength(250)]),
       path: new FormControl(this.data?.path, [Validators.maxLength(500)]),
       icon: new FormControl(this.data?.icon, [Validators.maxLength(255)]),
       status: new FormControl(this.data?.status, [Validators.required]),
@@ -74,11 +79,14 @@ export class ObjectUpdateComponent implements OnInit {
       this.inputObject.patchValue(this.data);
       const status = this.data.status === 1 ? true : false;
       this.inputObject.get('status').patchValue(status);
-    };
+    }
+    ;
   }
+
   parenIdChange($event) {
     this.inputObject.get('parenId').setValue($event);
   }
+
   cancel() {
     this.ref.close();
   }

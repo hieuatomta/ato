@@ -13,6 +13,7 @@ import {MapPopupComponent} from './map-popup/map-popup.component';
   templateUrl: './objects.component.html',
 })
 export class ObjectsComponent implements OnInit {
+  isLoad: boolean;
   dataParent;
   paramSearch = {
     id: null,
@@ -26,7 +27,7 @@ export class ObjectsComponent implements OnInit {
   listStatus = [
     {name: 'common.status.1', code: 1},
     {name: 'common.status.0', code: 0}
-  ]
+  ];
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3, isTree: false},
     {name: 'common.table.item_objects_code', prop: 'code', flexGrow: 2, isTree: true},
@@ -40,16 +41,18 @@ export class ObjectsComponent implements OnInit {
   rows;
 
   search() {
+    this.isLoad = true;
     this.objectsService.query().subscribe(res => {
-      console.log(res);
-      this.rows = this.formatData(res.body.data.list, 0) || []
-    } );
+        this.rows = this.formatData(res.body.data.list, 0) || [];
+      }, (error) => {
+        this.isLoad = false;
+      },
+      () => this.isLoad = false);
   }
 
   ngOnInit(): void {
     this.search();
     // this.objectsService.query().subscribe(res => this.rows = this.formatData(res.body.data.list, 0) || [] );
-
     // this.getParent();
   }
 
@@ -59,7 +62,7 @@ export class ObjectsComponent implements OnInit {
       if (data[i].parenId === parenId) {
         const children = this.formatData(data, data[i].id);
         if (children.length === 0) {
-          data[i].treeStatus = "disabled";
+          data[i].treeStatus = 'disabled';
         }
         arr = arr.concat(children);
         arr.push(data[i]);
@@ -132,10 +135,10 @@ export class ObjectsComponent implements OnInit {
                 this.translate.instant('user.title_notification'));
             }
           }
-        )
+        );
         this.getParent();
       }
-    })
+    });
   }
 
   onTreeAction(event: any) {
@@ -154,12 +157,12 @@ export class ObjectsComponent implements OnInit {
         title: this.translate.instant('module.title_map_module'),
         data: data,
       }
-    })
+    });
     openMap.onClose.subscribe(value => {
       if (value) {
         this.toastr.success(this.translate.instant('module.content_map_action_success'),
           this.translate.instant('user.title_notification'));
       }
-    })
+    });
   }
 }

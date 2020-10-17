@@ -3,7 +3,8 @@ import {LayoutService} from '../../../../@core/utils';
 import {NbDialogRef} from '@nebular/theme';
 import {Router} from '@angular/router';
 import {TreeviewConfig} from 'ngx-treeview';
-import {BookService} from './book.service';
+import {ObjectsService} from '../../../../@core/services/objects.service';
+import {TreeviewItem} from '../../../../shares/directives/tree-picker/ngx-treeview';
 
 @Component({
   selector: 'ngx-map-popup',
@@ -27,22 +28,52 @@ export class MapPopupComponent implements OnInit {
 
   constructor(private layoutService: LayoutService,
               private ref: NbDialogRef<MapPopupComponent>,
-              private service: BookService,
+              private objectsService: ObjectsService,
               private router: Router) {
   }
 
 
+  formatDataModule(data, parenId) {
+    const arr = [];
+    for (let i = 0; i < data.length; i++) {
+      const dataItem = data[i];
+      if (dataItem.parenId === parenId) {
+        let children = [];
+        if (dataItem.id != null) {
+          children = this.formatDataModule(data, dataItem.id);
+        }
+        if (children.length > 0) {
+          dataItem.children = children;
+        } else {
+          dataItem.children = null;
+        }
+        console.log(dataItem);
+        const dataTreeview = new TreeviewItem({
+          text: dataItem.name,
+          value: dataItem.code,
+          children: dataItem.children,
+          checked: dataItem?.checked,
+          collapsed: true,
+        });
+        arr.push(dataTreeview);
+      }
+    }
+    return arr;
+  }
+
+
   ngOnInit(): void {
-    this.dataItems = this.service.getBooks();
-    // this.roleModuleService.getTreeByRoleId(this.data).subscribe(
-    //   (value) => {
-    //     this.dataItems = formatDataModule(value.body, 0);
-    //   },
-    //   (error) => {
-    //     this.loading = false;
-    //   },
-    //   () => this.loading = false,
-    // );
+    this.loading = true;
+    this.objectsService.getAllObjRoleAction().subscribe(
+      (value) => {
+        console.log(value);
+        this.dataItems = this.formatDataModule(value.body.data.list, 0);
+      },
+      (error) => {
+        this.loading = false;
+      },
+      () => this.loading = false,
+    );
     this.layoutService.onCollapse.subscribe(value => this.isCollapse = value);
   }
 

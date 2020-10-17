@@ -1,4 +1,4 @@
-<nb-card [nbSpinner]="loading" style="height: 100%" fullWidth>
+<nb-card nbSpinnerSize="giant" nbSpinnerStatus="primary" [nbSpinner]="loading"  style="height: 100%" fullWidth>
   <nb-card-header class="card-header-title"> {{ title }}</nb-card-header>
   <nb-card-body>
     <ngx-treeview [config]="treeViewConfig" [items]="dataItems"
