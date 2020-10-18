@@ -17,8 +17,14 @@ export class ObjectsService {
     });
   }
 
-  getAllObjRoleAction(): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/object/getAllObjRoleAction`, {
+  getAllObjRoleAction(id: any): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/object/getAllObjRoleAction/${id}`, {
+      observe: 'response'
+    });
+  }
+
+  public updateObjRoleAction(data): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/object/updateObjRoleAction`, data, {
       observe: 'response'
     });
   }

@@ -147,6 +147,7 @@ export class RolesComponent implements OnInit {
   }
 
   openMapComponent(data) {
+    console.log(data);
     this.dialogService.open(MapPopupComponent, {
       context: {
         title: this.translate.instant('roles.title_map_popup') + ' ' + data.name,

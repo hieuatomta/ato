@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {LayoutService} from '../../../../@core/utils';
 import {NbDialogRef} from '@nebular/theme';
-import {Router} from '@angular/router';
 import {TreeviewConfig} from 'ngx-treeview';
 import {ObjectsService} from '../../../../@core/services/objects.service';
 import {TreeviewItem} from '../../../../shares/directives/tree-picker/ngx-treeview';
@@ -28,8 +27,7 @@ export class MapPopupComponent implements OnInit {
 
   constructor(private layoutService: LayoutService,
               private ref: NbDialogRef<MapPopupComponent>,
-              private objectsService: ObjectsService,
-              private router: Router) {
+              private objectsService: ObjectsService) {
   }
 
 
@@ -47,12 +45,12 @@ export class MapPopupComponent implements OnInit {
         } else {
           dataItem.children = null;
         }
-        console.log(dataItem);
+        const check = (dataItem?.checked === 1) ? true : false;
         const dataTreeview = new TreeviewItem({
           text: dataItem.name,
           value: dataItem.code,
           children: dataItem.children,
-          checked: dataItem?.checked,
+          checked: check,
           collapsed: true,
         });
         arr.push(dataTreeview);
@@ -64,9 +62,8 @@ export class MapPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.objectsService.getAllObjRoleAction().subscribe(
+    this.objectsService.getAllObjRoleAction(this.data?.id).subscribe(
       (value) => {
-        console.log(value);
         this.dataItems = this.formatDataModule(value.body.data.list, 0);
       },
       (error) => {
@@ -78,35 +75,38 @@ export class MapPopupComponent implements OnInit {
   }
 
   submit() {
-    this.loading = true;
+    // this.loading = true;
     const data = [];
     this.values.map(value => {
-      const a = value.split('#');
-      data.push({roleId: this.data.id, moduleCode: a[0], actionCode: a[1]});
+      const a = value.split('/');
+      data.push({idRole: this.data.id, idObject: a[0], idAction: a[1]});
     });
-    // this.roleModuleService.updateRoleModule({
-    //   roleId: this.data.id,
-    //   list: data,
-    // }).subscribe(
-    //   (success) => {
-    //   },
-    //   (error) => {
-    //     this.loading = false;
-    //   },
-    //   () => {
-    //     this.loading = false;
-    //     this.loginService.authenticationcate({}).subscribe(res => {
-    //       if (res.status === 200) {
-    //         const obj = res.body.listObjects;
-    //         localStorage.setItem('objects', JSON.stringify(obj));
-    //       }
-    //     }, err => {
-    //       localStorage.clear();
-    //       this.router.navigate(['auths/login']);
-    //     });
-    //     this.ref.close('success');
-    //   },
-    // );
+    const req = {
+      idRole: this.data.id,
+      list: data,
+    };
+    console.log(req);
+
+    this.objectsService.updateObjRoleAction(req).subscribe(
+      (success) => {
+      },
+      (error) => {
+        this.loading = false;
+      },
+      () => {
+        this.loading = false;
+        // this.loginService.authenticationcate({}).subscribe(res => {
+        //   if (res.status === 200) {
+        //     const obj = res.body.listObjects;
+        //     localStorage.setItem('objects', JSON.stringify(obj));
+        //   }
+        // }, err => {
+        //   localStorage.clear();
+        //   this.router.navigate(['auths/login']);
+        // });
+        this.ref.close('success');
+      },
+    );
   }
 
   cancel() {
