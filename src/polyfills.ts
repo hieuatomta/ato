@@ -36,7 +36,7 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  */
 import 'core-js/es7/array';
 import 'core-js/es7/object';
-
+import '@angular/localize/init'
 
 /** ALL Firefox browsers require the following to support `@angular/animation`. **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.

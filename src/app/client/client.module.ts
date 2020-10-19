@@ -23,29 +23,31 @@ import {ShopingCartComponent} from './shoping-cart/shoping-cart.component';
 import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
-  imports: [
-    ClientRoutingModule,
-    ThemeModule,
-    NbMenuModule,
-    NbCardModule,
-    NbAlertModule,
-    FormsModule,
-    NbInputModule,
-    NbCheckboxModule,
-    NbIconModule,
-    ReactiveFormsModule,
-    NbLayoutModule,
-    NbSpinnerModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    SharedModule,
-    SlideshowModule
-  ],
+    imports: [
+        ClientRoutingModule,
+        ThemeModule,
+        NbMenuModule,
+        NbCardModule,
+        NbAlertModule,
+        FormsModule,
+        NbInputModule,
+        NbCheckboxModule,
+        NbIconModule,
+        ReactiveFormsModule,
+        NbLayoutModule,
+        NbSpinnerModule,
+        RecaptchaModule,
+        RecaptchaFormsModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        SharedModule,
+        SlideshowModule,
+        NgbModule
+    ],
   declarations: [
     ClientComponent,
     HomeClientComponent,

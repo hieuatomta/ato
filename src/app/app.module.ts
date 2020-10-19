@@ -30,6 +30,7 @@ import {AuthInterceptor} from './interceptor/auth.interceptor';
 import {NbDateFnsDateModule} from '@nebular/date-fns';
 import { NgxMaskModule } from 'ngx-mask';
 import {FacebookModule} from 'ngx-facebook';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(vi, 'vi-VI', viEt);
 
@@ -47,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    NgbModule,
     FacebookModule.forRoot(),
     NbDateFnsDateModule.forRoot({
       parseOptions: { useAdditionalWeekYearTokens: true, useAdditionalDayOfYearTokens: true },
