@@ -24,6 +24,8 @@ import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ProductComponent} from './products/product.component';
+import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 
 @NgModule({
@@ -49,12 +51,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         NgbModule
     ],
   declarations: [
+    SearchFilterComponent,
     ClientComponent,
     HomeClientComponent,
     ShopingCartComponent,
     AboutComponent,
     ContactComponent,
     ProductDetailComponent,
+    ProductComponent
   ],
   providers: [
     {

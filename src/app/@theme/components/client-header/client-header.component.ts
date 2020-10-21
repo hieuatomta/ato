@@ -35,8 +35,6 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
 
       $(window).on('scroll', function () {
         if ($(this).scrollTop() > posWrapHeader) {
-          console.log(posWrapHeader);
-
           $(headerDesktop).addClass('fix-menu-desktop');
           $(wrapMenu).css('top', 0);
         } else {
@@ -193,6 +191,15 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
 
         });
 
+        // const cap = $('#menu').attr('data-cap');
+        for (let i = 0; i < 3 + 1; i++) {
+          $('.level-' + i).hover(function () {
+            $(this).children('ul').addClass('hienthimenu');
+          }, function () {
+            $(this).children('ul').removeClass('hienthimenu');
+          });
+        }
+
       });
 
       /*==================================================================
@@ -278,4 +285,150 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
   }
+
+  htmlStrTxt: any;
+  cap: any;
+  menudacap: any;
+  tree = [
+    {
+      id: 1,
+      parenID: 0,
+      tendulieu: 'lv1',
+      check: true
+    },
+    {
+      id: 2,
+      parenID: 1,
+      tendulieu: 'lv2',
+      check: false
+    }, {
+      id: 3,
+      parenID: 1,
+      tendulieu: 'lv2',
+      check: false
+    }, {
+      id: 4,
+      parenID: 0,
+      tendulieu: 'lv1',
+      check: false
+    }, {
+      id: 5,
+      parenID: 1,
+      tendulieu: 'lv2',
+      check: false
+    }, {
+      id: 6,
+      parenID: 1,
+      tendulieu: 'lv2',
+      check: true
+    }, {
+      id: 7,
+      parenID: 6,
+      tendulieu: 'lv3',
+      check: false
+    }, {
+      id: 8,
+      parenID: 6,
+      tendulieu: 'lv3',
+      check: true
+    }, {
+      id: 9,
+      parenID: 0,
+      tendulieu: 'lv1',
+      check: true
+    }, {
+      id: 10,
+      parenID: 0,
+      tendulieu: 'lv1',
+      check: false
+    }, {
+      id: 11,
+      parenID: 0,
+      tendulieu: 'lv1',
+      check: false
+    }, {
+      id: 12,
+      parenID: 0,
+      tendulieu: 'lv1',
+      check: false
+    }, {
+      id: 13,
+      parenID: 9,
+      tendulieu: 'lv2',
+      check: false
+    }, {
+      id: 14,
+      parenID: 8,
+      tendulieu: 'lv4',
+      check: false
+    }, {
+      id: 15,
+      parenID: 8,
+      tendulieu: 'lv4',
+      check: false
+    }, {
+      id: 16,
+      parenID: 8,
+      tendulieu: 'lv4',
+      check: false
+    }
+  ];
+
+  dequy(parent, level, a) {
+    if (a === 1) {
+      this.htmlStrTxt = '<ul class="main-menu">';
+    }
+    if (a !== 1) {
+      this.htmlStrTxt = '<ul class="list_tieu_de">';
+    }
+    a++;
+    for (let x = 0; x < this.tree.length; x++) {
+      if (this.tree[x].parenID === parent) {
+        this.htmlStrTxt += '<li (mouseover)="over()" (mouseout)="out()" class="tieu_de level-' + level + '"><a href="" class="nd_tieu_de">' + this.tree[x].tendulieu + '</a>';
+        if (this.tree[x].check) {
+          if (level !== 0) {
+            this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-right" aria-hidden="true"></i></span>';
+          } else {
+            this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>';
+          }
+          this.htmlStrTxt += this.dequy(this.tree[x].id, level + 1, 0);
+        }
+        this.htmlStrTxt += '</li>';
+      }
+    }
+    if (this.cap < level) {
+      this.cap = level;
+    }
+    console.log(this.htmlStrTxt);
+    return this.htmlStrTxt + '</ul>';
+  }
+
+
+
+
+  over() {
+    $( function () {
+      $('')
+
+      // let cap = $('#menu').attr('data-cap');
+      for (let i = 0; i < 4; i++) {
+        $(".level-" + i).hover(function () {
+          $(this).children('ul').addClass('hienthimenu');
+        }, function () {
+          $(this).children('ul').removeClass('hienthimenu');
+        })
+      }
+    })
+    console.log('Mouseover called');
+  }
+
+  out() {
+    console.log('Mouseout called');
+  }
+
+  constructor() {
+    this.menudacap = this.dequy(0, 0, 1);
+  }
+
+
 }
