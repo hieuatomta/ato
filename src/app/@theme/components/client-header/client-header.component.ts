@@ -10,6 +10,7 @@ declare const jQuery: any;
 })
 export class ClientHeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
+    this.menudacap = this.dequy(0, 0, 1);
     (function ($) {
       let posWrapHeader;
       /*==================================================================
@@ -293,7 +294,7 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
     {
       id: 1,
       parenID: 0,
-      tendulieu: 'lv1',
+      tendulieu: 'Trang chủ',
       check: true
     },
     {
@@ -384,7 +385,7 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
     a++;
     for (let x = 0; x < this.tree.length; x++) {
       if (this.tree[x].parenID === parent) {
-        this.htmlStrTxt += '<li (mouseover)="over()" (mouseout)="out()" class="tieu_de level-' + level + '"><a href="" class="nd_tieu_de">' + this.tree[x].tendulieu + '</a>';
+        this.htmlStrTxt += '<li class="tieu_de level-' + level + '"><a href="" class="nd_tieu_de">' + this.tree[x].tendulieu + '</a>';
         if (this.tree[x].check) {
           if (level !== 0) {
             this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-right" aria-hidden="true"></i></span>';
@@ -399,7 +400,6 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
     if (this.cap < level) {
       this.cap = level;
     }
-    console.log(this.htmlStrTxt);
     return this.htmlStrTxt + '</ul>';
   }
 
@@ -408,8 +408,6 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
 
   over() {
     $( function () {
-      $('')
-
       // let cap = $('#menu').attr('data-cap');
       for (let i = 0; i < 4; i++) {
         $(".level-" + i).hover(function () {
@@ -419,15 +417,12 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
         })
       }
     })
-    console.log('Mouseover called');
   }
 
   out() {
-    console.log('Mouseout called');
   }
 
   constructor() {
-    this.menudacap = this.dequy(0, 0, 1);
   }
 
 

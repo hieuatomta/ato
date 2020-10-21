@@ -15,7 +15,7 @@ p.tieude {
   margin-bottom: 20px;
 }
 
-#menu > ul {
+.menu-desktop {
   width: 100%;
   display: flex;
   margin: 0;
@@ -35,7 +35,7 @@ ul.list_tieu_de {
   background: beige;
   border: 1px solid;
   padding: 10px 0;
-  top: 40px;
+  top: 50px;
   opacity: 0;
   visibility: hidden;
   right: 0;
@@ -51,6 +51,18 @@ ul.list_tieu_de {
   margin-left: 15px;
 }
 
+li.tieu_de {
+  width: 100% !important;
+  position: relative !important;
+  padding: 5px !important;
+  margin: 0 15px !important;
+  font-family: inherit;
+  text-transform: uppercase;
+  display: flex !important;
+  align-items: center;
+  height: 100%;
+  text-align: left;
+}
 
 .hienthimenu {
   right: 0 !important;
@@ -70,6 +82,9 @@ li.tieu_de a.nd_tieu_de {
   width: 100%;
   font-weight: 700;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 li.tieu_de a.nd_tieu_de::after {
