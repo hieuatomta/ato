@@ -28,6 +28,16 @@ const routes: Routes = [{
         .then(m => m.ActionsModule),
     },
     {
+      path: 'color',
+      loadChildren: () => import('./sys_config/colors/colors.module')
+        .then(m => m.ColorsModule),
+    },
+    {
+      path: 'size',
+      loadChildren: () => import('./sys_config/sizes/sizes.module')
+        .then(m => m.SizesModule),
+    },
+    {
       path: 'objects',
       loadChildren: () => import('./sys_config/objects/objects.module')
         .then(m => m.ObjectsModule),

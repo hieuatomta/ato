@@ -32,6 +32,28 @@
     "delete_success": "Xóa Action thành công",
     "title_map_popup": "Action"
   },
+  "size": {
+    "title": "Quản lý Size",
+    "title_add": "Thêm mới Size",
+    "title_edit": "Sửa Size",
+    "title_delete": "Xác nhận xóa Size",
+    "content_add_success": "Thêm Size thành công",
+    "content_edit_success": "Sửa Size thành công",
+    "message_delete": "Bạn có chắc muốn xóa Size",
+    "delete_success": "Xóa Size thành công",
+    "title_map_popup": "Size"
+  },
+  "color": {
+    "title": "Quản lý Màu",
+    "title_add": "Thêm mới Màu",
+    "title_edit": "Sửa Màu",
+    "title_delete": "Xác nhận xóa Màu",
+    "content_add_success": "Thêm Màu thành công",
+    "content_edit_success": "Sửa Màu thành công",
+    "message_delete": "Bạn có chắc muốn xóa Màu",
+    "delete_success": "Xóa Màu thành công",
+    "title_map_popup": "Màu"
+  },
   "objects": {
     "title": "Quản lý chức năng",
     "title_add": "Thêm mới chức năng",
