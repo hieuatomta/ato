@@ -16,10 +16,8 @@ export class ObjectsComponent implements OnInit {
   isLoad: boolean;
   dataParent;
   paramSearch = {
-    id: null,
     code: null,
     name: null,
-    description: null,
     status: null,
     updateTime: null,
     parentId: null,
@@ -41,6 +39,10 @@ export class ObjectsComponent implements OnInit {
   rows;
 
   search() {
+    console.log(this.paramSearch);
+  }
+
+  ngOnInit(): void {
     this.isLoad = true;
     this.objectsService.query().subscribe(res => {
         this.rows = this.formatData(res.body.data.list, 0) || [];
@@ -48,12 +50,8 @@ export class ObjectsComponent implements OnInit {
         this.isLoad = false;
       },
       () => this.isLoad = false);
-  }
-
-  ngOnInit(): void {
-    this.search();
     // this.objectsService.query().subscribe(res => this.rows = this.formatData(res.body.data.list, 0) || [] );
-    // this.getParent();
+    this.getParent();
   }
 
   formatData(data, parenId) {
@@ -72,7 +70,10 @@ export class ObjectsComponent implements OnInit {
   }
 
   getParent() {
-    this.objectsService.getParent().subscribe(data => this.dataParent = data.body);
+    this.objectsService.getParent().subscribe(res => {
+      console.log(res);
+      this.dataParent = res.body.data.list;
+    });
   }
 
   constructor(private objectsService: ObjectsService,

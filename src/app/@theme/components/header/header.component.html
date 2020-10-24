@@ -29,8 +29,8 @@
                  (ngModelChange)="changeLanguage($event)"  [(ngModel)]="currentLanguage" fullWidth>
       </ng-select>
     </li>
-    <li (click)="router.navigate(['auth/change-password'])">{{ 'common.menu.profile' | translate}}</li>
-    <li (click)="router.navigate(['auth/change-password'])">{{ 'common.menu.changePass' | translate}}</li>
-    <li (click)="logout()">{{ 'common.menu.logout' | translate}}</li>
+    <li (click)="router.navigate(['auth/change-password'])">{{ 'common.header.menu.profile' | translate}}</li>
+    <li (click)="router.navigate(['auth/change-password'])">{{ 'common.header.menu.changePass' | translate}}</li>
+    <li (click)="logout()">{{ 'common.header.menu.logout' | translate}}</li>
   </div>
 </div>

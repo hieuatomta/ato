@@ -45,7 +45,7 @@
                          notFoundText="{{'common.notFoundText' |translate}}"
                          clearAllText="{{'common.clearAllText' |translate}}"
                          [(ngModel)]="paramSearch.parentId">
-                <ng-option *ngFor="let item of dataParent" [value]="item.parentId"> {{ item.parentName }}
+                <ng-option *ngFor="let item of dataParent" [value]="item.id"> {{ item.name }}
                 </ng-option>
               </ng-select>
             </div>

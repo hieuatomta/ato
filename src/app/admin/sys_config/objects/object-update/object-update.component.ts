@@ -23,6 +23,10 @@ export class ObjectUpdateComponent implements OnInit {
     maxHeight: 300,
     hasCollapseExpand: true,
   });
+  listType = [
+    {name: 'common.type.1', code: 1},
+    {name: 'common.type.0', code: 0}
+  ];
 
   constructor(protected ref: NbDialogRef<ObjectUpdateComponent>,
               private objectsService: ObjectsService,
@@ -33,13 +37,23 @@ export class ObjectUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.loading = true;
+    this.getParenTree(this.data?.type ? this.data.type : 0);
+  }
+
+  getParenTree(e: Number) {
     this.objectsService.query().subscribe(res => {
-        this.item = this.formatDataTree(res.body.data.list, 0);
+        const result = res.body.data.list.filter(function (hero) {
+          return hero.type === e;
+        });
+        this.item = this.formatDataTree(result, 0);
       }, (error) => {
         this.loading = false;
       },
       () => this.loading = false);
+  }
 
+  onSelectType(e) {
+    this.getParenTree(e);
   }
 
   formatDataTree(data, parenId) {
@@ -71,6 +85,7 @@ export class ObjectUpdateComponent implements OnInit {
       path: new FormControl(this.data?.path, [Validators.maxLength(500)]),
       icon: new FormControl(this.data?.icon, [Validators.maxLength(255)]),
       status: new FormControl(this.data?.status, [Validators.required]),
+      type: new FormControl(this.data?.type, [Validators.required]),
       description: new FormControl(this.data?.description, [Validators.maxLength(500)]),
       parenId: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
     }, {});
@@ -79,6 +94,8 @@ export class ObjectUpdateComponent implements OnInit {
       this.inputObject.patchValue(this.data);
       const status = this.data.status === 1 ? true : false;
       this.inputObject.get('status').patchValue(status);
+    } else {
+      this.inputObject.get('type').patchValue(0);
     }
     ;
   }
@@ -92,6 +109,7 @@ export class ObjectUpdateComponent implements OnInit {
   }
 
   submit() {
+    this.inputObject.get('status').patchValue(this.inputObject.get('status').value ? 1 : 0);
     this.inputObject.markAllAsTouched();
     if (this.inputObject.valid) {
       this.loading = true;

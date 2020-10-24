@@ -15,6 +15,10 @@
       "0": "Bị khóa",
       "1": "Hoạt động"
     },
+    "type": {
+      "0": "Admin",
+      "1": "Client"
+    },
     "table": {
       "item_number": "STT",
       "item_username": "Tên đăng nhập",
@@ -26,6 +30,7 @@
       "item_orBirthUser": "Ngày sinh",
       "item_role": "Quyền người dùng",
       "item_status": "Trạng thái",
+      "item_type": "Chức năng",
       "item_imageUrl": "Đường dẫn ảnh",
       "item_url": "Đường dẫn",
       "item_action": "Thao tác",

@@ -38,13 +38,13 @@ export class ObjectsService {
   }
 
   public update(data): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/object/update`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/object/update`, data, {
       observe: 'response'
     });
   }
 
   public insert(data): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/object/insert`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/object/insert`, data, {
       observe: 'response'
     });
   }
@@ -55,11 +55,12 @@ export class ObjectsService {
     });
   }
 
-  public getParent(): Observable<any> {
-    return this.http.post<any[]>(`${environment.apiUrl}/object/getParent`, {}, {
+  getParent(): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/object/getParent`, {
       observe: 'response'
     });
   }
+
 
   public getTreeParent(): Observable<any> {
     return this.http.post<any[]>(`${environment.apiUrl}/object/getTreeParent`, {}, {

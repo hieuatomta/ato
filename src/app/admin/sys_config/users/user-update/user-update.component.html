@@ -105,22 +105,12 @@
             <label class="label">
               {{ 'common.table.item_orBirthUser' | translate }} <span style="color: red">(*)</span>
             </label>
-<!--            <input class="custom-border" nbInput fullWidth-->
-<!--                   mask='00/00/0000'-->
-<!--                   #inputElement-->
-<!--                   [(ngModel)]="value"-->
-<!--                   [readOnly]="readonly"-->
-<!--                   [clearIfNotMatch]="true"-->
-<!--                   [ngClass]="{'status-danger': this.inputUser.get('orBirthUser').touched && this.inputUser.get('orBirthUser').errors}"-->
-<!--            >-->
             <input class="custom-border" nbInput fullWidth
                    formControlName="orBirthUser"
                    [nbDatepicker]="fromDate" [ngClass]="{'status-danger': this.inputUser.get('orBirthUser').touched && this.inputUser.get('orBirthUser').errors}"
             >
             <nb-datepicker #fromDate format="{{'common.format_date' |translate}}">
             </nb-datepicker>
-<!--            <ngx-hero-picker formControlName="orBirthUser" timeType='date'></ngx-hero-picker>-->
-
             <ngx-inline-message [message]="'common.table.item_orBirthUser'|translate"
                                 [formName]="inputUser.get('orBirthUser')"></ngx-inline-message>
           </div>
