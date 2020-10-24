@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+  openMenu = false;
 
   themes = [
     {
@@ -61,6 +62,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   currentTheme = 'cosmic';
+  language = 'vi';
   currentLanguage = this.getLanguage();
 
   menuClick(e) {
@@ -77,6 +79,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['auths/login']);
+  }
+
   userMenu = [
     {menuId: 1, title: 'Thông tin cá nhân'},
     {menuId: 2, title: 'Đổi mật khẩu'},
@@ -90,7 +97,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
               private translate: TranslateService,
-              private router: Router) {
+              public router: Router) {
   }
 
 

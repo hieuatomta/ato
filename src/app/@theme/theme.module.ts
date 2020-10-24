@@ -39,12 +39,13 @@ import {DEFAULT_THEME} from './styles/theme.default';
 import {COSMIC_THEME} from './styles/theme.cosmic';
 import {CORPORATE_THEME} from './styles/theme.corporate';
 import {DARK_THEME} from './styles/theme.dark';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrService} from '../@core/mock/toastr-service';
 import {AuthGuardService} from '../@core/mock/auth-guard.service';
 import {AuthGuardAuthsService} from '../@core/mock/auth-guard-auths.service';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {ClientColumnLayoutComponent} from './layouts/client-column/client-column.layout';
+import {TranslateModule} from '@ngx-translate/core';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -91,7 +92,7 @@ const SERVICE = [
 
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule, NgSelectModule],
+    imports: [CommonModule, ...NB_MODULES, FormsModule, NbCardModule, NbCheckboxModule, NgSelectModule, ReactiveFormsModule, TranslateModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
   providers: [...SERVICE],

@@ -3,34 +3,34 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()"><span>Hệ thống gì đó chưa nghĩ ra tên</span></a>
-    <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" style="margin-left: 10px;">
-      <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
-    </nb-select>
-    <nb-select [selected]="currentLanguage" (selectedChange)="changeLanguage($event)" style="margin-left: 10px;">
-      <nb-option *ngFor="let language of languages" [value]="language.value"> {{ language.name }}</nb-option>
-    </nb-select>
-    <div class="col-lg-8">
-      <ng-select fullWidth appendTo="body">
-        <ng-option *ngFor="let item of languages" [value]="item.code"> {{ item.name  }}
-        </ng-option>
-      </ng-select>
-    </div>
-
+    <a class="logo" href="#" (click)="navigateHome()"><span>{{ 'common.header.title' | translate}}</span></a>
   </div>
 </div>
 
-<div class="header-container">
-
-  <nb-actions size="small">
-    <nb-action class="user-action"  *nbIsGranted="['view', 'user','logout']" >
-      <nb-user [nbContextMenu]="userMenu"
-               nbContextMenuTrigger = "click"
-                (menuClick)="menuClick($event)"
-               [onlyPicture]="userPictureOnly"
-               [name]="user"
-               [picture]="user?.picture">
-      </nb-user>
-    </nb-action>
-  </nb-actions>
+<div class="dropdown">
+  <nb-user
+    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+    [onlyPicture]="false"
+    [name]="user"
+    (click)="openMenu = !openMenu"
+    [picture]="user?.picture">
+  </nb-user>
+  <div class="dropdown-content">
+    <li>
+      <ng-select [items]="themes" bindLabel="name" bindValue="value"
+                 fullWidth
+                 [(ngModel)]="currentTheme"
+                 (ngModelChange)="changeTheme($event)"
+                 [clearable]="false">
+      </ng-select>
+    </li>
+    <li>
+      <ng-select [clearable]="false" bindLabel="name"  bindValue="value" [items]="languages"
+                 (ngModelChange)="changeLanguage($event)"  [(ngModel)]="currentLanguage" fullWidth>
+      </ng-select>
+    </li>
+    <li (click)="router.navigate(['auth/change-password'])">{{ 'common.menu.profile' | translate}}</li>
+    <li (click)="router.navigate(['auth/change-password'])">{{ 'common.menu.changePass' | translate}}</li>
+    <li (click)="logout()">{{ 'common.menu.logout' | translate}}</li>
+  </div>
 </div>

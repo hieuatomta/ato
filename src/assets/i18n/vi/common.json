@@ -1,5 +1,13 @@
 {
   "common": {
+    "header": {
+      "title": "Hệ thống gì đó chưa nghĩ ra tên",
+      "menu": {
+        "profile": "Thông tin cá nhân",
+        "changePass": "Đổi mật khẩu",
+        "logout": "Đăng xuất"
+      }
+    },
     "title_notification": "Thông báo",
     "status": {
       "active": "Hoạt động",
