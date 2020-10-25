@@ -117,23 +117,23 @@ export class ObjectsComponent implements OnInit {
   delete(data) {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
-        message: this.translate.instant('module.message_delete') + ' ' + data.name,
+        message: this.translate.instant('objects.title_delete') + ' ' + data.name,
       }
     }).onClose.subscribe(res => {
       if (res) {
         this.objectsService.delete(data).subscribe(
           () => {
-            this.toastr.success(this.translate.instant('module.delete_success'),
-              this.translate.instant('user.title_notification'));
+            this.toastr.success(this.translate.instant('objects.delete_success'),
+              this.translate.instant('common.title_notification'));
             this.search();
           },
           (error) => {
             if (error.error?.title) {
               this.toastr.danger(error.error.title,
-                this.translate.instant('user.title_notification'));
+                this.translate.instant('common.title_notification'));
             } else {
-              this.toastr.danger(this.translate.instant('module.unknown_error'),
-                this.translate.instant('user.title_notification'));
+              this.toastr.danger(this.translate.instant('common.unknown_error'),
+                this.translate.instant('common.title_notification'));
             }
           }
         );
@@ -155,14 +155,14 @@ export class ObjectsComponent implements OnInit {
   openMapModule(data) {
     const openMap = this.dialogService.open(MapPopupComponent, {
       context: {
-        title: this.translate.instant('module.title_map_module'),
+        title: this.translate.instant('common.title_map_common'),
         data: data,
       }
     });
     openMap.onClose.subscribe(value => {
       if (value) {
-        this.toastr.success(this.translate.instant('module.content_map_action_success'),
-          this.translate.instant('user.title_notification'));
+        this.toastr.success(this.translate.instant('common.content_map_action_success'),
+          this.translate.instant('objects.title_notification'));
       }
     });
   }

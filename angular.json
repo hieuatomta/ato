@@ -34,6 +34,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
               "node_modules/typeface-exo/index.css",
               "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
               "node_modules/ionicons/scss/ionicons.scss",
@@ -42,11 +43,21 @@
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
               "node_modules/leaflet/dist/leaflet.css",
-              "src/app/@theme/styles/styles.scss"
+              "src/app/@theme/styles/styles.scss",
+              "src/assets/vendor/animsition/css/animsition.min.css",
+              "src/assets/vendor/slick/slick.css",
+              "src/assets/vendor/MagnificPopup/magnific-popup.css"
             ],
             "scripts": [
+              "src/assets/vendor/jquery/jquery-3.2.1.min.js",
               "node_modules/pace-js/pace.min.js",
               "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/vendor/slick/slick.min.js",
+              "src/assets/vendor/animsition/js/animsition.min.js",
+              "src/assets/vendor/bootstrap/js/popper.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.min.js",
+              "src/assets/vendor/isotope/isotope.pkgd.min.js",
+              "src/assets/vendor/MagnificPopup/jquery.magnific-popup.min.js",
               "node_modules/tinymce/tinymce.min.js",
               "node_modules/tinymce/themes/modern/theme.min.js",
               "node_modules/tinymce/plugins/link/plugin.min.js",
@@ -56,10 +67,7 @@
               "node_modules/echarts/dist/extension/bmap.min.js",
               "node_modules/chart.js/dist/Chart.min.js",
               "src/assets/js/main.js",
-              "src/assets/js/map-custom.js",
-              "src/assets/js/slick-custom.js",
-              "src/assets/vendor/animsition/js/animsition.min.js",
-              "src/assets/vendor/isotope/isotope.pkgd.min.js"
+              "src/assets/js/slick-custom.js"
             ]
           },
           "configurations": {
@@ -115,9 +123,6 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/js/main.js",
-              "src/assets/js/map-custom.js",
-              "src/assets/js/slick-custom.js",
               "node_modules/pace-js/pace.min.js",
               "node_modules/tinymce/tinymce.min.js",
               "node_modules/tinymce/themes/modern/theme.min.js",
@@ -126,8 +131,7 @@
               "node_modules/tinymce/plugins/table/plugin.min.js",
               "node_modules/echarts/dist/echarts.min.js",
               "node_modules/echarts/dist/extension/bmap.min.js",
-              "node_modules/chart.js/dist/Chart.min.js",
-              "src/assets/vendor/isotope/isotope.pkgd.min.js"
+              "node_modules/chart.js/dist/Chart.min.js"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",

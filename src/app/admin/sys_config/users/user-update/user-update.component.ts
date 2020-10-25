@@ -56,7 +56,7 @@ export class UserUpdateComponent implements OnInit {
     this.inputUser = new FormGroup({
       name: new FormControl(this.data?.name, [Validators.required]),
       fullname: new FormControl(this.data?.fullname, [Validators.required]),
-      phone: new FormControl(this.data?.phone, []),
+      phone: new FormControl(this.data?.phone, [Validators.pattern(/^\d{10}$/)]),
       mail: new FormControl(this.data?.mail, [Validators.required]),
       pass: new FormControl(this.randomPass(10), []),
       rePassword: new FormControl(null, []),

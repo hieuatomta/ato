@@ -16,7 +16,7 @@ const routes: Routes = [
     component: ClientComponent,
     children: [
       {
-        path: 'trang-chu',
+        path: 'trang-chu.html',
         component: HomeClientComponent,
       },
       {
@@ -32,12 +32,16 @@ const routes: Routes = [
         component: ContactComponent,
       },
       {
-        path: 'chi-tiet/:key',
+        path: 'product-detail.html',
         component: ProductDetailComponent,
       },
+      // {
+      //   path: 'chi-tiet/:key',
+      //   component: ProductDetailComponent,
+      // },
       {
         path: '',
-        redirectTo: 'trang-chu',
+        redirectTo: 'trang-chu.html',
         pathMatch: 'full',
       },
     ],

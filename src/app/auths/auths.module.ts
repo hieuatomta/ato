@@ -20,6 +20,7 @@ import {ChangePassEmailComponent} from './changePassEmail/changePassEmail.compon
 import {RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings} from 'ng-recaptcha';
 import {TranslateModule} from '@ngx-translate/core';
 import {SharedModule} from '../shares/shared.module';
+import { ChangePassComponent } from './changePass/changePass.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {SharedModule} from '../shares/shared.module';
     SharedModule,
   ],
   declarations: [
+    ChangePassComponent,
     LoginComponent,
     AuthsComponent,
     ConfirmEmailComponent,
