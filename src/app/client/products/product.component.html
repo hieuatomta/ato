@@ -1,5 +1,5 @@
 <div class="row isotope-grid">
-<div *ngFor="let item of lstData" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+<div *ngFor="let item of lstData" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{item.type}}">
   <div class="block2">
     <div class="block2-pic hov-img0">
       <img src="{{item.image}}" alt="IMG-PRODUCT">
@@ -30,6 +30,7 @@
   </div>
 </div>
 </div>
+<!--doan xy ly phan trang-->
 <div class="flex-c-m flex-w w-full p-t-38">
   <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
     1
