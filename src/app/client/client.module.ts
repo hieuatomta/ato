@@ -26,6 +26,7 @@ import {ProductDetailComponent} from './product-detail/product-detail.component'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ProductComponent} from './products/product.component';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
+import {ListProductComponent} from './list-product/list-product.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
     AboutComponent,
     ContactComponent,
     ProductDetailComponent,
+    ListProductComponent,
     ProductComponent
   ],
   providers: [

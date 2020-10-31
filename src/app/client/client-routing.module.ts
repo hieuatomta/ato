@@ -8,6 +8,7 @@ import {ShopingCartComponent} from './shoping-cart/shoping-cart.component';
 import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {ProductComponent} from './products/product.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 've-chung-toi',
         component: AboutComponent,
+      },
+      {
+        path: 'danh-sach-san-pham.html',
+        component: ProductComponent,
       },
       {
         path: 'lien-he',

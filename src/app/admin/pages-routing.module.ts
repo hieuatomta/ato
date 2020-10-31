@@ -43,6 +43,11 @@ const routes: Routes = [{
         .then(m => m.ObjectsModule),
     },
     {
+      path: 'image-management',
+      loadChildren: () => import('./major/image-management/image-management.module')
+        .then(m => m.ImageManagementModule),
+    },
+    {
       path: 'layout',
       loadChildren: () => import('./demo/layout/layout.module')
         .then(m => m.LayoutModule),

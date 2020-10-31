@@ -8,6 +8,16 @@ a {
   max-width: 1380px;
 }
 
+nb-layout-header nav {
+  padding: 0 !important;
+  align-items: normal !important;
+}
+nav.limiter-menu-desktop.container {
+  box-shadow: 0 0 black;
+
+}
+
+
 @media (max-width: 1600px) {
   .container {
     max-width: 1200px;
@@ -554,15 +564,11 @@ a {
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 [ Header Mobile ]*/
 .wrap-header-mobile {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   align-items: center;
   height: 70px;
   background-color: #fff;
   padding: 15px;
-  /*display: none;*/
+  display: none;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);

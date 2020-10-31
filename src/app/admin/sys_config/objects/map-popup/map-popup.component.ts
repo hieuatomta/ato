@@ -111,6 +111,7 @@ export class MapPopupComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     const listUncheck = [];
     const listAdd = [];
     if (this.allData?.length === this.selected?.length) {
@@ -149,10 +150,16 @@ export class MapPopupComponent implements OnInit {
       success => {
         this.objectActionService.insert(data1).subscribe(
           res => this.ref.close('success'),
-          error => this.toAstrError(),
+          error => {
+            this.toAstrError()
+            this.loading = false;
+          },
         );
       },
-      error => this.toAstrError(),
+      error => {
+        this.toAstrError();
+        this.loading = false;
+      },
     );
   }
 
