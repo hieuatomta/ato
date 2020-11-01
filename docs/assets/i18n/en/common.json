@@ -1,0 +1,43 @@
+{
+  "common": {
+    "header": {
+      "title": "test-En",
+      "menu": {
+        "profile": "Thông tin cá nhân",
+        "changePass": "Đổi mật khẩu",
+        "logout": "Đăng xuất"
+      }
+    },
+    "title_notification": "Thông báo",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "0": "Lock",
+      "1": "Active"
+    },
+    "table": {
+      "item_number": "STT",
+      "item_username": "UserName",
+      "item_fullname": "FullName",
+      "item_passwordHash": "Password",
+      "item_repassword": "Enter the password",
+      "item_tel": "Phone",
+      "item_email": "Email",
+      "item_orBirthUser": "Date of birth",
+      "item_role": "Users-Role",
+      "item_status": "Status",
+      "item_imageUrl": "Image path",
+      "item_action": "Manipulation"
+    },
+    "totalMessage": "bản ghi",
+    "search": "Tìm kiếm",
+    "placeHolder": "Lựa chọn",
+    "notFoundText": "Không có bản ghi",
+    "clearAllText": "Xóa",
+    "save": "Lưu lại",
+    "cancel": "Huỷ bỏ",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "format_date": "dd/MM/yyyy"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "users": {
+    "title": "Users Management",
+    "insert_btn": "Add a new user",
+    "title_add": "Add a new user",
+    "title_edit": "Edit user information",
+    "title_delete": "Confirm user deletion",
+    "unknown_error": "An unknown error",
+    "content_add_success": "User added successfully",
+    "content_edit_success": "User edited successfully",
+    "content_delete_success": "User deleted successfully"
+    }
+}

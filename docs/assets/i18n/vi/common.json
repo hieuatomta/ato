@@ -1,0 +1,66 @@
+{
+  "common": {
+    "header": {
+      "title": "Hệ thống gì đó chưa nghĩ ra tên",
+      "menu": {
+        "profile": "Thông tin cá nhân",
+        "changePass": "Đổi mật khẩu",
+        "logout": "Đăng xuất"
+      }
+    },
+    "title_notification": "Thông báo",
+    "status": {
+      "active": "Hoạt động",
+      "inactive": "Không hoạt động",
+      "0": "Bị khóa",
+      "1": "Hoạt động"
+    },
+    "type": {
+      "0": "Admin",
+      "1": "Client"
+    },
+    "table": {
+      "item_number": "STT",
+      "item_username": "Tên đăng nhập",
+      "item_fullname": "Tên đầy đủ",
+      "item_passwordHash": "Mật khẩu",
+      "item_repassword": "Nhập lại mật khẩu",
+      "item_tel": "Số điện thoại",
+      "item_email": "Email",
+      "item_orBirthUser": "Ngày sinh",
+      "item_role": "Quyền người dùng",
+      "item_status": "Trạng thái",
+      "item_type": "Chức năng",
+      "item_imageUrl": "Đường dẫn ảnh",
+      "item_url": "Đường dẫn",
+      "item_action": "Thao tác",
+      "item_roles_code": "Mã quyền",
+      "item_roles_name": "Tên quyền",
+      "item_map_popup": "Thao tác quyền với module",
+      "item_update_time": "Ngày cập nhật",
+      "item_description": "Mô tả",
+      "item_action_code": "Mã Action",
+      "item_action_name": "Tên Action",
+      "item_size_code": "Mã Size",
+      "item_size_name": "Tên Size",
+      "item_color_code": "Mã màu",
+      "item_color_name": "Tên màu",
+      "item_objects_code": "Mã chức năng",
+      "item_objects_name": "Tên chức năng",
+      "item_objects_paren": "Chức năng cha",
+      "item_objects_popup": "Map action",
+      "item_icon": "Icon"
+    },
+    "totalMessage": "bản ghi",
+    "search": "Tìm kiếm",
+    "placeHolder": "Lựa chọn",
+    "notFoundText": "Không có bản ghi",
+    "selectedMessage": "bản ghi được chọn",
+    "clearAllText": "Xóa",
+    "save": "Lưu lại",
+    "cancel": "Huỷ bỏ",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "format_date": "dd/MM/yyyy"
+  }
+}
