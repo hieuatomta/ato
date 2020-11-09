@@ -45,7 +45,8 @@
             </div>
           </div>
         </form>
-        <ngx-datatable class="material"
+        <ngx-datatable ngxResizeWatcher class="fullscreen"
+                       [ngClass]="'material'"
                        [columnMode]="'flex'"
                        [rows]="rows"
                        [columns]="columns"

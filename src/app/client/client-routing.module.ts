@@ -1,14 +1,12 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {ClientComponent} from './client.component';
-import {LoginComponent} from '../auths/logins/login.component';
-import {ChangePassEmailComponent} from '../auths/changePassEmail/changePassEmail.component';
 import {HomeClientComponent} from './home_client/home-client.component';
 import {ShopingCartComponent} from './shoping-cart/shoping-cart.component';
 import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {ProductComponent} from './products/product.component';
+import {ClientComponent} from './client.component';
 
 
 const routes: Routes = [
