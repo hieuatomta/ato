@@ -75,7 +75,7 @@ export class MapPopupComponent implements OnInit {
   }
 
   submit() {
-    // this.loading = true;
+    this.loading = true;
     const data = [];
     this.values.map(value => {
       const a = value.split('/');

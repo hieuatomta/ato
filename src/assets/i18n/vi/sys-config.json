@@ -64,5 +64,8 @@
     "message_delete": "Bạn có chắc muốn xóa chức năng",
     "delete_success": "Xóa chức năng thành công",
     "title_map_popup": "chức năng"
+  },
+  "role_object": {
+    "map_popup_success" : "Sửa thành công"
   }
 }

@@ -28,7 +28,7 @@ export class RolesComponent implements OnInit {
   isLoad: boolean;
 
   constructor(
-    private toastr: ToastrService,
+    private toastr: NbToastrService,
     private translate: TranslateService,
     private toastrService: NbToastrService,
     private userService: UsersService,
@@ -158,8 +158,8 @@ export class RolesComponent implements OnInit {
     }).onClose.subscribe(
       value => {
         if (value) {
-          // this.toastr.success(this.translate.instant('role_module.map_popup_success'),
-          //   this.translate.instant('user.title_notification'));
+          this.toastr.success(this.translate.instant('role_object.map_popup_success'),
+            this.translate.instant('common.title_notification'));
         }
       },
     );

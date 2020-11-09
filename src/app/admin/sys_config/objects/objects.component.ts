@@ -102,10 +102,10 @@ export class ObjectsComponent implements OnInit {
         if (value) {
           if (data == null) {
             this.toastr.success(this.translate.instant('objects.content_add_success'),
-              this.translate.instant('objects.title_notification'));
+              this.translate.instant('common.title_notification'));
           } else {
             this.toastr.success(this.translate.instant('objects.content_edit_success'),
-              this.translate.instant('objects.title_notification'));
+              this.translate.instant('common.title_notification'));
           }
           this.search();
           this.getParent();

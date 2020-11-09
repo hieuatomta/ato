@@ -8,6 +8,7 @@ import {HttpHeaders} from '@angular/common/http';
 import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/confirm-dialog.component';
 import {ActionService} from '../../../@core/services/action.service';
 import {ActionUpdateComponent} from './action-update/action-update.component';
+import { DashboardService } from '../../../@core/services/dashboard.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -17,6 +18,11 @@ import {ActionUpdateComponent} from './action-update/action-update.component';
 })
 export class ActionsComponent implements OnInit {
   ngOnInit(): void {
+    this.dashboardService.currentTheme.subscribe(e => {
+      if (e && this.currentTheme !== e) {
+        this.currentTheme = e
+      }
+    })
     this.search(0);
     this.actionService.doSearch({}).subscribe(res => {
       console.log(res), err => {
@@ -29,11 +35,12 @@ export class ActionsComponent implements OnInit {
     private toastr: ToastrService,
     private translate: TranslateService,
     private toastrService: NbToastrService,
+    private dashboardService: DashboardService,
     private userService: UsersService,
     private actionService: ActionService,
     private dialogService: NbDialogService) {
   }
-
+  currentTheme: any = 'default';
   isLoad: boolean;
   listStatus = [
     {name: 'common.status.1', code: 1},

@@ -19,7 +19,7 @@
 @import '~@swimlane/ngx-datatable/themes/dark.scss';
 @import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
-
+@import 'hdscreen';
 
 // install the framework and custom global styles
 @include nb-install() {
@@ -202,6 +202,27 @@ ng-dropdown-panel .ng-dropdown-panel .scroll-host {
   width: 300px;
   right: 50px;
 }
+
+
+ng-select {
+  .ng-star-inserted {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ng-value {
+    .ng-value-icon.left {
+      float: right;
+      border-right: unset!important;
+    }
+  }
+}
+
+ng-select {
+  &.ng-invalid.ng-touched {
+    border: 1px solid $danger;
+  }
+}
+
 
 .custom-select-template {
   .ng-select-container {

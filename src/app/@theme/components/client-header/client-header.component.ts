@@ -221,11 +221,11 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
       if (this.tree[x].parenID === parent) {
         this.htmlStrTxt += '<li class="tieu_de level-' + level + '"><a href="" class="nd_tieu_de">' + this.tree[x].tendulieu + '</a>';
         if (this.tree[x].check) {
-          if (level !== 0) {
-            this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-right" aria-hidden="true"></i></span>';
-          } else {
-            this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>';
-          }
+          // if (level !== 0) {
+          //   this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-right" aria-hidden="true"></i></span>';
+          // } else {
+          //   this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>';
+          // }
           this.htmlStrTxt += this.dequy(this.tree[x].id, level + 1, 0);
         }
         this.htmlStrTxt += '</li>';

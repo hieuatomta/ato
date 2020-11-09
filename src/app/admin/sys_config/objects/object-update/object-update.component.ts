@@ -41,6 +41,7 @@ export class ObjectUpdateComponent implements OnInit {
   }
 
   getParenTree(e: Number) {
+    this.loading = true;
     this.objectsService.query().subscribe(res => {
         const result = res.body.data.list.filter(function (hero) {
           return hero.type === e;
