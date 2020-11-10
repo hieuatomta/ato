@@ -21,6 +21,9 @@ const routes: Routes = [{
       path: 'roles',
       loadChildren: () => import('./sys_config/roles/roles.module')
         .then(m => m.RolesModule),
+      data: {
+        breadcrumb: 'Quản lý nhóm quyền'
+      }
     },
     {
       path: 'action',

@@ -46,6 +46,7 @@ import {AuthGuardAuthsService} from '../@core/mock/auth-guard-auths.service';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {ClientColumnLayoutComponent} from './layouts/client-column/client-column.layout';
 import {TranslateModule} from '@ngx-translate/core';
+import { BreadcrumbComponent } from './layouts/bread-crumb/bread-crumb.component';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -71,7 +72,8 @@ const COMPONENTS = [
   TwoColumnsLayoutComponent,
   ClientColumnLayoutComponent,
   ClientFooterComponent,
-  ClientHeaderComponent
+  ClientHeaderComponent,
+  BreadcrumbComponent
 ];
 const PIPES = [
   CapitalizePipe,

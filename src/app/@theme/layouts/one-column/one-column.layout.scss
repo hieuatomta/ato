@@ -7,3 +7,15 @@
     padding-top: nb-theme(layout-padding-top);
   }
 }
+
+
+app-breadcrumb {
+  position: sticky;
+  top: 76px;
+  display: block;
+  z-index: 2;
+}
+
+nb-layout-column {
+  padding-top: 0 !important;
+}

@@ -8,6 +8,9 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/pages.module')
       .then(m => m.PagesModule),
+    data: {
+      breadcrumb: 'Trang chủ'
+    },
   },
   {
     path: 'auths',
@@ -25,6 +28,9 @@ export const routes: Routes = [
 
 const config: ExtraOptions = {
   useHash: false,
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  scrollOffset: [0, 64]
 };
 
 @NgModule({
