@@ -11,6 +11,7 @@
   background-color: #222b45;
   border: 1px solid #151a30;
 }
+
 .nb-theme-cosmic .ng-select.ng-select-opened > .ng-select-container {
   background-color: #252547;
   border: 1px solid #151a30;
@@ -21,6 +22,7 @@
   border: 1px solid #151a30;
   color: #efefef;
 }
+
 .nb-theme-cosmic .ng-select .ng-select-container {
   background-color: #252547;
   border: 1px solid #151a30;
@@ -30,6 +32,7 @@
 .nb-theme-dark .ng-select .ng-select-container:hover {
   border: 1px solid #3366ff;
 }
+
 .nb-theme-cosmic .ng-select .ng-select-container:hover {
   border: 1px solid #3366ff;
 }
@@ -40,6 +43,7 @@
 .ng-value {
   background-color: #192038;
 }
+
 .nb-theme-cosmic .ng-select.ng-select-multiple
 .ng-select-container
 .ng-value-container
@@ -50,6 +54,7 @@
 .nb-theme-dark div.dropdown button {
   font-size: 0.9rem;
 }
+
 .nb-theme-cosmic div.dropdown button {
   font-size: 0.9rem;
 }
@@ -57,6 +62,7 @@
 .nb-theme-dark div.treeview-header input.form-control {
   font-size: 0.9rem;
 }
+
 .nb-theme-cosmic div.treeview-header input.form-control {
   font-size: 0.9rem;
 }
@@ -66,6 +72,7 @@
   border: 1px solid #151a30 !important;
   background-color: #192038 !important;
 }
+
 .nb-theme-cosmic .btn-outline-secondary {
   color: #6c757d !important;
   border: 1px solid #151a30 !important;
@@ -77,6 +84,7 @@
   border: 1px solid #007bff !important;
   background-color: #192038 !important;
 }
+
 .nb-theme-cosmic .btn-outline-secondary:hover {
   color: #6c757d !important;
   border: 1px solid #007bff !important;
@@ -90,6 +98,7 @@
   border: 1px solid #007bff !important;
   background-color: #192038 !important;
 }
+
 .nb-theme-cosmic .btn-outline-secondary:not(:disabled):not(.disabled):active,
 .nb-theme-cosmic .btn-outline-secondary:not(:disabled):not(.disabled).active,
 .nb-theme-cosmic .show > .btn-outline-secondary.dropdown-toggle {
@@ -103,6 +112,7 @@
   background-color: #222b45 !important;
   font-size: 0.9rem;
 }
+
 .nb-theme-cosmic .dropdown-menu {
   color: white !important;
   background-color: #252547 !important;
@@ -116,6 +126,7 @@
 .ng-value-icon.left {
   border-right: 1px solid #212b44;
 }
+
 .nb-theme-cosmic .ng-select.ng-select-multiple
 .ng-select-container
 .ng-value-container
@@ -132,6 +143,7 @@
   background-color: #192038;
   color: #3366ff;
 }
+
 .nb-theme-cosmic .ng-select.ng-select-multiple
 .ng-select-container
 .ng-value-container
@@ -145,6 +157,7 @@
   background-color: #192038;
   border: 1px solid #151a30;
 }
+
 .nb-theme-cosmic .ng-dropdown-panel .scroll-host {
   background-color: #252547;
   border: 1px solid #151a30;
@@ -154,6 +167,7 @@
   background-color: #192038;
   //border: 1px solid #151a30;
 }
+
 .nb-theme-cosmic .ng-dropdown-panel.ng-select-bottom {
   background-color: #252547;
   //border: 1px solid #151a30;
@@ -163,6 +177,7 @@
   background-color: #222b45;
   color: #eee;
 }
+
 .nb-theme-cosmic .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
   background-color: #252547;
   color: #eee;
@@ -174,6 +189,7 @@
   background-color: #475b99;
   color: #eee;
 }
+
 .nb-theme-cosmic .ng-dropdown-panel .ng-dropdown-panel-items
 .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items
 .ng-option.ng-option-selected.ng-option-marked {
@@ -196,6 +212,7 @@
 .nb-theme-dark nb-select.appearance-outline.status-primary .select-button {
   border: 1px solid #151a30;
 }
+
 .nb-theme-cosmic nb-select.appearance-outline.status-primary .select-button {
   border: 1px solid #151a30;
 }
@@ -203,6 +220,7 @@
 .nb-theme-dark nb-icon {
   font-size: 1rem;
 }
+
 .nb-theme-cosmic nb-icon {
   font-size: 1rem;
 }
@@ -214,6 +232,7 @@
 .nb-theme-dark .ng-select .ng-select-container .ng-value-container .ng-input > input {
   color: #ccc;
 }
+
 .nb-theme-cosmic .ng-select .ng-select-container .ng-value-container .ng-input > input {
   color: #ccc;
 }
@@ -266,6 +285,7 @@
 .nb-theme-dark [nbInput].size-medium {
   font-weight: normal;
 }
+
 .nb-theme-cosmic [nbInput].size-medium {
   font-weight: normal;
 }
@@ -274,6 +294,7 @@
 .ng-dropdown-panel {
   border-color: #151a30;
 }
+
 .nb-theme-cosmic .ng-dropdown-panel,
 .ng-dropdown-panel {
   border-color: #151a30;
@@ -282,6 +303,7 @@
 .nb-theme-dark .ng-dropdown-panel.ng-select-top {
   border-bottom: #151a30;
 }
+
 .nb-theme-cosmic .ng-dropdown-panel.ng-select-top {
   border-bottom: #151a30;
 }
@@ -290,6 +312,7 @@
 .nb-theme-dark nb-menu .menu-item a {
   font-weight: normal;
 }
+
 .nb-theme-cosmic nb-menu .menu-group,
 .nb-theme-cosmic nb-menu .menu-item a {
   font-weight: normal;
@@ -349,9 +372,6 @@
   outline: none !important;
 }
 
-.col-header-break {
-  white-space: initial;
-}
 
 .row-data-show {
   word-break: break-word;
@@ -364,6 +384,7 @@
   float: right;
   padding-top: 3vh;
 }
+
 .back-login-btn {
   border: none;
   background: transparent;
@@ -371,6 +392,7 @@
   float: left;
   padding-top: 3vh;
 }
+
 .back-login-btn:active {
   border: none;
   background: transparent;
@@ -407,17 +429,20 @@
   color: red;
   float: right;
 }
+
 .cut-text {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
+
 .format-data-row {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
 /*.cut-text {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -438,6 +463,7 @@
 .nb-theme-dark .slide-nav nb-icon {
   color: #ffffff;
 }
+
 .nb-theme-cosmic .slide-nav nb-icon {
   color: #ffffff;
 }
@@ -457,6 +483,7 @@ nb-toastr-container {
 .toast.toast-info {
   background-color: #2f96b4;
 }
+
 .btn-kpi-expand {
   position: absolute;
   left: 2.5vw;
@@ -470,7 +497,7 @@ nb-toastr-container {
     font-size: 0.8rem;
   }
   .chat {
-    height: 71vh!important;
+    height: 71vh !important;
   }
   .padding-top-chart-kpi {
     padding-top: 0;
@@ -528,8 +555,8 @@ nb-toastr-container {
 
       nb-card {
         nb-auth-block {
-          width: 60%!important;
-          height: 90%!important;
+          width: 60% !important;
+          height: 90% !important;
         }
       }
     }
