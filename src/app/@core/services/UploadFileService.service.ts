@@ -1,17 +1,40 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
+
 @Injectable({
-  providedIn: 'root'})
+  providedIn: 'root'
+})
 export class UploadFileService {
-  constructor(private https: HttpClient) { }
-  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
-    const data: FormData = new FormData();
-    data.append('file', file);
-    console.log(data);
-    const newRequest = new HttpRequest('POST', 'http://localhost:8081/api/savefile', data, {
-      reportProgress: true,
-      responseType: 'text'
+  constructor(private http: HttpClient) {
+  }
+
+  //
+  // upload(file: File): Observable<HttpEvent<any>> {
+  //   const formData: FormData = new FormData();
+  //
+  //   formData.append('file', file);
+  //
+  //   const req = new HttpRequest('POST', `${environment.apiUrl}/upload`, formData, {
+  //     reportProgress: true,
+  //     responseType: 'json'
+  //   });
+  //
+  //   return this.http.request(req);
+  // }
+
+  public upload(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    return this.http.post<any>(`${environment.apiUrl}/upload`, formData, {
+      observe: 'response'
     });
-    return this.https.request(newRequest);
-  }}
+  }
+
+  getFiles(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/files`);
+  }
+}
