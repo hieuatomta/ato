@@ -15,7 +15,7 @@ const routes: Routes = [
     component: ClientComponent,
     children: [
       {
-        path: 'trang-chu.html',
+        path: 'trang-chu',
         component: HomeClientComponent,
       },
       {
@@ -27,7 +27,7 @@ const routes: Routes = [
         component: AboutComponent,
       },
       {
-        path: 'danh-sach-san-pham.html',
+        path: 'danh-sach-san-pham',
         component: ProductComponent,
       },
       {
@@ -35,7 +35,7 @@ const routes: Routes = [
         component: ContactComponent,
       },
       {
-        path: 'product-detail.html',
+        path: 'product-detail',
         component: ProductDetailComponent,
       },
       // {
@@ -44,7 +44,7 @@ const routes: Routes = [
       // },
       {
         path: '',
-        redirectTo: 'trang-chu.html',
+        redirectTo: 'trang-chu',
         pathMatch: 'full',
       },
     ],
