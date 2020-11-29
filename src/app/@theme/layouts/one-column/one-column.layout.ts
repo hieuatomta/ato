@@ -16,7 +16,7 @@ import {LayoutService} from '../../../@core/utils';
       </nb-sidebar>
 
       <nb-layout-column>
-        <app-breadcrumb></app-breadcrumb>
+<!--        <app-breadcrumb></app-breadcrumb>-->
         <ng-content select="router-outlet"></ng-content>
       </nb-layout-column>
 

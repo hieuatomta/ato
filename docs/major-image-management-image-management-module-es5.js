@@ -9,10 +9,10 @@
     /***/
     "GD1I":
     /*!****************************************************************************!*\
-      !*** ./src/app/admin/major/image-management/image-management.component.ts ***!
+      !*** ./src/app/admin/major/image-management/product-management.component.ts ***!
       \****************************************************************************/
 
-    /*! exports provided: ImageManagementComponent */
+    /*! exports provided: ProductManagementComponent */
 
     /***/
     function GD1I(module, __webpack_exports__, __webpack_require__) {
@@ -173,8 +173,8 @@
           args: [{
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
             selector: 'ngx-image-management',
-            styleUrls: ['./image-management.component.scss'],
-            templateUrl: './image-management.component.html'
+            styleUrls: ['./product-management.component.scss'],
+            templateUrl: './product-management.component.html'
           }]
         }], function () {
           return [{
@@ -272,10 +272,10 @@
     /***/
     "NTsE":
     /*!*********************************************************************************!*\
-      !*** ./src/app/admin/major/image-management/image-management-routing.module.ts ***!
+      !*** ./src/app/admin/major/image-management/product-management-routing.module.ts ***!
       \*********************************************************************************/
 
-    /*! exports provided: ImageManagementRoutingModule, routedComponents */
+    /*! exports provided: ProductManagementRoutingModule, routedComponents */
 
     /***/
     function NTsE(module, __webpack_exports__, __webpack_require__) {
@@ -358,10 +358,10 @@
     /***/
     "ycRK":
     /*!*************************************************************************!*\
-      !*** ./src/app/admin/major/image-management/image-management.module.ts ***!
+      !*** ./src/app/admin/major/image-management/product-management.module.ts ***!
       \*************************************************************************/
 
-    /*! exports provided: ImageManagementModule */
+    /*! exports provided: ProductManagementModule */
 
     /***/
     function ycRK(module, __webpack_exports__, __webpack_require__) {

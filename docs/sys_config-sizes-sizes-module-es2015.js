@@ -64,9 +64,9 @@ SizeService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 
 /***/ "GVtd":
 /*!*****************************************************************************!*\
-  !*** ./src/app/admin/sys_config/sizes/size-update/size-update.component.ts ***!
+  !*** ./src/app/admin/sys_config/sizes/products-update/products-update.component.ts ***!
   \*****************************************************************************/
-/*! exports provided: SizeUpdateComponent */
+/*! exports provided: ProductsUpdateComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -153,7 +153,7 @@ class SizeUpdateComponent {
     }
 }
 SizeUpdateComponent.ɵfac = function SizeUpdateComponent_Factory(t) { return new (t || SizeUpdateComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_core_mock_toastr_service__WEBPACK_IMPORTED_MODULE_1__["ToastrService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbToastrService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbDialogRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_core_services_size_service__WEBPACK_IMPORTED_MODULE_4__["SizeService"])); };
-SizeUpdateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SizeUpdateComponent, selectors: [["ngx-size-update"]], decls: 51, vars: 42, consts: [["nbSpinnerSize", "giant", "nbSpinnerStatus", "primary", "fullWidth", "", 2, "position", "relative", 3, "nbSpinner"], [1, "card-header-title"], [1, "bt-action"], ["ghost", "", "size", "tiny", "nbButton", "", 1, "objLink", "float-right", 3, "click"], ["icon", "close-outline"], [3, "formGroup"], [1, "mb-4"], [1, "row"], [1, "col-lg-6", "form-group"], [1, "label"], [2, "color", "red"], ["type", "text", "formControlName", "code", "nbInput", "", "fullWidth", "", "trim", "blur", 1, "custom-border", 3, "ngClass"], [3, "message", "formName"], ["formControlName", "name", "type", "text", "nbInput", "", "fullWidth", "", "trim", "blur", 1, "custom-border", 3, "ngClass"], ["rows", "3", "type", "text", "formControlName", "description", "nbInput", "", "fullWidth", "", "trim", "blur", 3, "ngClass"], ["fullWidth", "", "formControlName", "status", 2, "display", "block !important"], [1, "text-right"], ["nbButton", "", "type", "button", "status", "primary", "id", "dialogCancelBtn", 3, "click"], ["nbButton", "", "type", "button", "nbButton", "", 1, "ml-2", 3, "click"]], template: function SizeUpdateComponent_Template(rf, ctx) { if (rf & 1) {
+SizeUpdateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SizeUpdateComponent, selectors: [["ngx-products-update"]], decls: 51, vars: 42, consts: [["nbSpinnerSize", "giant", "nbSpinnerStatus", "primary", "fullWidth", "", 2, "position", "relative", 3, "nbSpinner"], [1, "card-header-title"], [1, "bt-action"], ["ghost", "", "size", "tiny", "nbButton", "", 1, "objLink", "float-right", 3, "click"], ["icon", "close-outline"], [3, "formGroup"], [1, "mb-4"], [1, "row"], [1, "col-lg-6", "form-group"], [1, "label"], [2, "color", "red"], ["type", "text", "formControlName", "code", "nbInput", "", "fullWidth", "", "trim", "blur", 1, "custom-border", 3, "ngClass"], [3, "message", "formName"], ["formControlName", "name", "type", "text", "nbInput", "", "fullWidth", "", "trim", "blur", 1, "custom-border", 3, "ngClass"], ["rows", "3", "type", "text", "formControlName", "description", "nbInput", "", "fullWidth", "", "trim", "blur", 3, "ngClass"], ["fullWidth", "", "formControlName", "status", 2, "display", "block !important"], [1, "text-right"], ["nbButton", "", "type", "button", "status", "primary", "id", "dialogCancelBtn", 3, "click"], ["nbButton", "", "type", "button", "nbButton", "", 1, "ml-2", 3, "click"]], template: function SizeUpdateComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "nb-card", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "nb-card-header", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
@@ -267,9 +267,9 @@ SizeUpdateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
                 encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
-                selector: 'ngx-size-update',
-                styleUrls: ['./size-update.component.scss'],
-                templateUrl: './size-update.component.html',
+                selector: 'ngx-products-update',
+                styleUrls: ['./products-update.component.scss'],
+                templateUrl: './products-update.component.html',
             }]
     }], function () { return [{ type: _core_mock_toastr_service__WEBPACK_IMPORTED_MODULE_1__["ToastrService"] }, { type: _nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbToastrService"] }, { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"] }, { type: _nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbDialogRef"] }, { type: _core_services_size_service__WEBPACK_IMPORTED_MODULE_4__["SizeService"] }]; }, null); })();
 
@@ -278,9 +278,9 @@ SizeUpdateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
 
 /***/ "OcSf":
 /*!****************************************************************!*\
-  !*** ./src/app/admin/sys_config/sizes/sizes-routing.module.ts ***!
+  !*** ./src/app/admin/sys_config/sizes/logs-routing.module.ts ***!
   \****************************************************************/
-/*! exports provided: SizesRoutingModule, routedComponents */
+/*! exports provided: LogsRoutingModule, routedComponents */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -321,9 +321,9 @@ const routedComponents = [
 
 /***/ "p4/A":
 /*!********************************************************!*\
-  !*** ./src/app/admin/sys_config/sizes/sizes.module.ts ***!
+  !*** ./src/app/admin/sys_config/sizes/logs.module.ts ***!
   \********************************************************/
-/*! exports provided: SizesModule */
+/*! exports provided: LogsModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -333,7 +333,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "aceb");
 /* harmony import */ var _theme_theme_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../@theme/theme.module */ "vTDv");
 /* harmony import */ var _sizes_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sizes-routing.module */ "OcSf");
-/* harmony import */ var _size_update_size_update_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./size-update/size-update.component */ "GVtd");
+/* harmony import */ var _size_update_size_update_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products-update/products-update.component */ "GVtd");
 /* harmony import */ var ng2_smart_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng2-smart-table */ "RS3s");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ "sYmb");
@@ -436,9 +436,9 @@ SizesModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInject
 
 /***/ "s49W":
 /*!***********************************************************!*\
-  !*** ./src/app/admin/sys_config/sizes/sizes.component.ts ***!
+  !*** ./src/app/admin/sys_config/sizes/logs.component.ts ***!
   \***********************************************************/
-/*! exports provided: SizesComponent */
+/*! exports provided: LogsComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -452,7 +452,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_users_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../@core/services/users.service */ "vqVJ");
 /* harmony import */ var _shares_directives_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../shares/directives/confirm-dialog/confirm-dialog.component */ "OnsB");
 /* harmony import */ var _core_services_size_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../@core/services/size.service */ "1cPg");
-/* harmony import */ var _size_update_size_update_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./size-update/size-update.component */ "GVtd");
+/* harmony import */ var _size_update_size_update_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products-update/products-update.component */ "GVtd");
 /* harmony import */ var _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ng-select/ng-select */ "ZOsW");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @swimlane/ngx-datatable */ "lDzL");
@@ -805,8 +805,8 @@ SizesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
         args: [{
                 encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
                 selector: 'ngx-users',
-                styleUrls: ['./sizes.component.scss'],
-                templateUrl: './sizes.component.html',
+                styleUrls: ['./logs.component.scss'],
+                templateUrl: './logs.component.html',
             }]
     }], function () { return [{ type: _core_mock_toastr_service__WEBPACK_IMPORTED_MODULE_2__["ToastrService"] }, { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"] }, { type: _nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbToastrService"] }, { type: _core_services_users_service__WEBPACK_IMPORTED_MODULE_5__["UsersService"] }, { type: _core_services_size_service__WEBPACK_IMPORTED_MODULE_7__["SizeService"] }, { type: _nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbDialogService"] }]; }, null); })();
 
