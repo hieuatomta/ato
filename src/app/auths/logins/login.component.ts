@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       name: new FormControl(this.getCookie('name'), [checkUser, Validators.maxLength(50), Validators.required]),
       pass: new FormControl(this.getCookie('pass'), [notSpaceLogin, Validators.minLength(6), Validators.maxLength(60), Validators.required]),
       remember: new FormControl(this.getCookie('remember'), []),
-      // recaptchaReactive: new FormControl(null, [Validators.required])
+      recaptchaReactive: new FormControl(null, [Validators.required])
     });
   }
 

@@ -37,12 +37,12 @@
             <label for="remember" class="form-check-label"
                    style="color: #292D34 !important;justify-content: center;">{{ 'login.remember' | translate}}</label>
           </div>
-<!--          <div class="form-group">-->
-<!--            <re-captcha style="display: flex; justify-content: center;"-->
-<!--                        formControlName="recaptchaReactive"></re-captcha>-->
-<!--          </div>-->
-<!--          <ngx-inline-message [message]="'login.recaptchaReactive'|translate"-->
-<!--                              [formName]="inputUser.get('recaptchaReactive')"></ngx-inline-message>-->
+          <div class="form-group">
+            <re-captcha style="display: flex; justify-content: center;"
+                        formControlName="recaptchaReactive"></re-captcha>
+          </div>
+          <ngx-inline-message [message]="'login.recaptchaReactive'|translate"
+                              [formName]="inputUser.get('recaptchaReactive')"></ngx-inline-message>
           <div class="modal-buttons">
             <a routerLink="/auths/confirmEmail">{{ 'login.confirmEmail' | translate}}</a>
             <button class="btn btn-main" [disabled]="inputUser.invalid">{{ 'login.login' | translate}}</button>

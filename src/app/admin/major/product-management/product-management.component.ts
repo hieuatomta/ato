@@ -43,8 +43,10 @@ export class ProductManagementComponent implements OnInit {
 
   isLoad: boolean;
   listStatus = [
-    {name: 'common.status.1', code: 1},
-    {name: 'common.status.0', code: 0}
+    {name: 'common.state.1', code: 1},
+    {name: 'common.state.0', code: 0},
+    {name: 'common.state.2', code: 2},
+    {name: 'common.state.3', code: 3},
   ];
   rows: Object[];
   page = {
@@ -54,9 +56,12 @@ export class ProductManagementComponent implements OnInit {
   };
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
-    {name: 'common.table.item_product_name', prop: 'name', flexGrow: 1.5},
     {name: 'common.table.item_product_code', prop: 'code', flexGrow: 1},
+    {name: 'common.table.item_product_name', prop: 'name', flexGrow: 1.5},
+    {name: 'common.table.item_product_cost', prop: 'price', flexGrow: 1},
+    {name: 'common.table.item_product_total', prop: 'totalProduct', flexGrow: 1},
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
+    {name: 'common.table.item_product_paren_object', prop: 'parenObject', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
