@@ -127,10 +127,10 @@
     /***/
     "GVtd":
     /*!*****************************************************************************!*\
-      !*** ./src/app/admin/sys_config/sizes/size-update/size-update.component.ts ***!
+      !*** ./src/app/admin/sys_config/sizes/products-update/products-update.component.ts ***!
       \*****************************************************************************/
 
-    /*! exports provided: SizeUpdateComponent */
+    /*! exports provided: ProductsUpdateComponent */
 
     /***/
     function GVtd(module, __webpack_exports__, __webpack_require__) {
@@ -290,7 +290,7 @@
 
       SizeUpdateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
         type: SizeUpdateComponent,
-        selectors: [["ngx-size-update"]],
+        selectors: [["ngx-products-update"]],
         decls: 51,
         vars: 42,
         consts: [["nbSpinnerSize", "giant", "nbSpinnerStatus", "primary", "fullWidth", "", 2, "position", "relative", 3, "nbSpinner"], [1, "card-header-title"], [1, "bt-action"], ["ghost", "", "size", "tiny", "nbButton", "", 1, "objLink", "float-right", 3, "click"], ["icon", "close-outline"], [3, "formGroup"], [1, "mb-4"], [1, "row"], [1, "col-lg-6", "form-group"], [1, "label"], [2, "color", "red"], ["type", "text", "formControlName", "code", "nbInput", "", "fullWidth", "", "trim", "blur", 1, "custom-border", 3, "ngClass"], [3, "message", "formName"], ["formControlName", "name", "type", "text", "nbInput", "", "fullWidth", "", "trim", "blur", 1, "custom-border", 3, "ngClass"], ["rows", "3", "type", "text", "formControlName", "description", "nbInput", "", "fullWidth", "", "trim", "blur", 3, "ngClass"], ["fullWidth", "", "formControlName", "status", 2, "display", "block !important"], [1, "text-right"], ["nbButton", "", "type", "button", "status", "primary", "id", "dialogCancelBtn", 3, "click"], ["nbButton", "", "type", "button", "nbButton", "", 1, "ml-2", 3, "click"]],
@@ -531,9 +531,9 @@
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
           args: [{
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
-            selector: 'ngx-size-update',
-            styleUrls: ['./size-update.component.scss'],
-            templateUrl: './size-update.component.html'
+            selector: 'ngx-products-update',
+            styleUrls: ['./products-update.component.scss'],
+            templateUrl: './products-update.component.html'
           }]
         }], function () {
           return [{
@@ -556,10 +556,10 @@
     /***/
     "OcSf":
     /*!****************************************************************!*\
-      !*** ./src/app/admin/sys_config/sizes/sizes-routing.module.ts ***!
+      !*** ./src/app/admin/sys_config/sizes/logs-routing.module.ts ***!
       \****************************************************************/
 
-    /*! exports provided: SizesRoutingModule, routedComponents */
+    /*! exports provided: LogsRoutingModule, routedComponents */
 
     /***/
     function OcSf(module, __webpack_exports__, __webpack_require__) {
@@ -642,10 +642,10 @@
     /***/
     "p4/A":
     /*!********************************************************!*\
-      !*** ./src/app/admin/sys_config/sizes/sizes.module.ts ***!
+      !*** ./src/app/admin/sys_config/sizes/logs.module.ts ***!
       \********************************************************/
 
-    /*! exports provided: SizesModule */
+    /*! exports provided: LogsModule */
 
     /***/
     function p4A(module, __webpack_exports__, __webpack_require__) {
@@ -686,7 +686,7 @@
 
 
       var _size_update_size_update_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! ./size-update/size-update.component */
+      /*! ./products-update/products-update.component */
       "GVtd");
       /* harmony import */
 
@@ -771,10 +771,10 @@
     /***/
     "s49W":
     /*!***********************************************************!*\
-      !*** ./src/app/admin/sys_config/sizes/sizes.component.ts ***!
+      !*** ./src/app/admin/sys_config/sizes/logs.component.ts ***!
       \***********************************************************/
 
-    /*! exports provided: SizesComponent */
+    /*! exports provided: LogsComponent */
 
     /***/
     function s49W(module, __webpack_exports__, __webpack_require__) {
@@ -839,7 +839,7 @@
 
 
       var _size_update_size_update_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-      /*! ./size-update/size-update.component */
+      /*! ./products-update/products-update.component */
       "GVtd");
       /* harmony import */
 
@@ -1501,8 +1501,8 @@
           args: [{
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
             selector: 'ngx-users',
-            styleUrls: ['./sizes.component.scss'],
-            templateUrl: './sizes.component.html'
+            styleUrls: ['./logs.component.scss'],
+            templateUrl: './logs.component.html'
           }]
         }], function () {
           return [{

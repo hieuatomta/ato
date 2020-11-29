@@ -9,7 +9,7 @@
     "content_add_success": "Thêm người dùng thành công",
     "content_edit_success": "Sửa thông tin thành công",
     "delete_success": "Xóa người dùng thành công"
-    },
+  },
   "roles": {
     "title": "Quản lý nhóm quyền",
     "title_add": "Thêm mới quyền",
@@ -65,7 +65,10 @@
     "delete_success": "Xóa chức năng thành công",
     "title_map_popup": "chức năng"
   },
+  "logs": {
+    "title": "Theo dõi lịch sử tác động"
+  },
   "role_object": {
-    "map_popup_success" : "Sửa thành công"
+    "map_popup_success": "Sửa thành công"
   }
 }
