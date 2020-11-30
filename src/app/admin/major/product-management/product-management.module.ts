@@ -26,31 +26,32 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {SharedModule} from '../../../shares/shared.module';
 import {ProductManagementComponent} from './product-management.component';
 import {ProductsUpdateComponent} from './products-update/products-update.component';
+import {DropdownTreeviewSelectModule} from '../../../shares/directives/tree-picker/ngx-treeview/dropdown-treeview-select';
 
 
 @NgModule({
-  imports: [
-    ThemeModule,
-    ProductManagementRoutingModule,
-    NbInputModule,
-    NbCardModule,
-    NbButtonModule,
-    NbActionsModule,
-    NbUserModule,
-    NbCheckboxModule,
-    NbRadioModule,
-    NbDatepickerModule,
-    NbSelectModule,
-    NbIconModule,
-    ngFormsModule,
-    Ng2SmartTableModule,
-    NbFormFieldModule,
-    TranslateModule,
-    NgSelectModule, SharedModule,
-    ReactiveFormsModule,
-    NgxDatatableModule,
-    NbSpinnerModule, NbToggleModule,
-  ],
+    imports: [
+        ThemeModule,
+        ProductManagementRoutingModule,
+        NbInputModule,
+        NbCardModule,
+        NbButtonModule,
+        NbActionsModule,
+        NbUserModule,
+        NbCheckboxModule,
+        NbRadioModule,
+        NbDatepickerModule,
+        NbSelectModule,
+        NbIconModule,
+        ngFormsModule,
+        Ng2SmartTableModule,
+        NbFormFieldModule,
+        TranslateModule,
+        NgSelectModule, SharedModule,
+        ReactiveFormsModule,
+        NgxDatatableModule,
+        NbSpinnerModule, NbToggleModule, DropdownTreeviewSelectModule,
+    ],
   entryComponents: [],
   declarations: [ProductManagementComponent, ProductsUpdateComponent],
 })
