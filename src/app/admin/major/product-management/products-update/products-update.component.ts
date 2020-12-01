@@ -7,6 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {TreeviewConfig, TreeviewItem} from 'ngx-treeview';
 import {ObjectsService} from '../../../../@core/services/objects.service';
 import {ColorService} from '../../../../@core/services/color.service';
+import {ProductsService} from '../../../../@core/services/products.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -20,7 +21,7 @@ export class ProductsUpdateComponent implements OnInit {
     {name: 'common.status.1', code: 1},
     {name: 'common.status.0', code: 0}
   ];
-  inputSize: any;
+  inputProduct: any;
   itemRoles: any;
   loading = false;
   title: string;
@@ -37,25 +38,27 @@ export class ProductsUpdateComponent implements OnInit {
   });
 
   parenIdChange($event) {
-    this.inputSize.get('parenId').setValue($event);
+    this.inputProduct.get('parenId').setValue($event);
   }
 
   ngOnInit(): void {
-    this.inputSize = new FormGroup({
+    this.inputProduct = new FormGroup({
       id: new FormControl(this.data?.id, []),
       name: new FormControl(null, [Validators.required]),
       code: new FormControl(null, [Validators.required]),
+      cost: new FormControl(null, [Validators.required]),
+      amount: new FormControl(null, [Validators.required]),
       description: new FormControl(null, []),
       status: new FormControl(null, [Validators.required]),
-      lstRole1: new FormControl(null, []),
-      lstRole: new FormControl(null, []),
+      size: new FormControl(null, []),
+      color: new FormControl(null, []),
       parenId: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
     });
-    this.inputSize.get('status').setValue(true);
+    this.inputProduct.get('status').setValue(true);
     if (this.data) {
-      this.inputSize.patchValue(this.data);
+      this.inputProduct.patchValue(this.data);
       const status = this.data.status === 1 ? true : false;
-      this.inputSize.get('status').patchValue(status);
+      this.inputProduct.get('status').patchValue(status);
     };
 
     this.sizeService.query().subscribe(res => {
@@ -114,18 +117,20 @@ export class ProductsUpdateComponent implements OnInit {
     private translate: TranslateService,
     public ref: NbDialogRef<ProductsUpdateComponent>,
     private sizeService: SizeService,
+    private productsService: ProductsService,
     private colorService: ColorService,
     ) {
   }
 
 
   submit() {
-    this.inputSize.get('status').patchValue(this.inputSize.get('status').value ? 1 : 0);
-    this.inputSize.markAllAsTouched();
-    if (this.inputSize.valid) {
+    this.inputProduct.get('status').patchValue(this.inputProduct.get('status').value ? 1 : 0);
+    this.inputProduct.markAllAsTouched();
+    if (this.inputProduct.valid) {
       this.loading = true;
       if (this.data == null) {
-        this.sizeService.insert(this.inputSize.value).subscribe(
+        console.log(this.inputProduct.value);
+        this.productsService.insert(this.inputProduct.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
             this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
@@ -134,7 +139,7 @@ export class ProductsUpdateComponent implements OnInit {
           () => this.loading = false
         );
       } else {
-        this.sizeService.update(this.inputSize.value).subscribe(
+        this.productsService.update(this.inputProduct.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
             this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
