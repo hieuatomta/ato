@@ -51,6 +51,7 @@
                                           (valueChange)="parenIdChange($event)">
             </ngx-dropdown-treeview-select>
           </div>
+
           <div class="col-lg-3 form-group">
             <label class="label">{{ 'common.table.item_product_size' | translate }}</label>
             <ng-select [clearAllText]="'common.clearAllText'"
@@ -83,12 +84,7 @@
                                 [formName]="inputProduct.get('amount')"></ngx-inline-message>
           </div>
           <div class="col-lg-3 form-group">
-            <label class="label">
-              {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
-            </label>
-            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>
-            <ngx-inline-message [message]="'common.table.item_status'|translate"
-                                [formName]="inputProduct.get('status')"></ngx-inline-message>
+            <button nbButton type="button" status="primary" (click)="addSizeColor()">{{ 'common.add' | translate }}</button>
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
@@ -99,6 +95,47 @@
             </textarea>
           </div>
 
+          <div class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
+            </label>
+            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>
+            <ngx-inline-message [message]="'common.table.item_status'|translate"
+                                [formName]="inputProduct.get('status')"></ngx-inline-message>
+          </div>
+
+          <div class="col-lg-12 form-group">
+
+            <span *ngFor="let test of rows">mau: {{test.idColor}} - {{test.idSize}} - {{test.amount}} <br> </span>
+<!--            <span *ngFor="test of rows">kich thuoc: {{test.size}}</span>-->
+<!--            <span *ngFor="test of rows">so luong: {{test.amount}}</span>-->
+
+          <ngx-datatable ngxResizeWatcher class="material"
+                         [columnMode]="'flex'"
+                         [rows]="rows"
+                         [columns]="columns"
+                         rowHeight="auto"
+                         [footerHeight]="50"
+                         [headerHeight]="50"
+                         (page)="addSizeColor()"
+                         [messages]="{ emptyMessage: 'common.notFoundText' | translate, totalMessage: 'common.totalMessage' | translate }">
+            <ng-container *ngFor="let col of columns">
+              <ngx-datatable-column prop="{{col.prop}}" name="{{col.name}}" [flexGrow]="col.flexGrow">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                  {{ column.name | translate }}
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template let-row="row" let-rowIndex='rowIndex'>
+                  <ng-container
+                    *ngIf=" col.prop ==='amount' || col.prop ==='color' || col.prop ==='size' "
+                    class="text-right">
+                  <span class="row-data-show"
+                        title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
+                  </ng-container>
+                </ng-template>
+              </ngx-datatable-column>
+            </ng-container>
+          </ngx-datatable>
+          </div>
 
         </div>
       </div>

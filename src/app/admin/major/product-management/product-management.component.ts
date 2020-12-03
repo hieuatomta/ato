@@ -112,6 +112,7 @@ export class ProductManagementComponent implements OnInit {
     this.page.count = data.totalPages;
     this.page.offset = page || 0;
     this.rows = data.list || [];
+    console.log(this.rows);
   }
 
   search(pageToLoad: number) {
