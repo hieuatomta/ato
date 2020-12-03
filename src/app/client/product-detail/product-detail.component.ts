@@ -1,5 +1,9 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ToastrService} from '../../@core/mock/toastr-service';
+import {TranslateService} from '@ngx-translate/core';
+import {HttpHeaders} from '@angular/common/http';
+import {ProductsService} from '../../@core/services/products.service';
 
 declare var $: any;
 
@@ -15,29 +19,55 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   key: any;
   obj: any;
+  rows: any;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private toastr: ToastrService,
+              private translateService: TranslateService,
+              public productsService: ProductsService,
+              private router: Router) {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.key = params['key'];
     });
-    this.obj = null;
-    console.log(this.key);
-    for (let i = 0; i < this.lstData.length; i++) {
-      if (this.lstData[i].code === this.key) {
-        this.obj = this.lstData[i];
-        console.log(this.lstData[i]);
-        console.log(this.obj);
-      }
-    }
-    if (this.obj === null) {
-      // chuyen ve trang home bao loi ko tim thay san pham
-    }
+    this.search(this.key, 0);
+    // this.obj = null;
+    // console.log(this.key);
+    // for (let i = 0; i < this.lstData.length; i++) {
+    //   if (this.lstData[i].code === this.key) {
+    //     this.obj = this.lstData[i];
+    //     console.log(this.lstData[i]);
+    //     console.log(this.obj);
+    //   }
+    // }
+    // if (this.obj === null) {
+    //   // chuyen ve trang home bao loi ko tim thay san pham
+    //   this.toastr.showToast('danger', 'Thông báo', 'Có lỗi trong quá trình xử lý');
+    //   this.router.navigate(['trang-chu']);
+    // }
+  }
+
+  search(code: any, pageToLoad: number) {
+    this.productsService.doSearch1({}, {code: code, status: 0}).subscribe(
+      (res) => {
+        this.onSuccess(res.body.data, res.headers, pageToLoad);
+      },
+      (error) => {
+      },
+    );
+  }
+
+  protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
+    // this.page.count = data.totalPages;
+    // this.page.offset = page || 0;
+    console.log(data);
+    this.rows = data.list || [];
+    this.obj = this.rows[0];
     console.log(this.obj);
   }
 
   lstData = [
     {
-      code: 'sp01',
+      code: 'test1',
       image: [{link: 'assets/images/product-02.jpg'},
         {link: 'assets/images/product-01.jpg'},
         {link: 'assets/images/product-03.jpg'},

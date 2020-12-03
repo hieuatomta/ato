@@ -45,7 +45,7 @@
               {{ 'common.table.item_product_paren_object' | translate }}
             </label>
             <ngx-dropdown-treeview-select [items]="item"
-                                          [value]="inputProduct.get('parenId').value"
+                                          [value]="inputProduct.get('parenObject').value"
                                           [config]="treeViewConfig"
                                           class="dropdown-treeview"
                                           (valueChange)="parenIdChange($event)">

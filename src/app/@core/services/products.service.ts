@@ -24,6 +24,13 @@ export class ProductsService {
       observe: 'response'
     });
   }
+  public doSearch1(req?: any, body?: any): Observable<any> {
+    const options = createRequestOption(req);
+    return this.http.post<any[]>(`${environment.apiUrl}/products/doSearch1`, body, {
+      params: options,
+      observe: 'response'
+    });
+  }
 
   public update(data: any): Observable<any> {
     return this.http.put<any>(`${environment.apiUrl}/products/update`, data, {

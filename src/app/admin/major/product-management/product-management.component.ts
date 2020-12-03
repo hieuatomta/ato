@@ -43,8 +43,8 @@ export class ProductManagementComponent implements OnInit {
 
   isLoad: boolean;
   listStatus = [
-    {name: 'common.state.1', code: 1},
     {name: 'common.state.0', code: 0},
+    {name: 'common.state.1', code: 1},
     {name: 'common.state.2', code: 2},
     {name: 'common.state.3', code: 3},
   ];

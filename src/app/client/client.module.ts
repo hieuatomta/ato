@@ -25,32 +25,34 @@ import {ContactComponent} from './contact/contact.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ProductComponent} from './products/product.component';
-import { SearchFilterComponent } from './search-filter/search-filter.component';
+import {SearchFilterComponent} from './search-filter/search-filter.component';
 import {ListProductComponent} from './list-product/list-product.component';
+import {JwPaginationModule} from 'jw-angular-pagination';
 
 
 @NgModule({
-    imports: [
-        ClientRoutingModule,
-        ThemeModule,
-        NbMenuModule,
-        NbCardModule,
-        NbAlertModule,
-        FormsModule,
-        NbInputModule,
-        NbCheckboxModule,
-        NbIconModule,
-        ReactiveFormsModule,
-        NbLayoutModule,
-        NbSpinnerModule,
-        RecaptchaModule,
-        RecaptchaFormsModule,
-        ReactiveFormsModule,
-        TranslateModule,
-        SharedModule,
-        SlideshowModule,
-        NgbModule
-    ],
+  imports: [
+    JwPaginationModule,
+    ClientRoutingModule,
+    ThemeModule,
+    NbMenuModule,
+    NbCardModule,
+    NbAlertModule,
+    FormsModule,
+    NbInputModule,
+    NbCheckboxModule,
+    NbIconModule,
+    ReactiveFormsModule,
+    NbLayoutModule,
+    NbSpinnerModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    SharedModule,
+    SlideshowModule,
+    NgbModule
+  ],
   declarations: [
     SearchFilterComponent,
     ClientComponent,

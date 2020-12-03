@@ -74,7 +74,7 @@ export class ProductsUpdateComponent implements OnInit {
       amount: new FormControl(null, []),
       size: new FormControl(null, []),
       color: new FormControl(null, []),
-      parenId: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
+      parenObject: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
     });
     this.inputProduct.get('status').setValue(true);
     if (this.data) {
@@ -117,7 +117,7 @@ export class ProductsUpdateComponent implements OnInit {
   }
 
   parenIdChange($event) {
-    this.inputProduct.get('parenId').setValue($event);
+    this.inputProduct.get('parenObject').setValue($event);
   }
 
 
