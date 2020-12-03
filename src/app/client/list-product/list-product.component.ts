@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {ProductsService} from '../../@core/services/products.service';
+import {HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -9,6 +11,39 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class ListProductComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
+  }
+  isLoad: any;
+  constructor(public productsService: ProductsService) {
+
+  }
+  page = {
+    limit: 5,
+    count: 0,
+    offset: 0,
+  };
+  search(pageToLoad: number) {
+    this.isLoad = true;
+    this.page.offset = pageToLoad;
+    this.productsService.doSearch({
+      page: this.page.offset,
+      size: this.page.limit
+    }, {}).subscribe(
+      (res) => {
+        this.onSuccess(res.body.data, res.headers, pageToLoad);
+      },
+      (error) => {
+        this.isLoad = false;
+      },
+      () => this.isLoad = false,
+    );
+  }
+
+  rows: any;
+  protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
+    // this.page.count = data.totalPages;
+    // this.page.offset = page || 0;
+    this.rows = data.list || [];
+    console.log(this.rows);
   }
 
   data: {
@@ -77,6 +112,6 @@ export class ListProductComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-
+    this.search(0);
   }
 }

@@ -39,10 +39,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     {
       code: 'sp01',
       image: [{link: 'assets/images/product-02.jpg'},
-        {link: 'assets/images/product-02.jpg'},
-        {link: 'assets/images/product-02.jpg'},
-        {link: 'assets/images/product-02.jpg'},
-        {link: 'assets/images/product-02.jpg'}],
+        {link: 'assets/images/product-01.jpg'},
+        {link: 'assets/images/product-03.jpg'},
+        {link: 'assets/images/product-04.jpg'},
+        {link: 'assets/images/product-05.jpg'}],
       name: 'Herschel supply',
       price: '$35.31',
       type: 'women'
