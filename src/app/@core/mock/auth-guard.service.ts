@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
     let checkRole = false;
     const obj = JSON.parse(localStorage.getItem('objects'));
     try {
-      if (state.url === '/pages/home' || state.url === '/pages/404') {
+      if (state.url === '/admin/home' || state.url === '/admin/404') {
         return true;
       }
       for (let i = 0; i < obj?.length; i++) {
@@ -28,7 +28,7 @@ export class AuthGuardService implements CanActivate {
         }
       }
       if (!checkRole) {
-        this.router.navigate(['/pages/home']);
+        this.router.navigate(['/admin/home']);
         return false;
       }
     } catch (e) {

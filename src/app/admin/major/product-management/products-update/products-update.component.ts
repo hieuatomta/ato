@@ -19,10 +19,6 @@ import {ColumnChangesService, DimensionsHelper, ScrollbarHelper} from '@swimlane
 })
 export class ProductsUpdateComponent implements OnInit {
   lstRole = [];
-  listStatus = [
-    {name: 'common.status.1', code: 1},
-    {name: 'common.status.0', code: 0}
-  ];
   inputProduct: any;
   inputSizeColor: any;
   itemRoles: any;
@@ -46,6 +42,12 @@ export class ProductsUpdateComponent implements OnInit {
     {name: 'common.table.item_product_total', prop: 'amount', flexGrow: 1},
   ];
 
+  listStatus = [
+    {name: 'common.state.0', code: 0},
+    {name: 'common.state.1', code: 1},
+    {name: 'common.state.2', code: 2},
+    {name: 'common.state.3', code: 3},
+  ];
   arr = [];
 
 

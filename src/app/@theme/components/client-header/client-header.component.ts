@@ -129,7 +129,7 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
       id: 1,
       parenID: 0,
       tendulieu: 'Trang chủ',
-      check: true
+      // check: true
     },
     {
       id: 2,

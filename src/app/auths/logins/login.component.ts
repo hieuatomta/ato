@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private translateService: TranslateService,
+              private translate: TranslateService,
               private toastr: ToastrService) {
 
   }
@@ -35,7 +36,26 @@ export class LoginComponent implements OnInit {
   isLoad: boolean;
   submitted = false;
   showPassword = false;
+  languages = [
+    {
+      value: 'en',
+      name: 'English',
+    },
+    {
+      value: 'vi',
+      name: 'Vietnamese',
+    },
+  ];
+  currentLanguage = this.getLanguage();
+  getLanguage() {
+    let language = localStorage.getItem('languageName');
+    if (language === undefined || language === null) {
+      language = 'vi';
+    }
 
+    return language;
+
+  }
   initForm() {
     this.inputUser = new FormGroup({
       name: new FormControl(this.getCookie('name'), [checkUser, Validators.maxLength(50), Validators.required]),
@@ -63,6 +83,13 @@ export class LoginComponent implements OnInit {
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  changeLanguage(languageName: string) {
+    console.log(languageName);
+    localStorage.setItem('languageName', languageName);
+    this.translate.use(languageName);
+
   }
 
   onSubmit() {

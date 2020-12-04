@@ -1,10 +1,13 @@
 import {ExtraOptions, RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {HomeClientComponent} from './client/home_client/home-client.component';
+import {AuthGuardService} from './@core/mock/auth-guard.service';
+import {AuthGuardAuthsService} from './@core/mock/auth-guard-auths.service';
 
 
 export const routes: Routes = [
   {
+    canActivate: [AuthGuardService],
     path: 'admin',
     loadChildren: () => import('./admin/pages.module')
       .then(m => m.PagesModule),
@@ -13,6 +16,7 @@ export const routes: Routes = [
     },
   },
   {
+    canActivate: [AuthGuardAuthsService],
     path: 'auths',
     loadChildren: () => import('./auths/auths.module')
       .then(m => m.AuthsModule),

@@ -21,28 +21,30 @@ import {RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSett
 import {TranslateModule} from '@ngx-translate/core';
 import {SharedModule} from '../shares/shared.module';
 import { ChangePassComponent } from './changePass/changePass.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 @NgModule({
-  imports: [
-    AuthsRoutingModule,
-    ThemeModule,
-    NbMenuModule,
-    NbCardModule,
-    NbAlertModule,
-    FormsModule,
-    NbInputModule,
-    NbCheckboxModule,
-    NbIconModule,
-    ReactiveFormsModule,
-    NbLayoutModule,
-    NbSpinnerModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    SharedModule,
-  ],
+    imports: [
+        AuthsRoutingModule,
+        ThemeModule,
+        NbMenuModule,
+        NbCardModule,
+        NbAlertModule,
+        FormsModule,
+        NbInputModule,
+        NbCheckboxModule,
+        NbIconModule,
+        ReactiveFormsModule,
+        NbLayoutModule,
+        NbSpinnerModule,
+        RecaptchaModule,
+        RecaptchaFormsModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        SharedModule,
+        NgSelectModule,
+    ],
   declarations: [
     ChangePassComponent,
     LoginComponent,

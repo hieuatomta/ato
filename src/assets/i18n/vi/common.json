@@ -1,7 +1,7 @@
 {
   "common": {
     "header": {
-      "title": "Hệ thống gì đó chưa nghĩ ra tên",
+      "title": "Hệ thống quản lý bán quần áo",
       "menu": {
         "profile": "Thông tin cá nhân",
         "changePass": "Đổi mật khẩu",

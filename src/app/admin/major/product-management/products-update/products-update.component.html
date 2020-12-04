@@ -99,7 +99,15 @@
             <label class="label">
               {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
             </label>
-            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>
+            <ng-select [clearAllText]="'common.clearAllText'"
+                       placeholder="{{'common.placeHolder' |translate}}"
+                       notFoundText="{{'common.notFoundText' |translate}}"
+                       fullWidth formControlName="status" >
+              <ng-option *ngFor="let item of listStatus" [value]="item.code">
+                <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
+              </ng-option>
+            </ng-select>
+<!--            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>-->
             <ngx-inline-message [message]="'common.table.item_status'|translate"
                                 [formName]="inputProduct.get('status')"></ngx-inline-message>
           </div>
