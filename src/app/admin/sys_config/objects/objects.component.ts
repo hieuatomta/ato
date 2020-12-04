@@ -39,17 +39,18 @@ export class ObjectsComponent implements OnInit {
   rows;
 
   search() {
-    console.log(this.paramSearch);
-  }
-
-  ngOnInit(): void {
-    this.isLoad = true;
+    // console.log(this.paramSearch);
     this.objectsService.query().subscribe(res => {
         this.rows = this.formatData(res.body.data.list, 0) || [];
       }, (error) => {
         this.isLoad = false;
       },
       () => this.isLoad = false);
+  }
+
+  ngOnInit(): void {
+    this.isLoad = true;
+   this.search();
     // this.objectsService.query().subscribe(res => this.rows = this.formatData(res.body.data.list, 0) || [] );
     this.getParent();
   }
