@@ -129,84 +129,92 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
       id: 1,
       parenID: 0,
       tendulieu: 'Trang chủ',
-      // check: true
+      link: 'trang-chu',
+      check: false
     },
     {
       id: 2,
-      parenID: 1,
-      tendulieu: 'lv2',
+      parenID: 0,
+      tendulieu: 'Quần áo',
+      link: 'danh-sach-san-pham',
       check: false
     }, {
       id: 3,
-      parenID: 1,
-      tendulieu: 'lv2',
+      parenID: 0,
+      tendulieu: 'Giầy dép',
+      link: 'danh-sach-san-pham',
       check: false
     }, {
       id: 4,
       parenID: 0,
-      tendulieu: 'lv1',
+      tendulieu: 'Nam',
+      link: 'danh-sach-san-pham',
       check: false
     }, {
       id: 5,
-      parenID: 1,
-      tendulieu: 'lv2',
+      parenID: 0,
+      tendulieu: 'Nữ',
+      link: 'danh-sach-san-pham',
       check: false
     }, {
       id: 6,
-      parenID: 1,
-      tendulieu: 'lv2',
-      check: true
+      parenID: 0,
+      tendulieu: 'Giới thiệu',
+      link: 've-chung-toi',
+      check: false
     }, {
       id: 7,
-      parenID: 6,
-      tendulieu: 'lv3',
-      check: false
-    }, {
-      id: 8,
-      parenID: 6,
-      tendulieu: 'lv3',
-      check: true
-    }, {
-      id: 9,
       parenID: 0,
-      tendulieu: 'lv1',
-      check: true
-    }, {
-      id: 10,
-      parenID: 0,
-      tendulieu: 'lv1',
-      check: false
-    }, {
-      id: 11,
-      parenID: 0,
-      tendulieu: 'lv1',
-      check: false
-    }, {
-      id: 12,
-      parenID: 0,
-      tendulieu: 'lv1',
-      check: false
-    }, {
-      id: 13,
-      parenID: 9,
-      tendulieu: 'lv2',
-      check: false
-    }, {
-      id: 14,
-      parenID: 8,
-      tendulieu: 'lv4',
-      check: false
-    }, {
-      id: 15,
-      parenID: 8,
-      tendulieu: 'lv4',
-      check: false
-    }, {
-      id: 16,
-      parenID: 8,
-      tendulieu: 'lv4',
+      tendulieu: 'Liên lạc',
+      link: 'lien-he',
       check: false
     }
+    // , {
+    //   id: 8,
+    //   parenID: 6,
+    //   tendulieu: 'lv3',
+    //   check: true
+    // }, {
+    //   id: 9,
+    //   parenID: 0,
+    //   tendulieu: 'lv1',
+    //   check: true
+    // }, {
+    //   id: 10,
+    //   parenID: 0,
+    //   tendulieu: 'lv1',
+    //   check: false
+    // }, {
+    //   id: 11,
+    //   parenID: 0,
+    //   tendulieu: 'lv1',
+    //   check: false
+    // }, {
+    //   id: 12,
+    //   parenID: 0,
+    //   tendulieu: 'lv1',
+    //   check: false
+    // }, {
+    //   id: 13,
+    //   parenID: 9,
+    //   tendulieu: 'lv2',
+    //   check: false
+    // }, {
+    //   id: 14,
+    //   parenID: 8,
+    //   tendulieu: 'lv4',
+    //   check: false
+    // }, {
+    //   id: 15,
+    //   parenID: 8,
+    //   tendulieu: 'lv4',
+    //   check: false
+    // }, {
+    //   id: 16,
+    //   parenID: 8,
+    //   tendulieu: 'lv4',
+    //   check: false
+    // }
   ];
 
   dequy(parent, level, a) {
@@ -219,7 +227,7 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
     a++;
     for (let x = 0; x < this.tree.length; x++) {
       if (this.tree[x].parenID === parent) {
-        this.htmlStrTxt += '<li class="tieu_de level-' + level + '"><a href="" class="nd_tieu_de">' + this.tree[x].tendulieu + '</a>';
+        this.htmlStrTxt += '<li class="tieu_de level-' + level + '"><a href="/ltnc/' + this.tree[x].link + '" class="nd_tieu_de">' + this.tree[x].tendulieu + '</a>';
         if (this.tree[x].check) {
           // if (level !== 0) {
           //   this.htmlStrTxt += '<span class="caret"><i class="fa fa-caret-right" aria-hidden="true"></i></span>';
@@ -238,19 +246,17 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
   }
 
 
-
-
   over() {
-    $( function () {
+    $(function () {
       // let cap = $('#menu').attr('data-cap');
       for (let i = 0; i < 4; i++) {
-        $(".level-" + i).hover(function () {
+        $('.level-' + i).hover(function () {
           $(this).children('ul').addClass('hienthimenu');
         }, function () {
           $(this).children('ul').removeClass('hienthimenu');
-        })
+        });
       }
-    })
+    });
   }
 
   out() {

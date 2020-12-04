@@ -4,6 +4,8 @@ import {ToastrService} from '../../@core/mock/toastr-service';
 import {TranslateService} from '@ngx-translate/core';
 import {HttpHeaders} from '@angular/common/http';
 import {ProductsService} from '../../@core/services/products.service';
+import {ColorService} from '../../@core/services/color.service';
+import {SizeService} from '../../@core/services/size.service';
 
 declare var $: any;
 
@@ -25,6 +27,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
               private toastr: ToastrService,
               private translateService: TranslateService,
               public productsService: ProductsService,
+              private colorService: ColorService,
+              private sizeService: SizeService,
               private router: Router) {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.key = params['key'];
@@ -132,8 +136,21 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   //   },
   // ];
 
+  lstRole1 = [];
+  lstRole2 = [];
 
   ngOnInit(): void {
+    this.sizeService.query().subscribe(res => {
+      this.lstRole1 = res.body.data.list;
+    }, err => {
+      console.log(err);
+    });
+    this.colorService.query().subscribe(res => {
+      this.lstRole2 = res.body.data.list;
+    }, err => {
+      console.log(err);
+    });
+
     $('.wrap-slick3').each(function () {
       $(this).find('.slick3').slick({
         slidesToShow: 1,

@@ -28,31 +28,33 @@ import {ProductComponent} from './products/product.component';
 import {SearchFilterComponent} from './search-filter/search-filter.component';
 import {ListProductComponent} from './list-product/list-product.component';
 import {JwPaginationModule} from 'jw-angular-pagination';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 @NgModule({
-  imports: [
-    JwPaginationModule,
-    ClientRoutingModule,
-    ThemeModule,
-    NbMenuModule,
-    NbCardModule,
-    NbAlertModule,
-    FormsModule,
-    NbInputModule,
-    NbCheckboxModule,
-    NbIconModule,
-    ReactiveFormsModule,
-    NbLayoutModule,
-    NbSpinnerModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    SharedModule,
-    SlideshowModule,
-    NgbModule
-  ],
+    imports: [
+        JwPaginationModule,
+        ClientRoutingModule,
+        ThemeModule,
+        NbMenuModule,
+        NbCardModule,
+        NbAlertModule,
+        FormsModule,
+        NbInputModule,
+        NbCheckboxModule,
+        NbIconModule,
+        ReactiveFormsModule,
+        NbLayoutModule,
+        NbSpinnerModule,
+        RecaptchaModule,
+        RecaptchaFormsModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        SharedModule,
+        SlideshowModule,
+        NgbModule,
+        NgSelectModule
+    ],
   declarations: [
     SearchFilterComponent,
     ClientComponent,

@@ -37,13 +37,6 @@
               {{obj.type}}
             </h4>
 
-
-
-          <!-- <p class="stext-102 cl3 p-t-23">
-            Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-          </p> -->
-
-          <!--  -->
           <div class="p-t-33">
             <div class="flex-w flex-r-m p-b-10">
               <div class="size-203 flex-c-m respon6" style="color: black;">
@@ -51,16 +44,14 @@
               </div>
 
               <div class="size-204 respon6-next">
-                <div class="rs1-select2 bor8 bg0">
-                  <select class="js-select2" name="time">
-                    <option>Choose an option</option>
-                    <option>Size S</option>
-                    <option>Size M</option>
-                    <option>Size L</option>
-                    <option>Size XL</option>
-                  </select>
-                  <div class="dropDownSelect2"></div>
-                </div>
+                <ng-select [clearAllText]="'common.clearAllText'"
+                           placeholder="{{'common.placeHolder' |translate}}"
+                           notFoundText="{{'common.notFoundText' |translate}}"
+                           fullWidth formControlName="color" >
+                  <ng-option *ngFor="let item of lstRole1" [value]="item.id">
+                    <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
+                  </ng-option>
+                </ng-select>
               </div>
             </div>
 
@@ -70,16 +61,14 @@
               </div>
 
               <div class="size-204 respon6-next">
-                <div class="rs1-select2 bor8 bg0">
-                  <select class="js-select2" name="time">
-                    <option>Choose an option</option>
-                    <option>Red</option>
-                    <option>Blue</option>
-                    <option>White</option>
-                    <option>Grey</option>
-                  </select>
-                  <div class="dropDownSelect2"></div>
-                </div>
+                <ng-select [clearAllText]="'common.clearAllText'"
+                           placeholder="{{'common.placeHolder' |translate}}"
+                           notFoundText="{{'common.notFoundText' |translate}}"
+                           fullWidth formControlName="color" >
+                  <ng-option *ngFor="let item of lstRole2" [value]="item.id">
+                    <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
+                  </ng-option>
+                </ng-select>
               </div>
             </div>
 
