@@ -38,9 +38,7 @@ export class ListProductComponent implements OnInit, OnDestroy {
   search(pageToLoad: number) {
     this.isLoad = true;
     this.page.offset = pageToLoad;
-    this.productsService.doSearch({
-      page: this.page.offset,
-      size: this.page.limit
+    this.productsService.doSearch1({
     }, {status: 0}).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);

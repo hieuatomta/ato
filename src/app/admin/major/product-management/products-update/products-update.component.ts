@@ -72,17 +72,17 @@ export class ProductsUpdateComponent implements OnInit {
       cost: new FormControl(null, []),
       description: new FormControl(null, []),
       productSizeColorList: new FormControl(null, []),
-      status: new FormControl(null, []),
+      status: new FormControl(this.data?.status, []),
       amount: new FormControl(null, []),
       size: new FormControl(null, []),
       color: new FormControl(null, []),
       parenObject: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
     });
-    this.inputProduct.get('status').setValue(true);
+    // this.inputProduct.get('status').setValue(true);
     if (this.data) {
       this.inputProduct.patchValue(this.data);
-      const status = this.data.status === 1 ? true : false;
-      this.inputProduct.get('status').patchValue(status);
+      // const status = this.data.status === 1 ? true : false;
+      // this.inputProduct.get('status').patchValue(status);
     }
     ;
 
@@ -159,7 +159,7 @@ export class ProductsUpdateComponent implements OnInit {
 
 
   submit() {
-    this.inputProduct.get('status').patchValue(this.inputProduct.get('status').value ? 1 : 0);
+    // this.inputProduct.get('status').patchValue(this.inputProduct.get('status').value ? 1 : 0);
     this.inputProduct.markAllAsTouched();
     if (this.inputProduct.valid) {
       this.loading = true;

@@ -56,6 +56,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     );
   }
 
+  chan() {
+    this.router.navigate(['/thanh-toan']);
+  }
+
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
     // this.page.count = data.totalPages;
     // this.page.offset = page || 0;
