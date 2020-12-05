@@ -6,6 +6,7 @@ import {HttpHeaders} from '@angular/common/http';
 import {ProductsService} from '../../@core/services/products.service';
 import {ColorService} from '../../@core/services/color.service';
 import {SizeService} from '../../@core/services/size.service';
+import {FormControl, FormGroup} from '@angular/forms';
 
 declare var $: any;
 
@@ -22,6 +23,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   key: any;
   obj: any;
   rows: any;
+  inputForm: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private toastr: ToastrService,
@@ -60,8 +62,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  chan() {
-    this.router.navigate(['/thanh-toan']);
+  thanhToan() {
+    // this.inputForm.get('amount').setValue(this.soluong(3));
+    console.log(this.inputForm.value)
+    // this.router.navigate(['/thanh-toan']);
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
@@ -73,73 +77,36 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     console.log(this.obj);
   }
 
-  // lstData = [
-  //   {
-  //     code: 'test1',
-  //     image: [{link: 'assets/images/product-02.jpg'},
-  //       {link: 'assets/images/product-01.jpg'},
-  //       {link: 'assets/images/product-03.jpg'},
-  //       {link: 'assets/images/product-04.jpg'},
-  //       {link: 'assets/images/product-05.jpg'}],
-  //     name: 'Herschel supply',
-  //     price: '$35.31',
-  //     type: 'women'
-  //   },
-  //   {
-  //     code: 'sp02',
-  //     image: 'assets/images/product-01.jpg',
-  //     name: 'Only Check Trouser',
-  //     price: '$25.50',
-  //     type: 'shoes'
-  //   },
-  //   {
-  //     code: 'sp03',
-  //     image: 'assets/images/product-03.jpg',
-  //     name: 'Classic Trench Coat',
-  //     price: '$75.00',
-  //     type: 'women'
-  //   },
-  //   {
-  //     code: 'sp04',
-  //     image: 'assets/images/product-04.jpg',
-  //     name: 'Front Pocket Jumper',
-  //     price: '$34.75',
-  //     type: 'men'
-  //   },
-  //   {
-  //     code: 'sp05',
-  //     image: 'assets/images/product-05.jpg',
-  //     name: 'Front Pocket Jumper',
-  //     price: '$34.75',
-  //     type: 'shoes'
-  //   },
-  //   {
-  //     code: 'sp06',
-  //     image: 'assets/images/product-07.jpg',
-  //     name: 'Front Pocket Jumper',
-  //     price: '$34.75',
-  //     type: 'watches'
-  //   },
-  //   {
-  //     code: 'sp07',
-  //     image: 'assets/images/product-06.jpg',
-  //     name: 'Front Pocket Jumper',
-  //     price: '$34.75',
-  //     type: 'men'
-  //   },
-  //   {
-  //     code: 'sp08',
-  //     image: 'assets/images/product-08.jpg',
-  //     name: 'Front Pocket Jumper',
-  //     price: '$34.75',
-  //     type: 'watches'
-  //   },
-  // ];
-
   lstRole1 = [];
   lstRole2 = [];
+  getSoLuong = 1;
+
+  soluong(e) {
+    let soLuong = this.inputForm.get('amount').value;
+    if (e === 0) {
+      if (this.inputForm.get('amount').value === 0) {
+        this.inputForm.get('amount').setValue(0);
+        return;
+      }
+      console.log(this.inputForm.get('amount').value);
+      soLuong = soLuong - 1;
+      // this.inputForm.get('amount').setValue((soLuong - 1));
+    } else {
+      soLuong = soLuong + 1;
+      // this.inputForm.get('amount').setValue((soLuong + 1));
+    }
+    this.inputForm.get('amount').setValue(soLuong)
+    console.log(soLuong)
+    return soLuong;
+  }
 
   ngOnInit(): void {
+    this.inputForm = new FormGroup({
+      color: new FormControl(null, []),
+      size: new FormControl(null, []),
+      amount: new FormControl(1, []),
+      status: new FormControl(null, [])
+    });
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
@@ -179,8 +146,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       $(nameTab).find('.slick2').slick('reinit');
     });
     $('.wrap-slick2').each(function () {
-      console.log($(this));
-      console.log($(this).find('.slick2'));
       $(this).find('.slick2').slick({
         slidesToShow: 4,
         slidesToScroll: 4,

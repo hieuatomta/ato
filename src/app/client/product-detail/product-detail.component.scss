@@ -10,6 +10,34 @@ nav.limiter-menu-desktop.container {
   box-shadow: 0 0 black;
 
 }
+
 p {
   color: black !important;
 }
+
+.sosanpham button {
+  width: 20%;
+  display: block;
+  height: 100%;
+}
+
+.sosanpham input[type='number'] {
+  width: 25%;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sosanpham {
+  height: 30px;
+  width: 80%;
+  display: flex;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+

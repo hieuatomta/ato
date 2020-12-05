@@ -45,11 +45,13 @@
               {{ 'common.table.item_product_paren_object' | translate }}
             </label>
             <ngx-dropdown-treeview-select [items]="item"
-                                          [value]="inputProduct.get('parenObject').value"
+                                          [value]="inputProduct.get('idParen').value"
                                           [config]="treeViewConfig"
                                           class="dropdown-treeview"
                                           (valueChange)="parenIdChange($event)">
             </ngx-dropdown-treeview-select>
+            <ngx-inline-message [message]="'common.table.item_product_paren_object'|translate"
+                                [formName]="inputProduct.get('idParen')"></ngx-inline-message>
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
@@ -84,7 +86,7 @@
     </form>
   </nb-card-body>
   <nb-card-footer class="text-right">
-    <button nbButton type="button" status="primary" (click)="submit()"
+    <button nbButton type="button" status="primary" (click)="submit()" [disabled]="inputProduct.invalid"
             id="dialogCancelBtn">{{ 'common.save' | translate }}</button>
     <button nbButton type="button" nbButton (click)="cancel()" class="ml-2"> {{ 'common.cancel' | translate }} </button>
   </nb-card-footer>

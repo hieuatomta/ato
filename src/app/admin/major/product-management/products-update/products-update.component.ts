@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
 import {NbDialogRef, NbToastrService} from '@nebular/theme';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SizeService} from '../../../../@core/services/size.service';
 import {TranslateService} from '@ngx-translate/core';
 import {TreeviewConfig, TreeviewItem} from 'ngx-treeview';
@@ -59,14 +59,15 @@ export class ProductsUpdateComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.data);
     this.inputProduct = new FormGroup({
       id: new FormControl(this.data?.id, []),
-      name: new FormControl(null, []),
-      code: new FormControl(null, []),
-      cost: new FormControl(null, []),
+      name: new FormControl(null, [Validators.required]),
+      code: new FormControl(null, [Validators.required]),
+      cost: new FormControl(null, [Validators.required]),
       description: new FormControl(null, []),
-      status: new FormControl(this.data?.status, []),
-      parenObject: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
+      status: new FormControl(this.data?.status, [Validators.required]),
+      idParen: new FormControl(this.data?.idParen ? this.data.idParen === 0 ? null : this.data.idParen : null, [Validators.required])
     });
     // this.inputProduct.get('status').setValue(true);
     if (this.data) {
@@ -91,7 +92,7 @@ export class ProductsUpdateComponent implements OnInit {
   };
 
   parenIdChange($event) {
-    this.inputProduct.get('parenObject').setValue($event);
+    this.inputProduct.get('idParen').setValue($event);
   }
 
 

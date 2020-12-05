@@ -33,65 +33,78 @@
 							{{obj.price}}
             </span>
 
-            <h4 class="mtext-105 cl2 js-name-detail p-b-14" style="color: black">
-              {{obj.type}}
-            </h4>
+          <h4 class="mtext-105 cl2 js-name-detail p-b-14" style="color: black">
+            {{obj.type}}
+          </h4>
+          <form [formGroup]="inputForm">
 
-          <div class="p-t-33">
-            <div class="flex-w flex-r-m p-b-10">
-              <div class="size-203 flex-c-m respon6" style="color: black;">
-                Size
-              </div>
-
-              <div class="size-204 respon6-next">
-                <ng-select [clearAllText]="'common.clearAllText'"
-                           placeholder="{{'common.placeHolder' |translate}}"
-                           notFoundText="{{'common.notFoundText' |translate}}"
-                           fullWidth formControlName="color" >
-                  <ng-option *ngFor="let item of lstRole1" [value]="item.id">
-                    <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
-                  </ng-option>
-                </ng-select>
-              </div>
-            </div>
-
-            <div class="flex-w flex-r-m p-b-10">
-              <div class="size-203 flex-c-m respon6" style="color: black;" >
-                Color
-              </div>
-
-              <div class="size-204 respon6-next">
-                <ng-select [clearAllText]="'common.clearAllText'"
-                           placeholder="{{'common.placeHolder' |translate}}"
-                           notFoundText="{{'common.notFoundText' |translate}}"
-                           fullWidth formControlName="color" >
-                  <ng-option *ngFor="let item of lstRole2" [value]="item.id">
-                    <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
-                  </ng-option>
-                </ng-select>
-              </div>
-            </div>
-
-            <div class="flex-w flex-r-m p-b-10">
-              <div class="size-204 flex-w flex-m respon6-next">
-                <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                  <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                    <p class="fs-16 zmdi zmdi-minus" style="color: black; font-weight: 500; font-size: x-large;"> - </p>
-                  </div>
-
-                  <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-                  <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                    <p class="fs-16 zmdi zmdi-plus" style="color: black; font-weight: 500;"> + </p>
-                  </div>
+            <div class="p-t-33">
+              <div class="flex-w flex-r-m p-b-10">
+                <div class="size-203 flex-c-m respon6" style="color: black;">
+                  Size
                 </div>
 
-                <button (click)= "chan()" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                 Thanh Toán
-                </button>
+                <div class="size-204 respon6-next">
+                  <ng-select [clearAllText]="'common.clearAllText'"
+                             placeholder="{{'common.placeHolder' |translate}}"
+                             notFoundText="{{'common.notFoundText' |translate}}"
+                             fullWidth formControlName="size">
+                    <ng-option *ngFor="let item of lstRole1" [value]="item.id">
+                      <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
+                    </ng-option>
+                  </ng-select>
+                </div>
+              </div>
+
+              <div class="flex-w flex-r-m p-b-10">
+                <div class="size-203 flex-c-m respon6" style="color: black;">
+                  Color
+                </div>
+
+                <div class="size-204 respon6-next">
+                  <ng-select [clearAllText]="'common.clearAllText'"
+                             placeholder="{{'common.placeHolder' |translate}}"
+                             notFoundText="{{'common.notFoundText' |translate}}"
+                             fullWidth formControlName="color">
+                    <ng-option *ngFor="let item of lstRole2" [value]="item.id">
+                      <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
+                    </ng-option>
+                  </ng-select>
+                </div>
+              </div>
+
+
+
+              <div class="flex-w flex-r-m p-b-10">
+                <div class="size-204 flex-w flex-m respon6-next">
+<!--                  <div class="wrap-num-product flex-w m-r-20 m-tb-10">-->
+<!--                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"  (click)="soluong(0)">-->
+<!--                      <p style="color: black; font-weight: 500; font-size: x-large;"> - </p>-->
+<!--                    </div>-->
+<!--                    <input class="mtext-104 cl3 txt-center num-product" type="text" formControlName="amount">-->
+
+<!--                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" (click)="soluong(1)">-->
+<!--                      <p style="color: black; font-weight: 500;" > + </p>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+                  <div class="sosanpham">
+                    <button style="border: 1px solid;" (click)="soluong(0)">
+                      <span style="color: black; font-weight: 500;" >-</span>
+                    </button>
+                    <input type="number" name="" formControlName="amount">
+                    <button style="border: 1px solid;" (click)="soluong(1)">
+                      <span style="color: black; font-weight: 500;" >+</span>
+                    </button>
+                  </div>
+                  <button (click)="thanhToan()"
+                          class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                    Thanh Toán
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
 
           <!--  -->
           <div class="flex-w flex-m p-l-100 p-t-40 respon7">
