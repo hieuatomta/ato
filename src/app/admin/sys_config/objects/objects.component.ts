@@ -156,7 +156,7 @@ export class ObjectsComponent implements OnInit {
   openMapModule(data) {
     const openMap = this.dialogService.open(MapPopupComponent, {
       context: {
-        title: this.translate.instant('common.title_map_common'),
+        title: this.translate.instant('common.table.title_map_common'),
         data: data,
       }
     });

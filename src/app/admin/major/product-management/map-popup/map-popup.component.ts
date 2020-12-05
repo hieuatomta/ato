@@ -124,6 +124,10 @@ export class MapPopupComponent implements OnInit {
       });
   };
 
+  cancel() {
+    this.ref.close();
+  }
+
   deleteSizeColor(data) {
     console.log(data);
     this.dialogService.open(ConfirmDialogComponent, {

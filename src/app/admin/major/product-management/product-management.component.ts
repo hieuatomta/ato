@@ -162,7 +162,7 @@ export class ProductManagementComponent implements OnInit {
     console.log(data);
     const openMap = this.dialogService.open(MapPopupComponent, {
       context: {
-        title: this.translate.instant('common.title_map_common'),
+        title: this.translate.instant('common.table.item_size_color'),
         data: data,
       }
     });
