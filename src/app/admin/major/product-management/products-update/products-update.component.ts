@@ -36,12 +36,6 @@ export class ProductsUpdateComponent implements OnInit {
   });
   rows = [];
 
-  columns = [
-    {name: 'common.table.item_product_size', prop: 'size', flexGrow: 1},
-    {name: 'common.table.item_product_color', prop: 'color', flexGrow: 1.5},
-    {name: 'common.table.item_product_total', prop: 'amount', flexGrow: 1},
-  ];
-
   listStatus = [
     {name: 'common.state.0', code: 0},
     {name: 'common.state.1', code: 1},
@@ -58,8 +52,8 @@ export class ProductsUpdateComponent implements OnInit {
     private translate: TranslateService,
     public ref: NbDialogRef<ProductsUpdateComponent>,
     private sizeService: SizeService,
-    private productsService: ProductsService,
     private colorService: ColorService,
+    private productsService: ProductsService,
   ) {
   }
 
@@ -71,11 +65,7 @@ export class ProductsUpdateComponent implements OnInit {
       code: new FormControl(null, []),
       cost: new FormControl(null, []),
       description: new FormControl(null, []),
-      productSizeColorList: new FormControl(null, []),
       status: new FormControl(this.data?.status, []),
-      amount: new FormControl(null, []),
-      size: new FormControl(null, []),
-      color: new FormControl(null, []),
       parenObject: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
     });
     // this.inputProduct.get('status').setValue(true);
@@ -99,24 +89,6 @@ export class ProductsUpdateComponent implements OnInit {
     this.getParenTree(this.data?.type ? this.data.type : 1);
 
   };
-
-  addSizeColor() {
-    const test = {
-      idColor: null,
-      idSize: null,
-      amount: null
-    };
-    test.idColor = this.inputProduct.get('color').value;
-    test.idSize = this.inputProduct.get('size').value;
-    test.amount = this.inputProduct.get('amount').value;
-    this.arr.push(test);
-    this.onSuccess(this.arr);
-  }
-
-  protected onSuccess(data: any | null): void {
-    this.rows = data || [];
-    console.log(this.rows);
-  }
 
   parenIdChange($event) {
     this.inputProduct.get('parenObject').setValue($event);
@@ -164,7 +136,7 @@ export class ProductsUpdateComponent implements OnInit {
     if (this.inputProduct.valid) {
       this.loading = true;
       if (this.data == null) {
-        this.inputProduct.get('productSizeColorList').setValue(this.rows);
+        // this.inputProduct.get('productSizeColorList').setValue(this.rows);
         console.log(this.inputProduct.value);
         this.productsService.insert(this.inputProduct.value).subscribe(
           (value) => this.ref.close(value),

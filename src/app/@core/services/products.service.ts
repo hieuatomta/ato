@@ -17,6 +17,12 @@ export class ProductsService {
     });
   }
 
+  doSearchByCode(code: any): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/products/detail/${code}`, {
+      observe: 'response'
+    });
+  }
+
   public doSearch(req?: any, body?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.post<any[]>(`${environment.apiUrl}/products/doSearch`, body, {

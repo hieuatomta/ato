@@ -68,7 +68,9 @@
       "item_log_ip": "IP Address",
       "item_log_table": "Table impact",
       "item_impact_time": "Impact time",
-      "item_name_client": "Client name"
+      "item_name_client": "Client name",
+      "item_size_color": "Map Size_Color",
+      "item_image": "Map Image"
     },
     "totalMessage": "Record",
     "search": "Search",

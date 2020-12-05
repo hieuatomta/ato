@@ -27,6 +27,7 @@ import {SharedModule} from '../../../shares/shared.module';
 import {ProductManagementComponent} from './product-management.component';
 import {ProductsUpdateComponent} from './products-update/products-update.component';
 import {DropdownTreeviewSelectModule} from '../../../shares/directives/tree-picker/ngx-treeview/dropdown-treeview-select';
+import {MapPopupComponent} from './map-popup/map-popup.component';
 
 
 @NgModule({
@@ -52,7 +53,7 @@ import {DropdownTreeviewSelectModule} from '../../../shares/directives/tree-pick
     NgxDatatableModule,
     NbSpinnerModule, NbToggleModule, DropdownTreeviewSelectModule,
   ],
-  declarations: [ProductManagementComponent, ProductsUpdateComponent],
+  declarations: [ProductManagementComponent, ProductsUpdateComponent, MapPopupComponent],
 })
 export class ProductManagementModule {
 }
