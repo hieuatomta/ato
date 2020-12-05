@@ -19,7 +19,7 @@
               <ng-select [clearAllText]="'common.clearAllText'"
                          placeholder="{{'common.placeHolder' |translate}}"
                          notFoundText="{{'common.notFoundText' |translate}}"
-                         fullWidth formControlName="size">
+                         fullWidth formControlName="idSize">
                 <ng-option *ngFor="let item of lstRole1" [value]="item.id">
                   <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
                 </ng-option>
@@ -30,7 +30,7 @@
               <ng-select [clearAllText]="'common.clearAllText'"
                          placeholder="{{'common.placeHolder' |translate}}"
                          notFoundText="{{'common.notFoundText' |translate}}"
-                         fullWidth formControlName="color">
+                         fullWidth formControlName="idColor">
                 <ng-option *ngFor="let item of lstRole2" [value]="item.id">
                   <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
                 </ng-option>
@@ -46,7 +46,7 @@
                                   [formName]="inputProduct.get('amount')"></ngx-inline-message>
             </div>
             <div class="col-lg-3 form-group">
-              <button nbButton type="button" status="primary"
+              <button [disabled]="inputProduct.invalid" nbButton type="button" status="primary"
                       (click)="addSizeColor()">{{ 'common.add' | translate }}</button>
             </div>
           </div>

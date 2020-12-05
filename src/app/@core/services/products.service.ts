@@ -30,6 +30,7 @@ export class ProductsService {
       observe: 'response'
     });
   }
+
   public doSearch1(req?: any, body?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.post<any[]>(`${environment.apiUrl}/products/doSearch1`, body, {
@@ -52,6 +53,16 @@ export class ProductsService {
 
   delete(id: any): Observable<any> {
     return this.http.delete<any>(`${environment.apiUrl}/products/${id}`);
+  }
+
+  public insertSizeColor(data: any): Observable<any> {
+    return this.http.put <any>(`${environment.apiUrl}/productsSizeColor/insert`, data, {
+      observe: 'response'
+    });
+  }
+
+  deleteSizeColor(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiUrl}/productsSizeColor/${id}`);
   }
 
 }

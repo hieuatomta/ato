@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ColumnChangesService, DimensionsHelper, ScrollbarHelper} from '@swimlane/ngx-datatable';
-import {NbDialogRef, NbToastrService} from '@nebular/theme';
+import {NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
 import {TranslateService} from '@ngx-translate/core';
 import {ObjectActionService} from '../../../../@core/services/object-action.service';
 import {SizeService} from '../../../../@core/services/size.service';
 import {ColorService} from '../../../../@core/services/color.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from '../../../../@core/services/products.service';
 import {ConfirmDialogComponent} from '../../../../shares/directives/confirm-dialog/confirm-dialog.component';
 
@@ -46,6 +46,8 @@ export class MapPopupComponent implements OnInit {
               private objectActionService: ObjectActionService,
               private sizeService: SizeService,
               private colorService: ColorService,
+              private dialogService: NbDialogService,
+              private toastrService: NbToastrService,
               private productsService: ProductsService,
   ) {
   }
@@ -68,10 +70,10 @@ export class MapPopupComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.inputProduct = new FormGroup({
-      id: new FormControl(this.data?.id, []),
-      amount: new FormControl(null, []),
-      size: new FormControl(null, []),
-      color: new FormControl(null, []),
+      idProduct: new FormControl(this.data?.id, []),
+      amount: new FormControl(null, [Validators.required]),
+      idSize: new FormControl(null, [Validators.required]),
+      idColor: new FormControl(null, [Validators.required]),
     });
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
@@ -92,18 +94,23 @@ export class MapPopupComponent implements OnInit {
   }
 
   addSizeColor() {
-    const test = {
-      idColor: null,
-      idSize: null,
-      amount: null
-    };
-    // test.idColor = this.inputProduct.get('color').value;
-    // test.idSize = this.inputProduct.get('size').value;
-    // test.amount = this.inputProduct.get('amount').value;
-    // this.arr.push(test);
-    // this.onSuccess(this.arr);
+    this.inputProduct.markAllAsTouched();
+    if (this.inputProduct.valid) {
+      this.loading = true;
+      console.log(this.inputProduct.value);
+      this.productsService.insertSizeColor(this.inputProduct.value).subscribe(
+        (value) => {
+          this.search();
+          this.loading = false;
+        },
+        (error) => {
+          this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+          this.loading = false;
+        },
+        () => this.loading = false
+      );
+    }
   }
-
 
   search() {
     this.loading = true;
@@ -118,25 +125,26 @@ export class MapPopupComponent implements OnInit {
   };
 
   deleteSizeColor(data) {
-    // this.dialogService.open(ConfirmDialogComponent, {
-    //   context: {
-    //     title: this.translate.instant('common.title_notification'),
-    //     message: this.translate.instant('products.title_delete') + ' ' + data.name
-    //   },
-    // }).onClose.subscribe(res => {
-    //   if (res) {
-    //     this.isLoad = true;
-    //     this.productsService.delete(data.id).subscribe(() => {
-    //       this.toastrService.success(this.translate.instant('products.delete_success'),
-    //         this.translate.instant('common.title_notification'));
-    //       this.search(0);
-    //       this.isLoad = false;
-    //     }, (err) => {
-    //       this.toastrService.success(err.detail),
-    //         this.translate.instant('common.title_notification');
-    //       this.isLoad = false;
-    //     });
-    //   }
-    // });
+    console.log(data);
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: this.translate.instant('common.title_notification'),
+        message: this.translate.instant('products.title_delete') + ' ' + data.nameColor + ' - ' + data.nameSize
+      },
+    }).onClose.subscribe(res => {
+      if (res) {
+        this.isLoad = true;
+        this.productsService.deleteSizeColor(data.id).subscribe(() => {
+          this.toastrService.success(this.translate.instant('products.delete_success'),
+            this.translate.instant('common.title_notification'));
+          this.search();
+          this.isLoad = false;
+        }, (err) => {
+          this.toastrService.success(err.detail),
+            this.translate.instant('common.title_notification');
+          this.isLoad = false;
+        });
+      }
+    });
   }
 }

@@ -167,10 +167,9 @@ export class ProductManagementComponent implements OnInit {
       }
     });
     openMap.onClose.subscribe(value => {
-      if (value) {
+        this.search(0);
         // this.toastr.success(this.translate.instant('common.content_map_action_success'),
           this.translate.instant('objects.title_notification');
-      }
     });
   }
 }
