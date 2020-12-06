@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
-import {UploadFileService} from '../../../@core/services/UploadFileService.service';
+import {UploadFileService} from '../../../@core/services/uploadFileService.service';
 import {Observable} from 'rxjs';
 
 class RequestOptions {

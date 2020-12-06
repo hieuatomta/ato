@@ -9,5 +9,14 @@
     "content_add_success": "Thêm sản phẩm thành công",
     "content_edit_success": "Sửa thông tin thành công",
     "delete_success": "Xóa sản phẩm thành công"
+  },
+  "image": {
+    "title": "Quản lý hình ảnh",
+    "title_lock": "Xác nhận khoá hình ảnh",
+    "unknown_error": "Lỗi không xác định",
+    "content_add_success": "Upload hình ảnh thành công",
+    "lock_success": "Khoá sản phẩm thành công",
+    "title_delete": "Xác nhận xóa sản phẩm",
+    "delete_success": "Xóa sản phẩm thành công"
   }
 }

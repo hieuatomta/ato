@@ -179,7 +179,7 @@ export class ProductManagementComponent implements OnInit {
     console.log(data);
     const openMap = this.dialogService.open(MapImageProductComponent, {
       context: {
-        title: this.translate.instant('common.table.item_size_color'),
+        title: this.translate.instant('common.table.item_image'),
         data: data,
       }
     });

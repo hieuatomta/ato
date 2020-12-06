@@ -2,14 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ColumnChangesService, DimensionsHelper, ScrollbarHelper} from '@swimlane/ngx-datatable';
 import {NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
 import {TranslateService} from '@ngx-translate/core';
-import {ObjectActionService} from '../../../../@core/services/object-action.service';
-import {SizeService} from '../../../../@core/services/size.service';
-import {ColorService} from '../../../../@core/services/color.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from '../../../../@core/services/products.service';
 import {ConfirmDialogComponent} from '../../../../shares/directives/confirm-dialog/confirm-dialog.component';
 import {Observable} from 'rxjs';
-import {UploadFileService} from '../../../../@core/services/UploadFileService.service';
+import {UploadFileService} from '../../../../@core/services/uploadFileService.service';
 
 @Component({
   selector: 'ngx-map-module',
@@ -79,6 +76,7 @@ export class MapImageProductComponent implements OnInit {
       idColor: new FormControl(null, [Validators.required]),
     });
     this.search();
+    console.log(this.removeVietnameseTones('Thạch Thọ Hiếu '));
   }
 
   toAstrError() {
@@ -88,7 +86,7 @@ export class MapImageProductComponent implements OnInit {
 
   search() {
     this.loading = true;
-    this.productsService.doSearchByCode(this.data?.id).subscribe(res => {
+    this.uploadService.doSearchByCode(this.data?.id).subscribe(res => {
         console.log(res);
         this.onSuccess(res.body.data);
         this.loading = false;
@@ -102,18 +100,83 @@ export class MapImageProductComponent implements OnInit {
     this.ref.close();
   }
 
+  // upload ts
+  selectedFiles: FileList;
+  currentFile: File;
+  progress = 0;
+  message = '';
+
+  fileInfos: Observable<any>;
+
+  upload() {
+    // this.progress = 0;
+    //
+    // this.currentFile = this.selectedFiles.item(0);
+    // const formData: FormData = new FormData();
+    // formData.append('file', this.currentFile);
+    // console.log(formData)
+    // const test = {
+    //   file: formData,
+    //   id: this.data.id
+    // }
+    // console.log(test);
+    // this.uploadService.upload(test).subscribe(
+    //   (res) => {
+    //     console.log(res);
+    //     this.message = res.body.data;
+    //   },
+    //   (error) => {
+    //     this.progress = 0;
+    //     this.message = 'Could not upload the file!';
+    //     this.currentFile = undefined;
+    //     // this.isLoad = false;
+    //   },
+    //   // () => this.isLoad = false,
+    // );
+
+    this.selectedFiles = undefined;
+  }
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  lock(data) {
+    console.log(data);
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: this.translate.instant('common.title_notification'),
+        message: this.translate.instant('image.title_lock') + ' ' + data.name
+      },
+    }).onClose.subscribe(res => {
+      if (res) {
+        this.isLoad = true;
+        this.uploadService.lock(data).subscribe(() => {
+          this.toastrService.success(this.translate.instant('image.lock_success'),
+            this.translate.instant('common.title_notification'));
+          this.search();
+          this.isLoad = false;
+        }, (err) => {
+          this.toastrService.success(err.detail),
+            this.translate.instant('common.title_notification');
+          this.isLoad = false;
+        });
+      }
+    });
+  }
+
   deleteSizeColor(data) {
     console.log(data);
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
         title: this.translate.instant('common.title_notification'),
-        message: this.translate.instant('products.title_delete') + ' ' + data.nameColor + ' - ' + data.nameSize
+        message: this.translate.instant('image.title_delete') + ' ' + data.name
       },
     }).onClose.subscribe(res => {
       if (res) {
         this.isLoad = true;
-        this.productsService.deleteSizeColor(data.id).subscribe(() => {
-          this.toastrService.success(this.translate.instant('products.delete_success'),
+        this.uploadService.delete(data.id).subscribe(() => {
+          this.toastrService.success(this.translate.instant('image.delete_success'),
             this.translate.instant('common.title_notification'));
           this.search();
           this.isLoad = false;
@@ -127,36 +190,34 @@ export class MapImageProductComponent implements OnInit {
   }
 
 
-  // upload ts
-  selectedFiles: FileList;
-  currentFile: File;
-  progress = 0;
-  message = '';
-
-  fileInfos: Observable<any>;
-
-  upload() {
-    this.progress = 0;
-
-    this.currentFile = this.selectedFiles.item(0);
-    this.uploadService.upload(this.currentFile).subscribe(
-      (res) => {
-        console.log(res);
-        this.message = res.body.data;
-      },
-      (error) => {
-        this.progress = 0;
-        this.message = 'Could not upload the file!';
-        this.currentFile = undefined;
-        // this.isLoad = false;
-      },
-      // () => this.isLoad = false,
-    );
-
-    this.selectedFiles = undefined;
-  }
-
-  selectFile(event) {
-    this.selectedFiles = event.target.files;
+  removeVietnameseTones(str) {
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+    str = str.replace(/đ/g, 'd');
+    str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, 'A');
+    str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, 'E');
+    str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, 'I');
+    str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, 'O');
+    str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, 'U');
+    str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, 'Y');
+    str = str.replace(/Đ/g, 'D');
+    // Some system encode vietnamese combining accent as individual utf-8 characters
+    // Một vài bộ encode coi các dấu mũ, dấu chữ như một kí tự riêng biệt nên thêm hai dòng này
+    str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ''); // ̀ ́ ̃ ̉ ̣  huyền, sắc, ngã, hỏi, nặng
+    str = str.replace(/\u02C6|\u0306|\u031B/g, ''); // ˆ ̆ ̛  Â, Ê, Ă, Ơ, Ư
+    // Remove extra spaces
+    // Bỏ các khoảng trắng liền nhau
+    str = str.replace(/ + /g, ' ');
+    str = str.trim();
+    // Remove punctuations
+    // Bỏ dấu câu, kí tự đặc biệt
+    str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, ' ');
+    // đổi khoảng trắng thành -
+    str = str.replace(/\s+/g, '-').toLowerCase();
+    return str;
   }
 }

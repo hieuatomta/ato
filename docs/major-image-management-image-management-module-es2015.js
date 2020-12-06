@@ -97,7 +97,7 @@ ImageManagementComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
 
 /***/ "JRlb":
 /*!*************************************************************!*\
-  !*** ./src/app/@core/services/UploadFileService.service.ts ***!
+  !*** ./src/app/@core/services/uploadFileService.service.ts ***!
   \*************************************************************/
 /*! exports provided: UploadFileService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

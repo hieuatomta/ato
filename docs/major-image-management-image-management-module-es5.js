@@ -189,7 +189,7 @@
     /***/
     "JRlb":
     /*!*************************************************************!*\
-      !*** ./src/app/@core/services/UploadFileService.service.ts ***!
+      !*** ./src/app/@core/services/uploadFileService.service.ts ***!
       \*************************************************************/
 
     /*! exports provided: UploadFileService */
