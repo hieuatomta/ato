@@ -182,10 +182,10 @@
     /***/
     "821o":
     /*!***************************************************************************!*\
-      !*** ./src/app/admin/sys_config/objects/map-popup/map-popup.component.ts ***!
+      !*** ./src/app/admin/sys_config/objects/map-popup/map-image-product.component.ts ***!
       \***************************************************************************/
 
-    /*! exports provided: MapPopupComponent */
+    /*! exports provided: MapImageProductComponent */
 
     /***/
     function o(module, __webpack_exports__, __webpack_require__) {
@@ -861,8 +861,8 @@
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
           args: [{
             selector: 'ngx-map-module',
-            templateUrl: './map-popup.component.html',
-            styleUrls: ['./map-popup.component.scss'],
+            templateUrl: './map-image-product.component.html',
+            styleUrls: ['./map-image-product.component.scss'],
             providers: [_swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_1__["ScrollbarHelper"], _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_1__["DimensionsHelper"], _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_1__["ColumnChangesService"]]
           }]
         }], function () {

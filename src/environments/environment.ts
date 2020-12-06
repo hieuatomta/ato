@@ -10,6 +10,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8081/api',
-  // apiUrl: 'http://54.179.123.110:8080/laptrinhnangcao/api',
+  apiUrl: 'http://localhost:8081/laptrinhnangcao/api',
+  // apiUrl: 'http://52.77.224.78:8080/laptrinhnangcao/api',
 };

@@ -9,6 +9,7 @@ import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/
 import {ProductsService} from '../../../@core/services/products.service';
 import {ProductsUpdateComponent} from './products-update/products-update.component';
 import {MapPopupComponent} from './map-popup/map-popup.component';
+import {MapImageProductComponent} from './map-image-product/map-image-product.component';
 
 class RequestOptions {
   constructor(param: { headers: Headers }) {
@@ -64,6 +65,7 @@ export class ProductManagementComponent implements OnInit {
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_product_paren_object', prop: 'parenObject', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
+    {name: 'common.table.item_image', prop: 'map_image', flexGrow: 0.6},
     {name: 'common.table.item_size_color', prop: 'map_size_color', flexGrow: 0.6},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
@@ -170,6 +172,21 @@ export class ProductManagementComponent implements OnInit {
         this.search(0);
         // this.toastr.success(this.translate.instant('common.content_map_action_success'),
           this.translate.instant('objects.title_notification');
+    });
+  }
+
+  openMapModuleImage(data) {
+    console.log(data);
+    const openMap = this.dialogService.open(MapImageProductComponent, {
+      context: {
+        title: this.translate.instant('common.table.item_size_color'),
+        data: data,
+      }
+    });
+    openMap.onClose.subscribe(value => {
+      this.search(0);
+      // this.toastr.success(this.translate.instant('common.content_map_action_success'),
+      this.translate.instant('objects.title_notification');
     });
   }
 }

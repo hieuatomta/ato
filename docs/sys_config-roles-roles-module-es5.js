@@ -12,7 +12,7 @@
       !*** ./src/app/admin/sys_config/roles/map-popup/map.popup.component.ts ***!
       \*************************************************************************/
 
-    /*! exports provided: MapPopupComponent */
+    /*! exports provided: MapImageProductComponent */
 
     /***/
     function I8Cn(module, __webpack_exports__, __webpack_require__) {
@@ -284,8 +284,8 @@
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
           args: [{
             selector: 'ngx-map-popup',
-            templateUrl: './map-popup.component.html',
-            styleUrls: ['./map-popup.component.scss'],
+            templateUrl: './map-image-product.component.html',
+            styleUrls: ['./map-image-product.component.scss'],
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
           }]
         }], function () {

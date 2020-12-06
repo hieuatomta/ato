@@ -123,9 +123,9 @@ ObjectsModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInje
 
 /***/ "821o":
 /*!***************************************************************************!*\
-  !*** ./src/app/admin/sys_config/objects/map-popup/map-popup.component.ts ***!
+  !*** ./src/app/admin/sys_config/objects/map-popup/map-image-product.component.ts ***!
   \***************************************************************************/
-/*! exports provided: MapPopupComponent */
+/*! exports provided: MapImageProductComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -471,8 +471,8 @@ MapPopupComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
                 selector: 'ngx-map-module',
-                templateUrl: './map-popup.component.html',
-                styleUrls: ['./map-popup.component.scss'],
+                templateUrl: './map-image-product.component.html',
+                styleUrls: ['./map-image-product.component.scss'],
                 providers: [_swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_1__["ScrollbarHelper"], _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_1__["DimensionsHelper"], _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_1__["ColumnChangesService"]],
             }]
     }], function () { return [{ type: _nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbDialogRef"] }, { type: _nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbToastrService"] }, { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"] }, { type: _core_services_action_service__WEBPACK_IMPORTED_MODULE_4__["ActionService"] }, { type: _core_services_object_action_service__WEBPACK_IMPORTED_MODULE_5__["ObjectActionService"] }]; }, null); })();

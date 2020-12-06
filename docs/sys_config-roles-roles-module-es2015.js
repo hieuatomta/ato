@@ -4,7 +4,7 @@
 /*!*************************************************************************!*\
   !*** ./src/app/admin/sys_config/roles/map-popup/map.popup.component.ts ***!
   \*************************************************************************/
-/*! exports provided: MapPopupComponent */
+/*! exports provided: MapImageProductComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -156,8 +156,8 @@ MapPopupComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
                 selector: 'ngx-map-popup',
-                templateUrl: './map-popup.component.html',
-                styleUrls: ['./map-popup.component.scss'],
+                templateUrl: './map-image-product.component.html',
+                styleUrls: ['./map-image-product.component.scss'],
                 encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
             }]
     }], function () { return [{ type: _core_utils__WEBPACK_IMPORTED_MODULE_1__["LayoutService"] }, { type: _nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbDialogRef"] }, { type: _core_services_objects_service__WEBPACK_IMPORTED_MODULE_4__["ObjectsService"] }]; }, null); })();

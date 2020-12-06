@@ -51,6 +51,7 @@
       "item_size_name": "Tên Size",
       "item_color_code": "Mã màu",
       "item_color_name": "Tên màu",
+      "item_color_image": "Tên ảnh",
       "item_objects_code": "Mã chức năng",
       "item_objects_name": "Tên chức năng",
       "item_objects_paren": "Chức năng cha",
@@ -71,8 +72,8 @@
       "item_name_client": "Máy truy cập",
       "item_size_color": "Map Size_Color ",
       "item_image": "Map Ảnh ",
-      "title_map_common": "Map Thao tác "
-
+      "title_map_common": "Map Thao tác ",
+      "item_image_link": "Hình ảnh"
     },
     "totalMessage": "bản ghi",
     "search": "Tìm kiếm",
