@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {createRequestOption} from '../../shares/utils/request-util';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,13 @@ export class UploadFileService {
   constructor(private http: HttpClient) {
   }
 
-  public upload(file: File): Observable<any> {
+  public upload(req?: any, file?: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
     console.log(formData);
+    const options = createRequestOption(req);
     return this.http.post<any>(`${environment.apiUrl}/upload`, formData, {
+      params: options,
       observe: 'response'
     });
   }

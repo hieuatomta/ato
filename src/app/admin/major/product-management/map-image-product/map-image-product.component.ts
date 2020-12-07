@@ -31,9 +31,8 @@ export class MapImageProductComponent implements OnInit {
   };
   columns = [
     {name: 'common.table.item_image_link', prop: 'imageLink', flexGrow: 1},
-    {name: 'common.table.item_color_image', prop: 'name', flexGrow: 1},
-    {name: 'common.table.item_status', prop: 'status', flexGrow: 1.5},
-    {name: 'common.table.item_description', prop: 'description', flexGrow: 1},
+    {name: 'common.table.item_color_image', prop: 'name', flexGrow: 2.5},
+    {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
@@ -107,38 +106,46 @@ export class MapImageProductComponent implements OnInit {
   message = '';
 
   fileInfos: Observable<any>;
+  canUpdate = true;
 
   upload() {
-    // this.progress = 0;
-    //
-    // this.currentFile = this.selectedFiles.item(0);
-    // const formData: FormData = new FormData();
-    // formData.append('file', this.currentFile);
-    // console.log(formData)
-    // const test = {
-    //   file: formData,
-    //   id: this.data.id
-    // }
-    // console.log(test);
-    // this.uploadService.upload(test).subscribe(
-    //   (res) => {
-    //     console.log(res);
-    //     this.message = res.body.data;
-    //   },
-    //   (error) => {
-    //     this.progress = 0;
-    //     this.message = 'Could not upload the file!';
-    //     this.currentFile = undefined;
-    //     // this.isLoad = false;
-    //   },
-    //   // () => this.isLoad = false,
-    // );
+    this.progress = 0;
 
-    this.selectedFiles = undefined;
+    this.currentFile = this.selectedFiles.item(0);
+    if (this.data.id) {
+      this.uploadService.upload({id: this.data.id}, this.currentFile).subscribe(
+        (res) => {
+          console.log(res);
+          this.message = res.body.data;
+          this.search();
+          this.canUpdate = true;
+        },
+        (error) => {
+          this.progress = 0;
+          this.message = 'Could not upload the file!';
+          this.currentFile = undefined;
+          this.canUpdate = true;
+          // this.isLoad = false;
+        },
+        () => this.canUpdate = true,
+      );
+    }
+    this.selectFile(null);
+    // this.selectedFiles = null;
   }
 
   selectFile(event) {
-    this.selectedFiles = event.target.files;
+    if (event !== null) {
+      this.selectedFiles = event.target.files;
+    } else {
+      this.canUpdate = true;
+      this.selectedFiles = null;
+    }
+    if (this.selectedFiles === null) {
+      this.canUpdate = true;
+    } else {
+      this.canUpdate = false;
+    }
   }
 
   lock(data) {

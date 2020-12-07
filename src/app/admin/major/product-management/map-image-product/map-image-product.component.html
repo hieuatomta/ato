@@ -11,47 +11,6 @@
       </div>
     </nb-card-header>
     <nb-card-body>
-      <form [formGroup]="inputProduct">
-        <!--        <div class="mb-4">-->
-        <!--          <div class="row">-->
-        <!--            <div class="col-lg-3 form-group">-->
-        <!--              <label class="label">{{ 'common.table.item_product_size' | translate }}</label>-->
-        <!--              <ng-select [clearAllText]="'common.clearAllText'"-->
-        <!--                         placeholder="{{'common.placeHolder' |translate}}"-->
-        <!--                         notFoundText="{{'common.notFoundText' |translate}}"-->
-        <!--                         fullWidth formControlName="idSize">-->
-        <!--                <ng-option *ngFor="let item of lstRole1" [value]="item.id">-->
-        <!--                  <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>-->
-        <!--                </ng-option>-->
-        <!--              </ng-select>-->
-        <!--            </div>-->
-        <!--            <div class="col-lg-3 form-group">-->
-        <!--              <label class="label">{{ 'common.table.item_product_color' | translate }}</label>-->
-        <!--              <ng-select [clearAllText]="'common.clearAllText'"-->
-        <!--                         placeholder="{{'common.placeHolder' |translate}}"-->
-        <!--                         notFoundText="{{'common.notFoundText' |translate}}"-->
-        <!--                         fullWidth formControlName="idColor">-->
-        <!--                <ng-option *ngFor="let item of lstRole2" [value]="item.id">-->
-        <!--                  <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>-->
-        <!--                </ng-option>-->
-        <!--              </ng-select>-->
-        <!--            </div>-->
-        <!--            <div class="col-lg-3 form-group">-->
-        <!--              <label class="label">-->
-        <!--                {{ 'common.table.item_product_sl' | translate }} <span style="color: red">(*)</span>-->
-        <!--              </label>-->
-        <!--              <input class="custom-border" formControlName="amount" type="text" nbInput fullWidth trim="blur"-->
-        <!--                     [ngClass]="{'status-danger': this.inputProduct.get('amount').touched && this.inputProduct.get('amount').errors}">-->
-        <!--              <ngx-inline-message [message]="'common.table.item_product_sl'|translate"-->
-        <!--                                  [formName]="inputProduct.get('amount')"></ngx-inline-message>-->
-        <!--            </div>-->
-        <!--            <div class="col-lg-3 form-group">-->
-        <!--              <button [disabled]="inputProduct.invalid" nbButton type="button" status="primary"-->
-        <!--                      (click)="addSizeColor()">{{ 'common.add' | translate }}</button>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-
         <div *ngIf="currentFile" class="progress">
           <div
             class="progress-bar progress-bar-info progress-bar-striped"
@@ -66,10 +25,10 @@
         </div>
 
         <label class="btn btn-default">
-          <input type="file" (change)="selectFile($event)"/>
+          <input type="file" accept="image/*" (change)="selectFile($event)"/>
         </label>
 
-        <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
+        <button class="btn btn-success" [disabled]="canUpdate" (click)="upload()">
           Upload
         </button>
 
@@ -90,7 +49,7 @@
               </ng-template>
               <ng-template let-value="value" ngx-datatable-cell-template let-row="row" let-rowIndex='rowIndex'>
                 <ng-container
-                  *ngIf=" col.prop ==='name' || col.prop ==='description'"
+                  *ngIf=" col.prop ==='name'"
                   class="text-right">
                         <span class="row-data-show"
                               title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
@@ -123,7 +82,6 @@
             </ngx-datatable-column>
           </ng-container>
         </ngx-datatable>
-      </form>
     </nb-card-body>
   </nb-card>
 </div>

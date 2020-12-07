@@ -32,19 +32,19 @@ export class ImageManagementComponent implements OnInit  {
     this.progress = 0;
 
     this.currentFile = this.selectedFiles.item(0);
-    this.uploadService.upload(this.currentFile).subscribe(
-      (res) => {
-        console.log(res);
-        this.message = res.body.data ;
-      },
-      (error) => {
-        this.progress = 0;
-        this.message = 'Could not upload the file!';
-        this.currentFile = undefined;
-        // this.isLoad = false;
-      },
-      // () => this.isLoad = false,
-      );
+    // this.uploadService.upload(this.currentFile).subscribe(
+    //   (res) => {
+    //     console.log(res);
+    //     this.message = res.body.data ;
+    //   },
+    //   (error) => {
+    //     this.progress = 0;
+    //     this.message = 'Could not upload the file!';
+    //     this.currentFile = undefined;
+    //     // this.isLoad = false;
+    //   },
+    //   // () => this.isLoad = false,
+    //   );
 
     this.selectedFiles = undefined;
   }
