@@ -67,7 +67,6 @@ export class SizesComponent implements OnInit {
   }
 
   editUsers(data) {
-    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('size.title_add');

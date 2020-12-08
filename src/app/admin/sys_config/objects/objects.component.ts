@@ -72,7 +72,6 @@ export class ObjectsComponent implements OnInit {
 
   getParent() {
     this.objectsService.getParent().subscribe(res => {
-      console.log(res);
       this.dataParent = res.body.data.list;
     });
   }
@@ -84,7 +83,6 @@ export class ObjectsComponent implements OnInit {
   }
 
   open(data) {
-    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('objects.title_add');

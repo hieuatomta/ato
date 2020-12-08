@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {role} from '../../admin/pages.component';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -22,8 +23,8 @@ export class AuthGuardService implements CanActivate {
       for (let i = 0; i < obj?.length; i++) {
         const path =  state.url.substring(0, obj[i].link?.length);
         if (obj[i].link === path) {
-          // role.slice(0, role.length);
-          // role.push(obj[i]);
+          role.slice(0, role.length);
+          role.push(obj[i]);
           checkRole = true;
         }
       }

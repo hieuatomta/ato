@@ -87,6 +87,8 @@ export let role = [];
 export function checkRoleAction(roleAction: string) {
   for (let i = 0; i < role[0].role?.length; i++) {
     if (role[0].role[i].codeAction === roleAction) {
+      console.log(role)
+      console.log("ds")
       return true;
     }
   }

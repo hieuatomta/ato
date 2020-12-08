@@ -67,7 +67,6 @@ export class ColorsComponent implements OnInit {
   }
 
   editUsers(data) {
-    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('color.title_add');

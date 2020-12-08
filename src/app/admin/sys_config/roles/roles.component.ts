@@ -70,7 +70,6 @@ export class RolesComponent implements OnInit {
   }
 
   editUsers(data) {
-    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('roles.title_add');
@@ -147,7 +146,6 @@ export class RolesComponent implements OnInit {
   }
 
   openMapComponent(data) {
-    console.log(data);
     this.dialogService.open(MapPopupComponent, {
       context: {
         title: this.translate.instant('roles.title_map_popup') + ' ' + data.name,

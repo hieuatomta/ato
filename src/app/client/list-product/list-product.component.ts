@@ -53,9 +53,7 @@ export class ListProductComponent implements OnInit, OnDestroy {
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
     // this.page.count = data.totalPages;
     // this.page.offset = page || 0;
-    console.log(data);
     this.rows = data.list || [];
-    console.log(this.rows);
   }
 
   onChangePage(pageOfItems: Array<any>) {

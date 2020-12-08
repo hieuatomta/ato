@@ -64,17 +64,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   thanhToan() {
     // this.inputForm.get('amount').setValue(this.soluong(3));
-    console.log(this.inputForm.value)
     // this.router.navigate(['/thanh-toan']);
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
     // this.page.count = data.totalPages;
     // this.page.offset = page || 0;
-    console.log(data);
     this.rows = data.list || [];
     this.obj = this.rows[0];
-    console.log(this.obj);
   }
 
   lstRole1 = [];
@@ -88,7 +85,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         this.inputForm.get('amount').setValue(0);
         return;
       }
-      console.log(this.inputForm.get('amount').value);
       soLuong = soLuong - 1;
       // this.inputForm.get('amount').setValue((soLuong - 1));
     } else {
@@ -96,7 +92,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       // this.inputForm.get('amount').setValue((soLuong + 1));
     }
     this.inputForm.get('amount').setValue(soLuong)
-    console.log(soLuong)
     return soLuong;
   }
 
@@ -110,12 +105,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
-      console.log(err);
     });
     this.colorService.query().subscribe(res => {
       this.lstRole2 = res.body.data.list;
     }, err => {
-      console.log(err);
     });
 
     $('.wrap-slick3').each(function () {

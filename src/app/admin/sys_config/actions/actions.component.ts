@@ -8,7 +8,8 @@ import {HttpHeaders} from '@angular/common/http';
 import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/confirm-dialog.component';
 import {ActionService} from '../../../@core/services/action.service';
 import {ActionUpdateComponent} from './action-update/action-update.component';
-import { DashboardService } from '../../../@core/services/dashboard.service';
+import {DashboardService} from '../../../@core/services/dashboard.service';
+import {checkRoleAction} from '../../pages.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -20,9 +21,9 @@ export class ActionsComponent implements OnInit {
   ngOnInit(): void {
     this.dashboardService.currentTheme.subscribe(e => {
       if (e && this.currentTheme !== e) {
-        this.currentTheme = e
+        this.currentTheme = e;
       }
-    })
+    });
     this.search(0);
     this.actionService.doSearch({}).subscribe(res => {
       console.log(res), err => {
@@ -40,6 +41,7 @@ export class ActionsComponent implements OnInit {
     private actionService: ActionService,
     private dialogService: NbDialogService) {
   }
+
   currentTheme: any = 'default';
   isLoad: boolean;
   listStatus = [
@@ -74,7 +76,6 @@ export class ActionsComponent implements OnInit {
   }
 
   editUsers(data) {
-    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('action.title_add');
@@ -148,6 +149,9 @@ export class ActionsComponent implements OnInit {
         });
       }
     });
+  }
 
+  check(roleAction: string) {
+    return checkRoleAction(roleAction);
   }
 }

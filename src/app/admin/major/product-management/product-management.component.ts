@@ -83,7 +83,6 @@ export class ProductManagementComponent implements OnInit {
   }
 
   editUsers(data) {
-    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('products.title_add');
@@ -116,7 +115,6 @@ export class ProductManagementComponent implements OnInit {
     this.page.count = data.totalPages;
     this.page.offset = page || 0;
     this.rows = data.list || [];
-    console.log(this.rows);
   }
 
   search(pageToLoad: number) {
@@ -161,7 +159,6 @@ export class ProductManagementComponent implements OnInit {
   }
 
   openMapModule(data) {
-    console.log(data);
     const openMap = this.dialogService.open(MapPopupComponent, {
       context: {
         title: this.translate.instant('common.table.item_size_color'),
@@ -176,7 +173,6 @@ export class ProductManagementComponent implements OnInit {
   }
 
   openMapModuleImage(data) {
-    console.log(data);
     const openMap = this.dialogService.open(MapImageProductComponent, {
       context: {
         title: this.translate.instant('common.table.item_image'),

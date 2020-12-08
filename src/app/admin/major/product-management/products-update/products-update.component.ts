@@ -59,7 +59,6 @@ export class ProductsUpdateComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data);
     this.inputProduct = new FormGroup({
       id: new FormControl(this.data?.id, []),
       name: new FormControl(null, [Validators.required]),
@@ -80,12 +79,10 @@ export class ProductsUpdateComponent implements OnInit {
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
-      console.log(err);
     });
     this.colorService.query().subscribe(res => {
       this.lstRole2 = res.body.data.list;
     }, err => {
-      console.log(err);
     });
     this.getParenTree(this.data?.type ? this.data.type : 1);
 
@@ -138,7 +135,6 @@ export class ProductsUpdateComponent implements OnInit {
       this.loading = true;
       if (this.data == null) {
         // this.inputProduct.get('productSizeColorList').setValue(this.rows);
-        console.log(this.inputProduct.value);
         this.productsService.insert(this.inputProduct.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {

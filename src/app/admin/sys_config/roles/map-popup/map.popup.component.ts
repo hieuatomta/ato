@@ -4,6 +4,8 @@ import {NbDialogRef} from '@nebular/theme';
 import {TreeviewConfig} from 'ngx-treeview';
 import {ObjectsService} from '../../../../@core/services/objects.service';
 import {TreeviewItem} from '../../../../shares/directives/tree-picker/ngx-treeview';
+import { LoginService } from '../../../../@core/services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-map-popup',
@@ -27,7 +29,9 @@ export class MapPopupComponent implements OnInit {
 
   constructor(private layoutService: LayoutService,
               private ref: NbDialogRef<MapPopupComponent>,
-              private objectsService: ObjectsService) {
+              private objectsService: ObjectsService,
+              private loginService: LoginService,
+              private router: Router) {
   }
 
 
@@ -85,7 +89,6 @@ export class MapPopupComponent implements OnInit {
       idRole: this.data.id,
       list: data,
     };
-    console.log(req);
 
     this.objectsService.updateObjRoleAction(req).subscribe(
       (success) => {
@@ -95,15 +98,15 @@ export class MapPopupComponent implements OnInit {
       },
       () => {
         this.loading = false;
-        // this.loginService.authenticationcate({}).subscribe(res => {
-        //   if (res.status === 200) {
-        //     const obj = res.body.listObjects;
-        //     localStorage.setItem('objects', JSON.stringify(obj));
-        //   }
-        // }, err => {
-        //   localStorage.clear();
-        //   this.router.navigate(['auths/login']);
-        // });
+        this.loginService.authenticationcate({}).subscribe(res => {
+          if (res.status === 200) {
+            const obj = res.body.listObjects;
+            localStorage.setItem('objects', JSON.stringify(obj));
+          }
+        }, err => {
+          localStorage.clear();
+          this.router.navigate(['auths/login']);
+        });
         this.ref.close('success');
       },
     );

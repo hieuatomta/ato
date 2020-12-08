@@ -53,9 +53,6 @@ export class MapImageProductComponent implements OnInit {
   protected onSuccess(data: any | null): void {
     this.rows = data.list || [];
     this.selectedUI = [];
-    console.log(data);
-    console.log(this.lstRole1);
-    console.log(this.lstRole2);
     this.selected.map(value => {
       this.rows.map((value1) => {
         if (value === value1.id) {
@@ -75,7 +72,6 @@ export class MapImageProductComponent implements OnInit {
       idColor: new FormControl(null, [Validators.required]),
     });
     this.search();
-    console.log(this.removeVietnameseTones('Thạch Thọ Hiếu '));
   }
 
   toAstrError() {
@@ -86,7 +82,6 @@ export class MapImageProductComponent implements OnInit {
   search() {
     this.loading = true;
     this.uploadService.doSearchByCode(this.data?.id).subscribe(res => {
-        console.log(res);
         this.onSuccess(res.body.data);
         this.loading = false;
       },
@@ -115,7 +110,6 @@ export class MapImageProductComponent implements OnInit {
     if (this.data.id) {
       this.uploadService.upload({id: this.data.id}, this.currentFile).subscribe(
         (res) => {
-          console.log(res);
           this.message = res.body.data;
           this.search();
           this.canUpdate = true;
@@ -149,7 +143,6 @@ export class MapImageProductComponent implements OnInit {
   }
 
   lock(data) {
-    console.log(data);
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
         title: this.translate.instant('common.title_notification'),
@@ -173,7 +166,6 @@ export class MapImageProductComponent implements OnInit {
   }
 
   deleteSizeColor(data) {
-    console.log(data);
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
         title: this.translate.instant('common.title_notification'),

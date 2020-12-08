@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header class="d-flex">
         <label>{{ 'action.title' | translate }}</label>
-        <button nbButton status="primary" size="tiny" class="ml-auto" (click)="editUsers(null)">
+        <button *ngIf="check( 'roleAction.insert' | translate )" nbButton status="primary" size="tiny" class="ml-auto" (click)="editUsers(null)">
           <nb-icon icon="plus" pack="eva"></nb-icon>
           {{ 'action.title_add' | translate }}
         </button>

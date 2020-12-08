@@ -26,6 +26,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {SharedModule} from '../../../shares/shared.module';
 import {ActionsComponent} from './actions.component';
+import { role } from '../../pages.component';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import {ActionsComponent} from './actions.component';
   entryComponents: [
     ActionUpdateComponent
   ],
-  declarations: [ActionsComponent, ActionUpdateComponent],
+  declarations: [ActionsComponent, ActionUpdateComponent, role],
 })
 export class ActionsModule {
 }

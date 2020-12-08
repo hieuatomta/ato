@@ -92,7 +92,6 @@ export class UserUpdateComponent implements OnInit {
 
   changeValue() {
     if (!this.cd['destroyed']) {
-      console.log(this.cd);
       this.cd.detectChanges();
     }
   }
@@ -128,7 +127,6 @@ export class UserUpdateComponent implements OnInit {
       const data = Object.assign({}, this.inputUser.value);
       data.id = this.data?.id;
       data.listRole = this.inputUser.get('lstRole').value;
-      console.log(data);
       if (this.data == null) {
         this.userService.insert(data).subscribe(
           (value) => this.ref.close(value),

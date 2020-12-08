@@ -55,9 +55,6 @@ export class MapPopupComponent implements OnInit {
   protected onSuccess(data: any | null): void {
     this.rows = data.list || [];
     this.selectedUI = [];
-    console.log(data);
-    console.log(this.lstRole1);
-    console.log(this.lstRole2);
     this.selected.map(value => {
       this.rows.map((value1) => {
         if (value === value1.id) {
@@ -78,12 +75,10 @@ export class MapPopupComponent implements OnInit {
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
-      console.log(err);
     });
     this.colorService.query().subscribe(res => {
       this.lstRole2 = res.body.data.list;
     }, err => {
-      console.log(err);
     });
     this.search();
   }
@@ -97,7 +92,6 @@ export class MapPopupComponent implements OnInit {
     this.inputProduct.markAllAsTouched();
     if (this.inputProduct.valid) {
       this.loading = true;
-      console.log(this.inputProduct.value);
       this.productsService.insertSizeColor(this.inputProduct.value).subscribe(
         (value) => {
           this.search();
@@ -115,7 +109,6 @@ export class MapPopupComponent implements OnInit {
   search() {
     this.loading = true;
     this.productsService.doSearchByCode(this.data?.id).subscribe(res => {
-        console.log(res);
         this.onSuccess(res.body.data);
         this.loading = false;
       },
@@ -129,7 +122,6 @@ export class MapPopupComponent implements OnInit {
   }
 
   deleteSizeColor(data) {
-    console.log(data);
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
         title: this.translate.instant('common.title_notification'),

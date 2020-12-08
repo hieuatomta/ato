@@ -86,7 +86,6 @@ export class LoginComponent implements OnInit {
   }
 
   changeLanguage(languageName: string) {
-    console.log(languageName);
     localStorage.setItem('languageName', languageName);
     this.translate.use(languageName);
 
@@ -109,7 +108,6 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.inputUser.value).subscribe(res => {
         this.submitted = false;
         if (res.status === 200) {
-          console.log(res);
           this.router.navigate(['/admin/home']);
           localStorage.setItem('objects', JSON.stringify(res.body.listObjects));
           localStorage.setItem('httpHeaders', res.body.httpHeaders.Authorization);

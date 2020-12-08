@@ -67,7 +67,6 @@ export class UsersComponent implements OnInit {
   }
 
   editUsers(data) {
-    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('users.title_add');
@@ -110,7 +109,6 @@ export class UsersComponent implements OnInit {
       size: this.page.limit
     }, this.inputForm.value).subscribe(
       (res) => {
-        console.log(res);
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
       (error) => {
