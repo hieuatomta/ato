@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin/home']);
           localStorage.setItem('objects', JSON.stringify(res.body.listObjects));
           localStorage.setItem('httpHeaders', res.body.httpHeaders.Authorization);
-          localStorage.setItem('users', res.body.customUserDetails.fullname);
+          localStorage.setItem('users', res.body.customUserDetails.fullName);
           localStorage.setItem('userDetails', JSON.stringify(res.body.customUserDetails));
           this.isLoad = false;
           this.captchaError = false;

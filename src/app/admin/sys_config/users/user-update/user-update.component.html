@@ -23,12 +23,12 @@
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'common.table.item_fullname' | translate }} <span style="color: red">(*)</span>
+              {{ 'common.table.item_fullName' | translate }} <span style="color: red">(*)</span>
             </label>
-            <input class="custom-border" formControlName="fullname" type="text" nbInput fullWidth trim="blur"
-                   [ngClass]="{'status-danger': this.inputUser.get('fullname').touched && this.inputUser.get('fullname').errors}">
-            <ngx-inline-message [message]="'common.table.item_fullname'|translate"
-                                [formName]="inputUser.get('fullname')"></ngx-inline-message>
+            <input class="custom-border" formControlName="fullName" type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputUser.get('fullName').touched && this.inputUser.get('fullName').errors}">
+            <ngx-inline-message [message]="'common.table.item_fullName'|translate"
+                                [formName]="inputUser.get('fullName')"></ngx-inline-message>
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
@@ -103,16 +103,16 @@
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'common.table.item_orBirthUser' | translate }} <span style="color: red">(*)</span>
+              {{ 'common.table.item_dateOfBirth' | translate }} <span style="color: red">(*)</span>
             </label>
             <input class="custom-border" nbInput fullWidth
-                   formControlName="orBirthUser"
-                   [nbDatepicker]="fromDate" [ngClass]="{'status-danger': this.inputUser.get('orBirthUser').touched && this.inputUser.get('orBirthUser').errors}"
+                   formControlName="dateOfBirth"
+                   [nbDatepicker]="fromDate" [ngClass]="{'status-danger': this.inputUser.get('dateOfBirth').touched && this.inputUser.get('dateOfBirth').errors}"
             >
             <nb-datepicker #fromDate format="{{'common.format_date' |translate}}">
             </nb-datepicker>
-            <ngx-inline-message [message]="'common.table.item_orBirthUser'|translate"
-                                [formName]="inputUser.get('orBirthUser')"></ngx-inline-message>
+            <ngx-inline-message [message]="'common.table.item_dateOfBirth'|translate"
+                                [formName]="inputUser.get('dateOfBirth')"></ngx-inline-message>
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">{{ 'common.table.item_role' | translate }}</label>

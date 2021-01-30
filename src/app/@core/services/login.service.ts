@@ -18,7 +18,7 @@ export class LoginService {
   }
 
   authenticationcate(authenticationcate: any): Observable<EntityResponseType> {
-    return this.http.post<LoginProgramModel>(`${environment.apiUrl}/authenticationcate`, authenticationcate, {observe: 'response'});
+    return this.http.post<LoginProgramModel>(`${environment.apiUrl}/authenticate`, authenticationcate, {observe: 'response'});
   }
 
   changePass(changePass: LoginProgramModel): Observable<EntityResponseType> {

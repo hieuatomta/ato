@@ -44,20 +44,20 @@ export class UsersComponent implements OnInit {
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
     {name: 'common.table.item_username', prop: 'name', flexGrow: 1},
-    {name: 'common.table.item_fullname', prop: 'fullname', flexGrow: 1},
+    {name: 'common.table.item_fullName', prop: 'fullName', flexGrow: 1},
     {name: 'common.table.item_email', prop: 'mail', flexGrow: 1},
     {name: 'common.table.item_tel', prop: 'phone', flexGrow: 1},
-    {name: 'common.table.item_orBirthUser', prop: 'orBirthUser', flexGrow: 1},
+    {name: 'common.table.item_dateOfBirth', prop: 'dateOfBirth', flexGrow: 1},
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
 
   inputForm = new FormGroup({
     name: new FormControl(null, []),
-    fullname: new FormControl(null, []),
+    fullName: new FormControl(null, []),
     mail: new FormControl(null, []),
     phone: new FormControl(null, []),
-    orBirthUser: new FormControl(null, []),
+    dateOfBirth: new FormControl(null, []),
     status: new FormControl(null, []),
   });
 
@@ -96,7 +96,7 @@ export class UsersComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.totalPages;
+    this.page.count = data.count;
     this.page.offset = page || 0;
     this.rows = data.list || [];
   }
@@ -106,8 +106,14 @@ export class UsersComponent implements OnInit {
     this.page.offset = pageToLoad;
     this.userService.doSearch({
       page: this.page.offset,
-      size: this.page.limit
-    }, this.inputForm.value).subscribe(
+      page_size: this.page.limit,
+      name: this.inputForm.get("name").value,
+      fullName: this.inputForm.get("fullName").value,
+      mail: this.inputForm.get("mail").value,
+      phone: this.inputForm.get("phone").value,
+      dateOfBirth: this.inputForm.get("dateOfBirth").value,
+      status: this.inputForm.get("status").value,
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },

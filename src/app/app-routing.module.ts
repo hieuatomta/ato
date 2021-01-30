@@ -31,7 +31,7 @@ export const routes: Routes = [
 ];
 
 const config: ExtraOptions = {
-  useHash: true,
+  useHash: false,
   scrollPositionRestoration: 'enabled',
   anchorScrolling: 'enabled',
   scrollOffset: [0, 64]

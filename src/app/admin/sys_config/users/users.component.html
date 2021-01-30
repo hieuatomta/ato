@@ -20,9 +20,9 @@
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'common.table.item_fullname' | translate }}
+                  {{ 'common.table.item_fullName' | translate }}
                 </label>
-                <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="fullname">
+                <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="fullName">
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
@@ -80,13 +80,13 @@
                   {{ page.offset * page.limit + rowIndex + 1 }}
                 </ng-container>
                 <ng-container
-                  *ngIf="col.prop ==='mail' || col.prop ==='name'|| col.prop ==='fullname' || col.prop ==='phone' "
+                  *ngIf="col.prop ==='mail' || col.prop ==='name'|| col.prop ==='fullName' || col.prop ==='phone' "
                   class="text-right">
                   <span class="row-data-show"
                         title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
                 </ng-container>
-                <ng-container *ngIf="col.prop ==='orBirthUser'">
-                  {{ value | date:'dd/MM/yyyy'}}
+                <ng-container *ngIf="col.prop ==='dateOfBirth'">
+                  {{ value }}
                 </ng-container>
                 <ng-container *ngIf="col.prop ==='status'">
                   {{  'common.status.' + value | translate }}

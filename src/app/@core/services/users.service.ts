@@ -11,14 +11,18 @@ export class UsersService {
   constructor(private http: HttpClient) {
   }
 
-  public doSearch(req?: any, body?: any): Observable<any> {
+  public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
-    return this.http.post<any[]>(`${environment.apiUrl}/users/doSearch`, body, {
+    return this.http.get<any[]>(`${environment.apiUrl}/users`, {
       params: options,
       observe: 'response'
     });
   }
-
+  query(): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/roles/getAll`, {
+      observe: 'response'
+    });
+  }
   public update(data: any): Observable<any> {
     return this.http.put<any>(`${environment.apiUrl}/users/update`, data, {
       observe: 'response'
