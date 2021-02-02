@@ -18,11 +18,11 @@ import {ColorUpdateComponent} from './color-update/color-update.component';
 export class ColorsComponent implements OnInit {
   ngOnInit(): void {
     this.search(0);
-    this.colorService.doSearch({}).subscribe(res => {
-      console.log(res), err => {
-        console.log(err);
-      };
-    });
+    // this.colorService.doSearch({}).subscribe(res => {
+    //   console.log(res), err => {
+    //     console.log(err);
+    //   };
+    // });
   }
 
   constructor(
@@ -96,7 +96,7 @@ export class ColorsComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.totalPages;
+    this.page.count = data.count;
     this.page.offset = page || 0;
     this.rows = data.list || [];
   }
@@ -106,8 +106,12 @@ export class ColorsComponent implements OnInit {
     this.page.offset = pageToLoad;
     this.colorService.doSearch({
       page: this.page.offset,
-      color: this.page.limit
-    }, this.inputForm.value).subscribe(
+      page_size: this.page.limit,
+      name: this.inputForm.get("name").value,
+      code: this.inputForm.get("code").value,
+      updateTime: this.inputForm.get("updateTime").value,
+      status: this.inputForm.get("status").value,
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
@@ -117,6 +121,7 @@ export class ColorsComponent implements OnInit {
       () => this.isLoad = false,
     );
   }
+
 
 
   deleteUsers(data) {

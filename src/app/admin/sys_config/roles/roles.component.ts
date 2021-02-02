@@ -19,11 +19,11 @@ import {MapPopupComponent} from './map-popup/map.popup.component';
 export class RolesComponent implements OnInit {
   ngOnInit(): void {
     this.search(0);
-    this.rolesService.doSearch({}).subscribe(res => {
-      console.log(res), err => {
-        console.log(err);
-      };
-    });
+    // this.rolesService.doSearch({}).subscribe(res => {
+    //   console.log(res), err => {
+    //     console.log(err);
+    //   };
+    // });
   }
   isLoad: boolean;
 
@@ -99,18 +99,39 @@ export class RolesComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.totalPages;
+    this.page.count = data.count;
     this.page.offset = page || 0;
     this.rows = data.list || [];
   }
+
+  // search(pageToLoad: number) {
+  //   this.isLoad = true;
+  //   this.page.offset = pageToLoad;
+  //   this.rolesService.doSearch({
+  //     page: this.page.offset,
+  //     size: this.page.limit
+  //   }, this.inputForm.value).subscribe(
+  //     (res) => {
+  //       this.onSuccess(res.body.data, res.headers, pageToLoad);
+  //     },
+  //     (error) => {
+  //       this.isLoad = false;
+  //     },
+  //     () => this.isLoad = false,
+  //   );
+  // }
 
   search(pageToLoad: number) {
     this.isLoad = true;
     this.page.offset = pageToLoad;
     this.rolesService.doSearch({
       page: this.page.offset,
-      size: this.page.limit
-    }, this.inputForm.value).subscribe(
+      page_size: this.page.limit,
+      name: this.inputForm.get("name").value,
+      code: this.inputForm.get("code").value,
+      updateTime: this.inputForm.get("updateTime").value,
+      status: this.inputForm.get("status").value,
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },

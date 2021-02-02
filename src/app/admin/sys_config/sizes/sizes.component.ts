@@ -18,11 +18,11 @@ import {SizeUpdateComponent} from './size-update/size-update.component';
 export class SizesComponent implements OnInit {
   ngOnInit(): void {
     this.search(0);
-    this.sizeService.doSearch({}).subscribe(res => {
-      console.log(res), err => {
-        console.log(err);
-      };
-    });
+    // this.sizeService.doSearch({}).subscribe(res => {
+    //   console.log(res), err => {
+    //     console.log(err);
+    //   };
+    // });
   }
 
   constructor(
@@ -94,9 +94,8 @@ export class SizesComponent implements OnInit {
       }
     );
   }
-
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.totalPages;
+    this.page.count = data.count;
     this.page.offset = page || 0;
     this.rows = data.list || [];
   }
@@ -106,8 +105,12 @@ export class SizesComponent implements OnInit {
     this.page.offset = pageToLoad;
     this.sizeService.doSearch({
       page: this.page.offset,
-      size: this.page.limit
-    }, this.inputForm.value).subscribe(
+      page_size: this.page.limit,
+      name: this.inputForm.get("name").value,
+      code: this.inputForm.get("code").value,
+      updateTime: this.inputForm.get("updateTime").value,
+      status: this.inputForm.get("status").value,
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },

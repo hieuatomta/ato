@@ -17,9 +17,9 @@ export class SizeService {
     });
   }
 
-  public doSearch(req?: any, body?: any): Observable<any> {
+  public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
-    return this.http.post<any[]>(`${environment.apiUrl}/size/doSearch`, body, {
+    return this.http.get<any[]>(`${environment.apiUrl}/sizes`, {
       params: options,
       observe: 'response'
     });

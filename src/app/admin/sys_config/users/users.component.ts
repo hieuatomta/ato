@@ -67,6 +67,7 @@ export class UsersComponent implements OnInit {
   }
 
   editUsers(data) {
+    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('users.title_add');

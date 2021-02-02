@@ -15,6 +15,8 @@ import {RolesService} from '../../../../@core/services/roles.service';
 import {UsersService} from '../../../../@core/services/users.service';
 import {passwordsMatchValidator, validDate} from '../../../../validator';
 import {TranslateService} from '@ngx-translate/core';
+import * as moment from 'moment';
+import {getFormattedDate} from '../../../../shares/utils/date-util';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -52,7 +54,6 @@ export class UserUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listRole = this.data?.roleUser?.split(',').map(item => Number(item));
     this.inputUser = new FormGroup({
       name: new FormControl(this.data?.name, [Validators.required]),
       fullName: new FormControl(this.data?.fullName, [Validators.required]),
@@ -61,9 +62,9 @@ export class UserUpdateComponent implements OnInit {
       pass: new FormControl(this.randomPass(10), []),
       rePassword: new FormControl(null, []),
       imageUrl: new FormControl(this.data?.imageUrl, []),
-      dateOfBirth: new FormControl(this.data?.dateOfBirth, [Validators.required]),
+      dateOfBirth: new FormControl(moment(this.data?.dateOfBirth).toDate()),
       status: new FormControl(this.data?.status, [Validators.required]),
-      lstRole: new FormControl(this.listRole, []),
+      lstRole: new FormControl(null, []),
     }, {
       validators: passwordsMatchValidator,
     });
@@ -73,10 +74,14 @@ export class UserUpdateComponent implements OnInit {
       const status = this.data.status === 1 ? true : false;
       this.inputUser.get('status').patchValue(status);
     };
+    this.userService.query(this.data?.id).subscribe(res => {
+      this.inputUser.get("lstRole").setValue(  res.body.DS_ROLES.toString().split(',').map(item => Number(item)));
+    }, err => {
+    });
+
     this.rolesService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
-      console.log(err);
     });
   };
 

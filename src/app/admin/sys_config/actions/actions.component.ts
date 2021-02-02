@@ -105,7 +105,7 @@ export class ActionsComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.totalPages;
+    this.page.count = data.count;
     this.page.offset = page || 0;
     this.rows = data.list || [];
   }
@@ -115,8 +115,12 @@ export class ActionsComponent implements OnInit {
     this.page.offset = pageToLoad;
     this.actionService.doSearch({
       page: this.page.offset,
-      size: this.page.limit
-    }, this.inputForm.value).subscribe(
+      page_size: this.page.limit,
+      name: this.inputForm.get("name").value,
+      code: this.inputForm.get("code").value,
+      updateTime: this.inputForm.get("updateTime").value,
+      status: this.inputForm.get("status").value,
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
