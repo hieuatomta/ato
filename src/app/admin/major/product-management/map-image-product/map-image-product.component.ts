@@ -137,6 +137,7 @@ export class MapImageProductComponent implements OnInit {
   }
 
   lock(data) {
+    console.log(data);
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
         title: this.translate.instant('common.title_notification'),

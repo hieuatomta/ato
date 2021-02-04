@@ -29,13 +29,13 @@ export class UploadFileService {
   }
 
   lock(data?: any): Observable<any> {
-    return this.http.post <any>(`${environment.apiUrl}/image/lock`, data, {
+    return this.http.post <any>(`${environment.apiUrl}/image-links/lock`, data, {
       observe: 'response'
     });
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiUrl}/image/${id}`);
+    return this.http.delete<any>(`${environment.apiUrl}/image-links/${id}`);
   }
 
   getFiles(): Observable<any> {
