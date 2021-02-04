@@ -18,11 +18,6 @@ import {LogsService} from '../../../@core/services/logs.service';
 export class LogsComponent implements OnInit {
   ngOnInit(): void {
     this.search(0);
-    this.logsService.doSearch({}).subscribe(res => {
-      console.log(res), err => {
-        console.log(err);
-      };
-    });
   }
 
   constructor(
@@ -46,11 +41,12 @@ export class LogsComponent implements OnInit {
   };
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
-    {name: 'common.table.item_logs_name', prop: 'userImpact', flexGrow: 1.5},
-    {name: 'common.table.item_action', prop: 'codeAction', flexGrow: 1.5},
+    {name: 'common.table.item_logs_name', prop: 'userImpact', flexGrow: 0.7},
+    {name: 'common.table.item_action', prop: 'codeAction', flexGrow: 0.5},
     {name: 'common.table.item_description', prop: 'content', flexGrow: 1.5},
     {name: 'common.table.item_log_ip', prop: 'ip', flexGrow: 1},
     {name: 'common.table.item_name_client', prop: 'nameClient', flexGrow: 1},
+    {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_impact_time', prop: 'impactTime', flexGrow: 1},
   ];
 
@@ -68,18 +64,40 @@ export class LogsComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.totalPages;
+    this.page.count = data.count;
     this.page.offset = page || 0;
     this.rows = data.list || [];
   }
+
+  // search(pageToLoad: number) {
+  //   this.isLoad = true;
+  //   this.page.offset = pageToLoad;
+  //   this.logsService.doSearch({
+  //     page: this.page.offset,
+  //     size: this.page.limit
+  //   }, this.inputForm.value).subscribe(
+  //     (res) => {
+  //       this.onSuccess(res.body.data, res.headers, pageToLoad);
+  //     },
+  //     (error) => {
+  //       this.isLoad = false;
+  //     },
+  //     () => this.isLoad = false,
+  //   );
+  // }
 
   search(pageToLoad: number) {
     this.isLoad = true;
     this.page.offset = pageToLoad;
     this.logsService.doSearch({
       page: this.page.offset,
-      size: this.page.limit
-    }, this.inputForm.value).subscribe(
+      page_size: this.page.limit,
+      userImpact: this.inputForm.get("userImpact").value,
+      codeAction: this.inputForm.get("codeAction").value,
+      content: this.inputForm.get("content").value,
+      ip: this.inputForm.get("ip").value,
+      impactTime: this.inputForm.get("impactTime").value,
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },

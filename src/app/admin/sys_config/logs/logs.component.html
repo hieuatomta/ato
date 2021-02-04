@@ -69,13 +69,13 @@
                   {{ page.offset * page.limit + rowIndex + 1 }}
                 </ng-container>
                 <ng-container
-                  *ngIf="col.prop ==='codeAction' || col.prop ==='userImpact' || col.prop ==='content' || col.prop ==='nameClient' || col.prop ==='ip'"
+                  *ngIf="col.prop ==='codeAction' || col.prop ==='userImpact' || col.prop ==='content' || col.prop ==='nameClient' || col.prop ==='ip' || col.prop ==='status'"
                   class="text-right">
                   <span class="row-data-show"
                         title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
                 </ng-container>
                 <ng-container *ngIf="col.prop ==='impactTime'">
-                  {{ value | date:'dd/MM/yyyy HH:mm:ss'}}
+                  {{ value }}
                 </ng-container>
               </ng-template>
             </ngx-datatable-column>

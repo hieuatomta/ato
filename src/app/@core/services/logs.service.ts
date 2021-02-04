@@ -11,11 +11,18 @@ export class LogsService {
   constructor(private http: HttpClient) {
   }
 
-  public doSearch(req?: any, body?: any): Observable<any> {
+  public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
-    return this.http.post<any[]>(`${environment.apiUrl}/logs/doSearch`, body, {
+    return this.http.get<any[]>(`${environment.apiUrl}/sys-logs`, {
       params: options,
       observe: 'response'
     });
   }
+  // public doSearch(req?: any, body?: any): Observable<any> {
+  //   const options = createRequestOption(req);
+  //   return this.http.post<any[]>(`${environment.apiUrl}/logs/doSearch`, body, {
+  //     params: options,
+  //     observe: 'response'
+  //   });
+  // }
 }

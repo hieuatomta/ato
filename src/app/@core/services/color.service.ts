@@ -17,14 +17,6 @@ export class ColorService {
     });
   }
 
-  // public doSearch(req?: any, body?: any): Observable<any> {
-  //   const options = createRequestOption(req);
-  //   return this.http.post<any[]>(`${environment.apiUrl}/color/doSearch`, body, {
-  //     params: options,
-  //     observe: 'response'
-  //   });
-  // }
-
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.get<any[]>(`${environment.apiUrl}/colors`, {
