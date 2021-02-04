@@ -21,7 +21,6 @@ export class MapPopupComponent implements OnInit {
   loading = false;
   rows;
   allData: any;
-  selectedUI = [];
   selected = [];
   originalData = [];
   isLoad: boolean;
@@ -53,15 +52,7 @@ export class MapPopupComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null): void {
-    this.rows = data.list || [];
-    this.selectedUI = [];
-    this.selected.map(value => {
-      this.rows.map((value1) => {
-        if (value === value1.id) {
-          this.selectedUI.push(value1);
-        }
-      });
-    });
+    this.rows = data.DS_Product_Size_Color || [];
   }
 
   ngOnInit(): void {

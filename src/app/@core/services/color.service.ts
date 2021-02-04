@@ -12,7 +12,7 @@ export class ColorService {
   }
 
   query(): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/color/getAll`, {
+    return this.http.get<any[]>(`${environment.apiUrl}/colors`, {
       observe: 'response'
     });
   }

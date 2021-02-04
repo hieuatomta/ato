@@ -27,11 +27,6 @@ class RequestOptions {
 export class ProductManagementComponent implements OnInit {
   ngOnInit(): void {
     this.search(0);
-    this.productsService.doSearch({}).subscribe(res => {
-      console.log(res), err => {
-        console.log(err);
-      };
-    });
   }
 
   constructor(
@@ -60,7 +55,7 @@ export class ProductManagementComponent implements OnInit {
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
     {name: 'common.table.item_product_code', prop: 'code', flexGrow: 1},
     {name: 'common.table.item_product_name', prop: 'name', flexGrow: 1.5},
-    {name: 'common.table.item_product_cost', prop: 'price', flexGrow: 1},
+    {name: 'common.table.item_product_cost', prop: 'cost', flexGrow: 1},
     {name: 'common.table.item_product_total', prop: 'totalProduct', flexGrow: 1},
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_product_paren_object', prop: 'parenObject', flexGrow: 1},
@@ -112,7 +107,7 @@ export class ProductManagementComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.totalPages;
+    this.page.count = data.count;
     this.page.offset = page || 0;
     this.rows = data.list || [];
   }
@@ -122,8 +117,12 @@ export class ProductManagementComponent implements OnInit {
     this.page.offset = pageToLoad;
     this.productsService.doSearch({
       page: this.page.offset,
-      size: this.page.limit
-    }, this.inputForm.value).subscribe(
+      page_size: this.page.limit,
+      name: this.inputForm.get("name").value,
+      code: this.inputForm.get("code").value,
+      updateTime: this.inputForm.get("updateTime").value,
+      status: this.inputForm.get("status").value,
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
@@ -133,6 +132,7 @@ export class ProductManagementComponent implements OnInit {
       () => this.isLoad = false,
     );
   }
+
 
 
   deleteUsers(data) {

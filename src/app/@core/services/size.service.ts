@@ -12,7 +12,7 @@ export class SizeService {
   }
 
   query(): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/size/getAll`, {
+    return this.http.get<any[]>(`${environment.apiUrl}/sizes`, {
       observe: 'response'
     });
   }

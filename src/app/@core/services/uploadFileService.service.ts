@@ -23,7 +23,7 @@ export class UploadFileService {
   }
 
   doSearchByCode(id: any): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/images/${id}`, {
+    return this.http.get<any[]>(`${environment.apiUrl}/products-images/${id}`, {
       observe: 'response'
     });
   }

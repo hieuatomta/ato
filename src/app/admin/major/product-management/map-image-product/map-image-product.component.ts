@@ -20,7 +20,6 @@ export class MapImageProductComponent implements OnInit {
   loading = false;
   rows;
   allData: any;
-  selectedUI = [];
   selected = [];
   originalData = [];
   isLoad: boolean;
@@ -51,15 +50,9 @@ export class MapImageProductComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null): void {
-    this.rows = data.list || [];
-    this.selectedUI = [];
-    this.selected.map(value => {
-      this.rows.map((value1) => {
-        if (value === value1.id) {
-          this.selectedUI.push(value1);
-        }
-      });
-    });
+    console.log(data.DS_Image);
+    this.rows = data.DS_Image || [];
+
   }
 
   ngOnInit(): void {
@@ -81,6 +74,7 @@ export class MapImageProductComponent implements OnInit {
 
   search() {
     this.loading = true;
+    console.log(this.data);
     this.uploadService.doSearchByCode(this.data?.id).subscribe(res => {
         this.onSuccess(res.body.data);
         this.loading = false;
