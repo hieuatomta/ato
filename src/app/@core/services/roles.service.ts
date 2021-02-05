@@ -26,13 +26,13 @@ export class RolesService {
   }
 
   public update(data: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiUrl}/roles/update`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/roles`, data, {
       observe: 'response'
     });
   }
 
   public insert(data: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiUrl}/roles/insert`, data, {
+    return this.http.post<any>(`${environment.apiUrl}/roles`, data, {
       observe: 'response'
     });
   }

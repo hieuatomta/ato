@@ -26,19 +26,19 @@ export class SizeService {
   }
 
   public update(data: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiUrl}/size/update`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/sizes`, data, {
       observe: 'response'
     });
   }
 
   public insert(data: any): Observable<any> {
-    return this.http.put <any>(`${environment.apiUrl}/size/insert`, data, {
+    return this.http.post <any>(`${environment.apiUrl}/sizes`, data, {
       observe: 'response'
     });
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiUrl}/size/${id}`);
+    return this.http.delete<any>(`${environment.apiUrl}/sizes/${id}`);
   }
 
 }

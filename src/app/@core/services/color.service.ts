@@ -26,19 +26,19 @@ export class ColorService {
   }
 
   public update(data: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiUrl}/color/update`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/colors`, data, {
       observe: 'response'
     });
   }
 
   public insert(data: any): Observable<any> {
-    return this.http.put <any>(`${environment.apiUrl}/color/insert`, data, {
+    return this.http.post <any>(`${environment.apiUrl}/colors`, data, {
       observe: 'response'
     });
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiUrl}/color/${id}`);
+    return this.http.delete<any>(`${environment.apiUrl}/colors/${id}`);
   }
 
 }
