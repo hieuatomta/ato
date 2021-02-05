@@ -64,11 +64,11 @@ export class MapPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.objectActionService.doSearch({idObjects: this.data.id}).subscribe(
+    this.objectActionService.query({objectsId: this.data.id}).subscribe(
       res => {
         this.originalData = res.body.data.list;
         res.body.data.list.map(value => {
-          this.selected.push(value.idAction);
+          this.selected.push(value.actionsId);
         });
       },
       (error) => {
@@ -100,7 +100,7 @@ export class MapPopupComponent implements OnInit {
 
   search() {
     this.loading = true;
-    this.actionService.query().subscribe(res => {
+    this.actionService.doSearch().subscribe(res => {
         this.allData = res.body.data.list;
         this.onSuccess(res.body.data);
       },
@@ -116,7 +116,7 @@ export class MapPopupComponent implements OnInit {
     const listAdd = [];
     if (this.allData?.length === this.selected?.length) {
       this.originalData.map(value => {
-        listUncheck.push(value.idAction);
+        listUncheck.push(value.actionsId);
       });
       this.selected.map(value => {
         listAdd.push(value);
@@ -125,13 +125,13 @@ export class MapPopupComponent implements OnInit {
       this.originalData.map(value => {
         let isUncheck = true;
         this.selected.map((select, index) => {
-          if (value.idAction === select) {
+          if (value.actionsId === select) {
             this.selected.splice(index, index + 1);
             isUncheck = false;
           }
         });
         if (isUncheck) {
-          listUncheck.push(value.idAction);
+          listUncheck.push(value.actionsId);
         }
       });
       this.selected.map(value => {

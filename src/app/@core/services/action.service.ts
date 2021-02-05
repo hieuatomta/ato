@@ -11,11 +11,11 @@ export class ActionService {
   constructor(private http: HttpClient) {
   }
 
-  query(): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/action/getAll`, {
-      observe: 'response'
-    });
-  }
+  // query(): Observable<any> {
+  //   return this.http.get<any[]>(`${environment.apiUrl}/actions`, {
+  //     observe: 'response'
+  //   });
+  // }
 
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);

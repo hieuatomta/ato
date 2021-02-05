@@ -104,23 +104,6 @@ export class RolesComponent implements OnInit {
     this.rows = data.list || [];
   }
 
-  // search(pageToLoad: number) {
-  //   this.isLoad = true;
-  //   this.page.offset = pageToLoad;
-  //   this.rolesService.doSearch({
-  //     page: this.page.offset,
-  //     size: this.page.limit
-  //   }, this.inputForm.value).subscribe(
-  //     (res) => {
-  //       this.onSuccess(res.body.data, res.headers, pageToLoad);
-  //     },
-  //     (error) => {
-  //       this.isLoad = false;
-  //     },
-  //     () => this.isLoad = false,
-  //   );
-  // }
-
   search(pageToLoad: number) {
     this.isLoad = true;
     this.page.offset = pageToLoad;

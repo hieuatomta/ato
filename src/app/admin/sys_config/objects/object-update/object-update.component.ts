@@ -57,11 +57,11 @@ export class ObjectUpdateComponent implements OnInit {
     this.getParenTree(e);
   }
 
-  formatDataTree(data, parenId) {
+  formatDataTree(data, parentId) {
     const arr = [];
     for (let i = 0; i < data.length; i++) {
       const dataItem = data[i];
-      if (dataItem.parenId === parenId) {
+      if (dataItem.parentId === parentId) {
         let children = [];
         if (dataItem.id != null) {
           children = this.formatDataTree(data, dataItem.id);

@@ -12,7 +12,7 @@ export class ObjectsService {
   }
 
   query(): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/object/getAll`, {
+    return this.http.get<any[]>(`${environment.apiUrl}/objects`, {
       observe: 'response'
     });
   }

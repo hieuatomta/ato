@@ -83,7 +83,7 @@ export class MapPopupComponent implements OnInit {
     const data = [];
     this.values.map(value => {
       const a = value.split('/');
-      data.push({idRole: this.data.id, idObject: a[0], idAction: a[1]});
+      data.push({idRole: this.data.id, objectsId: a[0], actionsId: a[1]});
     });
     const req = {
       idRole: this.data.id,

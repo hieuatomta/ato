@@ -52,13 +52,13 @@ export class ObjectsComponent implements OnInit {
     this.isLoad = true;
    this.search();
     // this.objectsService.query().subscribe(res => this.rows = this.formatData(res.body.data.list, 0) || [] );
-    this.getParent();
+    // this.getParent();
   }
 
-  formatData(data, parenId) {
+  formatData(data, parentId) {
     let arr = [];
     for (let i = 0; i < data.length; i++) {
-      if (data[i].parenId === parenId) {
+      if (data[i].parentId === parentId) {
         const children = this.formatData(data, data[i].id);
         if (children.length === 0) {
           data[i].treeStatus = 'disabled';
@@ -71,9 +71,9 @@ export class ObjectsComponent implements OnInit {
   }
 
   getParent() {
-    this.objectsService.getParent().subscribe(res => {
-      this.dataParent = res.body.data.list;
-    });
+    // this.objectsService.getParent().subscribe(res => {
+    //   this.dataParent = res.body.data.list;
+    // });
   }
 
   constructor(private objectsService: ObjectsService,
