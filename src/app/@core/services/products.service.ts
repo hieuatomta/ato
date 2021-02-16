@@ -65,7 +65,7 @@ export class ProductsService {
   }
 
   public insertSizeColor(data: any): Observable<any> {
-    return this.http.put <any>(`${environment.apiUrl}/productsSizeColor/insert`, data, {
+    return this.http.put <any>(`${environment.apiUrl}/product-size-colors`, data, {
       observe: 'response'
     });
   }

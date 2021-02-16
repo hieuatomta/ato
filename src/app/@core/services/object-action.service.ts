@@ -21,20 +21,20 @@ export class ObjectActionService {
 
   // public doSearch(data: any, req?: any): Observable<any> {
   //   const options = createRequestOption(req);
-  //   return this.http.post(`${environment.apiUrl}/objectAction/doSearch`, data, {
+  //   return this.http.post(`${environment.apiUrl}/object-actions/doSearch`, data, {
   //     params: options,
   //     observe: 'response'
   //   });
   // }
 
   public insert(data): Observable<any> {
-    return this.http.put<any>(`${environment.apiUrl}/objectAction/insert`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/object-actions/insert`, data, {
       observe: 'response'
     });
   }
 
   public delete(body?: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/objectAction/delete`, body, {
+    return this.http.post(`${environment.apiUrl}/object-actions/delete`, body, {
       observe: 'response'
     })
   }

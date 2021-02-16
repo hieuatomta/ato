@@ -35,11 +35,11 @@ export class MapPopupComponent implements OnInit {
   }
 
 
-  formatDataModule(data, parenId) {
+  formatDataModule(data, parentId) {
     const arr = [];
     for (let i = 0; i < data.length; i++) {
       const dataItem = data[i];
-      if (dataItem.parenId === parenId) {
+      if (dataItem.parentId === parentId) {
         let children = [];
         if (dataItem.id != null) {
           children = this.formatDataModule(data, dataItem.id);
@@ -68,7 +68,7 @@ export class MapPopupComponent implements OnInit {
     this.loading = true;
     this.objectsService.getAllObjRoleAction(this.data?.id).subscribe(
       (value) => {
-        this.dataItems = this.formatDataModule(value.body.data.list, 0);
+        this.dataItems = this.formatDataModule(value.body.data, 0);
       },
       (error) => {
         this.loading = false;
@@ -83,10 +83,10 @@ export class MapPopupComponent implements OnInit {
     const data = [];
     this.values.map(value => {
       const a = value.split('/');
-      data.push({idRole: this.data.id, objectsId: a[0], actionsId: a[1]});
+      data.push({rolesId: this.data.id, objectsId: a[0], actionsId: a[1]});
     });
     const req = {
-      idRole: this.data.id,
+      rolesId: this.data.id,
       list: data,
     };
 

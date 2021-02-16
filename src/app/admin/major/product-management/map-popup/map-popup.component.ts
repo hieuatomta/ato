@@ -58,10 +58,10 @@ export class MapPopupComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.inputProduct = new FormGroup({
-      idProduct: new FormControl(this.data?.id, []),
+      productsId: new FormControl(this.data?.id, []),
       amount: new FormControl(null, [Validators.required]),
-      idSize: new FormControl(null, [Validators.required]),
-      idColor: new FormControl(null, [Validators.required]),
+      sizesId: new FormControl(null, [Validators.required]),
+      colorsId: new FormControl(null, [Validators.required]),
     });
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;

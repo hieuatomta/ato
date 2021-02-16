@@ -19,7 +19,7 @@
               <ng-select [clearAllText]="'common.clearAllText'"
                          placeholder="{{'common.placeHolder' |translate}}"
                          notFoundText="{{'common.notFoundText' |translate}}"
-                         fullWidth formControlName="idSize">
+                         fullWidth formControlName="sizesId">
                 <ng-option *ngFor="let item of lstRole1" [value]="item.id">
                   <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
                 </ng-option>
@@ -30,7 +30,7 @@
               <ng-select [clearAllText]="'common.clearAllText'"
                          placeholder="{{'common.placeHolder' |translate}}"
                          notFoundText="{{'common.notFoundText' |translate}}"
-                         fullWidth formControlName="idColor">
+                         fullWidth formControlName="colorsId">
                 <ng-option *ngFor="let item of lstRole2" [value]="item.id">
                   <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
                 </ng-option>
