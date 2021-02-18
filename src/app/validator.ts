@@ -27,7 +27,6 @@ export function email(control: AbstractControl): { [key: string]: boolean } | nu
   if (control && control.value != null) {
     value = control.value;
     if (value != null && value.trim().length !== 0) {
-      console.log(value.trim().length);
       const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (!regex.test(value)) {
         return {'email': true};

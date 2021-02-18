@@ -65,31 +65,18 @@ export class ProductsUpdateComponent implements OnInit {
       code: new FormControl(null, [Validators.required]),
       cost: new FormControl(null, [Validators.required]),
       description: new FormControl(null, []),
-      status: new FormControl(this.data?.status, [Validators.required]),
-      idParen: new FormControl(this.data?.idParen ? this.data.idParen === 0 ? null : this.data.idParen : null, [Validators.required])
+      status: new FormControl(this.data?.status === undefined ? this.translate.instant('common.state.1') : this.data?.status, [Validators.required]),
+      objectsId: new FormControl(this.data?.objectsId, [Validators.required])
     });
-    // this.inputProduct.get('status').setValue(true);
     if (this.data) {
       this.inputProduct.patchValue(this.data);
-      // const status = this.data.status === 1 ? true : false;
-      // this.inputProduct.get('status').patchValue(status);
     }
-    ;
-
-    this.sizeService.query().subscribe(res => {
-      this.lstRole1 = res.body.data.list;
-    }, err => {
-    });
-    this.colorService.query().subscribe(res => {
-      this.lstRole2 = res.body.data.list;
-    }, err => {
-    });
     this.getParenTree(this.data?.type ? this.data.type : 1);
 
   };
 
-  parenIdChange($event) {
-    this.inputProduct.get('idParen').setValue($event);
+  parentIdChange($event) {
+    this.inputProduct.get('objectsId').setValue($event);
   }
 
 
@@ -106,11 +93,11 @@ export class ProductsUpdateComponent implements OnInit {
       () => this.loading = false);
   }
 
-  formatDataTree(data, parenId) {
+  formatDataTree(data, parentId) {
     const arr = [];
     for (let i = 0; i < data.length; i++) {
       const dataItem = data[i];
-      if (dataItem.parenId === parenId) {
+      if (dataItem.parentId === parentId) {
         let children = [];
         if (dataItem.id != null) {
           children = this.formatDataTree(data, dataItem.id);
@@ -129,12 +116,11 @@ export class ProductsUpdateComponent implements OnInit {
 
 
   submit() {
-    // this.inputProduct.get('status').patchValue(this.inputProduct.get('status').value ? 1 : 0);
     this.inputProduct.markAllAsTouched();
     if (this.inputProduct.valid) {
       this.loading = true;
       if (this.data == null) {
-        // this.inputProduct.get('productSizeColorList').setValue(this.rows);
+        this.inputProduct.get('status').setValue(1);
         this.productsService.insert(this.inputProduct.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {

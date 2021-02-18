@@ -50,7 +50,6 @@ export class MapImageProductComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null): void {
-    console.log(data.DS_Image);
     this.rows = data.DS_Image || [];
 
   }
@@ -74,7 +73,6 @@ export class MapImageProductComponent implements OnInit {
 
   search() {
     this.loading = true;
-    console.log(this.data);
     this.uploadService.doSearchByCode(this.data?.id).subscribe(res => {
         this.onSuccess(res.body.data);
         this.loading = false;
@@ -137,7 +135,6 @@ export class MapImageProductComponent implements OnInit {
   }
 
   lock(data) {
-    console.log(data);
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
         title: this.translate.instant('common.title_notification'),

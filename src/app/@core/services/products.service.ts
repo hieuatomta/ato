@@ -49,13 +49,13 @@ export class ProductsService {
   }
 
   public update(data: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiUrl}/products/update`, data, {
+    return this.http.put<any>(`${environment.apiUrl}/products`, data, {
       observe: 'response'
     });
   }
 
   public insert(data: any): Observable<any> {
-    return this.http.put <any>(`${environment.apiUrl}/products/insert`, data, {
+    return this.http.post <any>(`${environment.apiUrl}/products`, data, {
       observe: 'response'
     });
   }

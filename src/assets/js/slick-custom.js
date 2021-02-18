@@ -1,7 +1,6 @@
 (function ($) {
   // USE STRICT
   "use strict";
-  console.log("test");
   /*==================================================================
   [ Slick1 ]*/
   $('.wrap-slick1').each(function () {
@@ -88,8 +87,6 @@
   /*==================================================================
   [ Slick2 ]*/
   $('.wrap-slick2').each(function () {
-    console.log($(this));
-    console.log( $(this).find('.slick2'));
     $(this).find('.slick2').slick({
       slidesToShow: 4,
       slidesToScroll: 4,
@@ -141,7 +138,6 @@
 
   /*==================================================================
   [ Slick3 ]*/
-  console.log($('.wrap-slick3'));
   $('.wrap-slick3').each(function () {
     debugger;
     $(this).find('.slick3').slick({

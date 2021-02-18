@@ -42,16 +42,16 @@
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
-              {{ 'common.table.item_product_paren_object' | translate }}
+              {{ 'common.table.item_product_paren_object' | translate }} <span style="color: red">(*)</span>
             </label>
             <ngx-dropdown-treeview-select [items]="item"
-                                          [value]="inputProduct.get('idParen').value"
+                                          [value]="inputProduct.get('objectsId').value"
                                           [config]="treeViewConfig"
                                           class="dropdown-treeview"
-                                          (valueChange)="parenIdChange($event)">
+                                          (valueChange)="parentIdChange($event)">
             </ngx-dropdown-treeview-select>
             <ngx-inline-message [message]="'common.table.item_product_paren_object'|translate"
-                                [formName]="inputProduct.get('idParen')"></ngx-inline-message>
+                                [formName]="inputProduct.get('objectsId')"></ngx-inline-message>
           </div>
           <div class="col-lg-6 form-group">
             <label class="label">
@@ -62,7 +62,16 @@
             </textarea>
           </div>
 
-          <div class="col-lg-6 form-group">
+          <div *ngIf="!this.data" class="col-lg-6 form-group">
+            <label class="label">
+              {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
+            </label>
+            <input class="custom-border" placeholder="{{'common.state.1'| translate}}" formControlName="status" disabled type="text" nbInput fullWidth trim="blur"
+                   [ngClass]="{'status-danger': this.inputProduct.get('status').touched && this.inputProduct.get('status').errors}">
+            <ngx-inline-message [message]="'common.table.item_status'|translate"
+                                [formName]="inputProduct.get('status')"></ngx-inline-message>
+          </div>
+          <div *ngIf="this.data" class="col-lg-6 form-group">
             <label class="label">
               {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
             </label>
