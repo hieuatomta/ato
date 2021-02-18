@@ -114,13 +114,14 @@ export class ObjectsComponent implements OnInit {
   }
 
   delete(data) {
+    console.log(data)
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
         message: this.translate.instant('objects.title_delete') + ' ' + data.name,
       }
     }).onClose.subscribe(res => {
       if (res) {
-        this.objectsService.delete(data).subscribe(
+        this.objectsService.delete(data.id).subscribe(
           () => {
             this.toastr.success(this.translate.instant('objects.delete_success'),
               this.translate.instant('common.title_notification'));

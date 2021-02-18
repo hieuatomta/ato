@@ -89,7 +89,7 @@ export class MapPopupComponent implements OnInit {
           this.loading = false;
         },
         (error) => {
-          this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+          this.toastr.danger(error.error.message, this.translate.instant('common.title_notification'));
           this.loading = false;
         },
         () => this.loading = false
@@ -127,7 +127,7 @@ export class MapPopupComponent implements OnInit {
           this.search();
           this.isLoad = false;
         }, (err) => {
-          this.toastrService.success(err.detail),
+          this.toastrService.success(err.message),
             this.translate.instant('common.title_notification');
           this.isLoad = false;
         });

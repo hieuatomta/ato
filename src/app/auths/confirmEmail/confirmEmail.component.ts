@@ -66,7 +66,7 @@ export class ConfirmEmailComponent implements OnInit {
         const title = this.translateService.instant('login.error');
         let body: any;
         try {
-          body = err.error.detail;
+          body = err.error.message;
         } catch {
           body = '';
         } finally {

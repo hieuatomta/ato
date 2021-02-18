@@ -140,7 +140,7 @@ export class UsersComponent implements OnInit {
           this.search(0);
           this.isLoad = false;
         }, (err) => {
-          this.toastrService.success(err.detail),
+          this.toastrService.success(err.message),
             this.translate.instant('common.title_notification');
           this.isLoad = false;
         });

@@ -107,7 +107,7 @@ export class ChangePassComponent implements OnInit {
       }, err => {
         const title = this.translateService.instant('login.error');
         try {
-          this.body = err.error.detail;
+          this.body = err.error.message;
         } catch {
           this.body = '';
         } finally {

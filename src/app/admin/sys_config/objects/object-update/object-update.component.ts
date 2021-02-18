@@ -88,7 +88,7 @@ export class ObjectUpdateComponent implements OnInit {
       status: new FormControl(this.data?.status, [Validators.required]),
       type: new FormControl(this.data?.type, [Validators.required]),
       description: new FormControl(this.data?.description, [Validators.maxLength(500)]),
-      parenId: new FormControl(this.data?.parenId ? this.data.parenId === 0 ? null : this.data.parenId : null, [])
+      parentId: new FormControl(this.data?.parentId ? this.data.parentId === 0 ? null : this.data.parentId : null, [])
     }, {});
     this.inputObject.get('status').setValue(true);
     if (this.data) {
@@ -101,8 +101,8 @@ export class ObjectUpdateComponent implements OnInit {
     ;
   }
 
-  parenIdChange($event) {
-    this.inputObject.get('parenId').setValue($event);
+  parentIdChange($event) {
+    this.inputObject.get('parentId').setValue($event);
   }
 
   cancel() {
@@ -114,14 +114,14 @@ export class ObjectUpdateComponent implements OnInit {
     this.inputObject.markAllAsTouched();
     if (this.inputObject.valid) {
       this.loading = true;
-      if (this.inputObject.get('parenId').value == null) {
-        this.inputObject.get('parenId').setValue(0);
+      if (this.inputObject.get('parentId').value == null) {
+        this.inputObject.get('parentId').setValue(0);
       }
       if (this.data == null) {
         this.objectsService.insert(this.inputObject.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.toastr.danger(error.error.message, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false,
@@ -130,7 +130,7 @@ export class ObjectUpdateComponent implements OnInit {
         this.objectsService.update(this.inputObject.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.toastr.danger(error.error.message, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false,

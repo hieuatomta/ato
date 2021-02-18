@@ -124,7 +124,7 @@ export class ProductsUpdateComponent implements OnInit {
         this.productsService.insert(this.inputProduct.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.toastr.danger(error.error.message, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false
@@ -133,7 +133,7 @@ export class ProductsUpdateComponent implements OnInit {
         this.productsService.update(this.inputProduct.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.toastr.danger(error.error.message, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false,

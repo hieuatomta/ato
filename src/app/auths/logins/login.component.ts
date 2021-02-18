@@ -121,7 +121,7 @@ export class LoginComponent implements OnInit {
         const title = this.translateService.instant('login.error');
         let body1: any;
         try {
-          body1 = err.error.detail;
+          body1 = err.error.message;
         } catch {
           body1 = '';
         } finally {

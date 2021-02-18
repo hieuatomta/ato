@@ -7,3 +7,4 @@ export const getFormattedDate = date => {
 
   return day + '/' + month + '/' + date.getFullYear();
 };
+

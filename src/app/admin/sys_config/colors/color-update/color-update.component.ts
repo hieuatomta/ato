@@ -58,7 +58,7 @@ export class ColorUpdateComponent implements OnInit {
         this.colorService.insert(this.inputColor.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.toastr.danger(error.error.message, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false
@@ -67,7 +67,7 @@ export class ColorUpdateComponent implements OnInit {
         this.colorService.update(this.inputColor.value).subscribe(
           (value) => this.ref.close(value),
           (error) => {
-            this.toastr.danger(error.error.detail, this.translate.instant('common.title_notification'));
+            this.toastr.danger(error.error.message, this.translate.instant('common.title_notification'));
             this.loading = false;
           },
           () => this.loading = false,
