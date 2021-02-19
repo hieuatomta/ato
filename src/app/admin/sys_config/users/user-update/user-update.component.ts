@@ -1,22 +1,12 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  forwardRef,
-  Input,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
 import {NbDialogRef, NbToastrService} from '@nebular/theme';
-import {FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {RolesService} from '../../../../@core/services/roles.service';
 import {UsersService} from '../../../../@core/services/users.service';
-import {passwordsMatchValidator, validDate} from '../../../../validator';
+import {passwordsMatchValidator} from '../../../../validator';
 import {TranslateService} from '@ngx-translate/core';
 import * as moment from 'moment';
-import {getFormattedDate} from '../../../../shares/utils/date-util';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -43,6 +33,7 @@ export class UserUpdateComponent implements OnInit {
   showPassword = false;
   showPassword1 = false;
   mask;
+
   constructor(
     private toastr1: ToastrService,
     public ref: NbDialogRef<UserUpdateComponent>,
@@ -62,27 +53,33 @@ export class UserUpdateComponent implements OnInit {
       pass: new FormControl(this.randomPass(10), []),
       rePassword: new FormControl(null, []),
       imageUrl: new FormControl(this.data?.imageUrl, []),
-      dateOfBirth: new FormControl(moment(this.data?.dateOfBirth).toDate()),
+      dateOfBirth: new FormControl(null, []),
       status: new FormControl(this.data?.status, [Validators.required]),
       lstRole: new FormControl(null, []),
     }, {
       validators: passwordsMatchValidator,
     });
+
     this.inputUser.get('status').setValue(true);
     if (this.data) {
       this.inputUser.patchValue(this.data);
       const status = this.data.status === 1 ? true : false;
       this.inputUser.get('status').patchValue(status);
-    };
+    }
+    ;
     this.userService.query(this.data?.id).subscribe(res => {
-      this.inputUser.get("lstRole").setValue(  res.body.DS_ROLES.toString().split(',').map(item => Number(item)));
+      if (res.body.DS_ROLES.length > 0) {
+        this.inputUser.get('lstRole').setValue(res.body.DS_ROLES.toString().split(',').map(item => Number(item)));
+      }
     }, err => {
+      console.log(err);
     });
 
     this.rolesService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
     });
+    this.inputUser.get('dateOfBirth').setValue(new Date(this.data?.dateOfBirth.toString()))
   };
 
   randomPass(length) {
