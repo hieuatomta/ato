@@ -33,6 +33,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
               private sizeService: SizeService,
               private router: Router) {
     this.activatedRoute.params.subscribe((params: Params) => {
+      console.log(params);
       this.key = params['key'];
     });
     this.search(this.key, 0);
@@ -53,18 +54,53 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   search(code: any, pageToLoad: number) {
-    this.productsService.doSearch1({}, {code: code, status: 0}).subscribe(
+    this.productsService.doSearch1({
+      code: code
+    }).subscribe(
       (res) => {
+        console.log(res);
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
       (error) => {
+        this.toastr.showToast('danger', 'Thông báo', 'Có lỗi trong quá trình xử lý');
+        this.router.navigate(['trang-chu']);
       },
+      // () => this.isLoad = false,
     );
   }
 
+  arr = [];
+
   thanhToan() {
+    console.log(this.inputForm.value);
     // this.inputForm.get('amount').setValue(this.soluong(3));
     // this.router.navigate(['/thanh-toan']);
+    let obj = JSON.parse(localStorage.getItem('list_order'));
+    if (obj === null || obj === undefined) {
+      obj = [];
+    }
+    if (obj?.length === 0) {
+      obj.push(this.inputForm.value);
+    }
+    let a = 0;
+    console.log(obj);
+    for (let i = 0; i < obj?.length; i++) {
+      if (obj[i].id === this.inputForm.get('id').value) {
+        this.inputForm.get('amount').setValue(obj[i].amount + this.inputForm.get('amount').value);
+        console.log('hang nay da trong gio hang cap nhat them du lieu');
+        obj.splice(i, 1);
+        obj.push(this.inputForm.value);
+        a = 1;
+      }
+    }
+    if (a === 1) {
+      obj.push(this.inputForm.value);
+      console.log('du lieuj them moi vao local');
+      a = 0;
+    }
+
+
+    localStorage.setItem('list_order', JSON.stringify(obj));
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
@@ -72,6 +108,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     // this.page.offset = page || 0;
     this.rows = data.list || [];
     this.obj = this.rows[0];
+    this.inputForm.get('id').setValue(this.rows[0]?.id);
   }
 
   lstRole1 = [];
@@ -86,12 +123,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         return;
       }
       soLuong = soLuong - 1;
-      // this.inputForm.get('amount').setValue((soLuong - 1));
     } else {
       soLuong = soLuong + 1;
-      // this.inputForm.get('amount').setValue((soLuong + 1));
     }
-    this.inputForm.get('amount').setValue(soLuong)
+    this.inputForm.get('amount').setValue(soLuong);
     return soLuong;
   }
 
@@ -100,7 +135,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       color: new FormControl(null, []),
       size: new FormControl(null, []),
       amount: new FormControl(1, []),
-      status: new FormControl(null, [])
+      status: new FormControl(null, []),
+      id: new FormControl(null, [])
     });
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
@@ -111,6 +147,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }, err => {
     });
 
+
+    // doan js xu ly hieu ung
     $('.wrap-slick3').each(function () {
       $(this).find('.slick3').slick({
         slidesToShow: 1,

@@ -38,7 +38,7 @@ export class ClientFooterComponent implements OnInit, OnDestroy {
 
   private initFacebookService(): void {
     const initParams: InitParams = {xfbml: true, version: 'v8.0'};
-    this.facebookService.init(initParams);
+    // this.facebookService.init(initParams);
   }
 
 

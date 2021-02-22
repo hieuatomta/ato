@@ -39,7 +39,9 @@ export class ListProductComponent implements OnInit, OnDestroy {
     this.isLoad = true;
     this.page.offset = pageToLoad;
     this.productsService.doSearch1({
-    }, {status: 0}).subscribe(
+      page: this.page.offset,
+      page_size: this.page.limit
+    }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
@@ -48,6 +50,16 @@ export class ListProductComponent implements OnInit, OnDestroy {
       },
       () => this.isLoad = false,
     );
+    // this.productsService.doSearch({
+    // }, {status: 0}).subscribe(
+    //   (res) => {
+    //     this.onSuccess(res.body.data, res.headers, pageToLoad);
+    //   },
+    //   (error) => {
+    //     this.isLoad = false;
+    //   },
+    //   () => this.isLoad = false,
+    // );
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {

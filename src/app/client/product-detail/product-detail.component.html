@@ -11,9 +11,9 @@
             <div class="slick3 gallery-lb">
               <div class="item-slick3" data-thumb="#">
                 <div class="wrap-pic-w pos-relative">
-                  <img src="{{obj.imageLinks[0].imageLink}}" alt="IMG-PRODUCT">
+                  <img src="{{obj?.DS_Image[0].imageLink}}" alt="IMG-PRODUCT">
                   <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                     href="{{obj.imageLinks[0].imageLink}}">
+                     href="{{obj?.DS_Image[0].imageLink}}">
                     <i class="fa fa-expand"></i>
                   </a>
                 </div>
@@ -26,15 +26,15 @@
       <div class="col-md-6 col-lg-5 p-b-30">
         <div class="p-r-50 p-t-5 p-lr-0-lg">
           <h4 class="mtext-105 cl2 js-name-detail p-b-14" style="color: black">
-            {{obj.name}}
+            {{obj?.name}}
           </h4>
 
           <span class="mtext-106 cl2">
-							{{obj.price}}
+							{{obj?.cost}}
             </span>
 
           <h4 class="mtext-105 cl2 js-name-detail p-b-14" style="color: black">
-            {{obj.type}}
+            {{obj?.type}}
           </h4>
           <form [formGroup]="inputForm">
 
@@ -72,22 +72,8 @@
                   </ng-select>
                 </div>
               </div>
-
-
-
               <div class="flex-w flex-r-m p-b-10">
                 <div class="size-204 flex-w flex-m respon6-next">
-<!--                  <div class="wrap-num-product flex-w m-r-20 m-tb-10">-->
-<!--                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"  (click)="soluong(0)">-->
-<!--                      <p style="color: black; font-weight: 500; font-size: x-large;"> - </p>-->
-<!--                    </div>-->
-<!--                    <input class="mtext-104 cl3 txt-center num-product" type="text" formControlName="amount">-->
-
-<!--                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" (click)="soluong(1)">-->
-<!--                      <p style="color: black; font-weight: 500;" > + </p>-->
-<!--                    </div>-->
-<!--                  </div>-->
-
                   <div class="sosanpham">
                     <button style="border: 1px solid;" (click)="soluong(0)">
                       <span style="color: black; font-weight: 500;" >-</span>
@@ -99,7 +85,7 @@
                   </div>
                   <button (click)="thanhToan()"
                           class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                    Thanh Toán
+                    Thêm vào giỏ hàng
                   </button>
                 </div>
               </div>
@@ -156,13 +142,7 @@
           <div class="tab-pane fade show active" id="description" role="tabpanel">
             <div class="how-pos2 p-lr-15-md">
               <p class="stext-102 cl6" style="color: black">
-                Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in
-                blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien
-                rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam,
-                porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean
-                tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet
-                consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum
-                iaculis. Nulla non tempor erat. Duis in egestas nunc.
+                {{obj?.description}}
               </p>
             </div>
           </div>
