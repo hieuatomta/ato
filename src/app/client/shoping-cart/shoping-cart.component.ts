@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -10,7 +11,38 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 export class ShopingCartComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
+  inputForm: any;
 
+  soluong(e) {
+    let soLuong = this.inputForm.get('amount').value;
+    if (e === 0) {
+      if (this.inputForm.get('amount').value === 0) {
+        this.inputForm.get('amount').setValue(0);
+        return;
+      }
+      soLuong = soLuong - 1;
+    } else {
+      soLuong = soLuong + 1;
+    }
+    this.inputForm.get('amount').setValue(soLuong);
+    return soLuong;
+  }
+  obj = null;
+  size = null;
   ngOnInit(): void {
+    this.obj = JSON.parse(localStorage.getItem('list_order'));
+    if (this.obj === null || this.obj === undefined) {
+      this.obj = [];
+    }
+    this.size = this.obj?.length;
+    this.inputForm = new FormGroup({
+      color: new FormControl(null, []),
+      size: new FormControl(null, []),
+      amount: new FormControl(1, []),
+      status: new FormControl(null, []),
+      id: new FormControl(null, []),
+      cost: new FormControl(null, []),
+      name: new FormControl(null, [])
+    });
   }
 }

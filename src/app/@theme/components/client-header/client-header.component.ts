@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Router} from '@angular/router';
 
 declare const jQuery: any;
 
@@ -25,13 +26,20 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
 
   }
 
+  sangThanhToan() {
+    this.router.navigate(['/thanh-toan']);
+    (function ($) {
+      $('.js-sidebar').removeClass('show-sidebar');
+      $('.js-panel-cart').removeClass('show-header-cart');
+    })(jQuery);
+  }
+
   ngOnInit() {
     this.obj = JSON.parse(localStorage.getItem('list_order'));
     if (this.obj === null || this.obj === undefined) {
       this.obj = [];
     }
     this.size = this.obj?.length;
-    console.log(this.obj?.length);
     this.menudacap = this.dequy(0, 0, 1);
     (function ($) {
       let posWrapHeader;
@@ -283,7 +291,9 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
   out() {
   }
 
-  constructor() {
+  constructor(private router: Router,
+  ) {
+
   }
 
 
