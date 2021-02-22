@@ -9,7 +9,29 @@ declare const jQuery: any;
   templateUrl: './client-header.component.html',
 })
 export class ClientHeaderComponent implements OnInit, OnDestroy {
+  size = 0;
+  obj = null;
+
+  openOrder() {
+    this.obj = JSON.parse(localStorage.getItem('list_order'));
+    if (this.obj === null || this.obj === undefined) {
+      this.obj = [];
+    } else {
+      this.size = this.obj?.length;
+      // for (let i = 0; i < this.obj?.length; i++) {
+      //
+      // }
+    }
+
+  }
+
   ngOnInit() {
+    this.obj = JSON.parse(localStorage.getItem('list_order'));
+    if (this.obj === null || this.obj === undefined) {
+      this.obj = [];
+    }
+    this.size = this.obj?.length;
+    console.log(this.obj?.length);
     this.menudacap = this.dequy(0, 0, 1);
     (function ($) {
       let posWrapHeader;
@@ -244,7 +266,6 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
     }
     return this.htmlStrTxt + '</ul>';
   }
-
 
   over() {
     $(function () {

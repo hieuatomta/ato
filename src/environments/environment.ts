@@ -11,5 +11,5 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:1302/api',
-  // apiUrl: 'http://52.77.224.78:8080/laptrinhnangcao/api',
+  // apiUrl: 'http://3.0.101.39:8080/laptrinhnangcao/api',
 };

@@ -24,6 +24,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   obj: any;
   rows: any;
   inputForm: any;
+  ls_order = {
+    name: null,
+    cost: null,
+    amount: null,
+    id: null,
+    color: null,
+    size: null
+  };
 
   constructor(private activatedRoute: ActivatedRoute,
               private toastr: ToastrService,
@@ -69,34 +77,35 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  arr = [];
 
+  // goi len header de cap nhat gio hang
   thanhToan() {
-    console.log(this.inputForm.value);
-    // this.inputForm.get('amount').setValue(this.soluong(3));
-    // this.router.navigate(['/thanh-toan']);
+    this.ls_order.id = this.inputForm.get('id').value;
+    this.ls_order.color = this.inputForm.get('color').value;
+    this.ls_order.size = this.inputForm.get('size').value;
+    this.ls_order.amount = this.inputForm.get('amount').value;
+    this.ls_order.cost = this.inputForm.get('cost').value;
+    this.ls_order.name = this.inputForm.get('name').value;
     let obj = JSON.parse(localStorage.getItem('list_order'));
     if (obj === null || obj === undefined) {
       obj = [];
     }
     if (obj?.length === 0) {
-      obj.push(this.inputForm.value);
+      obj.push(this.ls_order);
     }
     let a = 0;
-    console.log(obj);
     for (let i = 0; i < obj?.length; i++) {
       if (obj[i].id === this.inputForm.get('id').value) {
-        this.inputForm.get('amount').setValue(obj[i].amount + this.inputForm.get('amount').value);
-        console.log('hang nay da trong gio hang cap nhat them du lieu');
+        this.ls_order.amount = obj[i].amount + this.inputForm.get('amount').value;
         obj.splice(i, 1);
-        obj.push(this.inputForm.value);
         a = 1;
       }
     }
     if (a === 1) {
-      obj.push(this.inputForm.value);
-      console.log('du lieuj them moi vao local');
+      obj.push(this.ls_order);
       a = 0;
+    } else {
+      obj.push(this.ls_order);
     }
 
 
@@ -107,8 +116,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     // this.page.count = data.totalPages;
     // this.page.offset = page || 0;
     this.rows = data.list || [];
+    console.log(this.rows);
     this.obj = this.rows[0];
     this.inputForm.get('id').setValue(this.rows[0]?.id);
+    this.inputForm.get('cost').setValue(this.rows[0]?.cost);
+    this.inputForm.get('name').setValue(this.rows[0]?.name);
   }
 
   lstRole1 = [];
@@ -136,7 +148,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       size: new FormControl(null, []),
       amount: new FormControl(1, []),
       status: new FormControl(null, []),
-      id: new FormControl(null, [])
+      id: new FormControl(null, []),
+      cost: new FormControl(null, []),
+      name: new FormControl(null, [])
     });
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
