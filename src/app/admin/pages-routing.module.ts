@@ -56,6 +56,16 @@ const routes: Routes = [{
         .then(m => m.ProductManagementModule),
     },
     {
+      path: 'export-goods-management',
+      loadChildren: () => import('./major/export-goods-management/export-goods-management.module')
+        .then(m => m.ExportGoodsManagementModule),
+    },
+    {
+      path: 'import-goods-management',
+      loadChildren: () => import('./major/import-goods-management/import-goods-management.module')
+        .then(m => m.ImportGoodsManagementModule),
+    },
+    {
       path: 'logs',
       loadChildren: () => import('./sys_config/logs/logs.module')
         .then(m => m.LogsModule),
