@@ -18,7 +18,7 @@ export class ProductsService {
   }
 
   doSearchByCode(id: any): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/products-size-color/${id}`, {
+    return this.http.get<any[]>(`${environment.apiUrl}/products-size/${id}`, {
       observe: 'response'
     });
   }

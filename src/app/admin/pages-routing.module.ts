@@ -51,6 +51,11 @@ const routes: Routes = [{
         .then(m => m.ImageManagementModule),
     },
     {
+      path: 'supplier',
+      loadChildren: () => import('./major/supplier/supplier.module')
+        .then(m => m.SupplierModule),
+    },
+    {
       path: 'products-management',
       loadChildren: () => import('./major/product-management/product-management.module')
         .then(m => m.ProductManagementModule),

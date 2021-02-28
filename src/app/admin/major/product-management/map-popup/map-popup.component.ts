@@ -31,9 +31,9 @@ export class MapPopupComponent implements OnInit {
   };
   columns = [
     {name: 'common.table.item_product_size', prop: 'nameSize', flexGrow: 1},
-    {name: 'common.table.item_product_color', prop: 'nameColor', flexGrow: 1.5},
+    // {name: 'common.table.item_product_color', prop: 'nameColor', flexGrow: 1.5},
     {name: 'common.table.item_product_total', prop: 'amount', flexGrow: 1},
-    {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
+    // {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
   lstRole1 = [];
   lstRole2 = [];
@@ -52,7 +52,7 @@ export class MapPopupComponent implements OnInit {
   }
 
   protected onSuccess(data: any | null): void {
-    this.rows = data.DS_Product_Size_Color || [];
+    this.rows = data.DS_Product_Size || [];
   }
 
   ngOnInit(): void {
@@ -61,16 +61,16 @@ export class MapPopupComponent implements OnInit {
       productsId: new FormControl(this.data?.id, []),
       amount: new FormControl(null, [Validators.required]),
       sizesId: new FormControl(null, [Validators.required]),
-      colorsId: new FormControl(null, [Validators.required]),
+      // colorsId: new FormControl(null, [Validators.required]),
     });
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
     });
-    this.colorService.query().subscribe(res => {
-      this.lstRole2 = res.body.data.list;
-    }, err => {
-    });
+    // this.colorService.query().subscribe(res => {
+    //   this.lstRole2 = res.body.data.list;
+    // }, err => {
+    // });
     this.search();
   }
 
