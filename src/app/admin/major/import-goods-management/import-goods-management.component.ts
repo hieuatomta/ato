@@ -53,14 +53,10 @@ export class ImportGoodsManagementComponent implements OnInit {
   };
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
-    {name: 'common.table.item_product_code', prop: 'code', flexGrow: 1},
-    {name: 'common.table.item_product_name', prop: 'name', flexGrow: 1.5},
-    {name: 'common.table.item_product_cost', prop: 'cost', flexGrow: 1},
-    {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
-    {name: 'common.table.item_product_paren_object', prop: 'parenObject', flexGrow: 1},
-    {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
-    {name: 'common.table.item_image', prop: 'map_image', flexGrow: 0.6},
-    {name: 'common.table.item_size_color', prop: 'map_size_color', flexGrow: 0.6},
+    {name: 'common.table.item_import_code', prop: 'code', flexGrow: 1},
+    {name: 'common.table.item_suppliers_name', prop: 'name', flexGrow: 1.5},
+    {name: 'common.table.item_description', prop: 'cost', flexGrow: 1},
+    {name: 'common.table.item_detail', prop: 'map_size_color', flexGrow: 0.6},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
 

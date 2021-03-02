@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
 import {NbDialogRef, NbToastrService} from '@nebular/theme';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -9,6 +9,9 @@ import {ObjectsService} from '../../../../@core/services/objects.service';
 import {ColorService} from '../../../../@core/services/color.service';
 import {ProductsService} from '../../../../@core/services/products.service';
 import {ColumnChangesService, DimensionsHelper, ScrollbarHelper} from '@swimlane/ngx-datatable';
+import {ColumnGridImportComponent} from './column-grid-import/column-grid-import.component';
+import {Page} from '../../../../@core/model/page.model';
+import * as moment from 'moment';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -18,6 +21,13 @@ import {ColumnChangesService, DimensionsHelper, ScrollbarHelper} from '@swimlane
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
 })
 export class ProductsUpdateComponent implements OnInit {
+
+
+  @ViewChild('inputElement', {static: false}) fileInput: ElementRef;
+  @ViewChild('fileLabel', {static: false}) fileLabel: ElementRef;
+  @ViewChild('columnGridImportComponent', {static: false}) columnGridImportComponent: ColumnGridImportComponent;
+
+
   lstRole = [];
   inputProduct: any;
   inputSizeColor: any;
@@ -145,5 +155,111 @@ export class ProductsUpdateComponent implements OnInit {
 
   cancel() {
     this.ref.close();
+  }
+  searchData(page, time, addRow) {
+
+    if (!time) {
+      this.inputProduct.get('importTime').markAsTouched();
+      return;
+    }
+
+    const pageToLoad: number = page.pageNumber;
+    // this.configRegportService.getData({
+    //   // reportId: this.reportConfig.id,
+    //   dataTime: moment(time).toISOString(),
+    // }, {page: page.pageNumber, size: page.size}).subscribe((res: any) => {
+    //   this.rows = res.body.lstObj.map(data => {
+    //     const result = {};
+    //     res.body.lstColumn.forEach((column, index) => {
+    //       if (column.dataType === 'DATE' && data[index]) {
+    //         result[column.columnName] = moment(data[index], 'YYYY-MM-DD').toDate();
+    //       } else {
+    //         result[column.columnName] = data[index];
+    //       }
+    //     });
+    //     return result;
+    //   });
+
+      // const totalElements = Number(res.headers.get('X-Total-Count'));
+      // this.page = new Page(Math.pow(2, 31) - 1, totalElements, this.totalPages(totalElements, Math.pow(2, 31) - 1), 0);
+      this.editing = [];
+      if (addRow) {
+        this.addNewRow();
+      }
+      setTimeout(this.calcHeightDatatable, 100);
+    // });
+  }
+
+
+  onAddRow() {
+    if (this.page.totalPages > 1 && this.page.pageNumber !== this.page.totalPages - 1) {
+      this.page.pageNumber = this.page.totalPages - 1;
+      this.searchData(this.page, null, true);
+      return;
+    }
+    this.addNewRow();
+  }
+  totalPages(totalElements, size) {
+    const count = totalElements < 1 ? 1 : Math.ceil(totalElements / size);
+    return Math.max(count || 0, 1);
+  }
+  addNewRow() {
+    // this.page.totalElements = this.page.totalElements + 1;
+    const newData = {};
+    for (let i = 0; i < this.columns.length; i++) {
+      newData[this.columns[i]] = null;
+    }
+    if (this.rows.length === this.page.size) {
+      this.page.pageNumber++;
+      this.page = new Page(5, this.page.totalElements, this.totalPages(this.page.totalElements, 5), this.page.pageNumber);
+      this.rows = [newData];
+      this.editing = [newData];
+    } else {
+      this.editing[this.rows.length] = newData;
+      this.rows[this.rows.length] = newData;
+    }
+    this.rows = [...this.rows];
+    const that = this
+    setTimeout(function () {
+      that.calcHeightDatatable()
+    }, 2000);
+  }
+  collapseSearchFrm = false;
+  editing = [];
+  mapRef: any;
+  columns: any = [
+    {id: 6014, columnName: "id", title: "id", isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: "BIGINT"},
+    {id: 6015, columnName: "code", title: "Mã sản phẩm", isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: "DOUBLE"},
+    {id: 6015, columnName: "nameP", title: "Tên sản phẩm", isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: "LONG"},
+    {id: 6015, columnName: "price", title: "Giá nhập", isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: "LONG"},
+    {id: 6015, columnName: "size", title: "Kích thước", isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: "DATE"},
+    {id: 6015, columnName: "amount", title: "Số lượng", isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: "LONG"},
+    {id: 6015, columnName: "description", title: "Mô tả", isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: "LONG"}
+
+
+  ];
+  rows1: any = [];
+  page = new Page();
+
+
+  calcHeightDatatable() {
+    const dt = document.getElementById('column-grid-import') as HTMLElement;
+    const dtBody = document.querySelector('#column-grid-import .datatable-body') as HTMLElement;
+    const dtHeader = document.querySelector('#column-grid-import .datatable-header') as HTMLElement;
+    const dtFooter = document.querySelector('#column-grid-import .datatable-footer') as HTMLElement;
+    if (dt && dtBody && dtHeader && dtFooter) {
+      dt.style.height = (window.innerHeight - (this.collapseSearchFrm ? 160 : 340) - 16) + 'px';
+      const dtBodyHeight = dt.clientHeight - dtHeader.clientHeight - dtFooter.clientHeight;
+      dtBody.style.height = dtBodyHeight + 'px';
+    }
+  }
+
+  actionSetPage($event: any) {
+    // this.setPage($event)
+
+    const that = this
+    setTimeout(function () {
+      that.calcHeightDatatable()
+    }, 2000);
   }
 }
