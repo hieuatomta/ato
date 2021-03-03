@@ -10,6 +10,7 @@ import {ProductsService} from '../../../@core/services/products.service';
 import {ProductsUpdateComponent} from './products-update/products-update.component';
 import {MapPopupComponent} from './map-popup/map-popup.component';
 import {MapImageProductComponent} from './map-image-product/map-image-product.component';
+import {ImportProductsService} from '../../../@core/services/importProducts.service';
 
 class RequestOptions {
   constructor(param: { headers: Headers }) {
@@ -35,6 +36,7 @@ export class ImportGoodsManagementComponent implements OnInit {
     private toastrService: NbToastrService,
     private userService: UsersService,
     private productsService: ProductsService,
+    private importProductsService: ImportProductsService,
     private dialogService: NbDialogService) {
   }
 
@@ -55,7 +57,8 @@ export class ImportGoodsManagementComponent implements OnInit {
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
     {name: 'common.table.item_import_code', prop: 'code', flexGrow: 1},
     {name: 'common.table.item_suppliers_name', prop: 'name', flexGrow: 1.5},
-    {name: 'common.table.item_description', prop: 'cost', flexGrow: 1},
+    {name: 'common.table.item_description', prop: 'description', flexGrow: 1},
+    {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
     {name: 'common.table.item_detail', prop: 'map_size_color', flexGrow: 0.6},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
@@ -110,7 +113,7 @@ export class ImportGoodsManagementComponent implements OnInit {
   search(pageToLoad: number) {
     this.isLoad = true;
     this.page.offset = pageToLoad;
-    this.productsService.doSearch({
+    this.importProductsService.doSearch({
       page: this.page.offset,
       page_size: this.page.limit,
       name: this.inputForm.get("name").value,

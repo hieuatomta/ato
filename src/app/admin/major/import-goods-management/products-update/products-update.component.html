@@ -13,15 +13,15 @@
       <form [formGroup]="inputProduct">
         <div class="mb-4">
           <div class="row">
-            <div class="col-lg-4 form-group">
-              <label class="label">
-                Mã phiếu <span style="color: red">(*)</span>
-              </label>
-              <input class="custom-border" type="text" formControlName="code" nbInput fullWidth trim="blur"
-                     [ngClass]="{'status-danger': this.inputProduct.get('code').touched && this.inputProduct.get('code').errors}">
-              <ngx-inline-message [message]="'common.table.item_product_code'|translate"
-                                  [formName]="inputProduct.get('code')"></ngx-inline-message>
-            </div>
+<!--            <div class="col-lg-4 form-group">-->
+<!--              <label class="label">-->
+<!--                Mã phiếu <span style="color: red">(*)</span>-->
+<!--              </label>-->
+<!--              <input class="custom-border" type="text" formControlName="code" nbInput fullWidth trim="blur"-->
+<!--                     [ngClass]="{'status-danger': this.inputProduct.get('code').touched && this.inputProduct.get('code').errors}">-->
+<!--              <ngx-inline-message [message]="'common.table.item_product_code'|translate"-->
+<!--                                  [formName]="inputProduct.get('code')"></ngx-inline-message>-->
+<!--            </div>-->
             <div class="col-lg-4 form-group">
               <label class="label">
                 Tên nhà cung cấp <span style="color: red">(*)</span>
@@ -29,14 +29,13 @@
               <ng-select [clearAllText]="'common.clearAllText'"
                          placeholder="{{'common.placeHolder' |translate}}"
                          notFoundText="{{'common.notFoundText' |translate}}"
-                         fullWidth formControlName="status">
-                <ng-option *ngFor="let item of listStatus" [value]="item.code">
+                         fullWidth formControlName="supplierId">
+                <ng-option *ngFor="let item of lstRole1" [value]="item.id">
                   <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
                 </ng-option>
               </ng-select>
-              <!--            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>-->
-              <ngx-inline-message [message]="'common.table.item_status'|translate"
-                                  [formName]="inputProduct.get('status')"></ngx-inline-message>
+              <ngx-inline-message [message]="'common.table.item_name'|translate"
+                                  [formName]="inputProduct.get('supplierId')"></ngx-inline-message>
             </div>
             <div class="col-lg-4 form-group">
               <label class="label">
@@ -131,8 +130,8 @@
 
           <div class="text-center mt-2">
             <ngx-column-grid-import  [editing]="editing" (onAddRow)="onAddRow()"  #columnGridImportComponent
-                                     [columns]="columns" [(rows)]="rows" [mapRef] = "mapRef"
-                                      (onSetPage)="actionSetPage($event)"></ngx-column-grid-import>
+                                     [columns]="columns" [(rows)]="rows" [mapRef] = "mapRef" [page]="page"
+                                     (onValues)="onValue($event)" (onSetPage)="actionSetPage($event)"></ngx-column-grid-import>
           </div>
 
         </div>

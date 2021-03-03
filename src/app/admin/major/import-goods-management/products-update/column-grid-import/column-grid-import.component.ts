@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {NbDialogService} from '@nebular/theme';
+import {NbDialogService, NbToastrService} from '@nebular/theme';
 import * as moment from 'moment';
 import {TranslateService} from '@ngx-translate/core';
 import {DatatableComponent} from '@swimlane/ngx-datatable';
+import {SizeService} from '../../../../../@core/services/size.service';
 
 @Component({
   selector: 'ngx-column-grid-import',
@@ -20,6 +21,7 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
   @Input() page: any;
   @Input() editing: any = [];
 
+  @Output() onValues = new EventEmitter();
   @Output() onSetPage = new EventEmitter();
   @Output() onAddRow = new EventEmitter();
 
@@ -31,6 +33,8 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
   currentTheme: any = 'dark';
 
   constructor(
+    private sizeService: SizeService,
+    private toastr: NbToastrService,
     // protected configRegportService: ConfigReportService,
     //           protected toastrService: ToasterService,
     //           private dashboardService: DashboardService,
@@ -38,12 +42,13 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
               private dialogService: NbDialogService) {
   }
 
+  lstRole1: any;
+
   ngOnInit() {
-    // this.dashboardService.currentTheme.subscribe(e => {
-    //   if (e && this.currentTheme !== e) {
-    //     this.currentTheme = e;
-    //   }
-    // });
+    this.sizeService.query().subscribe(res => {
+      this.lstRole1 = res.body.data.list;
+    }, err => {
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -101,14 +106,13 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
     {name: 'common.state.3', code: 3},
   ];
   saveRow(row, rowIndex) {
+    const value = row;
     console.log(row);
     console.log(rowIndex);
     // if (!this.validRow(row)) return;
-    // const data = {
-    //   reportId: this.reportId,
-    //   dataTime: this.dataTime,
-    //   mapValue: row
-    // };
+    const data = {
+      mapValue: row
+    };
     // // Check dataType has DATE type
     // const dateColumn = this.columns.find(e => e.dataType === 'DATE');
     // if (dateColumn) {
@@ -121,12 +125,14 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
     //   row = {
     //     ...res.body.mapValue
     //   };
-    //   this.rows[rowIndex] = row;
-    //   this.editing[rowIndex] = false;
-    //   this.toastrService.pop('success', 'Thông báo', this.translate.instant('nhapLieu.success.edit'));
-    //   this.onSetPage.emit({offset: this.page.pageNumber});
-    //   this.addRowFlg = false;
-    //   // this.rows = [...this.rows];
+      this.rows[rowIndex] = row;
+      this.editing[rowIndex] = false;
+      console.log(this.page);
+      this.toastr.info('success', 'Thông báo');
+      this.onSetPage.emit({offset: this.page.pageNumber});
+      this.onValues.emit(value);
+      this.addRowFlg = false;
+      this.rows = [...this.rows];
     // }, error => {
     //   this.toastrService.pop('error', `Lỗi`, error.error.message);
     // })
@@ -134,10 +140,10 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
 
   addRow() {
     const rowEditing = this.editing.some(e => !!e);
-    // if (rowEditing) {
-    //   this.toastrService.pop('error', `Lỗi`, `Bạn phải lưu row vừa thêm mới`);
-    //   return;
-    // }
+    if (rowEditing) {
+      this.toastr.danger(`Bạn phải lưu row vừa thêm mới`, this.translate.instant('common.title_notification'));
+      return;
+    }
     this.addRowFlg = true;
     this.onAddRow.emit();
   }
@@ -148,10 +154,10 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
 
   edit(rowIndex) {
     const rowEditing = this.editing.some(e => !!e);
-    // if (rowEditing) {
-    //   this.toastrService.pop('error', `Lỗi`, `Bạn phải lưu row đang sửa`);
-    //   return;
-    // }
+    if (rowEditing) {
+      this.toastr.danger(`Bạn phải lưu row vừa sửa`, this.translate.instant('common.title_notification'));
+      return;
+    }
     this.editing[rowIndex] = Object.assign({}, this.rows[rowIndex]);
   }
 

@@ -77,18 +77,20 @@
                     [(ngModel)]="row[column.columnName]"/>
                 </div>
                 <div *ngSwitchCase="'DOUBLE'">
-<!--                  <input-->
-<!--                    nbInput-->
-<!--                    size="small"-->
-<!--                    fullWidth-->
-<!--                    type="text"-->
-<!--                    class="p-0"-->
-<!--                    [(ngModel)]="row[column.columnName]"/>-->
-                  <ng-select [clearAllText]="'common.clearAllText'">
+                  <input
+                    nbInput
+                    size="small"
+                    fullWidth
+                    type="text"
+                    class="p-0"
+                    [(ngModel)]="row[column.columnName]"/>
+                </div>
+                <div *ngSwitchCase="'SIZE'">
+                  <ng-select [clearAllText]="'common.clearAllText'" [(ngModel)]="row[column.columnName]">
                     placeholder="{{'common.placeHolder' |translate}}"
                     notFoundText="{{'common.notFoundText' |translate}}"
                     fullWidth>
-                    <ng-option *ngFor="let item of listStatus" [value]="item.code">
+                    <ng-option *ngFor="let item of lstRole1" [value]="item.id">
                       <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
                     </ng-option>
                   </ng-select>

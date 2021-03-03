@@ -23,7 +23,8 @@
       "0": "Đang bán",
       "1": "Chuẩn bị mở bán",
       "2": "Tạm thời hết hàng",
-      "3": "Ngừng kinh doanh"
+      "3": "Ngừng kinh doanh",
+      "4": "Hàng mới nhập"
     },
     "table": {
       "item_number": "STT",

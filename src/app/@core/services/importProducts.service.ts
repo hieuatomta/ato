@@ -7,7 +7,7 @@ import {createRequestOption} from '../../shares/utils/request-util';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ImportProductsService {
   constructor(private http: HttpClient) {
   }
 
@@ -25,16 +25,7 @@ export class ProductsService {
 
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
-    return this.http.get<any[]>(`${environment.apiUrl}/products`, {
-      params: options,
-      observe: 'response'
-    });
-  }
-
-
-  public doSearch1(req?: any, body?: any): Observable<any> {
-    const options = createRequestOption(req);
-    return this.http.get<any[]>(`${environment.apiUrl}/client/products`, {
+    return this.http.get<any[]>(`${environment.apiUrl}/import-coupons`, {
       params: options,
       observe: 'response'
     });
