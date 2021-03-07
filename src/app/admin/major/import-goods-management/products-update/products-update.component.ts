@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ToastrService} from '../../../../@core/mock/toastr-service';
 import {NbDialogRef, NbToastrService} from '@nebular/theme';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -23,7 +23,7 @@ import {ImportProductsService} from '../../../../@core/services/importProducts.s
 })
 export class ProductsUpdateComponent implements OnInit {
 
-
+  @Input() reportConfig;
   @ViewChild('inputElement', {static: false}) fileInput: ElementRef;
   @ViewChild('fileLabel', {static: false}) fileLabel: ElementRef;
   @ViewChild('columnGridImportComponent', {static: false}) columnGridImportComponent: ColumnGridImportComponent;
@@ -71,14 +71,13 @@ export class ProductsUpdateComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.data);
     this.inputProduct = new FormGroup({
       id: new FormControl(this.data?.id, []),
       supplierId: new FormControl(null, [Validators.required]),
       // code: new FormControl(null, [Validators.required]),
-      // cost: new FormControl(null, [Validators.required]),
       importCustomDTOList: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, []),
-      // status: new FormControl(this.data?.status === undefined ? this.translate.instant('common.state.1') : this.data?.status, [Validators.required]),
+      description: new FormControl('Nhập hàng ngày ' + moment(new Date()).format('DD/MM/YYYY'), []),
       // objectsId: new FormControl(this.data?.objectsId, [Validators.required])
     });
     this.suppliersService.query().subscribe(res => {
@@ -89,7 +88,9 @@ export class ProductsUpdateComponent implements OnInit {
       this.inputProduct.patchValue(this.data);
     }
     this.getParenTree(this.data?.type ? this.data.type : 1);
-
+    if (this.data != null) {
+      this.searchData(this.page, null, null, this.data?.id);
+    }
   };
 
   parentIdChange($event) {
@@ -165,7 +166,7 @@ export class ProductsUpdateComponent implements OnInit {
     this.ref.close();
   }
 
-  searchData(page, time, addRow) {
+  searchData(page, time, addRow, id) {
 
     // if (!time) {
     //   this.inputProduct.get('importTime').markAsTouched();
@@ -173,20 +174,22 @@ export class ProductsUpdateComponent implements OnInit {
     // }
 
     const pageToLoad: number = page.pageNumber;
-    // this.configRegportService.getData({
-    //   // reportId: this.reportConfig.id,
-    //   dataTime: moment(time).toISOString(),
-    // }, {page: page.pageNumber, size: page.size}).subscribe((res: any) => {
-    //   this.rows = res.body.lstObj.map(data => {
-    //     const result = {};
-    //     res.body.lstColumn.forEach((column, index) => {
-    //       if (column.dataType === 'DATE' && data[index]) {
-    //         result[column.columnName] = moment(data[index], 'YYYY-MM-DD').toDate();
-    //       } else {
-    //         result[column.columnName] = data[index];
-    //       }
-    //     });
-    //     return result;
+    const arr = [[611, 5046740000, null, null, 1, null, 5138265]];
+    this.importProductsService.doSearchByCode(id).subscribe((res: any) => {
+      console.log(res.body);
+      this.rows = res.body.map(data => {
+        const result = {};
+        this.columns.forEach((column, index) => {
+          if (column.dataType === 'DATE' && data[index]) {
+            result[column.columnName] = moment(data[index], 'YYYY-MM-DD').toDate();
+          } else {
+            result[column.columnName] = data[index];
+          }
+        });
+        return result;
+      });
+    })
+
     //   });
 
     const totalElements = Number(10);
@@ -222,7 +225,7 @@ export class ProductsUpdateComponent implements OnInit {
   onAddRow() {
     if (this.page.totalPages > 1 && this.page.pageNumber !== this.page.totalPages - 1) {
       this.page.pageNumber = this.page.totalPages - 1;
-      this.searchData(this.page, null, true);
+      this.searchData(this.page, null, true, null);
       return;
     }
     this.addNewRow();
@@ -293,7 +296,7 @@ export class ProductsUpdateComponent implements OnInit {
 
   setPage($event: any) {
     this.page.pageNumber = $event.offset;
-    this.searchData(this.page, null, null);
+    this.searchData(this.page, null, null, null);
   }
 
   actionSetPage($event: any) {

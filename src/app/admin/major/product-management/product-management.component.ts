@@ -55,7 +55,7 @@ export class ProductManagementComponent implements OnInit {
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
     {name: 'common.table.item_product_code', prop: 'code', flexGrow: 1},
     {name: 'common.table.item_product_name', prop: 'name', flexGrow: 1.5},
-    {name: 'common.table.item_product_cost', prop: 'cost', flexGrow: 1},
+    // {name: 'common.table.item_product_cost', prop: 'cost', flexGrow: 1},
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_product_paren_object', prop: 'parenObject', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},

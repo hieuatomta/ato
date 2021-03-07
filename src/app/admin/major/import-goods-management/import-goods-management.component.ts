@@ -11,6 +11,7 @@ import {ProductsUpdateComponent} from './products-update/products-update.compone
 import {MapPopupComponent} from './map-popup/map-popup.component';
 import {MapImageProductComponent} from './map-image-product/map-image-product.component';
 import {ImportProductsService} from '../../../@core/services/importProducts.service';
+import {SuppliersService} from '../../../@core/services/suppliers.service';
 
 class RequestOptions {
   constructor(param: { headers: Headers }) {
@@ -27,6 +28,10 @@ class RequestOptions {
 })
 export class ImportGoodsManagementComponent implements OnInit {
   ngOnInit(): void {
+    this.suppliersService.query().subscribe(res => {
+      this.listStatus = res.body.data.list;
+    }, err => {
+    });
     this.search(0);
   }
 
@@ -36,16 +41,13 @@ export class ImportGoodsManagementComponent implements OnInit {
     private toastrService: NbToastrService,
     private userService: UsersService,
     private productsService: ProductsService,
+    private suppliersService: SuppliersService,
     private importProductsService: ImportProductsService,
     private dialogService: NbDialogService) {
   }
 
   isLoad: boolean;
   listStatus = [
-    {name: 'common.state.0', code: 0},
-    {name: 'common.state.1', code: 1},
-    {name: 'common.state.2', code: 2},
-    {name: 'common.state.3', code: 3},
   ];
   rows: Object[];
   page = {
@@ -56,15 +58,15 @@ export class ImportGoodsManagementComponent implements OnInit {
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
     {name: 'common.table.item_import_code', prop: 'code', flexGrow: 1},
-    {name: 'common.table.item_suppliers_name', prop: 'name', flexGrow: 1.5},
+    {name: 'common.table.item_suppliers_name', prop: 'nameSupplier', flexGrow: 1.5},
     {name: 'common.table.item_description', prop: 'description', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
-    {name: 'common.table.item_detail', prop: 'map_size_color', flexGrow: 0.6},
+    // {name: 'common.table.item_detail', prop: 'map_size_color', flexGrow: 0.6},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
 
   inputForm = new FormGroup({
-    name: new FormControl(null, []),
+    nameSupplier: new FormControl(null, []),
     code: new FormControl(null, []),
     updateTime: new FormControl(null, []),
     status: new FormControl(null, [])
@@ -76,6 +78,7 @@ export class ImportGoodsManagementComponent implements OnInit {
   }
 
   editUsers(data) {
+    console.log(data);
     let title;
     if (data == null) {
       title = this.translate.instant('products.title_add');
@@ -116,7 +119,7 @@ export class ImportGoodsManagementComponent implements OnInit {
     this.importProductsService.doSearch({
       page: this.page.offset,
       page_size: this.page.limit,
-      name: this.inputForm.get("name").value,
+      nameSupplier: this.inputForm.get("nameSupplier").value,
       code: this.inputForm.get("code").value,
       updateTime: this.inputForm.get("updateTime").value,
       status: this.inputForm.get("status").value,
