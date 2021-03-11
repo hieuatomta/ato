@@ -167,25 +167,18 @@ export class ProductsUpdateComponent implements OnInit {
   }
 
   searchData(page, time, addRow, id) {
-
-    // if (!time) {
-    //   this.inputProduct.get('importTime').markAsTouched();
-    //   return;
-    // }
-
-    const pageToLoad: number = page.pageNumber;
-    const arr = [[611, 5046740000, null, null, 1, null, 5138265]];
     this.importProductsService.doSearchByCode(id).subscribe((res: any) => {
       console.log(res.body);
       this.rows = res.body.map(data => {
         const result = {};
         this.columns.forEach((column, index) => {
-          if (column.dataType === 'DATE' && data[index]) {
-            result[column.columnName] = moment(data[index], 'YYYY-MM-DD').toDate();
+          if (column.dataType === 'idObjects' && data[index]) {
+            result[column.columnName] = data[index];
           } else {
             result[column.columnName] = data[index];
           }
         });
+        console.log(result)
         return result;
       });
     })
@@ -208,15 +201,20 @@ export class ProductsUpdateComponent implements OnInit {
     name: null,
     amount: null,
     idSize: null,
+    importPrice: null,
+    idObjects: null,
   };
 
   onValue(e) {
+    // console.log(e);
     if (e?.code !== undefined) {
       this.objValue.code = e.code;
     }
     this.objValue.name = e.name;
     this.objValue.amount = e.amount;
     this.objValue.idSize = e.idSize;
+    this.objValue.importPrice = e.importPrice;
+    this.objValue.idObjects = e.idObjects;
     console.log(this.objValue);
     this.listValue.push(this.objValue);
     this.inputProduct.get('importCustomDTOList').setValue(this.listValue);
@@ -263,7 +261,7 @@ export class ProductsUpdateComponent implements OnInit {
   mapRef: any;
   columns: any = [
     {id: 6014, columnName: 'id', title: 'id', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'BIGINT'},
-    {id: 6015, columnName: 'code', title: 'Mã sản phẩm', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'DOUBLE'},
+    {id: 6015, columnName: 'code', title: 'Mã sản phẩm', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'LONG'},
     {id: 6015, columnName: 'name', title: 'Tên sản phẩm', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'LONG'},
     {
       id: 6015,
@@ -274,9 +272,9 @@ export class ProductsUpdateComponent implements OnInit {
       isShow: 1,
       dataType: 'LONG'
     },
+    {id: 6015, columnName: 'idObjects', title: 'Danh mục', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'OBJ'},
     {id: 6015, columnName: 'idSize', title: 'Kích thước', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'SIZE'},
     {id: 6015, columnName: 'amount', title: 'Số lượng', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'LONG'},
-    {id: 6015, columnName: 'description', title: 'Mô tả', isRequire: 0, isTimeColumn: 0, isShow: 1, dataType: 'LONG'}
   ];
   rows1: any = [];
   page = new Page();

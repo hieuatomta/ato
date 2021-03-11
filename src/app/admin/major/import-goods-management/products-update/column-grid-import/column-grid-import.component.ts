@@ -4,6 +4,8 @@ import * as moment from 'moment';
 import {TranslateService} from '@ngx-translate/core';
 import {DatatableComponent} from '@swimlane/ngx-datatable';
 import {SizeService} from '../../../../../@core/services/size.service';
+import {TreeviewConfig, TreeviewItem} from 'ngx-treeview';
+import {ObjectsService} from '../../../../../@core/services/objects.service';
 
 @Component({
   selector: 'ngx-column-grid-import',
@@ -35,11 +37,61 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
   constructor(
     private sizeService: SizeService,
     private toastr: NbToastrService,
+    private objectsService: ObjectsService,
     // protected configRegportService: ConfigReportService,
     //           protected toastrService: ToasterService,
     //           private dashboardService: DashboardService,
-              private translate: TranslateService,
-              private dialogService: NbDialogService) {
+    private translate: TranslateService,
+    private dialogService: NbDialogService) {
+  }
+
+  item: TreeviewItem[] = [];
+  treeViewConfig = TreeviewConfig.create({
+    hasFilter: true,
+    hasAllCheckBox: false,
+    maxHeight: 300,
+    hasCollapseExpand: true,
+  });
+
+  idParent: any;
+  loading = false;
+
+  getParenTree(e: Number) {
+    this.loading = true;
+    this.objectsService.query().subscribe(res => {
+        const result = res.body.data.list.filter(function (hero) {
+          return hero.type === e;
+        });
+        this.item = this.formatDataTree(result, 0);
+      }, (error) => {
+        this.loading = false;
+      },
+      () => this.loading = false);
+  }
+
+  formatDataTree(data, parentId) {
+    const arr = [];
+    for (let i = 0; i < data.length; i++) {
+      const dataItem = data[i];
+      if (dataItem.parentId === parentId) {
+        let children = [];
+        if (dataItem.id != null) {
+          children = this.formatDataTree(data, dataItem.id);
+        }
+        if (children.length > 0) {
+          dataItem.children = children;
+        } else {
+          dataItem.children = null;
+        }
+        const dataTreeview = new TreeviewItem({text: dataItem.name, value: dataItem.id, children: dataItem.children});
+        arr.push(dataTreeview);
+      }
+    }
+    return arr;
+  }
+
+  parentIdChange($event) {
+    this.idParent = $event;
   }
 
   lstRole1: any;
@@ -49,6 +101,8 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
       this.lstRole1 = res.body.data.list;
     }, err => {
     });
+    this.getParenTree( 1);
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -99,15 +153,18 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
     //   this.setPage({offset: this.page.pageNumber});
     // });
   }
+
   listStatus = [
     {name: 'common.state.0', code: 0},
     {name: 'common.state.1', code: 1},
     {name: 'common.state.2', code: 2},
     {name: 'common.state.3', code: 3},
   ];
+
   saveRow(row, rowIndex) {
-    const value = row;
     console.log(row);
+    row.idObjects = this.idParent;
+    const value = row;
     console.log(rowIndex);
     // if (!this.validRow(row)) return;
     const data = {
@@ -125,14 +182,15 @@ export class ColumnGridImportComponent implements OnInit, OnChanges {
     //   row = {
     //     ...res.body.mapValue
     //   };
-      this.rows[rowIndex] = row;
-      this.editing[rowIndex] = false;
-      console.log(this.page);
-      this.toastr.info('success', 'Thông báo');
-      this.onSetPage.emit({offset: this.page.pageNumber});
-      this.onValues.emit(value);
-      this.addRowFlg = false;
-      this.rows = [...this.rows];
+    this.rows[rowIndex] = row;
+    this.editing[rowIndex] = false;
+    console.log(this.page);
+    this.toastr.info('success', 'Thông báo');
+    this.onSetPage.emit({offset: this.page.pageNumber});
+    this.onValues.emit(value);
+    this.addRowFlg = false;
+    this.rows = [...this.rows];
+    console.log(this.rows);
     // }, error => {
     //   this.toastrService.pop('error', `Lỗi`, error.error.message);
     // })

@@ -90,11 +90,20 @@
                     placeholder="{{'common.placeHolder' |translate}}"
                     notFoundText="{{'common.notFoundText' |translate}}"
                     fullWidth>
-                    <ng-option *ngFor="let item of lstRole1" [value]="item.id">
-                      <span title="{{item.name | translate }}" class="cut-text"> {{ item.name | translate }}</span>
+                    <ng-option *ngFor="let item1 of lstRole1" [value]="item1.id">
+                      <span title="{{item1.name | translate }}" class="cut-text"> {{ item1.name | translate }}</span>
                     </ng-option>
                   </ng-select>
                 </div>
+                <div *ngSwitchCase="'OBJ'">
+                  <ngx-dropdown-treeview-select [items]="item"
+                                                [value]="idParent"
+                                                [config]="treeViewConfig"
+                                                class="dropdown-treeview"
+                                                (valueChange)="parentIdChange($event)">
+                  </ngx-dropdown-treeview-select>
+                </div>
+
                 <div *ngSwitchCase="'BIGINT'">
                   <input
                     nbInput
