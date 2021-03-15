@@ -6,7 +6,7 @@ import {HttpHeaders} from '@angular/common/http';
 import {ProductsService} from '../../@core/services/products.service';
 import {ColorService} from '../../@core/services/color.service';
 import {SizeService} from '../../@core/services/size.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 declare var $: any;
 
@@ -30,7 +30,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     amount: null,
     id: null,
     color: null,
-    size: null
+    size: null,
+    imageLink: null,
+    totalPrice: null,
+    totalOrder: null,
+    nameSize: null,
   };
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -80,36 +84,61 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   // goi len header de cap nhat gio hang
   thanhToan() {
-    this.ls_order.id = this.inputForm.get('id').value;
-    this.ls_order.color = this.inputForm.get('color').value;
-    this.ls_order.size = this.inputForm.get('size').value;
-    this.ls_order.amount = this.inputForm.get('amount').value;
-    this.ls_order.cost = this.inputForm.get('cost').value;
-    this.ls_order.name = this.inputForm.get('name').value;
-    let obj = JSON.parse(localStorage.getItem('list_order'));
-    if (obj === null || obj === undefined) {
-      obj = [];
-    }
-    if (obj?.length === 0) {
-      obj.push(this.ls_order);
-    }
-    let a = 0;
-    for (let i = 0; i < obj?.length; i++) {
-      if (obj[i].id === this.inputForm.get('id').value) {
-        this.ls_order.amount = obj[i].amount + this.inputForm.get('amount').value;
-        obj.splice(i, 1);
-        a = 1;
+    if (this.inputForm.valid) {
+
+
+      const data = {data: null, totalPrice: null, totalOrder: null};
+
+      this.ls_order.id = this.inputForm.get('id').value;
+      this.ls_order.size = this.inputForm.get('size').value;
+      this.ls_order.amount = this.inputForm.get('amount').value;
+      this.ls_order.cost = this.inputForm.get('cost').value;
+      this.ls_order.name = this.inputForm.get('name').value;
+      this.ls_order.imageLink = this.inputForm.get('imageLink').value;
+      this.ls_order.totalPrice = null;
+      this.ls_order.totalOrder = null;
+      console.log(this.lstRole1);
+      for (let i = 0; i < this.lstRole1?.length; i++) {
+        if (this.lstRole1[i].id === this.ls_order.size) {
+          console.log(this.lstRole1[i]);
+          this.ls_order.nameSize = this.lstRole1[i].name;
+        }
       }
-    }
-    if (a === 1) {
-      obj.push(this.ls_order);
-      a = 0;
-    } else {
-      obj.push(this.ls_order);
-    }
+      const data1 = JSON.parse(localStorage.getItem('list_order'));
+      let obj = data1?.data;
+      if (obj === null || obj === undefined) {
+        obj = [];
+      }
+      if (obj?.length === 0) {
+        // data = null;
+        obj.push(this.ls_order);
+      } else {
+        let a = 0;
+        for (let i = 0; i < obj?.length; i++) {
+          if (obj[i].id === this.inputForm.get('id').value && obj[i].size === this.inputForm.get('size').value) {
+            this.ls_order.amount = obj[i].amount + this.inputForm.get('amount').value;
+            obj.splice(i, 1);
+            a = 1;
+          }
+        }
+        if (a === 1) {
+          obj.push(this.ls_order);
+          a = 0;
+        } else {
+          obj.push(this.ls_order);
+        }
+      }
+      for (let i = 0; i < obj?.length; i++) {
+        this.ls_order.totalOrder += obj[i].amount;
+        this.ls_order.totalPrice += (Number(obj[i].amount * (obj[i].cost.trim().slice(0, obj[i].cost.search('đ') - 1))) * 1000);
+      }
+      data.data = obj;
+      data.totalPrice = this.ls_order.totalPrice;
+      data.totalOrder = this.ls_order.totalOrder;
 
-
-    localStorage.setItem('list_order', JSON.stringify(obj));
+      console.log(obj);
+      localStorage.setItem('list_order', JSON.stringify(data));
+    }
   }
 
   protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
@@ -121,6 +150,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     this.inputForm.get('id').setValue(this.rows[0]?.id);
     this.inputForm.get('cost').setValue(this.rows[0]?.cost);
     this.inputForm.get('name').setValue(this.rows[0]?.name);
+    this.inputForm.get('imageLink').setValue(this.rows[0]?.DS_Image[0].imageLink);
   }
 
   lstRole1 = [];
@@ -144,20 +174,16 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.inputForm = new FormGroup({
-      color: new FormControl(null, []),
-      size: new FormControl(null, []),
+      size: new FormControl(null, [Validators.required]),
       amount: new FormControl(1, []),
       status: new FormControl(null, []),
       id: new FormControl(null, []),
       cost: new FormControl(null, []),
+      imageLink: new FormControl(null, []),
       name: new FormControl(null, [])
     });
     this.sizeService.query().subscribe(res => {
       this.lstRole1 = res.body.data.list;
-    }, err => {
-    });
-    this.colorService.query().subscribe(res => {
-      this.lstRole2 = res.body.data.list;
     }, err => {
     });
 

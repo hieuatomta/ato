@@ -10,31 +10,32 @@
                 <th class="column-1">Sản phẩm</th>
                 <th class="column-2"></th>
                 <th class="column-3">Giá</th>
-                <th class="column-4">Số lượng</th>
+                <th class="column-4" style="text-align: center;">Số lượng</th>
                 <th class="column-5">Tổng tiền</th>
               </tr>
 
               <tr *ngFor="let item of obj" class="table_row">
                 <td class="column-1">
                   <div class="how-itemcart1">
-                    <img src="images/item-cart-04.jpg" alt="IMG">
+                    <img src="{{item.imageLink}}" alt="IMG">
                   </div>
                 </td>
                 <td class="column-2">{{item.name}}</td>
                 <td class="column-3">{{item.cost}}</td>
-                <td class="column-4">
-                  <form [formGroup]="inputForm">
+                <td class="column-4" style="text-align: center;">
+                  {{item.amount}} Chiếc
+<!--                  <form [formGroup]="inputForm">-->
 
-                    <div class="sosanpham">
-                      <button style="border: 1px solid;" (click)="soluong(0)">
-                        <span style="color: black; font-weight: 500;">-</span>
-                      </button>
-                      <input type="number" name="" formControlName="amount">
-                      <button style="border: 1px solid;" (click)="soluong(1)">
-                        <span style="color: black; font-weight: 500;">+</span>
-                      </button>
-                    </div>
-                  </form>
+<!--                    <div class="sosanpham">-->
+<!--                      <button style="border: 1px solid;" (click)="soluong(0)">-->
+<!--                        <span style="color: black; font-weight: 500;">-</span>-->
+<!--                      </button>-->
+<!--                      <input type="number" formControlName="amount" value="{{item.amount}}" name="" >-->
+<!--                      <button style="border: 1px solid;" (click)="soluong(1)">-->
+<!--                        <span style="color: black; font-weight: 500;">+</span>-->
+<!--                      </button>-->
+<!--                    </div>-->
+<!--                  </form>-->
 
                 </td>
 
@@ -86,10 +87,17 @@
 								</span>
             </div>
           </div>
+          <div class="" style="display: flex;">
+            <button (click)="thanhToan()"
+                    class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+              Thanh toán
+            </button>
+            <button (click)="thanhToan()"
+                    class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+              Kiểm tra đơn hàng
+            </button>
+          </div>
 
-          <button (click)="thanhToan()" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-            Thanh toán
-          </button>
         </div>
       </div>
     </div>

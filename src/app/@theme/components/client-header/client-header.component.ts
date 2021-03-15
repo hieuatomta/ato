@@ -12,13 +12,20 @@ declare const jQuery: any;
 export class ClientHeaderComponent implements OnInit, OnDestroy {
   size = 0;
   obj = null;
-
+  totalPrice = null;
   openOrder() {
-    this.obj = JSON.parse(localStorage.getItem('list_order'));
-    if (this.obj === null || this.obj === undefined) {
+    const data = JSON.parse(localStorage.getItem('list_order'));
+    console.log(data);
+    if (data === undefined || data === null || data.data === undefined || data.data === null) {
       this.obj = [];
     } else {
-      this.size = this.obj?.length;
+      this.obj = data.data;
+      // for (let i = 0; i < this?.obj.length; i++) {
+      //   console.log(this.obj[i].amount);
+      //   this.size += this.obj[i].amount;
+      // }
+      this.size = data.totalOrder;
+      this.totalPrice = data.totalPrice.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
       // for (let i = 0; i < this.obj?.length; i++) {
       //
       // }
@@ -35,11 +42,15 @@ export class ClientHeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.obj = JSON.parse(localStorage.getItem('list_order'));
-    if (this.obj === null || this.obj === undefined) {
+    const data = JSON.parse(localStorage.getItem('list_order'));
+    // this.obj = data?.data;
+    this.size = data?.totalOrder;
+    if (data === undefined || data === null || data.data === undefined || data.data === null) {
       this.obj = [];
+    } else {
+      this.obj = data.data;
     }
-    this.size = this.obj?.length;
+    // this.size = this.obj?.length;
     this.menudacap = this.dequy(0, 0, 1);
     (function ($) {
       let posWrapHeader;

@@ -35,9 +35,12 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
 
   obj = null;
   size = null;
-
+  acount = null;
   ngOnInit(): void {
-    this.obj = JSON.parse(localStorage.getItem('list_order'));
+    const data1 = JSON.parse(localStorage.getItem('list_order'));
+    this.obj = data1?.data;
+    // this.obj = JSON.parse(localStorage.getItem('list_order'));
+    console.log(this.obj);
     if (this.obj === null || this.obj === undefined) {
       this.obj = [];
     }
