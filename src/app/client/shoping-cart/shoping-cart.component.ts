@@ -13,29 +13,37 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  inputForm: any;
+  // inputForm: any;
 
   constructor(private orderService: OrderService) {
   }
 
-  soluong(e) {
-    let soLuong = this.inputForm.get('amount').value;
-    if (e === 0) {
-      if (this.inputForm.get('amount').value === 0) {
-        this.inputForm.get('amount').setValue(0);
-        return;
-      }
-      soLuong = soLuong - 1;
-    } else {
-      soLuong = soLuong + 1;
-    }
-    this.inputForm.get('amount').setValue(soLuong);
-    return soLuong;
-  }
+  // soluong(e) {
+  //   let soLuong = this.inputForm.get('amount').value;
+  //   if (e === 0) {
+  //     if (this.inputForm.get('amount').value === 0) {
+  //       this.inputForm.get('amount').setValue(0);
+  //       return;
+  //     }
+  //     soLuong = soLuong - 1;
+  //   } else {
+  //     soLuong = soLuong + 1;
+  //   }
+  //   this.inputForm.get('amount').setValue(soLuong);
+  //   return soLuong;
+  // }
 
   obj = null;
   size = null;
   acount = null;
+  totalPrice = null;
+  inputForm = new FormGroup({
+    name: new FormControl(null, []),
+    mail: new FormControl(null, []),
+    phone: new FormControl(null, []),
+    address: new FormControl(null, []),
+  });
+
   ngOnInit(): void {
     const data1 = JSON.parse(localStorage.getItem('list_order'));
     this.obj = data1?.data;
@@ -44,7 +52,16 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
     if (this.obj === null || this.obj === undefined) {
       this.obj = [];
     }
+    this.totalPrice = data1.totalPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
     this.size = this.obj?.length;
+
+    for (let i = 0; i < this.obj?.length; i++) {
+      const total = (Number(this.obj[i].amount * (this.obj[i].cost.trim().slice(0, this.obj[i].cost.search('đ') - 1))) * 1000).toLocaleString('it-IT', {
+        style: 'currency',
+        currency: 'VND'
+      });
+      this.obj[i].totalPrice1 = total;
+    }
     this.inputForm = new FormGroup({
       color: new FormControl(null, []),
       size: new FormControl(null, []),

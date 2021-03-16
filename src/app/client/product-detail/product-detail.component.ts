@@ -33,6 +33,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     size: null,
     imageLink: null,
     totalPrice: null,
+    totalPrice1: null,
     totalOrder: null,
     nameSize: null,
   };
@@ -96,11 +97,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       this.ls_order.name = this.inputForm.get('name').value;
       this.ls_order.imageLink = this.inputForm.get('imageLink').value;
       this.ls_order.totalPrice = null;
+      this.ls_order.totalPrice1 = null;
       this.ls_order.totalOrder = null;
       console.log(this.lstRole1);
       for (let i = 0; i < this.lstRole1?.length; i++) {
         if (this.lstRole1[i].id === this.ls_order.size) {
-          console.log(this.lstRole1[i]);
           this.ls_order.nameSize = this.lstRole1[i].name;
         }
       }
@@ -111,10 +112,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       }
       if (obj?.length === 0) {
         // data = null;
+        this.ls_order.totalPrice1 = null;
+        this.ls_order.totalPrice1 = (Number(this.ls_order.amount * (this.ls_order.cost.trim().slice(0, this.ls_order.cost.search('đ') - 1))) * 1000);
         obj.push(this.ls_order);
       } else {
         let a = 0;
         for (let i = 0; i < obj?.length; i++) {
+          this.ls_order.totalPrice1 = null;
+          this.ls_order.totalPrice1 = (Number(obj[i].amount * (obj[i].cost.trim().slice(0, obj[i].cost.search('đ') - 1))) * 1000);
           if (obj[i].id === this.inputForm.get('id').value && obj[i].size === this.inputForm.get('size').value) {
             this.ls_order.amount = obj[i].amount + this.inputForm.get('amount').value;
             obj.splice(i, 1);

@@ -20,7 +20,7 @@
                     <img src="{{item.imageLink}}" alt="IMG">
                   </div>
                 </td>
-                <td class="column-2">{{item.name}}</td>
+                <td class="column-2">{{item.nameSize}} - {{item.name}}</td>
                 <td class="column-3">{{item.cost}}</td>
                 <td class="column-4" style="text-align: center;">
                   {{item.amount}} Chiếc
@@ -39,7 +39,7 @@
 
                 </td>
 
-                <td class="column-5">chua cap nhat tinh tien</td>
+                <td class="column-5">{{item.totalPrice1}}</td>
               </tr>
             </table>
           </div>
@@ -57,22 +57,25 @@
           <h5 class="mtext-109 cl2 p-b-30" style="color: black">
             Thông tin thanh toán
           </h5>
-          <div class="flex-w flex-t bor12 p-t-15 p-b-30">
-            <div class="size-209 p-r-0-sm w-full-ssm">
-              <div class="bor8 bg0 m-b-12">
-                <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Họ và tên">
-              </div>
-              <div class="bor8 bg0 m-b-12">
-                <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Email">
-              </div>
-              <div class="bor8 bg0 m-b-12">
-                <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Số điện thoại">
-              </div>
-              <div class="bor8 bg0 m-b-12">
-                <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Địa chỉ">
+          <form [formGroup]="inputForm">
+            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+              <div class="size-209 p-r-0-sm w-full-ssm">
+                <div class="bor8 bg0 m-b-12">
+                  <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="name" placeholder="Họ và tên">
+                </div>
+                <div class="bor8 bg0 m-b-12">
+                  <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="mail" placeholder="Email">
+                </div>
+                <div class="bor8 bg0 m-b-12">
+                  <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="phone" placeholder="Số điện thoại">
+                </div>
+                <div class="bor8 bg0 m-b-12">
+                  <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="address" placeholder="Địa chỉ">
+                </div>
               </div>
             </div>
-          </div>
+
+          </form>
 
           <div class="flex-w flex-t p-t-27 p-b-33">
             <div class="size-208">
@@ -83,7 +86,7 @@
 
             <div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$79.65
+									{{totalPrice}}
 								</span>
             </div>
           </div>
