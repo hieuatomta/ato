@@ -17,6 +17,10 @@ export class RoleUpdateComponent implements OnInit {
     {name: 'common.status.1', code: 1},
     {name: 'common.status.0', code: 0}
   ];
+  listType = [
+    {name: 'common.type.1', code: 1},
+    {name: 'common.type.0', code: 0}
+  ];
   inputRoles: any;
   itemRoles: any;
   loading = false;
@@ -29,7 +33,8 @@ export class RoleUpdateComponent implements OnInit {
       name: new FormControl(null, [Validators.required]),
       code: new FormControl(null, [Validators.required]),
       description: new FormControl(null, []),
-      status: new FormControl(null, [Validators.required])
+      status: new FormControl(null, [Validators.required]),
+      type: new FormControl(this.data?.type, [Validators.required])
     });
     this.inputRoles.get('status').setValue(true);
     if (this.data) {

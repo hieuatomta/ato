@@ -41,6 +41,10 @@ export class RolesComponent implements OnInit {
     {name: 'common.status.1', code: 1},
     {name: 'common.status.0', code: 0}
   ];
+  listType = [
+    {name: 'common.type.1', code: 1},
+    {name: 'common.type.0', code: 0}
+  ];
   rows: Object[];
   page = {
     limit: 5,
@@ -52,6 +56,7 @@ export class RolesComponent implements OnInit {
     {name: 'common.table.item_roles_name', prop: 'name', flexGrow: 1.5},
     {name: 'common.table.item_roles_code', prop: 'code', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
+    {name: 'common.table.type', prop: 'type', flexGrow: 1},
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_map_popup', prop: 'editModule', flexGrow: 1},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
@@ -61,7 +66,8 @@ export class RolesComponent implements OnInit {
     name: new FormControl(null, []),
     code: new FormControl(null, []),
     updateTime: new FormControl(null, []),
-    status: new FormControl(null, [])
+    status: new FormControl(null, []),
+    type: new FormControl(null, [])
   });
 
   pageCallback(pageInfo: { count?: number, pageSize?: number, limit?: number, offset?: number }) {
@@ -114,6 +120,7 @@ export class RolesComponent implements OnInit {
       code: this.inputForm.get("code").value,
       updateTime: this.inputForm.get("updateTime").value,
       status: this.inputForm.get("status").value,
+      type: this.inputForm.get("type").value,
     }).subscribe(
       (res) => {
         this.onSuccess(res.body.data, res.headers, pageToLoad);

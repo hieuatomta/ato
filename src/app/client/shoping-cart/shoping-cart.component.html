@@ -62,15 +62,23 @@
               <div class="size-209 p-r-0-sm w-full-ssm">
                 <div class="bor8 bg0 m-b-12">
                   <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="name" placeholder="Họ và tên">
+                  <ngx-inline-message [message]="'common.table.item_username'|translate"
+                                      [formName]="inputForm.get('name')"></ngx-inline-message>
                 </div>
                 <div class="bor8 bg0 m-b-12">
                   <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="mail" placeholder="Email">
+                  <ngx-inline-message [message]="'common.table.item_username'|translate"
+                                      [formName]="inputForm.get('mail')"></ngx-inline-message>
                 </div>
                 <div class="bor8 bg0 m-b-12">
                   <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="phone" placeholder="Số điện thoại">
+                  <ngx-inline-message [message]="'common.table.item_username'|translate"
+                                      [formName]="inputForm.get('phone')"></ngx-inline-message>
                 </div>
                 <div class="bor8 bg0 m-b-12">
                   <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" nbInput fullWidth formControlName="address" placeholder="Địa chỉ">
+                  <ngx-inline-message [message]="'common.table.item_username'|translate"
+                                      [formName]="inputForm.get('address')"></ngx-inline-message>
                 </div>
               </div>
             </div>
@@ -90,12 +98,14 @@
 								</span>
             </div>
           </div>
-          <div class="" style="display: flex;">
-            <button (click)="thanhToan()"
+          <div style="display: flex;">
+<!--            <button  nbButton [disabled]="inputForm.invalid" (click)="thanhToan()" type="button" status="primary"-->
+<!--                    id="dialogCancelBtn">{{ 'common.save' | translate }}</button>-->
+            <button [disabled]="inputForm.invalid" (click)="thanhToan()"
                     class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
               Thanh toán
             </button>
-            <button (click)="thanhToan()"
+            <button [disabled]="inputForm.invalid" (click)="thanhToan()"
                     class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
               Kiểm tra đơn hàng
             </button>

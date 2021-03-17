@@ -78,6 +78,7 @@
       "item_size_color": "Map Size ",
       "item_image": "Map Ảnh ",
       "title_map_common": "Map Thao tác ",
+      "type": "Nhóm chức năng ",
       "item_image_link": "Hình ảnh"
     },
     "totalMessage": "bản ghi",

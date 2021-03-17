@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from '../../@core/services/order.service';
 
 
@@ -13,7 +13,7 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  // inputForm: any;
+  inputForm: any;
 
   constructor(private orderService: OrderService) {
   }
@@ -37,14 +37,22 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
   size = null;
   acount = null;
   totalPrice = null;
-  inputForm = new FormGroup({
-    name: new FormControl(null, []),
-    mail: new FormControl(null, []),
-    phone: new FormControl(null, []),
-    address: new FormControl(null, []),
-  });
+  // inputForm = null;
 
   ngOnInit(): void {
+    this.inputForm = new FormGroup({
+      color: new FormControl(null, []),
+      size: new FormControl(null, []),
+      amount: new FormControl(1, []),
+      status: new FormControl(null, []),
+      id: new FormControl(null, []),
+      cost: new FormControl(null, []),
+      name: new FormControl(null, [Validators.required]),
+      mail: new FormControl(null, [Validators.required]),
+      phone: new FormControl(null, [Validators.required]),
+      address: new FormControl(null, [Validators.required]),
+      totalPrice: new FormControl(null, []),
+    });
     const data1 = JSON.parse(localStorage.getItem('list_order'));
     this.obj = data1?.data;
     // this.obj = JSON.parse(localStorage.getItem('list_order'));
@@ -52,6 +60,7 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
     if (this.obj === null || this.obj === undefined) {
       this.obj = [];
     }
+    this.inputForm.get('totalPrice').setValue(data1.totalPrice)
     this.totalPrice = data1.totalPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
     this.size = this.obj?.length;
 
@@ -62,28 +71,20 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
       });
       this.obj[i].totalPrice1 = total;
     }
-    this.inputForm = new FormGroup({
-      color: new FormControl(null, []),
-      size: new FormControl(null, []),
-      amount: new FormControl(1, []),
-      status: new FormControl(null, []),
-      id: new FormControl(null, []),
-      cost: new FormControl(null, []),
-      name: new FormControl(null, [])
-    });
   }
 
   thanhToan() {
-    this.orderService.insert(null).subscribe(res => {
-        if (res.body.data.returncode === 1) {
-          console.log(res.body.data.orderurl);
-          window.location = res.body.data.orderurl;
-        } else {
-          console.log('That bai');
-        }
-      }, (error) => {
-        // this.isLoad = false;
-      },
-    );
+    console.log(this.inputForm.value);
+    // this.orderService.insert(null).subscribe(res => {
+    //     if (res.body.data.returncode === 1) {
+    //       console.log(res.body.data.orderurl);
+    //       window.location = res.body.data.orderurl;
+    //     } else {
+    //       console.log('That bai');
+    //     }
+    //   }, (error) => {
+    //     // this.isLoad = false;
+    //   },
+    // );
   }
 }

@@ -8,6 +8,7 @@ import {
   NbLayoutModule,
   NbMenuModule,
   NbSpinnerModule,
+  NbButtonModule,
 } from '@nebular/theme';
 
 import {ThemeModule} from '../@theme/theme.module';
@@ -50,6 +51,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
         RecaptchaFormsModule,
         ReactiveFormsModule,
         TranslateModule,
+      NbButtonModule,
         SharedModule,
         SlideshowModule,
         NgbModule,

@@ -37,6 +37,19 @@
                   </ng-option>
                 </ng-select>
               </div>
+              <div class="col-lg-4 form-group">
+                <label class="label">
+                  {{'common.table.type' | translate }}
+                </label>
+                <ng-select fullWidth appendTo="body"
+                           placeholder="{{'common.placeHolder' |translate}}"
+                           notFoundText="{{'common.notFoundText' |translate}}"
+                           clearAllText="{{'common.clearAllText' |translate}}"
+                           formControlName="type">
+                  <ng-option *ngFor="let item of listType" [value]="item.code"> {{ item.name | translate }}
+                  </ng-option>
+                </ng-select>
+              </div>
             </div>
             <div class="col-12 text-center">
               <button nbButton status="primary" type="submit" (click)="search(0)">{{ 'common.search' | translate }}
@@ -76,8 +89,11 @@
                 <ng-container *ngIf="col.prop ==='updateTime'">
                   {{ value | date:'dd/MM/yyyy HH:mm:ss'}}
                 </ng-container>
-                <ng-container *ngIf="col.prop ==='status'">
+                <ng-container *ngIf="col.prop ==='status' ">
                   {{  'common.status.' + value | translate }}
+                </ng-container>
+                <ng-container *ngIf=" col.prop ==='type'">
+                  {{  'common.type.' + value | translate }}
                 </ng-container>
                 <ng-container *ngIf="col.prop === 'editModule'">
                   <button class="p-1" nbButton ghost status="info" (click)="openMapComponent(row)">

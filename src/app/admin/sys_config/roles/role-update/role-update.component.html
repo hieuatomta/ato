@@ -31,6 +31,28 @@
             <ngx-inline-message [message]="'common.table.item_roles_name'|translate"
                                 [formName]="inputRoles.get('name')"></ngx-inline-message>
           </div>
+
+          <div class="col-lg-3 form-group">
+            <label class="label">
+              {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
+            </label>
+            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>
+            <ngx-inline-message [message]="'common.table.item_status'|translate"
+                                [formName]="inputRoles.get('status')"></ngx-inline-message>
+          </div>
+          <div class="col-lg-3 form-group">
+            <label class="label">
+              Nhóm quyền
+            </label>
+            <ng-select fullWidth appendTo="body"
+                       placeholder="{{'common.placeHolder' |translate}}"
+                       notFoundText="{{'common.notFoundText' |translate}}"
+                       clearAllText="{{'common.clearAllText' |translate}}"
+                       formControlName="type">
+              <ng-option *ngFor="let item of listType" [value]="item.code"> {{ item.name | translate }}
+              </ng-option>
+            </ng-select>
+          </div>
           <div class="col-lg-6 form-group">
             <label class="label">
               {{ 'common.table.item_description' | translate }}
@@ -38,14 +60,6 @@
             <textarea rows="3" type="text" formControlName="description" nbInput fullWidth trim="blur"
                       [ngClass]="{'status-danger': this.inputRoles.get('description').touched && this.inputRoles.get('description').errors}">
             </textarea>
-          </div>
-          <div class="col-lg-6 form-group">
-            <label class="label">
-              {{ 'common.table.item_status' | translate }} <span style="color: red">(*)</span>
-            </label>
-            <nb-toggle style="display: block !important;" fullWidth formControlName="status"></nb-toggle>
-            <ngx-inline-message [message]="'common.table.item_status'|translate"
-                                [formName]="inputRoles.get('status')"></ngx-inline-message>
           </div>
 
         </div>
