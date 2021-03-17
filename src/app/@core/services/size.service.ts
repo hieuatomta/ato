@@ -17,6 +17,12 @@ export class SizeService {
     });
   }
 
+  queryProductSize(code?: any): Observable<any> {
+    return this.http.get<any[]>(`${environment.apiUrl}/sizes/${code}`, {
+      observe: 'response'
+    });
+  }
+
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.get<any[]>(`${environment.apiUrl}/sizes`, {

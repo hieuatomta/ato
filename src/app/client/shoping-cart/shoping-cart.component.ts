@@ -38,20 +38,21 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
   acount = null;
   totalPrice = null;
   // inputForm = null;
+  lsProduct = [];
+  order = {
+    productsId: null,
+    amount: null,
+    sizesId: null
+  }
 
   ngOnInit(): void {
     this.inputForm = new FormGroup({
-      color: new FormControl(null, []),
-      size: new FormControl(null, []),
-      amount: new FormControl(1, []),
-      status: new FormControl(null, []),
-      id: new FormControl(null, []),
-      cost: new FormControl(null, []),
       name: new FormControl(null, [Validators.required]),
       mail: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.required]),
       address: new FormControl(null, [Validators.required]),
       totalPrice: new FormControl(null, []),
+      customOrderDTO: new FormControl(null, []),
     });
     const data1 = JSON.parse(localStorage.getItem('list_order'));
     this.obj = data1?.data;
@@ -64,7 +65,12 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
     this.totalPrice = data1.totalPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
     this.size = this.obj?.length;
 
+    this.lsProduct = [];
     for (let i = 0; i < this.obj?.length; i++) {
+      this.order.productsId = this.obj[i].id;
+      this.order.sizesId = this.obj[i].size;
+      this.order.amount = this.obj[i].amount;
+      this.lsProduct.push(this.order);
       const total = (Number(this.obj[i].amount * (this.obj[i].cost.trim().slice(0, this.obj[i].cost.search('đ') - 1))) * 1000).toLocaleString('it-IT', {
         style: 'currency',
         currency: 'VND'
@@ -74,17 +80,19 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
   }
 
   thanhToan() {
+    console.log(this.lsProduct);
+    this.inputForm.get('customOrderDTO').setValue(this.lsProduct);
     console.log(this.inputForm.value);
-    // this.orderService.insert(null).subscribe(res => {
-    //     if (res.body.data.returncode === 1) {
-    //       console.log(res.body.data.orderurl);
-    //       window.location = res.body.data.orderurl;
-    //     } else {
-    //       console.log('That bai');
-    //     }
-    //   }, (error) => {
-    //     // this.isLoad = false;
-    //   },
-    // );
+    this.orderService.insert(this.inputForm.value).subscribe(res => {
+        if (res.body.data.returncode === 1) {
+          console.log(res.body.data.orderurl);
+          // window.location = res.body.data.orderurl;
+        } else {
+          console.log('That bai');
+        }
+      }, (error) => {
+        // this.isLoad = false;
+      },
+    );
   }
 }

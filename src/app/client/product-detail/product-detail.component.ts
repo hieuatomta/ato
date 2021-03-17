@@ -187,7 +187,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       imageLink: new FormControl(null, []),
       name: new FormControl(null, [])
     });
-    this.sizeService.query().subscribe(res => {
+    this.sizeService.queryProductSize(this.key).subscribe(res => {
       this.lstRole1 = res.body.data.list;
     }, err => {
     });
