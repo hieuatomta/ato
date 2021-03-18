@@ -10,6 +10,7 @@ import {ProductsService} from '../../../@core/services/products.service';
 import {ProductsUpdateComponent} from './products-update/products-update.component';
 import {MapPopupComponent} from './map-popup/map-popup.component';
 import {MapImageProductComponent} from './map-image-product/map-image-product.component';
+import {OrderService} from '../../../@core/services/order.service';
 
 class RequestOptions {
   constructor(param: { headers: Headers }) {
@@ -34,16 +35,15 @@ export class ExportGoodsManagementComponent implements OnInit {
     private translate: TranslateService,
     private toastrService: NbToastrService,
     private userService: UsersService,
-    private productsService: ProductsService,
+    private orderService: OrderService,
     private dialogService: NbDialogService) {
   }
 
   isLoad: boolean;
   listStatus = [
-    {name: 'common.state.0', code: 0},
-    {name: 'common.state.1', code: 1},
-    {name: 'common.state.2', code: 2},
-    {name: 'common.state.3', code: 3},
+    {name: 'common.statusOrder.0', code: 0},
+    {name: 'common.statusOrder.1', code: 1},
+    {name: 'common.statusOrder.2', code: 2},
   ];
   rows: Object[];
   page = {
@@ -53,19 +53,16 @@ export class ExportGoodsManagementComponent implements OnInit {
   };
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
-    {name: 'common.table.item_product_code', prop: 'code', flexGrow: 1},
-    {name: 'common.table.item_product_name', prop: 'name', flexGrow: 1.5},
-    {name: 'common.table.item_product_cost', prop: 'cost', flexGrow: 1},
+    {name: 'common.table.item_order_code', prop: 'code', flexGrow: 1},
     {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
-    {name: 'common.table.item_product_paren_object', prop: 'parenObject', flexGrow: 1},
+    {name: 'common.table.address', prop: 'address', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
-    {name: 'common.table.item_image', prop: 'map_image', flexGrow: 0.6},
     {name: 'common.table.item_size_color', prop: 'map_size_color', flexGrow: 0.6},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
 
   inputForm = new FormGroup({
-    name: new FormControl(null, []),
+    address: new FormControl(null, []),
     code: new FormControl(null, []),
     updateTime: new FormControl(null, []),
     status: new FormControl(null, [])
@@ -114,15 +111,16 @@ export class ExportGoodsManagementComponent implements OnInit {
   search(pageToLoad: number) {
     this.isLoad = true;
     this.page.offset = pageToLoad;
-    this.productsService.doSearch({
+    this.orderService.doSearch({
       page: this.page.offset,
       page_size: this.page.limit,
-      name: this.inputForm.get("name").value,
+      address: this.inputForm.get("address").value,
       code: this.inputForm.get("code").value,
       updateTime: this.inputForm.get("updateTime").value,
       status: this.inputForm.get("status").value,
     }).subscribe(
       (res) => {
+        console.log(res);
         this.onSuccess(res.body.data, res.headers, pageToLoad);
       },
       (error) => {
@@ -143,7 +141,7 @@ export class ExportGoodsManagementComponent implements OnInit {
     }).onClose.subscribe(res => {
       if (res) {
         this.isLoad = true;
-        this.productsService.delete(data.id).subscribe(() => {
+        this.orderService.delete(data.id).subscribe(() => {
           this.toastrService.success(this.translate.instant('products.delete_success'),
             this.translate.instant('common.title_notification'));
           this.search(0);

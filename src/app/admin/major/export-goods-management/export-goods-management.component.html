@@ -2,11 +2,7 @@
   <div class="col-lg-12">
     <nb-card>
       <nb-card-header class="d-flex">
-        <label>{{ 'products.title' | translate }}</label>
-        <button nbButton status="primary" size="tiny" class="ml-auto" (click)="editUsers(null)">
-          <nb-icon icon="plus" pack="eva"></nb-icon>
-          {{ 'products.title_add' | translate }}
-        </button>
+        <label>{{ 'order.title' | translate }}</label>
       </nb-card-header>
       <nb-card-body>
         <form [formGroup]="inputForm">
@@ -14,7 +10,7 @@
             <div class="row">
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'common.table.item_product_code' | translate }}
+                  {{ 'common.table.item_order_code' | translate }}
                 </label>
                 <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="code">
               </div>
@@ -68,22 +64,16 @@
                   {{ page.offset * page.limit + rowIndex + 1 }}
                 </ng-container>
                 <ng-container
-                  *ngIf="col.prop ==='code' || col.prop ==='name' || col.prop ==='parenObject'"
+                  *ngIf="col.prop ==='code' || col.prop ==='address'"
                   class="text-right">
                   <span class="row-data-show"
                         title="{{value}}">{{value.length > 50 ? value.substring(0, 50).concat('...') : value}}</span>
-                </ng-container>
-                <ng-container
-                  *ngIf="col.prop ==='cost'"
-                  class="text-right">
-                  <span class="row-data-show"
-                        title="{{value}}">{{value}} </span>
                 </ng-container>
                 <ng-container *ngIf="col.prop ==='updateTime'">
                   {{ value | date:'dd/MM/yyyy HH:mm:ss'}}
                 </ng-container>
                 <ng-container *ngIf="col.prop ==='status'">
-                  {{  'common.state.' + value | translate }}
+                  {{  'common.statusOrder.' + value | translate }}
                 </ng-container>
                 <ng-container *ngIf="col.prop === 'map_size_color'">
                   <button class="p-1" nbButton ghost status="info" (click)="openMapModule(row)">

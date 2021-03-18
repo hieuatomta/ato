@@ -10,6 +10,15 @@
     "content_edit_success": "Sửa thông tin thành công",
     "delete_success": "Xóa sản phẩm thành công"
   },
+  "order": {
+    "title": "Quản lý bán hàng",
+    "title_add": "Thêm mới phiếu bán hàng",
+    "title_edit": "Sửa thông tin phiếu bán hàng",
+    "title_delete": "Xác nhận xóa phiếu bán hàng",
+    "unknown_error": "Lỗi không xác định",
+    "content_edit_success": "Sửa thông tin thành công",
+    "delete_success": "Xóa phiếu bán hàng thành công"
+  },
   "image": {
     "title": "Quản lý hình ảnh",
     "title_lock": "Xác nhận khoá hình ảnh",

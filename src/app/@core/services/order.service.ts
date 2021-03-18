@@ -11,15 +11,15 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
-  query(): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/sizes`, {
+  callback(data: any): Observable<any> {
+    return this.http.post <any>(`${environment.apiUrl}/orders`, data, {
       observe: 'response'
     });
   }
 
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
-    return this.http.get<any[]>(`${environment.apiUrl}/sizes`, {
+    return this.http.get<any[]>(`${environment.apiUrl}/orders`, {
       params: options,
       observe: 'response'
     });
@@ -32,7 +32,7 @@ export class OrderService {
   }
 
   public insert(data: any): Observable<any> {
-    return this.http.post <any>(`${environment.apiUrl}/orders`, data, {
+    return this.http.post <any>(`${environment.apiUrl}/createOrders`, data, {
       observe: 'response'
     });
   }

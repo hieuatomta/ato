@@ -26,6 +26,11 @@
       "3": "Ngừng kinh doanh",
       "4": "Hàng mới nhập"
     },
+    "statusOrder": {
+      "0": "Đã thanh toán",
+      "1": "Thanh toán thất bại",
+      "2": "Đang thực hiện thanh toán"
+    },
     "table": {
       "item_number": "STT",
       "item_username": "Tên đăng nhập",
@@ -62,6 +67,7 @@
       "item_objects_paren": "Chức năng cha",
       "item_objects_popup": "Map action",
       "item_icon": "Icon",
+      "item_order_code": "Mã phiếu bán",
       "item_product_code": "Mã sản phẩm",
       "item_product_cost": "Giá sản phẩm",
       "item_product_paren_object": "Danh mục",
@@ -79,6 +85,7 @@
       "item_image": "Map Ảnh ",
       "title_map_common": "Map Thao tác ",
       "type": "Nhóm chức năng ",
+      "address": "Địa chỉ giao hàng ",
       "item_image_link": "Hình ảnh"
     },
     "totalMessage": "bản ghi",
