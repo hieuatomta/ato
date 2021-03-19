@@ -54,10 +54,10 @@ export class ExportGoodsManagementComponent implements OnInit {
   columns = [
     {name: 'common.table.item_number', prop: 'index', flexGrow: 0.3},
     {name: 'common.table.item_order_code', prop: 'code', flexGrow: 1},
-    {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
+    {name: 'common.table.item_contact', prop: 'contact', flexGrow: 1.5},
     {name: 'common.table.address', prop: 'address', flexGrow: 1},
+    {name: 'common.table.item_status', prop: 'status', flexGrow: 1},
     {name: 'common.table.item_update_time', prop: 'updateTime', flexGrow: 1},
-    {name: 'common.table.item_size_color', prop: 'map_size_color', flexGrow: 0.6},
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
 

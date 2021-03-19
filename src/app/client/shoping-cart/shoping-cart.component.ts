@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from '../../@core/services/order.service';
 import {Router} from '@angular/router';
-import {ToastrService} from '../../@core/mock/toastr-service';
+import {NbToastrService} from '@nebular/theme';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
   inputForm: any;
 
   constructor(private orderService: OrderService,
-              private toastr: ToastrService,
+              private toastr: NbToastrService,
               private router: Router) {
   }
 
@@ -61,7 +61,6 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
     });
     const data1 = JSON.parse(localStorage.getItem('list_order'));
     this.obj = data1?.data;
-    // this.obj = JSON.parse(localStorage.getItem('list_order'));
     console.log(this.obj);
     if (this.obj === null || this.obj === undefined) {
       this.obj = [];
@@ -86,40 +85,44 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
 
   appId = null;
   code = null;
+  isLoad: boolean;
 
   thanhToan() {
+    this.isLoad = true;
     console.log(this.lsProduct);
     this.inputForm.get('customOrderDTO').setValue(this.lsProduct);
     console.log(this.inputForm.value);
     this.orderService.insert(this.inputForm.value).subscribe(res => {
         if (res.body.data.returncode === 1) {
+          this.isLoad = false;
           console.log(res.body);
           this.appId = res.body.data.data;
-          // this.code = res.body.data.code;
           window.open(res.body.data.orderurl);
         } else {
-          console.log('That bai');
+          this.isLoad = false;
+          this.toastr.danger('Có lỗi trong quá trình thanh toán, vui lòng thanh toán lại');
         }
       }, (error) => {
+        this.isLoad = false;
+        this.toastr.danger('Có lỗi trong quá trình thanh toán, vui lòng thanh toán lại');
         // this.isLoad = false;
       },
     );
   }
 
   checkStatusOrder() {
-    if (this.appId !== null )  {
+    this.isLoad = true;
+    if (this.appId !== null) {
       this.inputForm.get('appId').setValue(this.appId);
       this.orderService.callback(this.inputForm.value).subscribe(res => {
           console.log(res);
+          this.isLoad = false;
+          this.toastr.success('Thanh toán đơn hàng thành công');
+        localStorage.removeItem("list_order");
         this.router.navigate(['trang-chu']);
-          // if (res.body.data.returncode === 1) {
-          //   console.log(res.body);
-          //   this.appId = res.body.data.data;
-          //   // window.location = res.body.data.orderurl;
-          // } else {
-          //   console.log('That bai');
-          // }
         }, (error) => {
+          this.isLoad = false;
+          this.toastr.danger('Có lỗi trong quá trình thanh toán, vui lòng thanh toán lại');
           // this.isLoad = false;
         },
       );

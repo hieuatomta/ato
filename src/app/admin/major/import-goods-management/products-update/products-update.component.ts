@@ -197,26 +197,28 @@ export class ProductsUpdateComponent implements OnInit {
 
   listValue = [];
   objValue = {
-    code: null,
-    name: null,
-    amount: null,
-    idSize: null,
-    importPrice: null,
-    idObjects: null,
   };
 
   onValue(e) {
+    const objValue = {
+      code: null,
+      name: null,
+      amount: null,
+      idSize: null,
+      importPrice: null,
+      idObjects: null,
+    }
     // console.log(e);
     if (e?.code !== undefined) {
-      this.objValue.code = e.code;
+      objValue.code = e.code;
     }
-    this.objValue.name = e.name;
-    this.objValue.amount = e.amount;
-    this.objValue.idSize = e.idSize;
-    this.objValue.importPrice = e.importPrice;
-    this.objValue.idObjects = e.idObjects;
-    console.log(this.objValue);
-    this.listValue.push(this.objValue);
+    objValue.name = e.name;
+    objValue.amount = e.amount;
+    objValue.idSize = e.idSize;
+    objValue.importPrice = e.importPrice;
+    objValue.idObjects = e.idObjects;
+    console.log(objValue);
+    this.listValue.push(objValue);
     this.inputProduct.get('importCustomDTOList').setValue(this.listValue);
   }
 
