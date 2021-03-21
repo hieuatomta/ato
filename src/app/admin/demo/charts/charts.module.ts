@@ -37,7 +37,8 @@ const components = [
     declarations: [...routedComponents, ...components],
   exports: [
     EchartsPieComponent,
-    EchartsPieComponent
+    EchartsPieComponent,
+    EchartsBarComponent
   ]
 })
 export class ChartsModule {}

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {NbColorHelper, NbDialogService, NbThemeService, NbToastrService} from '@nebular/theme';
 import {ToastrService} from '../../../@core/mock/toastr-service';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -18,17 +18,77 @@ import {checkVaidDate} from '../../../validator';
   styleUrls: ['./statistical.component.scss'],
   templateUrl: './statistical.component.html',
 })
-export class StatisticalComponent implements OnInit {
+export class StatisticalComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.inputForm = new FormGroup({
-      fromTime: new FormControl(null, []),
+      fromTime: new FormControl(new Date().setFullYear(new Date().getFullYear() - 1), []),
       toTime: new FormControl(new Date(), []),
     });
     this.search(0);
 
 
   }
+  protected showChartPie(a, b) {
+    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
+      const colors = config.variables;
+      const echarts: any = config.variables.echarts;
+
+      this.optionsPie = {
+        backgroundColor: echarts.bg,
+        color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)',
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['Tổng tiền nhập', 'Tổng tiền bán'],
+          textStyle: {
+            color: echarts.textColor,
+          },
+        },
+        series: [
+          {
+            name: 'Doanh thu',
+            type: 'pie',
+            radius: '80%',
+            center: ['50%', '50%'],
+            data: [
+              { value: a, name: 'Tổng tiền nhập' },
+              { value: b, name: 'Tổng tiền bán' },
+            ],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: echarts.itemHoverShadowColor,
+              },
+            },
+            label: {
+              normal: {
+                textStyle: {
+                  color: echarts.textColor,
+                },
+              },
+            },
+            labelLine: {
+              normal: {
+                lineStyle: {
+                  color: echarts.axisLineColor,
+                },
+              },
+            },
+          },
+        ],
+      };
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
+  }
   constructor(
     private toastr: ToastrService,
     private theme: NbThemeService,
@@ -43,6 +103,7 @@ export class StatisticalComponent implements OnInit {
   options: any;
   optionsPie: any;
   data: any;
+  data1: any;
   themeSubscription: any;
 
   protected showChart(statistic_time: String[], sum_send: number[], sum_receive: number[]) {
@@ -98,66 +159,72 @@ export class StatisticalComponent implements OnInit {
     });
   }
 
-  protected showChartPie() {
-    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-
-      const colors = config.variables;
-      const echarts: any = config.variables.echarts;
-
-      this.optionsPie = {
-        backgroundColor: echarts.bg,
-        color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)',
-        },
-        legend: {
-          orient: 'vertical',
-          left: 'left',
-          data: ['USA', 'Germany', 'France', 'Canada', 'Russia'],
-          textStyle: {
-            color: echarts.textColor,
-          },
-        },
-        series: [
-          {
-            name: 'Countries',
-            type: 'pie',
-            radius: '80%',
-            center: ['50%', '50%'],
-            data: [
-              {value: 1, name: 'Germany'},
-              {value: 310, name: 'France'},
-              {value: 234, name: 'Canada'},
-              {value: 135, name: 'Russia'},
-              {value: 1548, name: 'USA'},
-            ],
-            itemStyle: {
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: echarts.itemHoverShadowColor,
-              },
-            },
-            label: {
-              normal: {
-                textStyle: {
-                  color: echarts.textColor,
-                },
-              },
-            },
-            labelLine: {
-              normal: {
-                lineStyle: {
-                  color: echarts.axisLineColor,
-                },
-              },
-            },
-          },
-        ],
-      };
-    });
-  }
+  // protected showChartPie(sum_send: number[], sum_receive: number[]) {
+  //   this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+  //
+  //     const colors = config.variables;
+  //     const echarts: any = config.variables.echarts;
+  //     this.data1 = {
+  //       datasets: [{
+  //         data: [sum_send, sum_receive],
+  //         name: 'Tổng tiền nhập hàng',
+  //         backgroundColor: NbColorHelper.hexToRgbA(colors.primaryLight, 0.8),
+  //       },
+  //         // {
+  //         //   data: sum_receive,
+  //         //   label: "Tổng tiền bán hàng",
+  //         //   backgroundColor: NbColorHelper.hexToRgbA('#444444', 0.8),
+  //         // }
+  //       ],
+  //     };
+  //     this.optionsPie = {
+  //       backgroundColor: echarts.bg,
+  //       color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
+  //       tooltip: {
+  //         trigger: 'item',
+  //         formatter: '{a} <br/>{b} : {c} ({d}%)',
+  //       },
+  //       legend: {
+  //         labels: {
+  //           fontColor: echarts.textColor,
+  //         },
+  //       },
+  //       series: [
+  //         {
+  //           name: 'Countries',
+  //           type: 'pie',
+  //           radius: '80%',
+  //           center: ['50%', '50%'],
+  //           data: [
+  //             {value: sum_send, name: 'Germany'},
+  //             {value: sum_receive, name: 'France'},
+  //           ],
+  //           itemStyle: {
+  //             emphasis: {
+  //               shadowBlur: 10,
+  //               shadowOffsetX: 0,
+  //               shadowColor: echarts.itemHoverShadowColor,
+  //             },
+  //           },
+  //           label: {
+  //             normal: {
+  //               textStyle: {
+  //                 color: echarts.textColor,
+  //               },
+  //             },
+  //           },
+  //           labelLine: {
+  //             normal: {
+  //               lineStyle: {
+  //                 color: echarts.axisLineColor,
+  //               },
+  //             },
+  //           },
+  //         },
+  //       ],
+  //     };
+  //   });
+  // }
 
   nowYear = formatDate(new Date(), 'dd/MM/yyyy', 'en-us');
   lastYear = formatDate(new Date(new Date().setFullYear(new Date().getFullYear() - 1)), 'dd/MM/yyyy', 'en-us');
@@ -272,12 +339,11 @@ export class StatisticalComponent implements OnInit {
           a.push(res.body[i].updateTime);
           b.push(res.body[i].totalImport);
         }
-        this.statisticalService.getOrdersCount(this.inputForm.value
-        ).subscribe(
+        this.statisticalService.getOrdersCount(this.inputForm.value).subscribe(
           (res1) => {
             const c = [];
             console.log(res1);
-            for (let i = 0; i < res.body.length; i++) {
+            for (let i = 0; i < res1.body.length; i++) {
               c.push(res1.body[i].totalImport);
             }
             this.showChart(a, b, c);
@@ -294,6 +360,23 @@ export class StatisticalComponent implements OnInit {
         this.toastrService.danger(this.translate.instant('statistic.dateError'), this.translate.instant('statistic.error.title'));
         // this.loading = false;
       },
+    );
+    this.statisticalService.getDoanhThu(this.inputForm.value).subscribe(
+      (res1) => {
+        const a = [];
+        const b = [];
+        console.log(res1);
+        for (let i = 0; i < res1.body.length; i++) {
+          a.push(res1.body[i].totalImports);
+          b.push(res1.body[i].totalOrders);
+        }
+        this.showChartPie(a[0], b[0]);
+        this.isLoad = false;
+      },
+      (error) => {
+        this.isLoad = false;
+      },
+      () => this.isLoad = false,
     );
     // this.suppliersService.doSearch({
     //   page: this.page.offset,

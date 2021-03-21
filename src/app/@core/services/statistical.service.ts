@@ -27,6 +27,12 @@ export class StatisticalService {
     });
   }
 
+  public getDoanhThu(model?: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/statistical/doanh-thu`, model, {
+      observe: 'response'
+    });
+  }
+
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.get<any[]>(`${environment.apiUrl}/orders`, {
