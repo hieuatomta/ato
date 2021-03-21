@@ -14,6 +14,7 @@ import {
   NbToggleModule,
   NbUserModule,
 } from '@nebular/theme';
+import {NbMomentDateModule} from "@nebular/moment";
 
 import {ThemeModule} from '../../../@theme/theme.module';
 
@@ -52,7 +53,7 @@ import {NgxEchartsModule} from 'ngx-echarts';
     NgSelectModule, SharedModule,
     ReactiveFormsModule,
     NgxDatatableModule,
-    NbSpinnerModule, NbToggleModule, ChartModule, ChartsModule, NgxEchartsModule,
+    NbSpinnerModule, NbToggleModule, ChartModule, ChartsModule, NgxEchartsModule, NbMomentDateModule
   ],
   entryComponents: [
     StatisticalUpdateComponent

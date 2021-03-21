@@ -1,12 +1,10 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {NbColorHelper, NbDialogService, NbThemeService, NbToastrService} from '@nebular/theme';
 import {ToastrService} from '../../../@core/mock/toastr-service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
 import {UsersService} from '../../../@core/services/users.service';
 import {HttpHeaders} from '@angular/common/http';
-import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/confirm-dialog.component';
-import {StatisticalUpdateComponent} from './statistical-update/statistical-update.component';
 import {SuppliersService} from '../../../@core/services/suppliers.service';
 import {StatisticalService} from '../../../@core/services/statistical.service';
 import {formatDate} from '@angular/common';
@@ -19,93 +17,6 @@ import {checkVaidDate} from '../../../validator';
   templateUrl: './statistical.component.html',
 })
 export class StatisticalComponent implements OnDestroy, OnInit {
-  ngOnInit(): void {
-    this.inputForm = new FormGroup({
-      fromTime: new FormControl(new Date().setFullYear(new Date().getFullYear() - 1), []),
-      toTime: new FormControl(new Date(), []),
-    });
-    this.search(0);
-
-
-  }
-  protected showChartPie(a, b) {
-    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-
-      const colors = config.variables;
-      const echarts: any = config.variables.echarts;
-
-      this.optionsPie = {
-        backgroundColor: echarts.bg,
-        color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)',
-        },
-        legend: {
-          orient: 'vertical',
-          left: 'left',
-          data: ['Tổng tiền nhập', 'Tổng tiền bán'],
-          textStyle: {
-            color: echarts.textColor,
-          },
-        },
-        series: [
-          {
-            name: 'Doanh thu',
-            type: 'pie',
-            radius: '80%',
-            center: ['50%', '50%'],
-            data: [
-              { value: a, name: 'Tổng tiền nhập' },
-              { value: b, name: 'Tổng tiền bán' },
-            ],
-            itemStyle: {
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: echarts.itemHoverShadowColor,
-              },
-            },
-            label: {
-              normal: {
-                textStyle: {
-                  color: echarts.textColor,
-                },
-              },
-            },
-            labelLine: {
-              normal: {
-                lineStyle: {
-                  color: echarts.axisLineColor,
-                },
-              },
-            },
-          },
-        ],
-      };
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
-  }
-  constructor(
-    private toastr: ToastrService,
-    private theme: NbThemeService,
-    private translate: TranslateService,
-    private toastrService: NbToastrService,
-    private userService: UsersService,
-    private suppliersService: SuppliersService,
-    private statisticalService: StatisticalService,
-    private dialogService: NbDialogService) {
-  }
-
-  options: any;
-  optionsPie: any;
-  data: any;
-  data1: any;
-  themeSubscription: any;
-
   protected showChart(statistic_time: String[], sum_send: number[], sum_receive: number[]) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
       const colors: any = config.variables;
@@ -159,91 +70,85 @@ export class StatisticalComponent implements OnDestroy, OnInit {
     });
   }
 
-  // protected showChartPie(sum_send: number[], sum_receive: number[]) {
-  //   this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-  //
-  //     const colors = config.variables;
-  //     const echarts: any = config.variables.echarts;
-  //     this.data1 = {
-  //       datasets: [{
-  //         data: [sum_send, sum_receive],
-  //         name: 'Tổng tiền nhập hàng',
-  //         backgroundColor: NbColorHelper.hexToRgbA(colors.primaryLight, 0.8),
-  //       },
-  //         // {
-  //         //   data: sum_receive,
-  //         //   label: "Tổng tiền bán hàng",
-  //         //   backgroundColor: NbColorHelper.hexToRgbA('#444444', 0.8),
-  //         // }
-  //       ],
-  //     };
-  //     this.optionsPie = {
-  //       backgroundColor: echarts.bg,
-  //       color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
-  //       tooltip: {
-  //         trigger: 'item',
-  //         formatter: '{a} <br/>{b} : {c} ({d}%)',
-  //       },
-  //       legend: {
-  //         labels: {
-  //           fontColor: echarts.textColor,
-  //         },
-  //       },
-  //       series: [
-  //         {
-  //           name: 'Countries',
-  //           type: 'pie',
-  //           radius: '80%',
-  //           center: ['50%', '50%'],
-  //           data: [
-  //             {value: sum_send, name: 'Germany'},
-  //             {value: sum_receive, name: 'France'},
-  //           ],
-  //           itemStyle: {
-  //             emphasis: {
-  //               shadowBlur: 10,
-  //               shadowOffsetX: 0,
-  //               shadowColor: echarts.itemHoverShadowColor,
-  //             },
-  //           },
-  //           label: {
-  //             normal: {
-  //               textStyle: {
-  //                 color: echarts.textColor,
-  //               },
-  //             },
-  //           },
-  //           labelLine: {
-  //             normal: {
-  //               lineStyle: {
-  //                 color: echarts.axisLineColor,
-  //               },
-  //             },
-  //           },
-  //         },
-  //       ],
-  //     };
-  //   });
-  // }
+  protected showChartPie(a, b) {
+    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-  nowYear = formatDate(new Date(), 'dd/MM/yyyy', 'en-us');
-  lastYear = formatDate(new Date(new Date().setFullYear(new Date().getFullYear() - 1)), 'dd/MM/yyyy', 'en-us');
+      const colors = config.variables;
+      const echarts: any = config.variables.echarts;
 
-  changeValueEndDate(event) {
-    const value = event.target.value;
-    if (!checkVaidDate(value)) {
-      return this.inputForm.get('toTime').setErrors({date: true});
-    }
-
+      this.optionsPie = {
+        backgroundColor: echarts.bg,
+        color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} VND({d}%)',
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['Tổng tiền nhập', 'Tổng tiền bán'],
+          textStyle: {
+            color: echarts.textColor,
+          },
+        },
+        series: [
+          {
+            name: 'Doanh thu',
+            type: 'pie',
+            radius: '80%',
+            center: ['50%', '50%'],
+            data: [
+              {value: a, name: 'Tổng tiền nhập'},
+              {value: b, name: 'Tổng tiền bán'},
+            ],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: echarts.itemHoverShadowColor,
+              },
+            },
+            label: {
+              normal: {
+                textStyle: {
+                  color: echarts.textColor,
+                },
+              },
+            },
+            labelLine: {
+              normal: {
+                lineStyle: {
+                  color: echarts.axisLineColor,
+                },
+              },
+            },
+          },
+        ],
+      };
+    });
   }
 
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
+  }
 
-  changeValueStartDate(event) {
-    const value = event.target.value;
-    if (!checkVaidDate(value)) {
-      return this.inputForm.get('fromTime').setErrors({date: true});
-    }
+  constructor(
+    private toastr: ToastrService,
+    private theme: NbThemeService,
+    private translate: TranslateService,
+    private toastrService: NbToastrService,
+    private userService: UsersService,
+    private suppliersService: SuppliersService,
+    private statisticalService: StatisticalService,
+    private dialogService: NbDialogService) {
+  }
 
+  ngOnInit(): void {
+    this.inputForm = new FormGroup({
+      fromTime: new FormControl(null, []),
+      toTime: new FormControl(null, []),
+    });
+    this.search();
   }
 
   isLoad: boolean;
@@ -268,68 +173,49 @@ export class StatisticalComponent implements OnDestroy, OnInit {
   ];
 
   inputForm: any;
+  options: any;
+  optionsPie: any;
+  data: any;
+  data1: any;
+  themeSubscription: any;
+  nowYear = formatDate(new Date(), 'dd/MM/yyyy', 'en-us');
+  lastYear = formatDate(new Date(new Date().setFullYear(new Date().getFullYear() - 1)), 'dd/MM/yyyy', 'en-us');
 
-  pageCallback(pageInfo: { count?: number, pageSize?: number, limit?: number, offset?: number }) {
-    this.page.offset = pageInfo.offset;
-    this.search(pageInfo.offset);
-  }
-
-  editUsers(data) {
-    let title;
-    if (data == null) {
-      title = this.translate.instant('suppliers.title_add');
-    } else {
-      title = this.translate.instant('suppliers.title_edit');
+  changeValueEndDate(event) {
+    const value = event.target.value;
+    if (!checkVaidDate(value)) {
+      return this.inputForm.get('toTime').setErrors({date: true});
     }
-    this.dialogService.open(StatisticalUpdateComponent, {
-      context: {
-        title: title,
-        data: data,
-      },
-      dialogClass: 'modal-full',
-    }).onClose.subscribe(
-      value => {
-        if (value) {
-          if (data == null) {
-            this.toastrService.success(this.translate.instant('suppliers.content_add_success'),
-              this.translate.instant('common.title_notification'));
-          } else {
-            this.toastrService.success(this.translate.instant('suppliers.content_edit_success'),
-              this.translate.instant('common.title_notification'));
-          }
-          this.search(0);
-        }
-      }
-    );
+
   }
 
-  protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
-    this.page.count = data.count;
-    this.page.offset = page || 0;
-    this.rows = data.list || [];
+  changeValueStartDate(event) {
+    const value = event.target.value;
+    if (!checkVaidDate(value)) {
+      return this.inputForm.get('fromTime').setErrors({date: true});
+    }
+
   }
 
-  formatDate(date) {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
+  dateDate = {
+    fromTime: null,
+    toTime: null,
+  };
 
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
-    return [year, month, day].join('-');
-  }
 
-  search(pageToLoad: number) {
+  search() {
     this.isLoad = true;
-    // this.page.offset = pageToLoad;
-    console.log(this.formatDate(this.inputForm.get('fromTime').value));
-    this.inputForm.get('fromTime').setValue(this.formatDate(this.inputForm.get('fromTime').value));
-    this.inputForm.get('toTime').setValue(this.formatDate(this.inputForm.get('toTime').value));
-    console.log(this.inputForm.value);
-    this.statisticalService.getSendCount(this.inputForm.value
+    if (this.inputForm.get('fromTime').value === null) {
+      this.dateDate.fromTime = this.formatDate(new Date(new Date().setFullYear(new Date().getFullYear() - 1)));
+    } else {
+      this.dateDate.fromTime = this.formatDate(this.inputForm.get('fromTime').value)
+    }
+    if (this.inputForm.get('toTime').value === null) {
+      this.dateDate.toTime = this.formatDate(new Date());
+    }  else {
+      this.dateDate.toTime = this.formatDate(this.inputForm.get('toTime').value)
+    }
+    this.statisticalService.getSendCount(this.dateDate
     ).subscribe(
       (res) => {
         const a = [];
@@ -339,7 +225,7 @@ export class StatisticalComponent implements OnDestroy, OnInit {
           a.push(res.body[i].updateTime);
           b.push(res.body[i].totalImport);
         }
-        this.statisticalService.getOrdersCount(this.inputForm.value).subscribe(
+        this.statisticalService.getOrdersCount(this.dateDate).subscribe(
           (res1) => {
             const c = [];
             console.log(res1);
@@ -361,7 +247,7 @@ export class StatisticalComponent implements OnDestroy, OnInit {
         // this.loading = false;
       },
     );
-    this.statisticalService.getDoanhThu(this.inputForm.value).subscribe(
+    this.statisticalService.getDoanhThu(this.dateDate).subscribe(
       (res1) => {
         const a = [];
         const b = [];
@@ -378,44 +264,29 @@ export class StatisticalComponent implements OnDestroy, OnInit {
       },
       () => this.isLoad = false,
     );
-    // this.suppliersService.doSearch({
-    //   page: this.page.offset,
-    //   page_size: this.page.limit,
-    //   fromTime: this.formatDate(this.inputForm.get('fromTime').value),
-    //   toTime: this.formatDate(this.inputForm.get('toTime').value),
-    // }).subscribe(
-    //   (res) => {
-    //     this.onSuccess(res.body.data, res.headers, pageToLoad);
-    //   },
-    //   (error) => {
-    //     this.isLoad = false;
-    //   },
-    //   () => this.isLoad = false,
-    // );
   }
 
+  pageCallback(pageInfo: { count?: number, pageSize?: number, limit?: number, offset?: number }) {
+    this.page.offset = pageInfo.offset;
+    this.search();
+  }
 
-  deleteUsers(data) {
-    this.dialogService.open(ConfirmDialogComponent, {
-      context: {
-        title: this.translate.instant('common.title_notification'),
-        message: this.translate.instant('suppliers.title_delete') + ' ' + data.name
-      },
-    }).onClose.subscribe(res => {
-      if (res) {
-        this.isLoad = true;
-        this.suppliersService.delete(data.id).subscribe(() => {
-          this.toastrService.success(this.translate.instant('suppliers.delete_success'),
-            this.translate.instant('common.title_notification'));
-          this.search(0);
-          this.isLoad = false;
-        }, (err) => {
-          this.toastrService.success(err.message),
-            this.translate.instant('common.title_notification');
-          this.isLoad = false;
-        });
-      }
-    });
+  protected onSuccess(data: any | null, headers: HttpHeaders, page: number): void {
+    this.page.count = data.count;
+    this.page.offset = page || 0;
+    this.rows = data.list || [];
+  }
 
+  formatDate(date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+    return [year, month, day].join('-');
   }
 }
