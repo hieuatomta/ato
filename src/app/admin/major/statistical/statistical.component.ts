@@ -9,6 +9,8 @@ import {ConfirmDialogComponent} from '../../../shares/directives/confirm-dialog/
 import {StatisticalUpdateComponent} from './statistical-update/statistical-update.component';
 import {SuppliersService} from '../../../@core/services/suppliers.service';
 import {StatisticalService} from '../../../@core/services/statistical.service';
+import {formatDate} from '@angular/common';
+import {checkVaidDate} from '../../../validator';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -18,43 +20,13 @@ import {StatisticalService} from '../../../@core/services/statistical.service';
 })
 export class StatisticalComponent implements OnInit {
   ngOnInit(): void {
+    this.inputForm = new FormGroup({
+      fromTime: new FormControl(null, []),
+      toTime: new FormControl(new Date(), []),
+    });
     this.search(0);
 
 
-    this.statisticalService.getSendCount(this.inputForm.value
-    ).subscribe(
-      (res) => {
-        const a = [];
-        const b = [];
-        const c = [];
-        console.log(res);
-        for (let i = 0; i < res.body.length; i++) {
-          a.push(res.body[i].updateTime);
-          b.push(res.body[i].totalImport);
-        }
-        this.showChart(a, b, c);
-        // this.statisticalService.getReceiveCount(this.inputForm.value
-        // ).subscribe(
-        //   (res) => {
-        //     let c = [];
-        //     for (let i = 0; i < res.body.length; i++) {
-        //       c.push(res.body[i].reportSuccessSum);
-        //     }
-        //     this.showChart(a, b, c);
-        //     this.loading = false;
-        //   },
-        //   (error) => {
-        //     this.loading = false;
-        //   },
-        //   () => this.loading = false,
-        // );
-
-      },
-      (error) => {
-        this.toastrService.danger(this.translate.instant('statistic.dateError'), this.translate.instant('statistic.error.title'));
-        // this.loading = false;
-      },
-    );
   }
 
   constructor(
@@ -187,6 +159,26 @@ export class StatisticalComponent implements OnInit {
     });
   }
 
+  nowYear = formatDate(new Date(), 'dd/MM/yyyy', 'en-us');
+  lastYear = formatDate(new Date(new Date().setFullYear(new Date().getFullYear() - 1)), 'dd/MM/yyyy', 'en-us');
+
+  changeValueEndDate(event) {
+    const value = event.target.value;
+    if (!checkVaidDate(value)) {
+      return this.inputForm.get('toTime').setErrors({date: true});
+    }
+
+  }
+
+
+  changeValueStartDate(event) {
+    const value = event.target.value;
+    if (!checkVaidDate(value)) {
+      return this.inputForm.get('fromTime').setErrors({date: true});
+    }
+
+  }
+
   isLoad: boolean;
   listStatus = [
     {name: 'common.status.1', code: 1},
@@ -208,12 +200,7 @@ export class StatisticalComponent implements OnInit {
     {name: 'common.table.item_action', prop: 'action_btn', flexGrow: 1}
   ];
 
-  inputForm = new FormGroup({
-    name: new FormControl(null, []),
-    code: new FormControl(null, []),
-    updateTime: new FormControl(null, []),
-    status: new FormControl(null, [])
-  });
+  inputForm: any;
 
   pageCallback(pageInfo: { count?: number, pageSize?: number, limit?: number, offset?: number }) {
     this.page.offset = pageInfo.offset;
@@ -255,25 +242,73 @@ export class StatisticalComponent implements OnInit {
     this.rows = data.list || [];
   }
 
+  formatDate(date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+    return [year, month, day].join('-');
+  }
+
   search(pageToLoad: number) {
     this.isLoad = true;
-    this.page.offset = pageToLoad;
-    this.suppliersService.doSearch({
-      page: this.page.offset,
-      page_size: this.page.limit,
-      name: this.inputForm.get('name').value,
-      code: this.inputForm.get('code').value,
-      updateTime: this.inputForm.get('updateTime').value,
-      status: this.inputForm.get('status').value,
-    }).subscribe(
+    // this.page.offset = pageToLoad;
+    console.log(this.formatDate(this.inputForm.get('fromTime').value));
+    this.inputForm.get('fromTime').setValue(this.formatDate(this.inputForm.get('fromTime').value));
+    this.inputForm.get('toTime').setValue(this.formatDate(this.inputForm.get('toTime').value));
+    console.log(this.inputForm.value);
+    this.statisticalService.getSendCount(this.inputForm.value
+    ).subscribe(
       (res) => {
-        this.onSuccess(res.body.data, res.headers, pageToLoad);
+        const a = [];
+        const b = [];
+        console.log(res);
+        for (let i = 0; i < res.body.length; i++) {
+          a.push(res.body[i].updateTime);
+          b.push(res.body[i].totalImport);
+        }
+        this.statisticalService.getOrdersCount(this.inputForm.value
+        ).subscribe(
+          (res1) => {
+            const c = [];
+            console.log(res1);
+            for (let i = 0; i < res.body.length; i++) {
+              c.push(res1.body[i].totalImport);
+            }
+            this.showChart(a, b, c);
+            this.isLoad = false;
+          },
+          (error) => {
+            this.isLoad = false;
+          },
+          () => this.isLoad = false,
+        );
+
       },
       (error) => {
-        this.isLoad = false;
+        this.toastrService.danger(this.translate.instant('statistic.dateError'), this.translate.instant('statistic.error.title'));
+        // this.loading = false;
       },
-      () => this.isLoad = false,
     );
+    // this.suppliersService.doSearch({
+    //   page: this.page.offset,
+    //   page_size: this.page.limit,
+    //   fromTime: this.formatDate(this.inputForm.get('fromTime').value),
+    //   toTime: this.formatDate(this.inputForm.get('toTime').value),
+    // }).subscribe(
+    //   (res) => {
+    //     this.onSuccess(res.body.data, res.headers, pageToLoad);
+    //   },
+    //   (error) => {
+    //     this.isLoad = false;
+    //   },
+    //   () => this.isLoad = false,
+    // );
   }
 
 

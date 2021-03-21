@@ -1,7 +1,8 @@
 {
   "statistic": {
     "barchart": {
-      "title": "Thống kê",
+      "title": "Thống kê nhập xuất",
+      "title_price": "Doanh thu",
       "send": "Số hàng nhập",
       "receive": "Số hàng bán"
     }

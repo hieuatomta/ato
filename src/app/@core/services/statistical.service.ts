@@ -21,6 +21,11 @@ export class StatisticalService {
       observe: 'response'
     });
   }
+  public getOrdersCount(model?: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/statistical/orders-count`, model, {
+      observe: 'response'
+    });
+  }
 
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
