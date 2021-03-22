@@ -41,6 +41,7 @@ export class ProductsUpdateComponent implements OnInit {
     {name: 'common.state.1', code: 1},
     {name: 'common.state.2', code: 2},
     {name: 'common.state.3', code: 3},
+    {name: 'common.state.4', code: 4},
   ];
   arr = [];
 
