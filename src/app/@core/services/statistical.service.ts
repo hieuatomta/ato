@@ -33,6 +33,18 @@ export class StatisticalService {
     });
   }
 
+  public getSanPhamBanChay(model?: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/statistical/top-san-pham`, model, {
+      observe: 'response'
+    });
+  }
+
+  public getTopKhachHang(model?: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/statistical/top-khach-hang`, model, {
+      observe: 'response'
+    });
+  }
+
   public doSearch(req?: any): Observable<any> {
     const options = createRequestOption(req);
     return this.http.get<any[]>(`${environment.apiUrl}/orders`, {

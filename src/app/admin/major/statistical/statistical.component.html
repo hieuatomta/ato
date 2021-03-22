@@ -8,22 +8,9 @@
         <form [formGroup]="inputForm">
           <div class="mb-4">
             <div class="row">
-<!--              <div class="col-lg-4 form-group">-->
-<!--                <label class="label">-->
-<!--                  {{ 'common.table.item_impact_time' | translate }}-->
-<!--                </label>-->
-<!--                <input class="custom-border" nbInput fullWidth-->
-<!--                       formControlName="fromTime"-->
-<!--                       (keyup)="changeValueStartDate($event)"-->
-<!--                       [nbDatepicker]="fromDate" [ngClass]="{'status-danger': this.inputForm.get('fromTime').touched && this.inputForm.get('fromTime').errors}"-->
-<!--                >-->
-<!--                <nb-datepicker #fromDate format="{{'common.format_date' |translate}}">-->
-<!--                </nb-datepicker>-->
-<!--                &lt;!&ndash;                <input (keyup.enter)="search(0)" nbInput fullWidth formControlName="impactTime">&ndash;&gt;-->
-<!--              </div>-->
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'common.table.item_impact_time' | translate }}<span class="text-danger ml-2">*</span>
+                 Từ ngày <span class="text-danger ml-2">*</span>
                 </label>
                 <input nbInput fullWidth
                        formControlName="fromTime"
@@ -38,7 +25,7 @@
               </div>
               <div class="col-lg-4 form-group">
                 <label class="label">
-                  {{ 'common.table.item_impact_time' | translate }}<span class="text-danger ml-2">*</span>
+                  Đến ngày<span class="text-danger ml-2">*</span>
                 </label>
                 <input nbInput fullWidth
                        formControlName="toTime"
@@ -53,7 +40,7 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button nbButton status="primary" type="submit" (click)="search(0)">{{ 'common.search' | translate }}
+              <button nbButton status="primary" type="submit" (click)="search()">{{ 'common.search' | translate }}
                 <nb-icon icon="search-outline"></nb-icon>
               </button>
             </div>

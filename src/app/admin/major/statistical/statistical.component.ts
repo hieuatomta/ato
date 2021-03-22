@@ -186,7 +186,6 @@ export class StatisticalComponent implements OnDestroy, OnInit {
     if (!checkVaidDate(value)) {
       return this.inputForm.get('toTime').setErrors({date: true});
     }
-
   }
 
   changeValueStartDate(event) {
@@ -194,7 +193,6 @@ export class StatisticalComponent implements OnDestroy, OnInit {
     if (!checkVaidDate(value)) {
       return this.inputForm.get('fromTime').setErrors({date: true});
     }
-
   }
 
   dateDate = {

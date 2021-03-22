@@ -56,6 +56,16 @@ const routes: Routes = [{
         .then(m => m.SupplierModule),
     },
     {
+      path: 'products-selling',
+      loadChildren: () => import('./major/products-selling/products-selling.module')
+        .then(m => m.ProductsSellingModule),
+    },
+    {
+      path: 'customer-selling',
+      loadChildren: () => import('./major/customer-selling/customer-selling.module')
+        .then(m => m.CustomerSellingModule),
+    },
+    {
       path: 'statistical',
       loadChildren: () => import('./major/statistical/statistical.module')
         .then(m => m.StatisticalModule),
